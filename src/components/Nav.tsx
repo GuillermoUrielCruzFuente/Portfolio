@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 //third party libraries
 import Lottie from 'lottie-web'
@@ -35,9 +36,8 @@ function Nav() {
                 </a>
 
                 <div id="navigator">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
+                        <Link to="/">home</Link>
+                        <Link to="/contact">contact</Link>
                 </div>
             </div>
         </nav>

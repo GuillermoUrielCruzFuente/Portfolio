@@ -8,7 +8,7 @@ import logoAnimation from '../static/logo.json'
 import '../scss/App.css'
 
 //component imports
-import Nav from './Nav'
+// import Nav from './Nav'
 
 function App() {
 	useEffect(() => {
@@ -23,7 +23,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Nav></Nav>
+			{/* <Nav></Nav> */}
 			<header className="App-header">
 				<p>Hi!, I'm</p>
 				<div id="lottie-animation"></div>
