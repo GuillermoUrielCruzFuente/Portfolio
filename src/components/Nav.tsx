@@ -12,32 +12,36 @@ import '../scss/Nav.scss'
 
 function Nav() {
 
-    const a = () => {
-        Lottie.play('navLogo')
-    }
-
     useEffect(() => {
         Lottie.loadAnimation({
             container: document.getElementById('nav-logo') as HTMLElement,
             animationData: logoAnimation,
-            autoplay: true,
+            autoplay: false,
             loop: false,
             name: 'navLogo'
         })
+
+        const preloader = document.getElementById('preloader') as HTMLElement
+        setTimeout(() => {
+            preloader.style.visibility = 'hidden'
+            Lottie.play('navLogo')
+        }, 5000);
     }, [])
 
 
 
     return (
-        <nav className='blur-bg'>
+        <nav className='no-blur-bg'>
             <div id="nav-container">
                 <a href="/">
                     <div id="nav-logo"></div>
                 </a>
 
                 <div id="navigator">
-                        <Link to="/">home</Link>
-                        <Link to="/contact">contact</Link>
+                    <Link to="/">home</Link>
+                    <Link to="/about">about</Link>
+                    <Link to="/work">work</Link>
+                    <Link to="/contact">contact</Link>
                 </div>
             </div>
         </nav>

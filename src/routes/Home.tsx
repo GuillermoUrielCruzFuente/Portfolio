@@ -10,7 +10,7 @@ import '../scss/App.css'
 //component imports
 // import Nav from './Nav'
 
-function App() {
+export default function Home() {
 	useEffect(() => {
 		Lottie.loadAnimation({
 			container: document.getElementById('lottie-animation') as HTMLElement,
@@ -23,7 +23,6 @@ function App() {
 
 	return (
 		<div className="App">
-			{/* <Nav></Nav> */}
 			<header className="App-header">
 				<p>Hi!, I'm</p>
 				<div id="lottie-animation"></div>
@@ -31,5 +30,3 @@ function App() {
 		</div>
 	)
 }
-
-export default App
