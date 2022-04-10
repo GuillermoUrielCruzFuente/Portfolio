@@ -13,6 +13,7 @@ nav {
 
 }
 
+
 #nav-container {
     position: relative;
     display: flex;
@@ -24,6 +25,19 @@ nav {
         width: fit-content;
         height: 60%;
         display: inline-block;
+        font-weight: 900;
+        color: #fff;
+        text-decoration: none;
+
+        font-size: 1.25rem;
+    }
+
+    a.active {
+        color: #D098EF;
+    }
+
+    a.inactive {
+        color: #fff;
     }
 }
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 //third party libraries
 import Lottie from 'lottie-web'
@@ -23,9 +23,13 @@ function Nav() {
 
         const preloader = document.getElementById('preloader') as HTMLElement
         setTimeout(() => {
-            preloader.style.visibility = 'hidden'
-            Lottie.play('navLogo')
-        }, 5000);
+            preloader.style.transform = 'translateY(-100%)'
+
+            preloader.addEventListener('transitionend', () => {
+                preloader.style.visibility = 'hidden'
+            })
+            
+        }, 500);
     }, [])
 
 
@@ -38,10 +42,10 @@ function Nav() {
                 </a>
 
                 <div id="navigator">
-                    <Link to="/">home</Link>
-                    <Link to="/about">about</Link>
-                    <Link to="/work">work</Link>
-                    <Link to="/contact">contact</Link>
+                    <NavLink to="/">home</NavLink>
+                    <NavLink to="/about">about</NavLink>
+                    <NavLink to="/work">work</NavLink>
+                    <NavLink to="/contact">contact</NavLink>
                 </div>
             </div>
         </nav>

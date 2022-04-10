@@ -5,10 +5,7 @@ import Lottie from 'lottie-web'
 import logoAnimation from '../static/logo.json'
 
 //styles imports
-import '../scss/App.css'
-
-//component imports
-// import Nav from './Nav'
+import '../scss/Home.scss'
 
 export default function Home() {
 	useEffect(() => {
@@ -17,15 +14,22 @@ export default function Home() {
 			animationData: logoAnimation,
 			autoplay: false,
 			loop: false,
-			renderer: 'svg'
+			renderer: 'svg',
+			name: 'homeLogo'
 		})
+
+		setTimeout(() => {
+			Lottie.play('homeLogo')
+		}, 1300);
 	}, []) //run code when component is initialized
 
 	return (
 		<div className="App">
 			<header className="App-header">
-				<p>Hi!, I'm</p>
+				<p className='big-text'>Hola!, soy</p>
 				<div id="lottie-animation"></div>
+				<p>Desarrollador web frontend, diseñador UX/UI y cuando la ocasión lo requiere editor y motion designer.</p>
+				<button>contactar</button>
 			</header>
 		</div>
 	)
