@@ -2,26 +2,39 @@ import { useEffect } from 'react'
 import Lottie from 'lottie-web'
 
 //data imports
-import logoAnimation from '../static/logo.json'
+import logoAnimation from '../static/lottie/logo.json'
 
 //styles imports
 import '../scss/Home.scss'
 
 export default function Home() {
+
 	useEffect(() => {
-		Lottie.loadAnimation({
+		let logoAnim = Lottie.loadAnimation({
 			container: document.getElementById('lottie-animation') as HTMLElement,
 			animationData: logoAnimation,
 			autoplay: false,
 			loop: false,
 			renderer: 'svg',
-			name: 'homeLogo'
+			name: 'homeLogo',
+			rendererSettings: {
+				progressiveLoad: false,
+				hideOnTransparent: true,
+				viewBoxOnly: true,
+				focusable: false
+			}
 		})
 
 		setTimeout(() => {
-			Lottie.play('homeLogo')
-		}, 1300);
-	}, []) //run code when component is initialized
+			logoAnim.play()
+			console.log('generated')
+		}, 1000);
+
+		return () => {
+			logoAnim.destroy()
+			console.log('destroyed')
+		}
+	})
 
 	return (
 		<div className="App">

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import Lottie from 'lottie-web'
 
 //data
-import logoAnimation from '../static/logo.json'
+import logoAnimation from '../static/lottie/logo.json'
 
 //styles
 import '../scss/Nav.scss'
