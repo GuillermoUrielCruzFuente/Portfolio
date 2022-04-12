@@ -18,8 +18,12 @@ p {
 	padding-top: 1rem;
 }
 
+h1 {
+	color: #fff;
+}
+
 .big-text {
-	font-size: 3rem;
+	font-size: 2rem;
 	font-weight: 900;
 	line-height: 1;
 }
@@ -31,7 +35,6 @@ p {
 	flex-flow: column;
 
 	min-height: 100vh;
-	color: #222;
 }
 
 button {
@@ -49,12 +52,30 @@ button {
 	}
 }
 
+#home-shape {
+	position: absolute;
+	top: 0px;
+	left: -100%;
+	z-index: -1;
+
+	max-width: unset;
+	width: 50%;
+	height: 100%;
+}
+
+@keyframes home-shape-in {
+	from {
+		opacity: 0;
+		left: -100%;
+	}
+	to {
+		opacity: 1;
+		left: 0px;
+	}
+}
+
 @media screen and (max-width: 500px) {
 	p {
-		font-weight: 900;
 		font-size: 0.9rem;
-		line-height: 1;
-		margin: 0;
-		margin-left: 1rem;
 	}
 }

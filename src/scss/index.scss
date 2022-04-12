@@ -2,11 +2,7 @@
 @import "./layout/page.scss";
 
 body {
-	margin: 0;
 	font-family: "Poppins", sans-serif;
-
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	background-color: #1b0221;
+	overflow: hidden;
+	background-color: #000;
 }

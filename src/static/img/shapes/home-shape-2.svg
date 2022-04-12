@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1686.987" height="1377" viewBox="0 0 1686.987 1377">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2a0433;
+      }
+
+      .cls-2 {
+        filter: url(#Trazado_39);
+      }
+    </style>
+    <filter id="Trazado_39" x="0" y="0" width="1686.987" height="1377" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="49.5" result="blur"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="Trazado_39-2" data-name="Trazado 39" class="cls-1" d="M1990,1140H3379.987L2950,2220H1990Z" transform="translate(-1841.5 -991.5)"/>
+  </g>
+</svg>

@@ -10,6 +10,8 @@ import '../scss/Home.scss'
 export default function Home() {
 
 	useEffect(() => {
+		let homeShapeRef = document.getElementById('home-shape') as HTMLElement
+
 		let logoAnim = Lottie.loadAnimation({
 			container: document.getElementById('lottie-animation') as HTMLElement,
 			animationData: logoAnimation,
@@ -18,32 +20,39 @@ export default function Home() {
 			renderer: 'svg',
 			name: 'homeLogo',
 			rendererSettings: {
-				progressiveLoad: false,
+				progressiveLoad: true,
 				hideOnTransparent: true,
-				viewBoxOnly: true,
+				viewBoxOnly: false,
 				focusable: false
 			}
 		})
 
+		document.getElementsByTagName('html')[0].style.overflow = 'auto'
+
 		setTimeout(() => {
 			logoAnim.play()
-			console.log('generated')
+			homeShapeRef.style.animation = 'home-shape-in 1s ease 300ms forwards'
 		}, 1000);
 
 		return () => {
 			logoAnim.destroy()
-			console.log('destroyed')
 		}
 	})
 
 	return (
 		<div className="App">
-			<header className="App-header">
+			<header className='App-header'>
 				<p className='big-text'>Hola!, soy</p>
-				<div id="lottie-animation"></div>
+				<div id='lottie-animation'></div>
 				<p>Desarrollador web frontend, diseñador UX/UI y cuando la ocasión lo requiere editor y motion designer.</p>
 				<button>contactar</button>
+
+				<svg id='home-shape' viewBox="0 0 1389.987 1080" preserveAspectRatio='none' fill='#1b0221'>
+					<path d="M1990,1140H3379.987L2950,2220H1990Z" transform="translate(-1990 -1140)" />
+				</svg>
 			</header>
+
+
 		</div>
 	)
 }
