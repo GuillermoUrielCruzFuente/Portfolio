@@ -1,17 +1,20 @@
 import { useEffect } from 'react'
 import Lottie, { AnimationItem } from 'lottie-web'
 
+//styles imports
+import '../scss/Home.scss'
+
 //data imports
 import logoAnimation from '../static/lottie/logo.json'
 import earthVideo from '../static/video/earth.mp4'
 
-//styles imports
-import '../scss/Home.scss'
+//components
+import AnimatedButton from '../components/AnimatedButton/AnimatedButton'
 
 export default function Home() {
 
 	useEffect(() => {
-		let homeShapeRef = document.getElementById('home-shape') as HTMLElement
+		let homeShape = document.getElementById('home-shape') as HTMLElement
 		let homeVideo = document.getElementById('home-video') as HTMLVideoElement
 
 		let logoAnim = Lottie.loadAnimation({
@@ -32,9 +35,9 @@ export default function Home() {
 		document.getElementsByTagName('html')[0].style.overflow = 'auto'
 
 		setTimeout(() => {
-			homeShapeRef.style.animation = 'home-shape-in 1s ease 300ms forwards'
-			
-			homeShapeRef.addEventListener('animationend', (animation: AnimationEvent) => {
+			homeShape.style.animation = 'home-shape-in 1s ease 300ms forwards'
+
+			homeShape.addEventListener('animationend', (animation: AnimationEvent) => {
 				if (animation.animationName === 'home-shape-in') {
 					homeVideo.style.opacity = '1'
 					homeVideo.play()
@@ -53,8 +56,17 @@ export default function Home() {
 		<header id='home-container'>
 			<p className='big-text'>Hola!, soy</p>
 			<div id='lottie-animation'></div>
-			<p>Desarrollador web frontend, diseñador UX/UI y cuando la ocasión lo requiere editor y motion designer.</p>
-			<button>contactar</button>
+
+			<p>
+				Frontend web developer, con más de 4 años de experiencia.
+				La programación no es mi única habilidad, visita la sección sobre mí y entérate a más detalle.
+				
+				{/* He desarrollado soluciones para más de 3 empresas, siempre con la ayuda de las mejores tecnologías. */}
+			</p>
+
+			{/* <button>contactar</button> */}
+
+			<AnimatedButton buttonId='home' text='contáctame' animateOnLoad={true} to='/contact'/>
 
 			<svg id='home-shape' viewBox="0 0 1389.987 1080" preserveAspectRatio='none' fill='#1b0221'>
 				<path d="M1990,1140H3379.987L2950,2220H1990Z" transform="translate(-1990 -1140)" />

@@ -18,11 +18,12 @@ $logo-width: 40%;
 
 p {
 	font-weight: 200;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	line-height: 1;
 	margin: 0;
 	color: #fff;
 	max-width: $logo-width;
+	max-width: 45%;
 	line-height: 1.5;
 	padding-top: 1rem;
 }
@@ -38,6 +39,7 @@ h1 {
 }
 
 button {
+	position: relative;
 	margin-top: 2rem;
 	background-color: transparent;
 	color: #fff;
@@ -45,10 +47,13 @@ button {
 	border-radius: 6px;
 	border: 1px solid #fff;
 	cursor: pointer;
-	transition: background-color 300ms;
+	transition: all 300ms;
+	z-index: 1;
 
 	&:hover {
-		background-color: #370443;
+		background-color: #460056;
+		border: 1px solid transparent;
+		color: #eac2f4;
 	}
 }
 
@@ -59,10 +64,10 @@ button {
 	z-index: -1;
 
 	max-width: unset;
-	width: 70%;
+	width: 60%;
 	height: 100%;
 
-	filter: drop-shadow(0px 0px 100px rgba(0, 0, 0, 1));
+	filter: drop-shadow(100px 0px 200px #000);
 }
 
 @keyframes home-shape-in {
@@ -96,7 +101,7 @@ button {
 	video {
 		position: absolute;
 		height: 100vh;
-		left: 45%;
+		left: 38%;
 		opacity: 0;
 		transition: 1s opacity;
 	}
