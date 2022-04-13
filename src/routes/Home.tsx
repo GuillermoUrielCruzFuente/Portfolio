@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Lottie, { AnimationItem } from 'lottie-web'
+import Lottie from 'lottie-web'
 
 //styles imports
 import '../scss/Home.scss'
@@ -32,7 +32,7 @@ export default function Home() {
 			}
 		})
 
-		document.getElementsByTagName('html')[0].style.overflow = 'auto'
+		document.getElementsByTagName('html')[0].style.overflowY = 'auto'
 
 		setTimeout(() => {
 			homeShape.style.animation = 'home-shape-in 1s ease 300ms forwards'
@@ -44,6 +44,12 @@ export default function Home() {
 					logoAnim.play()
 				}
 			})
+
+			logoAnim.addEventListener('complete', () => {
+				document.querySelectorAll('.home-appear').forEach((element: Element) => {
+					element.setAttribute('style', 'opacity: 1')
+				})
+			})
 		}, 100);
 
 		return () => {
@@ -54,19 +60,20 @@ export default function Home() {
 
 	return (
 		<header id='home-container'>
-			<p className='big-text'>Hola!, soy</p>
+			<p className='big-text home-appear' >Hola!, soy</p>
+
 			<div id='lottie-animation'></div>
 
-			<p>
-				Frontend web developer, con más de 4 años de experiencia.
-				La programación no es mi única habilidad, visita la sección sobre mí y entérate a más detalle.
-				
-				{/* He desarrollado soluciones para más de 3 empresas, siempre con la ayuda de las mejores tecnologías. */}
-			</p>
+			<p className='home-appear'>Frontend web developer, con más de 4 años de experiencia. La programación no es mi única habilidad, visita la sección sobre mí y entérate a más detalle.</p>
 
-			{/* <button>contactar</button> */}
-
-			<AnimatedButton buttonId='home' text='contáctame' animateOnLoad={true} to='/contact'/>
+			<AnimatedButton
+				buttonId='home'
+				buttonClassName='home-appear'
+				text='contáctame'
+				animateOnLoad={false}
+				to='/contact'
+				isLink={true}
+			/>
 
 			<svg id='home-shape' viewBox="0 0 1389.987 1080" preserveAspectRatio='none' fill='#1b0221'>
 				<path d="M1990,1140H3379.987L2950,2220H1990Z" transform="translate(-1990 -1140)" />
