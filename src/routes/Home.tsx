@@ -12,7 +12,6 @@ import earthVideo from '../static/video/earth.mp4'
 import AnimatedButton from '../components/AnimatedButton/AnimatedButton'
 
 export default function Home() {
-
 	useEffect(() => {
 		let homeShape = document.getElementById('home-shape') as HTMLElement
 		let homeVideo = document.getElementById('home-video') as HTMLVideoElement
@@ -35,14 +34,17 @@ export default function Home() {
 		document.getElementsByTagName('html')[0].style.overflowY = 'auto'
 
 		setTimeout(() => {
-			homeShape.style.animation = 'home-shape-in 1s ease 300ms forwards'
+			homeShape.style.animation = 'home-shape-in 1s ease forwards'
 
 			homeShape.addEventListener('animationend', (animation: AnimationEvent) => {
 				if (animation.animationName === 'home-shape-in') {
 					homeVideo.style.opacity = '1'
-					homeVideo.play()
 					logoAnim.play()
 				}
+			})
+
+			homeVideo.addEventListener('transitionend', () => {
+				homeShape.classList.add('shape-shadow')
 			})
 
 			logoAnim.addEventListener('complete', () => {
@@ -50,7 +52,7 @@ export default function Home() {
 					element.setAttribute('style', 'opacity: 1')
 				})
 			})
-		}, 100);
+		}, 500);
 
 		return () => {
 			logoAnim.destroy()

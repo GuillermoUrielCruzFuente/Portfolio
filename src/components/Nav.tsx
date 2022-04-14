@@ -20,19 +20,7 @@ function Nav() {
             loop: false,
             name: 'navLogo'
         })
-
-        const preloader = document.getElementById('preloader') as HTMLElement
-        setTimeout(() => {
-            preloader.style.transform = 'translateY(-100%)'
-
-            preloader.addEventListener('transitionend', () => {
-                preloader.style.visibility = 'hidden'
-            })
-            
-        }, 500);
     }, [])
-
-
 
     return (
         <nav className='no-blur-bg'>

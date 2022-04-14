@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import hidePreloader from './helpers/Preloader'
 
 //styles
 import './scss/index.scss'
@@ -14,6 +15,8 @@ import Contact from './routes/Contact'
 import Work from './routes/Work'
 import About from './routes/About'
 import NoMatch from './routes/404'
+
+hidePreloader()
 
 ReactDOM.render(
 	<React.StrictMode>

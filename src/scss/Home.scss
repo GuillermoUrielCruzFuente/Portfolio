@@ -67,7 +67,12 @@ button {
 	width: 60%;
 	height: 100%;
 
-	filter: drop-shadow(100px 0px 200px #000);
+	transition: filter 3s;
+	// filter: drop-shadow(30px 0px 20px #000);
+}
+
+.shape-shadow {
+	filter: drop-shadow(30px 0px 20px #000);
 }
 
 @keyframes home-shape-in {
