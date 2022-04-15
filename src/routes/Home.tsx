@@ -6,10 +6,12 @@ import '../scss/Home.scss'
 
 //data imports
 import logoAnimation from '../static/lottie/logo.json'
-import earthVideo from '../static/video/earth.mp4'
+import homeVideo from '../static/video/blue.mp4'
 
 //components
 import AnimatedButton from '../components/AnimatedButton/AnimatedButton'
+import SocialMedia from '../components/SocialMedia/SocialMedia'
+import Button from '../components/Button/Button'
 
 export default function Home() {
 	useEffect(() => {
@@ -22,35 +24,29 @@ export default function Home() {
 			autoplay: false,
 			loop: false,
 			renderer: 'svg',
-			name: 'homeLogo',
-			rendererSettings: {
-				progressiveLoad: true,
-				hideOnTransparent: true,
-				viewBoxOnly: false,
-				focusable: false
-			}
+			name: 'homeLogo'
 		})
-
-		document.getElementsByTagName('html')[0].style.overflowY = 'auto'
 
 		setTimeout(() => {
 			homeShape.style.animation = 'home-shape-in 1s ease forwards'
 
 			homeShape.addEventListener('animationend', (animation: AnimationEvent) => {
 				if (animation.animationName === 'home-shape-in') {
-					homeVideo.style.opacity = '1'
+					homeVideo.style.opacity = '0.5'
+					homeVideo.style.transform = 'scale(1)'
+
 					logoAnim.play()
+
+					homeShape.classList.add('shape-shadow')
 				}
 			})
 
-			homeVideo.addEventListener('transitionend', () => {
-				homeShape.classList.add('shape-shadow')
-			})
-
 			logoAnim.addEventListener('complete', () => {
-				document.querySelectorAll('.home-appear').forEach((element: Element) => {
-					element.setAttribute('style', 'opacity: 1')
-				})
+				const elementsToAppear = document.getElementsByClassName('home-appear')
+				for (let i = 0; i < elementsToAppear.length; i++) {
+					const element = elementsToAppear[i] as HTMLElement
+					element.style.opacity = '1'
+				}
 			})
 		}, 500);
 
@@ -60,6 +56,12 @@ export default function Home() {
 		}
 	}, [])
 
+	const timer = (ms: number) => new Promise(res => setTimeout(res, ms))
+
+	const z = () => {
+		console.log('callback')
+	}
+
 	return (
 		<header id='home-container'>
 			<p className='big-text home-appear' >Hola!, soy</p>
@@ -68,22 +70,26 @@ export default function Home() {
 
 			<p className='home-appear'>Frontend web developer, con más de 4 años de experiencia. La programación no es mi única habilidad, visita la sección sobre mí y entérate a más detalle.</p>
 
-			<AnimatedButton
+			{/* <AnimatedButton
 				buttonId='home'
 				buttonClassName='home-appear'
 				text='contáctame'
 				animateOnLoad={false}
 				to='/contact'
 				isLink={true}
-			/>
+			/> */}
+
+			<Button callback={z} marginTop='1rem' className='home-appear' NavigateTo='/contact' id='home'>Contáctame</Button>
 
 			<svg id='home-shape' viewBox="0 0 1389.987 1080" preserveAspectRatio='none' fill='#1b0221'>
 				<path d="M1990,1140H3379.987L2950,2220H1990Z" transform="translate(-1990 -1140)" />
 			</svg>
 
 			<div className="full-container">
-				<video id='home-video' src={earthVideo} muted autoPlay playsInline loop></video>
+				<video id='home-video' src={homeVideo} muted autoPlay playsInline loop></video>
 			</div>
+
+			<SocialMedia />
 		</header>
 	)
 }

@@ -1,0 +1,24 @@
+.social-media-container {
+    display: flex;    
+    flex-flow: row nowrap; 
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+
+    .social-media-anchor-tag {
+        text-decoration: none;
+    }
+
+    $icon-size: 45px;
+    .social-media-icon {
+        height: $icon-size;
+        width: $icon-size;
+        padding-inline: 0.5rem;
+        transition: 300ms transform;
+        transform-origin: center center;
+
+        &:hover {
+            transform: scale(1.25);
+        }
+    }
+}
