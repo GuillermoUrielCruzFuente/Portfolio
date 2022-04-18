@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { ButtonHTMLAttributes, FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Lottie, { AnimationItem } from "lottie-web";
 
@@ -16,43 +16,52 @@ type ButtonProps = {
 }
 
 const Button: FC<ButtonProps> = ({ callback, children, marginTop = '0px', className, id, NavigateTo = undefined }: ButtonProps) => {
-    let confettiLottieAnimation: AnimationItem
+    let container = useRef<HTMLDivElement>(null)
+    let lottieInstance = useRef(Lottie.loadAnimation({ container: container.current as HTMLElement }))
+    const [buttonState, setButtonState ] = useState(false)
+    // let buttonRef = useRef<HTMLButtonElement>(null)
 
-    useEffect(() => {
-        confettiLottieAnimation = Lottie.loadAnimation({
-            container: document.getElementById(`confetti-${id}`) as HTMLElement,
+    useLayoutEffect(() => {
+        lottieInstance.current = Lottie.loadAnimation({
+            container: container.current as HTMLElement,
             animationData: confettiAnimation,
             autoplay: false,
-            loop: false,
-            name: `animatedButton-${id}`
+            loop: false
         })
-        
-        confettiLottieAnimation.goToAndStop(90, true)
-    })
+
+        lottieInstance.current.goToAndStop(90, true)
+    }, [])
 
     const playConfetti = () => {
-        console.log('a')
-        confettiLottieAnimation.playSegments([0, 90], true)
+        lottieInstance.current.playSegments([0, 90], true)
     }
 
     const navigate = useNavigate()
 
     const navigateToNow = () => {
+        setButtonState(true)
+        
+        setTimeout(() => {
+            setButtonState(false)
+        }, 1000);
+
         if (NavigateTo) {
-            navigate(NavigateTo)
             callback()
-        } else {
+            playConfetti()
+            navigate(NavigateTo)
+        } else {    
+            playConfetti()
             callback()
         }
     }
 
     return (
         <div className={`button-container ${className}`} style={{ marginTop }}>
-            <div id={`confetti-${id}`} className="confetti" ></div>
-
-            <button className='Button' onClick={navigateToNow} onMouseEnter={playConfetti}>
+            <button className='Button' onClick={navigateToNow} disabled={buttonState} >
                 {children}
             </button>
+
+            <div className="confetti" ref={container}></div>
         </div>
 
     )
