@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Lottie, { AnimationItem } from "lottie-web";
+import Lottie from "lottie-web";
 
 import './Button.scss'
 

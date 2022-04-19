@@ -45,7 +45,7 @@ const SocialMedia = () => {
                         <a className='social-media-anchor-tag' href={link.url} target={'_blank'} key={index}>
                             <img className='social-media-icon' src={link.src} alt="" />
                         </a>
-                    ) 
+                    )
                 })
             }
         </div>
