@@ -24,7 +24,6 @@ export default function AnimatedButton({ text, isLink = true, to, buttonId, butt
         animation.playSegments([0, 90], true)
     }
 
-
     useEffect(() => {
         animation = Lottie.loadAnimation({
             container: document.getElementById(`confetti-${buttonId}`) as HTMLElement,

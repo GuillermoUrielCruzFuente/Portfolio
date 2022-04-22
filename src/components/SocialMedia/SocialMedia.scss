@@ -1,12 +1,14 @@
 .social-media-container {
-    display: flex;    
-    flex-flow: row nowrap; 
+    display: flex;
+    flex-flow: row nowrap;
     position: absolute;
     bottom: 1rem;
     right: 1rem;
+    z-index: 10;
 
     .social-media-anchor-tag {
         text-decoration: none;
+        display: inline-block;
     }
 
     $icon-size: 45px;
@@ -16,9 +18,44 @@
         padding-inline: 0.5rem;
         transition: 300ms transform;
         transform-origin: center center;
+        display: inline-block;
 
         &:hover {
             transform: scale(1.25);
         }
     }
+}
+
+.container-enter {
+    opacity: 0;
+    transform: translateY(50px) scale(1.2);
+}
+
+.container-enter-active {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+
+    transition: all 500ms;
+}
+
+.container-enter-done {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+}
+
+.container-exit {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+}
+
+.container-exit-active {
+    opacity: 0;
+    transform: translateY(50px) scale(1.2);
+
+    transition: all 500ms;
+}
+
+.container-exit-done {
+    opacity: 0;
+    transform: translateY(50px) scale(1.2);
 }

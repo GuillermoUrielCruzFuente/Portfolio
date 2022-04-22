@@ -5,9 +5,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 //styles
 import './scss/index.scss'
 
-//components
-import Nav from './components/Nav'
-
 //routes
 import Home from './routes/Home'
 import Contact from './routes/Contact'
@@ -19,7 +16,6 @@ import NoMatch from './routes/404'
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<Nav />
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/contact' element={<Contact />} />

@@ -28,6 +28,7 @@ nav {
         text-decoration: none;
 
         font-size: 1.25rem;
+
     }
 
     a.active {
@@ -42,11 +43,19 @@ nav {
 #nav-logo {
     height: 100%;
     aspect-ratio: 4.85;
+    opacity: 0;
+    transition: 800ms opacity;
 }
 
 #navigator {
-    a {
+    a, h1 {
         margin-left: 2rem;
+        transition: color 300ms;
+    }
+
+    h1 {
+        display: inline-block;
+        font-size: 1.25rem;
     }
 }
 

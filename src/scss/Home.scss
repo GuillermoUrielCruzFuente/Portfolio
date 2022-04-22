@@ -12,6 +12,7 @@ $logo-width: 50%;
 	/* display: block; */
 	width: $logo-width;
 	aspect-ratio: 4.85;
+	transition: 400ms opacity;
 	/* background-color: #000; */
 }
 
@@ -49,8 +50,6 @@ h1 {
 	height: 100%;
 }
 
-
-
 @keyframes home-shape-in {
 	from {
 		// opacity: 0;
@@ -74,15 +73,19 @@ h1 {
 	right: 0px;
 	width: 100vw;
 	height: 100vh;
-	background-color: #31053b;
+	// background-color: #31053b;
+	background-color: #1b0221;
 	z-index: -2;
 	overflow: hidden;
 	filter: blur(2px);
+	transition: background-color 500ms;
 
 	video {
 		position: absolute;
 		height: 100vh;
 		left: 38%;
+		z-index: -10;
+
 		// opacity: 0;
 		// transform: scale(1.03);
 		// transition: 1s opacity, 1s transform;
@@ -93,8 +96,6 @@ h1 {
 	opacity: 0;
 	transition: opacity 1s;
 }
-
-
 
 //=============================================//
 //		react transition group classes		   //
@@ -135,11 +136,8 @@ h1 {
 	filter: drop-shadow(10px 0px 30px transparent);
 }
 
-
-
-
-
-.video-anim-enter, .video-anim-exit-done {
+.video-anim-enter,
+.video-anim-exit-done {
 	opacity: 0;
 	transform: scale(1.05);
 }
@@ -151,7 +149,8 @@ h1 {
 	transition: opacity 1s, transform 1s;
 }
 
-.video-anim-enter-done, .video-anim-exit {
+.video-anim-enter-done,
+.video-anim-exit {
 	opacity: 0.35;
 	transform: scale(1);
 }

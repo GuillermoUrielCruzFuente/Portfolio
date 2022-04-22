@@ -1,57 +1,74 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import Lottie from 'lottie-web'
+import Lottie, { AnimationConfigWithData } from 'lottie-web'
 import { CSSTransition } from 'react-transition-group'
 
 //styles imports
 import '../scss/Home.scss'
 
 //data imports
-import logoAnimation from '../static/lottie/logo.json'
+import logoAnimationData from '../static/lottie/logo.json'
 import homeVideo from '../static/video/blue.mp4'
 
 //components
 import SocialMedia from '../components/SocialMedia/SocialMedia'
 import Button from '../components/Button/Button'
 import { useNavigate } from 'react-router-dom'
+import Nav from '../components/Nav'
 
 function Home() {
 	const [homeState, setHomeState] = useState(false)
 	let [videoState, setVideoState] = useState(false)
+	const [socialState, setSocialState] = useState(false)
+
+	const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
+	const logoAnimation = useRef(Lottie.loadAnimation({ container: logoAnimationContainerRef.current as HTMLDivElement }))
 
 	let homeShapeRef = useRef(null)
-	let homeVideoRef = useRef<HTMLVideoElement>(null)
+	let homeVideoRef = useRef(null)
+	let fullContainerRef = useRef<HTMLDivElement>(null)
 
-	useEffect(() => {
-		let logoAnim = Lottie.loadAnimation({
-			container: document.getElementById('lottie-animation') as HTMLElement,
-			animationData: logoAnimation,
-			autoplay: false,
+	useLayoutEffect(() => {
+		// const logoAnimationConfig: AnimationConfigWithData<'svg'> = {
+		// 	container: logoAnimationContainerRef.current as HTMLDivElement,
+		// 	animationData: logoAnimationData,
+		// 	loop: false,
+		// 	autoplay: false
+		// }
+
+		logoAnimation.current = Lottie.loadAnimation({
+			container: logoAnimationContainerRef.current as HTMLDivElement,
+			animationData: logoAnimationData,
 			loop: false,
-			renderer: 'svg',
-			name: 'homeLogo'
+			autoplay: false,
+			renderer: 'svg'
 		})
+		logoAnimation.current.goToAndStop(0, true)
+	}, [])
 
-		console.log('a')
-
+	useLayoutEffect(() => {
 		setTimeout(() => {
-			logoAnim.play()
-
+			fullContainerRef.current ? fullContainerRef.current.style.backgroundColor = '#31053b' : console.warn(fullContainerRef.current ,'is null')
+			logoAnimation.current.play()
+			setHomeState(true)
+			setSocialState(true)
 			setTimeout(() => {
 				appearElements()
-				console.log('putamadre')
 			}, 1500);
-			// logoAnim.addEventListener('', () => {
-			// })
-
-			setHomeState(true)
 		}, 500);
 	}, [])
 
-	const toggleState = () => {
+	const hideHome = () => {
+		logoAnimation.current.setDirection(-1)
+		logoAnimation.current.setSpeed(2)
+		logoAnimation.current.playSegments([170, 0], true)
+
+		fullContainerRef.current ? fullContainerRef.current.style.backgroundColor = '#1b0221' : console.warn(fullContainerRef.current ,'is null')
+
 		setVideoState(false)
+		setSocialState(false)
 		setTimeout(() => {
-			setHomeState(!homeState)
-			homeState ? hideElements() : appearElements()
+			setHomeState(false)
+			hideElements()
 		}, 200);
 	}
 
@@ -66,6 +83,7 @@ function Home() {
 	}
 
 	const hideElements = () => {
+		logoAnimationContainerRef.current ? logoAnimationContainerRef.current.style.opacity = '0' : console.warn(logoAnimationContainerRef, 'is null')
 		const elementsToAppear = document.getElementsByClassName('home-appear')
 
 		for (let i = 0; i < elementsToAppear.length; i++) {
@@ -74,16 +92,6 @@ function Home() {
 			element.style.opacity = '0'
 			element.style.transform = 'scale(1.1)'
 		}
-
-		console.log('0')
-	}
-
-	const showVideo = () => {
-		homeVideoRef.current ? homeVideoRef.current.style.opacity = '0.25' : console.warn('reference to home video corrupted')
-	}
-
-	const hideVideo = () => {
-		homeVideoRef.current ? homeVideoRef.current.style.opacity = '0' : console.warn('reference to home video corrupted')
 	}
 
 	let navigate = useNavigate()
@@ -91,33 +99,37 @@ function Home() {
 	const goToContact = () => {
 		setTimeout(() => {
 			navigate('/contact')
-		}, 500);
+		}, 100);
 	}
 
 	return (
-		<header id='home-container'>
-			<p className='big-text home-appear' >Hola!, soy</p>
+		<>
+			<Nav transitionTime={700} callback={hideHome} isHome={true}/>
 
-			<div id='lottie-animation' className='home-appear'></div>
+			<header id='home-container'>
+				<p className='big-text home-appear' >Hola!, soy</p>
 
-			<p className='home-appear'>Frontend web developer, con más de 4 años de experiencia. La programación no es mi única habilidad, visita la sección sobre mí y entérate a más detalle.</p>
+				<div ref={logoAnimationContainerRef} id='lottie-animation'></div>
 
-			<Button callback={toggleState} marginTop='1rem' className='home-appear' id='home'>Contáctame</Button>
+				<p className='home-appear'>Frontend web developer, con más de 4 años de experiencia. La programación no es mi única habilidad, visita la sección sobre mí y entérate a más detalle.</p>
 
-			<CSSTransition in={homeState} classNames='home-shape-anim' timeout={{ enter: 1000, exit: 500 }} mountOnEnter nodeRef={homeShapeRef} onEntered={() => setVideoState(true)} onExited={goToContact}>
-				<svg ref={homeShapeRef} className='home-shape' viewBox="0 0 1389.987 1080" preserveAspectRatio='none' fill='#1b0221'>
-					<path d="M1990,1140H3379.987L2950,2220H1990Z" transform="translate(-1990 -1140)" />
-				</svg>
-			</CSSTransition>
+				<Button callback={hideHome} marginTop='1rem' className='home-appear' id='home'>Contáctame</Button>
 
-			<div className="full-container">
-				<CSSTransition in={videoState} classNames='video-anim' timeout={{ enter: 1000, exit: 400 }} mountOnEnter nodeRef={homeVideoRef}>
-					<video ref={homeVideoRef} src={homeVideo} muted autoPlay playsInline loop />
+				<CSSTransition in={homeState} classNames='home-shape-anim' timeout={{ enter: 1000, exit: 500 }} mountOnEnter nodeRef={homeShapeRef} onEntered={() => setVideoState(true)}>
+					<svg ref={homeShapeRef} className='home-shape' viewBox="0 0 1389.987 1080" preserveAspectRatio='none' fill='#1b0221'>
+						<path d="M1990,1140H3379.987L2950,2220H1990Z" transform="translate(-1990 -1140)" />
+					</svg>
 				</CSSTransition>
-			</div>
 
-			<SocialMedia />
-		</header>
+				<div className="full-container" ref={fullContainerRef}>
+					<CSSTransition in={videoState} classNames='video-anim' timeout={{ enter: 1000, exit: 400 }} mountOnEnter nodeRef={homeVideoRef}>
+						<video ref={homeVideoRef} src={homeVideo} muted autoPlay playsInline loop />
+					</CSSTransition>
+				</div>
+
+				<SocialMedia state={socialState} />
+			</header>
+		</>
 	)
 }
 
