@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Lottie, { AnimationConfigWithData } from 'lottie-web'
 import { CSSTransition } from 'react-transition-group'
 
@@ -12,12 +12,11 @@ import homeVideo from '../static/video/blue.mp4'
 //components
 import SocialMedia from '../components/SocialMedia/SocialMedia'
 import Button from '../components/Button/Button'
-import { useNavigate } from 'react-router-dom'
 import Nav from '../components/Nav'
 
 function Home() {
 	const [homeState, setHomeState] = useState(false)
-	let [videoState, setVideoState] = useState(false)
+	const [videoState, setVideoState] = useState(false)
 	const [socialState, setSocialState] = useState(false)
 
 	const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
@@ -28,20 +27,14 @@ function Home() {
 	let fullContainerRef = useRef<HTMLDivElement>(null)
 
 	useLayoutEffect(() => {
-		// const logoAnimationConfig: AnimationConfigWithData<'svg'> = {
-		// 	container: logoAnimationContainerRef.current as HTMLDivElement,
-		// 	animationData: logoAnimationData,
-		// 	loop: false,
-		// 	autoplay: false
-		// }
-
-		logoAnimation.current = Lottie.loadAnimation({
+		const logoAnimationConfig: AnimationConfigWithData<'svg'> = {
 			container: logoAnimationContainerRef.current as HTMLDivElement,
 			animationData: logoAnimationData,
 			loop: false,
-			autoplay: false,
-			renderer: 'svg'
-		})
+			autoplay: false
+		}
+
+		logoAnimation.current = Lottie.loadAnimation(logoAnimationConfig)
 		logoAnimation.current.goToAndStop(0, true)
 	}, [])
 
@@ -94,17 +87,9 @@ function Home() {
 		}
 	}
 
-	let navigate = useNavigate()
-
-	const goToContact = () => {
-		setTimeout(() => {
-			navigate('/contact')
-		}, 100);
-	}
-
 	return (
 		<>
-			<Nav transitionTime={700} callback={hideHome} isHome={true}/>
+			<Nav transitionTime={1000} callback={hideHome} isHome={true}/>
 
 			<header id='home-container'>
 				<p className='big-text home-appear' >Hola!, soy</p>
@@ -113,7 +98,7 @@ function Home() {
 
 				<p className='home-appear'>Frontend web developer, con más de 4 años de experiencia. La programación no es mi única habilidad, visita la sección sobre mí y entérate a más detalle.</p>
 
-				<Button callback={hideHome} marginTop='1rem' className='home-appear' id='home'>Contáctame</Button>
+				<Button transitionTime={1000} callback={hideHome} className='home-appear home-button' NavigateTo='/contact'>Contáctame</Button>
 
 				<CSSTransition in={homeState} classNames='home-shape-anim' timeout={{ enter: 1000, exit: 500 }} mountOnEnter nodeRef={homeShapeRef} onEntered={() => setVideoState(true)}>
 					<svg ref={homeShapeRef} className='home-shape' viewBox="0 0 1389.987 1080" preserveAspectRatio='none' fill='#1b0221'>

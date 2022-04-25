@@ -1,25 +1,24 @@
-import { FC, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Lottie from "lottie-web";
+import timer from '../../helpers/Timer';
 
 import './Button.scss'
 
 import confettiAnimation from '../../static/lottie/confetti.json'
 
 type ButtonProps = {
+    transitionTime: number,
     callback: () => void,
     children: string,
-    marginTop: string,
     className: string,
-    id: string,
     NavigateTo?: string,
 }
 
-const Button: FC<ButtonProps> = ({ callback, children, marginTop = '0px', className, id, NavigateTo = undefined }: ButtonProps) => {
+const Button = ({ transitionTime, callback, children, className, NavigateTo = undefined }: ButtonProps) => {
     let container = useRef<HTMLDivElement>(null)
     let lottieInstance = useRef(Lottie.loadAnimation({ container: container.current as HTMLElement }))
-    const [buttonState, setButtonState ] = useState(false)
-    // let buttonRef = useRef<HTMLButtonElement>(null)
+    const [buttonState, setButtonState] = useState(false)
 
     useLayoutEffect(() => {
         lottieInstance.current = Lottie.loadAnimation({
@@ -38,26 +37,27 @@ const Button: FC<ButtonProps> = ({ callback, children, marginTop = '0px', classN
 
     const navigate = useNavigate()
 
-    const navigateToNow = () => {
+    const navigateTo = async () => {
         setButtonState(true)
-        
+
         setTimeout(() => {
             setButtonState(false)
-        }, 1000);
+        }, 500);
 
         if (NavigateTo) {
             callback()
             playConfetti()
+            await timer(transitionTime)
             navigate(NavigateTo)
-        } else {    
+        } else {
             playConfetti()
             callback()
         }
     }
 
     return (
-        <div className={`button-container ${className}`} style={{ marginTop }}>
-            <button className='Button' onClick={navigateToNow} disabled={buttonState} >
+        <div className={`button-container ${className}`}>
+            <button className='Button' onClick={navigateTo} disabled={buttonState} >
                 {children}
             </button>
 

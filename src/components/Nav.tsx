@@ -28,7 +28,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
             route: '/'
         },
         {
-            text: 'about',
+            text: 'about me',
             route: '/about'
         },
         {
@@ -42,21 +42,21 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
     ]
 
     useEffect(() => {
-        const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
-        let logo = Lottie.loadAnimation({
-            container: navLogoContainer,
-            animationData: logoAnimation,
-            autoplay: false,
-            loop: false,
-            name: 'navLogo'
-        })
+        if (!isHome) {
+            const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
+            let logo = Lottie.loadAnimation({
+                container: navLogoContainer,
+                animationData: logoAnimation,
+                autoplay: false,
+                loop: false,
+                name: 'navLogo'
+            })
 
-        
-
-        setTimeout(() => {
-            navLogoContainer.style.opacity = '1'
-            logo.playSegments([60, 180], true)
-        }, 500);
+            setTimeout(() => {
+                navLogoContainer.style.opacity = '1'
+                logo.playSegments([60, 180], true)
+            }, 500);
+        }
     }, [])
 
     const timer = (ms: number) => { return new Promise(res => setTimeout(res, ms)) }
@@ -73,11 +73,11 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
             <div id="nav-container">
                 {
                     !isHome ?
-                    <a href="/">
-                        <div id="nav-logo"></div>
-                    </a>
-                    :
-                    <span></span>
+                        <a href="/">
+                            <div id="nav-logo"></div>
+                        </a>
+                        :
+                        <span></span>
                 }
 
                 <div id="navigator">
