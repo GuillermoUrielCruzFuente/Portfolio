@@ -59,3 +59,20 @@
     opacity: 0;
     transform: translateY(50px) scale(1.2);
 }
+
+@media screen and (max-width: 500px) {
+    .social-media-container {
+        justify-content: center;
+        position: static;
+        width: 100%;
+        margin-top: auto;
+        // margin-top: 3rem;
+    
+        $icon-size: 40px;
+        .social-media-icon {
+            height: $icon-size;
+            width: $icon-size;
+            padding-inline: 0.4rem;
+        }
+    }
+}

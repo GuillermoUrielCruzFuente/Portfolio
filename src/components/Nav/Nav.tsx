@@ -5,10 +5,10 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Lottie from 'lottie-web'
 
 //data
-import logoAnimation from '../static/lottie/logo.json'
+import logoAnimation from '../../static/lottie/logo.json'
 
 //styles
-import '../scss/Nav.scss'
+import './Nav.scss'
 
 type NavProps = {
     transitionTime: number,
@@ -73,7 +73,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
             <div id="nav-container">
                 {
                     !isHome ?
-                        <a href="/">
+                        <a href="/" id='nav-logo-link'>
                             <div id="nav-logo"></div>
                         </a>
                         :
@@ -97,6 +97,8 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
                             )
                         })
                     }
+                    
+                    <div id="menu-button"></div>
                 </div>
             </div>
         </nav>

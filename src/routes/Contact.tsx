@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react"
 import { CSSTransition } from "react-transition-group"
 // import '../scss/Home.scss'
 
-import Nav from '../components/Nav'
+import Nav from '../components/Nav/Nav'
 
 export default function Contact() {
     let [titleState, setTitlestate] = useState(false)

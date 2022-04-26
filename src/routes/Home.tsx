@@ -12,7 +12,7 @@ import homeVideo from '../static/video/blue.mp4'
 //components
 import SocialMedia from '../components/SocialMedia/SocialMedia'
 import Button from '../components/Button/Button'
-import Nav from '../components/Nav'
+import Nav from '../components/Nav/Nav'
 
 function Home() {
 	const [homeState, setHomeState] = useState(false)
@@ -27,6 +27,9 @@ function Home() {
 	let fullContainerRef = useRef<HTMLDivElement>(null)
 
 	useLayoutEffect(() => {
+
+		Lottie.setQuality(1)
+
 		const logoAnimationConfig: AnimationConfigWithData<'svg'> = {
 			container: logoAnimationContainerRef.current as HTMLDivElement,
 			animationData: logoAnimationData,
@@ -40,7 +43,7 @@ function Home() {
 
 	useLayoutEffect(() => {
 		setTimeout(() => {
-			fullContainerRef.current ? fullContainerRef.current.style.backgroundColor = '#31053b' : console.warn(fullContainerRef.current ,'is null')
+			fullContainerRef.current ? fullContainerRef.current.style.backgroundColor = '#31053b' : console.warn(fullContainerRef.current, 'is null')
 			logoAnimation.current.play()
 			setHomeState(true)
 			setSocialState(true)
@@ -55,7 +58,7 @@ function Home() {
 		logoAnimation.current.setSpeed(2)
 		logoAnimation.current.playSegments([170, 0], true)
 
-		fullContainerRef.current ? fullContainerRef.current.style.backgroundColor = '#1b0221' : console.warn(fullContainerRef.current ,'is null')
+		fullContainerRef.current ? fullContainerRef.current.style.backgroundColor = '#1b0221' : console.warn(fullContainerRef.current, 'is null')
 
 		setVideoState(false)
 		setSocialState(false)
@@ -89,7 +92,7 @@ function Home() {
 
 	return (
 		<>
-			<Nav transitionTime={1000} callback={hideHome} isHome={true}/>
+			<Nav transitionTime={1000} callback={hideHome} isHome={true} />
 
 			<header id='home-container'>
 				<p className='big-text home-appear' >Hola!, soy</p>
