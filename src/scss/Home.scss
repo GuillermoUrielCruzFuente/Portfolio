@@ -1,6 +1,7 @@
 #home-container {
 	display: flex;
 	align-items: flex-start;
+	align-items: center;
 	justify-content: center;
 	flex-flow: column;
 	height: 90vh;
@@ -8,7 +9,7 @@
 	// background-color: chocolate;
 }
 
-$logo-width: 50%;
+$logo-width: 80%;
 #lottie-animation {
 	width: $logo-width;
 	aspect-ratio: 4.85;
@@ -17,7 +18,7 @@ $logo-width: 50%;
 
 p {
 	font-weight: 200;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	line-height: 1;
 	margin: 0;
 	color: #fff;
@@ -28,6 +29,8 @@ p {
 
 	position: relative;
 	z-index: 1;
+
+	text-align: center;
 }
 
 h1 {

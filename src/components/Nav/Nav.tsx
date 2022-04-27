@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Lottie from 'lottie-web'
 
 //data
-import logoAnimation from '../../static/lottie/logo.json'
+import logoAnimation from '../../static/lottie/logo-2.json'
 
 //styles
 import './Nav.scss'
@@ -54,7 +54,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
 
             setTimeout(() => {
                 navLogoContainer.style.opacity = '1'
-                logo.playSegments([60, 180], true)
+                logo.playSegments([60, 140], true)
             }, 500);
         }
     }, [])
