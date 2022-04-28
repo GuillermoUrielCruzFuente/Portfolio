@@ -54,7 +54,7 @@ nav {
     justify-content: space-between;
 
     #menu-button {
-        background-color: #f00;
+        background-color: #420850;
         width: 40px;
         height: 40px;
         border-radius: 1rem;
@@ -64,7 +64,7 @@ nav {
     a {
         margin-left: 2rem;
         transition: color 300ms;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 900;
         color: #fff;
         text-decoration: none;
@@ -75,7 +75,8 @@ nav {
     }
 
     a.active {
-        color: #d098ef;
+        color: #b06bd4;
+        // color: rgb(160,53,53);
     }
 
     a.inactive {
@@ -96,9 +97,9 @@ nav {
 }
 
 @media screen and (max-width: 500px) {
-    // nav {
-    //     height: 60px;
-    // }
+    nav {
+        height: 60px;
+    }
 
     #nav-container {
         padding-inline: 1rem;
@@ -107,9 +108,9 @@ nav {
     #navigator {
     
         #menu-button {
-            background-color: #fff;
-            width: 40px;
-            height: 40px;
+            // background-color: #fff;
+            width: 30px;
+            height: 30px;
             border-radius: 1rem;
             display: block;
         }
@@ -118,7 +119,7 @@ nav {
             display: none;
             margin-left: 2rem;
             transition: color 300ms;
-            font-size: 1.25rem;
+            font-size: 1rem;
             font-weight: 900;
             color: #fff;
             text-decoration: none;
@@ -140,6 +141,5 @@ nav {
     #nav-logo {
         height: 50%;
         aspect-ratio: 4.85;
-        background-color: #000;
     }
 }

@@ -24,19 +24,19 @@ type NavRoutes = {
 const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
     const routes: Array<NavRoutes> = [
         {
-            text: 'home',
+            text: 'inicio',
             route: '/'
         },
         {
-            text: 'about me',
+            text: 'sobre mi',
             route: '/about'
         },
         {
-            text: 'work',
+            text: 'trabajos',
             route: '/work'
         },
         {
-            text: 'contact',
+            text: 'contacto',
             route: '/contact'
         }
     ]

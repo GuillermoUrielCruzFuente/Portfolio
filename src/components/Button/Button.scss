@@ -7,15 +7,23 @@
         z-index: 1;
         cursor: pointer;
         background-color: transparent;
-        border: 1px solid #fff;
-        border-radius: 6px;
+        background-color: rgb(190, 12, 176);
+        background-color: #590b83;
+        // border: 1px solid #fff;
+        border: none;
+        border-radius: 2rem;
         color: #fff;
-        padding: 0.25rem 2.5rem;
+        // color: #2A0433;
+        padding: 0.45rem 2.5rem;
         font-weight: 900;
         transition: background-color 300ms;
-    
+
         &:hover {
-            background-color: rgba($color: #fff, $alpha: 0.25);
+            // background-color: rgba($color: #fff, $alpha: 0.25);
+            // background-color: rgb(141, 10, 130);
+            background-color: #811cb8;
+
+            // background-color: rgb(160,53,53);
         }
     }
 

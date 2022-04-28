@@ -1,0 +1,45 @@
+@media screen and (max-width: 800px) {
+    #home-container {
+        $logo-width: 85%;
+        #lottie-animation {
+            width: $logo-width;
+        }
+
+        p {
+            max-width: $logo-width;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #home-container {
+        $logo-width: 100%;
+        #lottie-animation {
+            width: $logo-width;
+        }
+
+        p {
+            max-width: $logo-width;
+        }
+
+        .big-text {
+            font-size: 1.5rem;
+        }
+
+        .home-button {
+            margin-top: 3rem;
+        }
+
+        .home-appear {
+            opacity: 0;
+            transition: opacity 1s;
+        }
+    }
+
+    .button-container {
+        width: 100%;
+        .Button {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+#home-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+	height: 90vh;
+
+	$logo-width: 70%;
+	#lottie-animation {
+		width: $logo-width;
+		aspect-ratio: 4.85;
+		transition: 400ms opacity;
+	}
+
+	p {
+		font-weight: 200;
+		font-size: 1rem;
+		margin: 0;
+		color: #fff;
+		max-width: 45%;
+		padding-top: 1rem;
+		position: relative;
+		z-index: 1;
+		text-align: center;
+	}
+
+	h1 {
+		color: #fff;
+	}
+
+	.big-text {
+		font-size: 2rem;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.home-button {
+		margin-top: 2rem;
+	}
+
+	.home-appear {
+		opacity: 0;
+		transition: opacity 1s;
+	}
+}
+
+@import "mediaqueries";
