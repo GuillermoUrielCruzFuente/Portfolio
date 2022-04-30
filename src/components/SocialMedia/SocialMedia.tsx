@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from 'react'
+import { MutableRefObject, useLayoutEffect, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 //styles
@@ -44,6 +44,13 @@ const SocialMedia = ({ state }: SocialMediaProp) => {
             ref: useRef(null)
         }
     ]
+
+    useLayoutEffect(() => {
+        SocialMediaIcons.forEach(icon => {
+            const img = new Image()
+            img.src = icon.src
+        })
+    }, [])
 
     return (
         <div className="social-media-container">

@@ -13,13 +13,11 @@ import Button from '../components/Button/Button'
 import Nav from '../components/Nav/Nav'
 
 function Home() {
-	const [socialState, setSocialState] = useState(true)
+	const [socialState, setSocialState] = useState(false)
 	const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
 	const logoAnimation = useRef(Lottie.loadAnimation({ container: logoAnimationContainerRef.current as HTMLDivElement }))
 
 	useLayoutEffect(() => {
-		setSocialState(false)
-
 		Lottie.setQuality(1)
 
 		const logoAnimationConfig: AnimationConfigWithData<'svg'> = {
@@ -82,7 +80,7 @@ function Home() {
 
 				<div ref={logoAnimationContainerRef} id='lottie-animation'></div>
 
-				<p className='home-appear'>
+				<p className='home-appear description'>
 					Desarrollador Fronted de tiempo completo, con más de 4 años de experiencia. Mexicano, con intervención en distintos proyectos profesionales, una gran creatividad y atención a los detalles.
 				</p>
 

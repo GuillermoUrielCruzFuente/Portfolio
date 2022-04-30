@@ -5,7 +5,7 @@
             width: $logo-width;
         }
 
-        p {
+        .description {
             max-width: $logo-width;
         }
     }
@@ -18,8 +18,10 @@
             width: $logo-width;
         }
 
-        p {
+        .description {
+            margin-top: 5rem;
             max-width: $logo-width;
+            text-align: justify;
         }
 
         .big-text {
@@ -27,7 +29,7 @@
         }
 
         .home-button {
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .home-appear {

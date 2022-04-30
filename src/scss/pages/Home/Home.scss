@@ -12,19 +12,15 @@
 		transition: 400ms opacity;
 	}
 
-	p {
+	.description {
 		font-weight: 200;
 		font-size: 1rem;
 		margin: 0;
-		color: #fff;
 		max-width: 45%;
 		padding-top: 1rem;
 		position: relative;
 		z-index: 1;
 		text-align: center;
-	}
-
-	h1 {
 		color: #fff;
 	}
 
@@ -32,6 +28,7 @@
 		font-size: 2rem;
 		font-weight: 900;
 		line-height: 1;
+		color: #fff;
 	}
 
 	.home-button {
