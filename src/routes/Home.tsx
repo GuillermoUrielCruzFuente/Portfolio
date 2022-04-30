@@ -13,11 +13,13 @@ import Button from '../components/Button/Button'
 import Nav from '../components/Nav/Nav'
 
 function Home() {
-	const [socialState, setSocialState] = useState(false)
+	const [socialState, setSocialState] = useState(true)
 	const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
 	const logoAnimation = useRef(Lottie.loadAnimation({ container: logoAnimationContainerRef.current as HTMLDivElement }))
 
 	useLayoutEffect(() => {
+		setSocialState(false)
+
 		Lottie.setQuality(1)
 
 		const logoAnimationConfig: AnimationConfigWithData<'svg'> = {
