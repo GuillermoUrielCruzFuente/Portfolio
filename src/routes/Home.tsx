@@ -86,7 +86,7 @@ function Home() {
 
 				<Button transitionTime={1000} callback={hideHome} className='home-appear home-button' NavigateTo='/contact'>contáctame</Button>
 
-				<SocialMedia state={socialState} />
+				<SocialMedia state={socialState} containerClass={'social-media-container'} />
 			</header>
 		</>
 	)

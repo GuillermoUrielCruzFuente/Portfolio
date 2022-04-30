@@ -17,10 +17,11 @@ type imgLink = {
 }
 
 type SocialMediaProp = {
+    containerClass: string,
     state: boolean
 }
 
-const SocialMedia = ({ state }: SocialMediaProp) => {
+const SocialMedia = ({ containerClass ,state }: SocialMediaProp) => {
 
     const SocialMediaIcons: Array<imgLink> = [
         {
@@ -53,7 +54,7 @@ const SocialMedia = ({ state }: SocialMediaProp) => {
     }, [])
 
     return (
-        <div className="social-media-container">
+        <div className={`social-media-container ${containerClass}`}>
             {
                 SocialMediaIcons.map((link: imgLink, i: number) => {
                     return (

@@ -1,5 +1,7 @@
 @media screen and (max-width: 800px) {
     #home-container {
+        height: unset;
+
         $logo-width: 85%;
         #lottie-animation {
             width: $logo-width;
@@ -7,6 +9,13 @@
 
         .description {
             max-width: $logo-width;
+        }
+
+        .social-media-container {
+            justify-content: center;
+            position: static;
+            width: 100%;
+            margin-top: 5rem;
         }
     }
 }
@@ -29,7 +38,7 @@
         }
 
         .home-button {
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
         .home-appear {

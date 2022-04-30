@@ -1,6 +1,6 @@
 nav {
     width: 100vw;
-    height: 80px;
+    height: var(--navbar-size);
     position: fixed;
     top: 0px;
     left: 0px;
@@ -18,18 +18,13 @@ nav {
     justify-content: space-between;
     padding-inline: 3rem;
 
-    // background-color: #f00;
-
     a#nav-logo-link {
         width: fit-content;
         height: 100%;
         display: inline-block;
         text-decoration: none;
-
         display: flex;
         align-items: center;
-
-        // background-color: chartreuse;
     }
 
     span {
@@ -76,7 +71,6 @@ nav {
 
     a.active {
         color: #b06bd4;
-        // color: rgb(160,53,53);
     }
 
     a.inactive {
@@ -97,10 +91,7 @@ nav {
 }
 
 @media screen and (max-width: 500px) {
-    nav {
-        height: 60px;
-    }
-
+    
     #nav-container {
         padding-inline: 1rem;
     }

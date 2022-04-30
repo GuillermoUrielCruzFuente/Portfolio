@@ -1,10 +1,4 @@
 .social-media-container {
-    display: flex;
-    flex-flow: row nowrap;
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 10;
 
     .social-media-anchor-tag {
         text-decoration: none;
@@ -26,48 +20,33 @@
     }
 }
 
-.container-enter {
+.container-enter, .container-exit-done {
     opacity: 0;
-    transform: translateY(50px) scale(1.2);
+    transform: translateY(50px);
 }
 
 .container-enter-active {
     opacity: 1;
-    transform: translateY(0px) scale(1);
+    transform: translateY(0px);
 
-    transition: all 500ms;
+    transition: transform 500ms;
 }
 
-.container-enter-done {
+.container-exit, .container-enter-done {
     opacity: 1;
-    transform: translateY(0px) scale(1);
-}
-
-.container-exit {
-    opacity: 1;
-    transform: translateY(0px) scale(1);
+    transform: translateY(0px);
 }
 
 .container-exit-active {
     opacity: 0;
-    transform: translateY(50px) scale(1.2);
+    transform: translateY(50px);
 
-    transition: all 500ms;
-}
-
-.container-exit-done {
-    opacity: 0;
-    transform: translateY(50px) scale(1.2);
+    transition: transform 500ms;
 }
 
 @media screen and (max-width: 500px) {
     .social-media-container {
-        justify-content: center;
-        position: static;
-        width: 100%;
-        margin-top: auto;
-        // margin-top: 3rem;
-    
+        
         $icon-size: 40px;
         .social-media-icon {
             height: $icon-size;

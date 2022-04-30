@@ -3,10 +3,18 @@
 
 body {
 	font-family: "Poppins", sans-serif;
-	overflow: hidden;
+	overflow-x: hidden;
 	width: 100vw;
 	height: 100%;
 	background-color: #1b0221;
-	// background-color: rgb(160,53,53);
-	// background-color: #181818;
+}
+
+:root {
+	--navbar-size: 80px;
+}
+
+@media screen and (max-width: 500px){
+	:root {
+		--navbar-size: 60px;
+	}
 }

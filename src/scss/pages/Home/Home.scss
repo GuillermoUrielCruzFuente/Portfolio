@@ -39,6 +39,15 @@
 		opacity: 0;
 		transition: opacity 1s;
 	}
+
+	.social-media-container {
+		display: flex;
+		flex-flow: row nowrap;
+		position: absolute;
+		bottom: 1rem;
+		right: 1rem;
+		overflow: hidden;
+	}
 }
 
 @import "mediaqueries";
