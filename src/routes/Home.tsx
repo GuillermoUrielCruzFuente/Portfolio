@@ -76,12 +76,12 @@ function Home() {
 			<Nav transitionTime={1000} callback={hideHome} isHome={true} />
 
 			<header id='home-container'>
-				<p className='big-text home-appear' >Hola!, soy</p>
+				<p className='big-text home-appear' >👋🏾Hola!, soy</p>
 
 				<div ref={logoAnimationContainerRef} id='lottie-animation'></div>
 
 				<p className='home-appear description'>
-					Desarrollador Fronted de tiempo completo, con más de 4 años de experiencia. Mexicano, con intervención en distintos proyectos profesionales, una gran creatividad y atención a los detalles.
+					Desarrollador Frontend de tiempo completo, con más de 4 años de experiencia. Mexicano, con intervención en distintos proyectos profesionales, una gran creatividad y atención a los detalles.
 				</p>
 
 				<Button transitionTime={1000} callback={hideHome} className='home-appear home-button' NavigateTo='/contact'>contáctame</Button>
