@@ -40,10 +40,11 @@ function Home() {
 			}, 3000);
 		}, 500);
 	}, [])
-
+	
 	const hideHome = () => {
 		logoAnimation.current.setDirection(-1)
-		logoAnimation.current.setSpeed(2)
+		// logoAnimation.current.setSpeed(2)
+
 		logoAnimation.current.playSegments([140, 0], true)
 		setSocialState(false)
 		setTimeout(() => {

@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Lottie from 'lottie-web'
 
 //data
-import logoAnimation from '../../static/lottie/logo-2.json'
+import logoAnimation from '../../static/lottie/logo.json'
 
 //styles
 import './Nav.scss'
@@ -54,7 +54,8 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
 
             setTimeout(() => {
                 navLogoContainer.style.opacity = '1'
-                logo.playSegments([60, 140], true)
+                // logo.playSegments([60, 140], true)
+                logo.playSegments([0, 180], true)
             }, 500);
         }
     }, [])
@@ -64,6 +65,8 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
 
     const timerImplementation = async (route: string) => {
         callback()
+        const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
+        isHome ? undefined : navLogoContainer.style.opacity = '0'
         await timer(transitionTime)
         navigate(route)
     }
@@ -97,7 +100,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
                             )
                         })
                     }
-                    
+
                     <div id="menu-button"></div>
                 </div>
             </div>

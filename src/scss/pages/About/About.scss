@@ -71,3 +71,40 @@
         // width: 60%;
     }
 }
+
+.appear {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.scroll {
+    position: fixed;
+    bottom: 0;
+    right: 2rem;
+
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    // height: 8rem;
+
+    // background-color: chartreuse;
+
+    p {
+        color: #7e1e95;
+        writing-mode: vertical-rl;
+        margin-bottom: 0.5rem;
+        font-weight: 900;
+        // background-color: chocolate;
+    }
+
+    #scroll-line {
+        // position: absolute;
+        // top: 3rem;
+        // left: 50%;
+        height: 5rem;
+        // box-sizing: border-box;
+        width: 2px;
+        display: block;
+        background-color: #7e1e95;
+    }
+}
