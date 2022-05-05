@@ -59,7 +59,7 @@ export default function About() {
 
                 <div className="cards-container appear">
                     {
-                        cards.map((cardContent: AboutCardContent) => {  
+                        cards.map((cardContent: AboutCardContent) => {
                             return <AboutCard main={cardContent.main} middle={cardContent.middle} bottom={cardContent.bottom} key={cardContent.main} />
                         })
                     }
@@ -71,8 +71,38 @@ export default function About() {
                 </div>
             </header>
             <main>
-                <section>
-                    <h1>hola!</h1>
+                <section id="experiecia" className="split-big-title">
+                    <div className="big-title">
+                        <h1 className="left">
+                            Experi
+                            <br />
+                            encia
+                        </h1>
+                    </div>
+
+                    <div className="description-container">
+                        <p className="desc-title right">📝Una breve explicación</p>
+                        <p className="right">Durante mi segundo año de Ingeniería decidí comenzar un proyecto como desarrollador de software, mi experiencia previa abarcaba lenguajes como: C++, C#, Java, entre otros. El principal objetivo del proyecto era comenzar una agencia de desarrollo especializada en el campo agronómico (principal corte de mi Universidad). Junto a algunos compañeros registramos el proyecto en la sede de mi Departamento universitario y comenzamos buscando clientes.</p>
+                    </div>
+                </section>
+
+                <section className="years">
+                    <p>2018-2019-2020-2021-2022</p>
+                </section>
+
+                <section className="split-big-title reverse-row">
+                    <div className="big-title">
+                        <h1 className="right">
+                            Pro
+                            <br />
+                            yectos
+                        </h1>
+                    </div>
+
+                    <div className="description-container">
+                        <p className="desc-title left">Lo que he hecho 🔧</p>
+                        <p className="left">Durante mi segundo año de Ingeniería decidí comenzar un proyecto como desarrollador de software, mi experiencia previa abarcaba lenguajes como: C++, C#, Java, entre otros. El principal objetivo del proyecto era comenzar una agencia de desarrollo especializada en el campo agronómico (principal corte de mi Universidad). Junto a algunos compañeros registramos el proyecto en la sede de mi Departamento universitario y comenzamos buscando clientes.</p>
+                    </div>
                 </section>
             </main>
         </>

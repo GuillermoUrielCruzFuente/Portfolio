@@ -77,7 +77,7 @@ function Home() {
 			<Nav transitionTime={1000} callback={hideHome} isHome={true} />
 
 			<header id='home-container'>
-				<p className='big-text home-appear' >👋🏾Hola!, soy</p>
+				<p className='big-text home-appear' >Hola👋🏾!, soy</p>
 
 				<div ref={logoAnimationContainerRef} id='lottie-animation'></div>
 

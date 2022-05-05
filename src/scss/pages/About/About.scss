@@ -5,7 +5,6 @@
     align-items: center;
     height: 100vh;
     padding-top: calc(var(--navbar-size) + 2rem);
-    // background-color: chartreuse;
 
     .upper-title {
         font-size: 1.5rem;
@@ -21,21 +20,22 @@
         line-height: 1;
         position: relative;
 
-        &::after {
+        $width: 5rem;
+        &::before {
             content: "";
             position: absolute;
-            width: 100%;
+            width: $width;
             height: 0.5rem;
             background-color: #7e1e95;
-            left: calc(-100% - 2rem);
+            right: calc(100% + 2rem);
             top: 50%;
             border-radius: 1rem;
         }
 
-        &::before {
+        &::after {
             content: "";
             position: absolute;
-            width: 100%;
+            width: $width;
             height: 0.5rem;
             background-color: #7e1e95;
             left: calc(100% + 2rem);
@@ -56,7 +56,7 @@
         margin-top: 3rem;
         width: 50%;
         font-size: 1rem;
-        
+
         .accent {
             font-weight: 900;
         }
@@ -78,7 +78,7 @@
 }
 
 .scroll {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     right: 2rem;
 
@@ -106,5 +106,84 @@
         width: 2px;
         display: block;
         background-color: #7e1e95;
+        animation: scroll 1.5s ease alternate infinite;
+    }
+}
+
+@keyframes scroll {
+    from {
+        height: 5rem;
+    }
+    to {
+        height: 4rem;
+    }
+}
+
+main {
+    background-color: #000;
+}
+
+.reverse-row {
+    flex-flow: row-reverse;
+}
+
+.split-big-title {
+    display: flex;
+    padding: 10rem 0px;
+    width: 70%;
+    // background-color: chartreuse;
+
+    .big-title {
+        h1 {
+            color: #fff;
+            font-size: 10rem;
+            line-height: 1;
+            // background-color: chartreuse;
+        }
+    }
+
+    .description-container {
+
+        p {
+            color: #fff;
+        }
+
+        .desc-title {
+            color: #7e1e95;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            // background-color: chocolate;
+            // text-align: right;
+        }
+    }
+
+    .right {
+        text-align: right;
+        margin-left: 4rem;
+
+        // background-color: violet;
+    }
+
+    .left {
+        text-align: left;
+        margin-right: 4rem;
+
+
+        // background-color: chocolate;
+    }
+}
+
+.years {
+    background-color: #141414;
+    width: 100%;
+    padding: 3rem 0px;
+    overflow: hidden;
+
+    p {
+        font-weight: 900;
+        font-size: 10rem;
+        color: #2D2D2D;
+        white-space: nowrap;
     }
 }

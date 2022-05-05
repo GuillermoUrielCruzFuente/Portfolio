@@ -1,4 +1,4 @@
-import Lottie, { AnimationItem } from 'lottie-web'
+import Lottie from 'lottie-web'
 import { useLayoutEffect, useRef } from 'react'
 import './AboutCard.scss'
 import eyeAnimation from '../../static/lottie/eye.json'
@@ -35,13 +35,14 @@ const AboutCard = (Content: AboutCardContent) => {
         eyeAnim.current.playSegments([64, 90], true)
     }
 
+
     return (
         <div className="about-card">
             <p className="main">{Content.main}</p>
             <p className="middle">{Content.middle}</p>
             <p className="bottom">{Content.bottom}</p>
 
-            <button onMouseEnter={openEye} onMouseLeave={closeEye} onClick={() => { console.log(`button ${Content.main} presionado`) }}>
+            <button onMouseEnter={openEye} onMouseLeave={closeEye}>
                 <div className="lottie-eye-container">
                     <div className="eye" ref={buttonRef}></div>
                 </div>
