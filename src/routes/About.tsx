@@ -4,6 +4,15 @@ import AboutCard, { AboutCardContent } from "../components/AboutCard/AboutCard"
 import '../scss/pages/About/About.scss'
 import { useLayoutEffect } from "react"
 
+import HTMLImg from '../static/img/icons/about-experience/html.svg'
+import CSSImg from '../static/img/icons/about-experience/css.svg'
+import SCSSImg from '../static/img/icons/about-experience/sass.svg'
+import JSImg from '../static/img/icons/about-experience/js.svg'
+import TSImg from '../static/img/icons/about-experience/ts.svg'
+import ViteImg from '../static/img/icons/about-experience/vite.svg'
+import ReactImg from '../static/img/icons/about-experience/react.svg'
+import VueImg from '../static/img/icons/about-experience/vue.svg'
+
 export default function About() {
     const cards: Array<AboutCardContent> = [
         {
@@ -21,6 +30,17 @@ export default function About() {
             middle: 'muchas',
             bottom: 'PRUEBAS'
         }
+    ]
+
+    const images = [
+        HTMLImg,
+        CSSImg,
+        SCSSImg,
+        JSImg,
+        TSImg,
+        ViteImg,
+        ReactImg,
+        VueImg
     ]
 
     const appearElements = () => {
@@ -70,7 +90,7 @@ export default function About() {
                     <span id="scroll-line"></span>
                 </div>
             </header>
-            <main>
+            <main className="appear">
                 <section id="experiecia" className="split-big-title">
                     <div className="big-title">
                         <h1 className="left">
@@ -78,30 +98,55 @@ export default function About() {
                             <br />
                             encia
                         </h1>
+
+                        <p className="desc-title left">📝Una breve explicación</p>
                     </div>
 
                     <div className="description-container">
-                        <p className="desc-title right">📝Una breve explicación</p>
-                        <p className="right">Durante mi segundo año de Ingeniería decidí comenzar un proyecto como desarrollador de software, mi experiencia previa abarcaba lenguajes como: C++, C#, Java, entre otros. El principal objetivo del proyecto era comenzar una agencia de desarrollo especializada en el campo agronómico (principal corte de mi Universidad). Junto a algunos compañeros registramos el proyecto en la sede de mi Departamento universitario y comenzamos buscando clientes.</p>
+                        {/* <p className="desc-title right">📝Una breve explicación</p> */}
+                        <p className="right">Aproximadamente <span className="accent">hace 4 años</span> comencé con el desarrollo web, impulsado principalmente por resolver las necesidades de una empresa enfocada en la venta de agroinsumos, desarrollé su landing page y descubrí lo interesante y entretenido que resultaba el <span className="accent">frontend</span>.<br /><br />A día de hoy he mejorado mi flujo de trabajo mediante  la adopción de distintas herramientas y lenguajes, por ejemplo, css se ha covertido en <span className="accent">SCSS</span>, JavaScript en <span className="accent">TypeScript</span> y el insulso LiveServer en <span className="accent">ViteJS</span>, además he conocido el poder de bibliotecas como <span className="accent">React</span>, <span className="accent">Vue</span> y <span className="accent">Svelte</span>, que no me atrevería a mencionar que las domino, sin embargo las he adoptado progresivamente en  escenarios donde el posicionamiento no es un problema y vaya que generan un cambio en el flujo de trabajo. Probablemente mi siguiente meta sea la adopción de frameworks ssr como <span className="accent">NextJS</span> o <span className="accent">NuxtJS</span>.</p>
                     </div>
                 </section>
 
                 <section className="years">
-                    <p>2018-2019-2020-2021-2022</p>
+                    {
+                        images.map(img => <img src={img} alt="" />)
+                    }
                 </section>
 
                 <section className="split-big-title reverse-row">
                     <div className="big-title">
                         <h1 className="right">
-                            Pro
+                            Educa
                             <br />
-                            yectos
+                            ción
                         </h1>
+
+                        <p className="desc-title right">¿Aprendí algo en la universidad?📜</p>
                     </div>
 
                     <div className="description-container">
-                        <p className="desc-title left">Lo que he hecho 🔧</p>
-                        <p className="left">Durante mi segundo año de Ingeniería decidí comenzar un proyecto como desarrollador de software, mi experiencia previa abarcaba lenguajes como: C++, C#, Java, entre otros. El principal objetivo del proyecto era comenzar una agencia de desarrollo especializada en el campo agronómico (principal corte de mi Universidad). Junto a algunos compañeros registramos el proyecto en la sede de mi Departamento universitario y comenzamos buscando clientes.</p>
+                        <p className="left">Quizá este sea el tema menos alentador en este portafolio. Comencé mis estudios universitarios como casi todos lo hacen, con grandes aspiraciones y metas, si embargo una gran cantidad de factores influyeron en mi deserción.<br /><br />Comencé mis estudios universitarios en la <span className="accent">Universidad Autónoma Chapingo</span>, me apunté a la <span className="accent">primer generación de ingenieros mecatrónicos especializados en la rama agronómica</span>, es aqui donde reforcé mi gusto por la programación con lenguajes como <span className="accent">C</span>, <span className="accent">C++</span>, <span className="accent">C#</span> y <span className="accent">Java</span>, las clases de métodos numéricos pasaban como agua entre mis manos y mis compañeros y yo creábamos mancuernas de excelencia.<br /><br />Ante la llegada del <span className="accent">COVID-19</span> y las clases en línea muchas aspiraciones y deseos tuvieron que verse truncados, pues la nueva realidad no contribuía ni un poco a su realización, así decidí embarcarme en lo que sería un nuevo yo, enfocado en el <span className="accent">desarrollo web</span>.</p>
+                    </div>
+                </section>
+
+                <section className="years">
+                    <p>INGENIERÍA MECATRÓNICA AGRÍCOLA</p>
+                </section>
+
+                <section id="experiecia" className="split-big-title">
+                    <div className="big-title">
+                        <h1 className="left">
+                            Hob
+                            <br />
+                            bies
+                        </h1>
+
+                        <p className="desc-title left">🎧¿qué hago sino estoy programando?</p>
+                    </div>
+
+                    <div className="description-container">
+                        <p className="right">A lo largo de mi corta vida he desarrollado varios hobbies. Por ejemplo, me he enganchado a la <span className="accent">acuariofilia</span> especialmente el aquascaping, paisajismo en acuarios de agua dulce, he <span className="accent">jugado videojuegos</span> una cantidad de horas bastante considerable, he doblado papel por días enteros (<span className="accent">Origami</span>) y  sin embargo, siempre hay un factor en común, la <span className="accent">música</span>. Quizá resulte gracioso, pero me autodenominaría como <span className="accent">melómano</span>, me encanta investigar, leer y adentrarme en el mundo de la música, la gente que la crea e interpreta. Podría pasar horas hablando de las bandas que me gustan, de su historia y de los mensajes que vierten en sus líricas.</p>
                     </div>
                 </section>
             </main>

@@ -35,7 +35,6 @@ const AboutCard = (Content: AboutCardContent) => {
         eyeAnim.current.playSegments([64, 90], true)
     }
 
-
     return (
         <div className="about-card">
             <p className="main">{Content.main}</p>
