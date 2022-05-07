@@ -138,6 +138,7 @@ main {
         // background-color: chartreuse;
         flex-grow: 1;
         flex-basis: 0;
+
         h1 {
             color: #fff;
             font-size: 10rem;
@@ -196,5 +197,26 @@ main {
         font-size: 10rem;
         color: #2d2d2d;
         white-space: nowrap;
+    }
+}
+
+//title animations in about section
+.letter {
+    display: inline-block;
+    opacity: 0;
+}
+
+@keyframes letterEntry {
+    from {
+        // transform: translateY(16px) rotate(15deg) scale(1.5);
+        transform: translateY(30px);
+
+        opacity: 0;
+    }
+    to {
+        // transform: translateY(0px)  rotate(0deg) scale(1);
+        transform: translateY(0px);
+        
+        opacity: 1;
     }
 }

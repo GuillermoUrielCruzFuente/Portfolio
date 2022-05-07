@@ -3,6 +3,7 @@ import AboutCard, { AboutCardContent } from "../components/AboutCard/AboutCard"
 
 import '../scss/pages/About/About.scss'
 import { useLayoutEffect } from "react"
+import TextAnimation from "../helpers/TextAnimation"
 
 import HTMLImg from '../static/img/icons/about-experience/html.svg'
 import CSSImg from '../static/img/icons/about-experience/css.svg'
@@ -31,6 +32,9 @@ export default function About() {
             bottom: 'PRUEBAS'
         }
     ]
+
+
+    
 
     const images = [
         HTMLImg,
@@ -62,8 +66,35 @@ export default function About() {
     }
 
     useLayoutEffect(() => {
+        const firstTitle = new TextAnimation({
+            textContainerID: 'experience',
+            animationName: 'letterEntry',
+            classForWrapper: 'letter',
+            letterAnimDuration: 800,
+            delay: 50
+        })
+
+        const secondTitle = new TextAnimation({
+            textContainerID: 'education',
+            animationName: 'letterEntry',
+            classForWrapper: 'letter',
+            letterAnimDuration: 800,
+            delay: 50
+        })
+
+        const thirdTitle = new TextAnimation({
+            textContainerID: 'hobbies',
+            animationName: 'letterEntry',
+            classForWrapper: 'letter',
+            letterAnimDuration: 800,
+            delay: 50
+        })
+
         setTimeout(() => {
             appearElements()
+            firstTitle.animate()
+            secondTitle.animate()
+            thirdTitle.animate()
         }, 500);
     }, [])
 
@@ -93,34 +124,25 @@ export default function About() {
             <main className="appear">
                 <section id="experiecia" className="split-big-title">
                     <div className="big-title">
-                        <h1 className="left">
-                            Experi
-                            <br />
-                            encia
-                        </h1>
-
+                        <h1 className="left" id="experience">Experiencia</h1>
                         <p className="desc-title left">📝Una breve explicación</p>
                     </div>
 
                     <div className="description-container">
                         {/* <p className="desc-title right">📝Una breve explicación</p> */}
-                        <p className="right">Aproximadamente <span className="accent">hace 4 años</span> comencé con el desarrollo web, impulsado principalmente por resolver las necesidades de una empresa enfocada en la venta de agroinsumos, desarrollé su landing page y descubrí lo interesante y entretenido que resultaba el <span className="accent">frontend</span>.<br /><br />A día de hoy he mejorado mi flujo de trabajo mediante  la adopción de distintas herramientas y lenguajes, por ejemplo, css se ha covertido en <span className="accent">SCSS</span>, JavaScript en <span className="accent">TypeScript</span> y el insulso LiveServer en <span className="accent">ViteJS</span>, además he conocido el poder de bibliotecas como <span className="accent">React</span>, <span className="accent">Vue</span> y <span className="accent">Svelte</span>, que no me atrevería a mencionar que las domino, sin embargo las he adoptado progresivamente en  escenarios donde el posicionamiento no es un problema y vaya que generan un cambio en el flujo de trabajo. Probablemente mi siguiente meta sea la adopción de frameworks ssr como <span className="accent">NextJS</span> o <span className="accent">NuxtJS</span>.</p>
+                        <p className="right">Aproximadamente <span className="accent">hace 4 años</span> comencé con el desarrollo web, impulsado principalmente por resolver las necesidades de una empresa enfocada en la venta de agroinsumos, desarrollé su landing page y descubrí lo interesante y entretenido que resultaba el <span className="accent">frontend</span>.<br /><br />A día de hoy he mejorado mi flujo de trabajo mediante  la adopción de distintas herramientas y lenguajes, por ejemplo, css se ha covertido en <span className="accent">SCSS</span>, JavaScript en <span className="accent">TypeScript</span> y el insulso LiveServer en <span className="accent">ViteJS</span>, además he conocido el poder de bibliotecas como <span className="accent">React</span>, <span className="accent">Vue</span> y <span className="accent">Svelte</span>, que no me atrevería a mencionar que las domino, sin embargo las he adoptado progresivamente en  escenarios donde el posicionamiento no es un problema y vaya que generan un cambio en el flujo de trabajo. Probablemente mi siguiente meta sea la adopción de frameworks ssr como <span className="accent">NextJS</span> o <span className="accent">NuxtJS</span></p>
                     </div>
                 </section>
 
                 <section className="years">
                     {
-                        images.map(img => <img src={img} alt="" />)
+                        images.map(img => <img src={img} alt="" key={img}/>)
                     }
                 </section>
 
                 <section className="split-big-title reverse-row">
                     <div className="big-title">
-                        <h1 className="right">
-                            Educa
-                            <br />
-                            ción
-                        </h1>
+                        <h1 className="right" id="education">Educación</h1>
 
                         <p className="desc-title right">¿Aprendí algo en la universidad?📜</p>
                     </div>
@@ -136,11 +158,7 @@ export default function About() {
 
                 <section id="experiecia" className="split-big-title">
                     <div className="big-title">
-                        <h1 className="left">
-                            Hob
-                            <br />
-                            bies
-                        </h1>
+                        <h1 className="left" id="hobbies">Hobbies</h1>
 
                         <p className="desc-title left">🎧¿qué hago sino estoy programando?</p>
                     </div>
