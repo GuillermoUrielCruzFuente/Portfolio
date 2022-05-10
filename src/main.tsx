@@ -12,6 +12,11 @@ import Work from './routes/Work'
 import About from './routes/About'
 import NoMatch from './routes/404'
 
+document.addEventListener('keydown', (event: KeyboardEvent) => {
+	if (event.code === 'ArrowUp' && event.shiftKey) {
+		window.scrollTo(0, 0)
+	}
+})
 
 ReactDOM.render(
 	<React.StrictMode>

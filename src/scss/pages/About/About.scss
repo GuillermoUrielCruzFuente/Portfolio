@@ -1,10 +1,15 @@
 #about {
-    text-align: center;
     display: flex;
     flex-flow: column;
+    text-align: center;
     align-items: center;
-    height: 100vh;
+
+    // background-color: chartreuse;
+
+    // min-height: 100vh;
     padding-top: calc(var(--navbar-size) + 2rem);
+
+    position: relative;
 
     .upper-title {
         font-size: 1.5rem;
@@ -62,15 +67,102 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        margin-top: auto;
-        margin-bottom: 5rem;
+        // margin-top: auto;
+        // margin-bottom: 5rem;
+        // margin-top: 5rem;
+        margin: 5rem 0;
+        // background-color: chartreuse;
         // width: 60%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #about {
+        
+        .upper-title {
+            font-size: 1rem;
+        }
+
+        .about-description {
+            margin-top: 2rem;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .bottom-title {
+            font-size: 0.75rem;
+        }
+
+        .main-title {
+            font-size: 3rem;
+    
+            $width: 3rem;
+            &::before {
+                width: $width;
+                height: 0.25rem;
+                right: calc(100% + 1rem);
+            }
+    
+            &::after {
+                width: $width;
+                height: 0.25rem;
+                left: calc(100% + 1rem);
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #about {
+        
+        .upper-title {
+            font-size: 1rem;
+        }
+
+        .about-description {
+            margin-top: 2rem;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .bottom-title {
+            font-size: 0.75rem;
+        }
+
+        .main-title {
+            font-size: 3rem;
+    
+            $width: 3rem;
+            &::before {
+                width: $width;
+                height: 0.25rem;
+                right: calc(100% + 1rem);
+            }
+    
+            &::after {
+                width: $width;
+                height: 0.25rem;
+                left: calc(100% + 1rem);
+            }
+        }
+
+    }
+
+    .cards-container {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-around;
+        // margin-top: auto;
+        margin-bottom: 5rem;
     }
 }
 
 .accent {
     font-weight: 900;
     color: #fff;
+    // color: #7e1e95;
 }
 
 .appear {
@@ -99,17 +191,15 @@
     }
 
     #scroll-line {
-        // position: absolute;
-        // top: 3rem;
-        // left: 50%;
         height: 5rem;
-        // box-sizing: border-box;
         width: 2px;
         display: block;
         background-color: #7e1e95;
         animation: scroll 1.5s ease alternate infinite;
     }
 }
+
+
 
 @keyframes scroll {
     from {
@@ -131,7 +221,7 @@ main {
 .split-big-title {
     display: flex;
     align-items: center;
-    padding: 10rem 0px;
+    padding: 12rem 0px;
     width: 75%;
 
     .big-title {
@@ -183,20 +273,36 @@ main {
     width: 100%;
     padding: 3rem 0px;
     overflow: hidden;
+    
+    .tech-images {
+        display: flex;
+        flex-flow: row nowrap;
 
-    display: flex;
-    flex-flow: row nowrap;
-
-    img {
-        width: 150px;
-        margin-inline: 2rem;
+        img {
+            width: 140px;
+            margin-inline: 3rem;
+        }
     }
+
 
     p {
         font-weight: 900;
-        font-size: 10rem;
+        font-size: 5rem;
         color: #2d2d2d;
         white-space: nowrap;
+    }
+    .hobbies {
+        display: flex;
+        flex-flow: row nowrap;
+
+        // background-color: chartreuse;
+        // align-items: center;
+        // justify-content: space-around;
+
+        .hobbies-img {
+            width: 140px;
+            margin-inline: 5rem;
+        }
     }
 }
 

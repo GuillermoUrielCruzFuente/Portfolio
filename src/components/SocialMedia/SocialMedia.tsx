@@ -53,6 +53,7 @@ const SocialMedia = ({ containerClass ,state }: SocialMediaProp) => {
         })
     }, [])
 
+
     return (
         <div className={`social-media-container ${containerClass}`}>
             {

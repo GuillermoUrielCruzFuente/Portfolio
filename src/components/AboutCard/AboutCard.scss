@@ -2,27 +2,45 @@
     background-color: rgba($color: #290432, $alpha: 0.5);
     backdrop-filter: blur(3px);
     border-radius: 1rem;
-    padding-top: 2rem;
+    padding-top: 0rem;
     padding-inline: 1rem;
     padding-bottom: 1rem;
     min-width: 200px;
     margin-inline: 2rem;
+    // margin-top: 3rem;
     box-shadow: 0px 0px 32px rgba($color: #000, $alpha: 0.8);
+
+    transition: background-color 300ms, box-shadow 300ms;
+
+    &:hover {
+        background-color: rgba($color: #520c63, $alpha: 0.5);
+        box-shadow: 0px 0px 16px rgba($color: rgb(42, 42, 42), $alpha: 1);
+    }
 
     p {
         color: #fff;
     }
 
+    hr {
+        // border-top: 1px dashed #bc6be9;
+
+        border: 0;
+        height: 0;
+        border-top: 1px solid #bc6be9;
+        border-bottom: none;
+    }
+
     .main {
         font-size: 4rem;
         font-weight: 900;
-        // background-color: chartreuse;
         line-height: 1;
+        margin-top: 1rem;
     }
 
-    .middle, .bottom {
+    .middle,
+    .bottom {
         line-height: 1;
-        color: #BC6BE9;
+        color: #bc6be9;
     }
 
     .middle {
@@ -34,40 +52,92 @@
         font-size: 1.25rem;
     }
 
-    button {
-        margin-top: 2rem;
-        width: 100%;
-        border-radius: 0.75rem;
-        padding: 0.5rem;
-        border: none;
-        outline: none;
-        background-color: #360541;
-        font-weight: 900;
-        color: #fff;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+    // button {
+    //     margin-top: 2rem;
+    //     width: 100%;
+    //     border-radius: 0.75rem;
+    //     padding: 0.5rem;
+    //     border: none;
+    //     outline: none;
+    //     background-color: #360541;
+    //     font-weight: 900;
+    //     color: #fff;
+    //     cursor: pointer;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     position: relative;
 
-        .lottie-eye-container {
-            // background-color: #fff;
-            // height: 100%;
-            height: 2rem;
-            aspect-ratio: 1;
-            overflow: hidden;
-            margin-right: 1rem;
+    // }
+    // .lottie-eye-container {
+    //     height: 2rem;
+    //     aspect-ratio: 1;
+    //     overflow: hidden;
+    //     margin-right: 1rem;
 
-            .eye {
-                // max-height: 100%;
-                // max-width: 2rem;
-                width: 100%;
-                height: 100%;
-                transform: scale(3);
-                user-select: none;
-                pointer-events: none;
-                // background-color: chartreuse;
-            }
+    //     .eye {
+    //         width: 100%;
+    //         height: 100%;
+    //         transform: scale(3);
+    //         user-select: none;
+    //         pointer-events: none;
+    //     }
+    // }
+
+    .lottie-eye-container {
+        height: 4rem;
+        overflow: hidden;
+        // background-color: crimson;
+        margin: 0 auto;
+        margin-top: 1rem;
+        aspect-ratio: 1.85;
+
+        .eye {
+            width: 100%;
+            height: 100%;
+            // background-color: chartreuse;
+            transform: scale(4.3);
+            user-select: none;
+            pointer-events: none;
         }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .about-card {
+        min-width: 150px;
+        margin-inline: 1.25rem;
+        box-shadow: 0px 0px 32px rgba($color: #000, $alpha: 0.8);
+
+        p {
+            color: #fff;
+        }
+
+        .main {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .middle,
+        .bottom {
+            line-height: 1;
+            color: #bc6be9;
+        }
+
+        .middle {
+            font-size: 0.75rem;
+        }
+
+        .bottom {
+            font-weight: 900;
+            font-size: 1rem;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about-card {
+        min-width: min(250px, 100%);
     }
 }

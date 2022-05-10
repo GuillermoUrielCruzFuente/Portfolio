@@ -1,0 +1,21 @@
+// .title-container {
+//     background-color: chartreuse;
+//     display: flex;
+// }
+
+.animated-title {
+    font-size: 8rem !important;
+    line-height: 0.85 !important;
+    // overflow: hidden;
+
+    .animated-segment {
+        transition: 1000ms;
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(-50%);
+        transform-origin: "center center";
+        transition-timing-function: ease;
+        // overflow: hidden;
+        // background-color: chocolate;
+    }
+}

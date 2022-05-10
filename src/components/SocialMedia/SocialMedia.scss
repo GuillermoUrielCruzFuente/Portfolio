@@ -29,7 +29,7 @@
     opacity: 1;
     transform: translateY(0px);
 
-    transition: transform 500ms;
+    transition: transform 500ms, opacity 500ms;
 }
 
 .container-exit, .container-enter-done {
@@ -41,7 +41,7 @@
     opacity: 0;
     transform: translateY(50px);
 
-    transition: transform 500ms;
+    transition: transform 500ms, opacity 500ms;
 }
 
 @media screen and (max-width: 500px) {

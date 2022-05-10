@@ -36,17 +36,21 @@ const AboutCard = (Content: AboutCardContent) => {
     }
 
     return (
-        <div className="about-card">
+        <div className="about-card" onMouseEnter={openEye} onMouseLeave={closeEye}>
+            <div className="lottie-eye-container">
+                <div className="eye" ref={buttonRef}></div>
+            </div>
+            <hr />
             <p className="main">{Content.main}</p>
             <p className="middle">{Content.middle}</p>
             <p className="bottom">{Content.bottom}</p>
 
-            <button onMouseEnter={openEye} onMouseLeave={closeEye}>
+            {/* <button onMouseEnter={openEye} onMouseLeave={closeEye}>
                 <div className="lottie-eye-container">
                     <div className="eye" ref={buttonRef}></div>
                 </div>
                 ver
-            </button>
+            </button> */}
         </div>
     )
 }

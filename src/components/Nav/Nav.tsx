@@ -13,7 +13,8 @@ import './Nav.scss'
 type NavProps = {
     transitionTime: number,
     callback: () => void,
-    isHome?: boolean
+    isHome?: boolean,
+    currentRoute: string
 }
 
 type NavRoutes = {
@@ -21,7 +22,7 @@ type NavRoutes = {
     route: string
 }
 
-const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
+const Nav = ({ transitionTime, callback, isHome = false, currentRoute }: NavProps) => {
     const routes: Array<NavRoutes> = [
         {
             text: 'inicio',
@@ -42,7 +43,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
     ]
 
     useEffect(() => {
-        if (!isHome) {
+        if (currentRoute != '/') {
             const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
             let logo = Lottie.loadAnimation({
                 container: navLogoContainer,
@@ -54,7 +55,6 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
 
             setTimeout(() => {
                 navLogoContainer.style.opacity = '1'
-                // logo.playSegments([60, 140], true)
                 logo.playSegments([0, 180], true)
             }, 500);
         }
@@ -66,7 +66,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
     const timerImplementation = async (route: string) => {
         callback()
         const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
-        isHome ? undefined : navLogoContainer.style.opacity = '0'
+        currentRoute === '/' ? undefined : navLogoContainer.style.opacity = '0'
         await timer(transitionTime)
         navigate(route)
     }
@@ -75,12 +75,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
         <nav className='no-blur-bg'>
             <div id="nav-container">
                 {
-                    !isHome ?
-                        <a href="/" id='nav-logo-link'>
-                            <div id="nav-logo"></div>
-                        </a>
-                        :
-                        <span></span>
+                    currentRoute === '/' ? <span></span> : <a href="/" id='nav-logo-link'><div id="nav-logo"></div></a>
                 }
 
                 <div id="navigator">
@@ -90,7 +85,7 @@ const Nav = ({ transitionTime, callback, isHome = false }: NavProps) => {
                                 <NavLink
                                     onClick={(event) => {
                                         event.preventDefault()
-                                        timerImplementation(route.route)
+                                        currentRoute === route.route ? window.scrollTo(0, 0) : timerImplementation(route.route)
                                     }}
                                     to={route.route}
                                     key={route.text}

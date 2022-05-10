@@ -43,9 +43,8 @@ function Home() {
 	
 	const hideHome = () => {
 		logoAnimation.current.setDirection(-1)
-		// logoAnimation.current.setSpeed(2)
 
-		logoAnimation.current.playSegments([140, 0], true)
+		logoAnimation.current.playSegments([140, 0], false)
 		setSocialState(false)
 		setTimeout(() => {
 			hideElements()
@@ -74,7 +73,7 @@ function Home() {
 
 	return (
 		<>
-			<Nav transitionTime={1000} callback={hideHome} isHome={true} />
+			<Nav transitionTime={1000} callback={hideHome} currentRoute='/'/>
 
 			<header id='home-container'>
 				<p className='big-text home-appear' >Hola👋🏾!, soy</p>
