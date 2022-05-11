@@ -7,10 +7,6 @@ type ToAppear = {
     to: CSSProperties
 }
 
-type CSSItem = {
-    [key: string]: string
-}
-
 const IntersectionContainer: FC<ToAppear> = ({ children, from, to, transitionTime }: ToAppear) => {
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -45,7 +41,7 @@ const IntersectionContainer: FC<ToAppear> = ({ children, from, to, transitionTim
     const intersectionOptions: IntersectionObserverInit = {
         root: null,
         rootMargin: '0px',
-        threshold: 1
+        threshold: 0.5
     }
 
     useLayoutEffect(() => {

@@ -60,19 +60,19 @@ export default function About() {
     }, [])
 
     // xMovement for Elements based on scroll event
-    useEffect(() => {
-        const moveImgList = (e: Event) => {
-            refImgContainer.current ? refImgContainer.current.style.transform = `translateX(${150 - (window.scrollY / 4)}px)` : console.error('ref img container not exists')
-            refEducationContainer.current ? refEducationContainer.current.style.transform = `translateX(${-500 + (window.scrollY / 4)}px)` : console.error('ref education container not exists')
-            refHobbiesContainer.current ? refHobbiesContainer.current.style.transform = `translateX(${750 - (window.scrollY / 4)}px)` : console.error('ref education container not exists')
-        }
+    // useEffect(() => {
+    //     const moveImgList = (e: Event) => {
+    //         refImgContainer.current ? refImgContainer.current.style.transform = `translateX(${150 - (window.scrollY / 4)}px)` : console.error('ref img container not exists')
+    //         refEducationContainer.current ? refEducationContainer.current.style.transform = `translateX(${-500 + (window.scrollY / 4)}px)` : console.error('ref education container not exists')
+    //         refHobbiesContainer.current ? refHobbiesContainer.current.style.transform = `translateX(${750 - (window.scrollY / 4)}px)` : console.error('ref education container not exists')
+    //     }
 
-        window.addEventListener('scroll', moveImgList)
+    //     window.addEventListener('scroll', moveImgList)
 
-        return () => {
-            window.removeEventListener('scroll', moveImgList)
-        }
-    }, [])
+    //     return () => {
+    //         window.removeEventListener('scroll', moveImgList)
+    //     }
+    // }, [])
 
     return (
         <>
@@ -101,7 +101,7 @@ export default function About() {
             <main className="appear">
                 <section id="experiecia" className="split-big-title">
                     <div className="big-title">
-                        <AnimatedTitle items={['EXPERI', 'ENCIA']} alignment='left' />
+                        <AnimatedTitle items={['EXPERI', 'ENCIA']} alignment='left' textClass="titles"/>
                         <p className="desc-title left">📝Una breve explicación</p>
 
                     </div>
@@ -125,7 +125,7 @@ export default function About() {
 
                 <section className="split-big-title reverse-row">
                     <div className="big-title">
-                        <AnimatedTitle items={['EDUCA', 'CIÓN']} alignment='right' />
+                        <AnimatedTitle items={['EDUCA', 'CIÓN']} alignment='right' textClass="titles"/>
                         <p className="desc-title right">¿Aprendí algo en la universidad?📜</p>
                     </div>
 
@@ -146,7 +146,7 @@ export default function About() {
 
                 <section id="experiecia" className="split-big-title">
                     <div className="big-title">
-                        <AnimatedTitle items={['HOB', 'BIES']} alignment='left' />
+                        <AnimatedTitle items={['HOB', 'BIES']} alignment='left' textClass="titles" />
                         <p className="desc-title left">🎧¿qué hago sino estoy programando?</p>
                     </div>
 

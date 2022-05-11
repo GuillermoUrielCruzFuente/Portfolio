@@ -13,7 +13,8 @@ import './AnimatedTitle.scss'
 
 type textArray = {
     items: Array<string>,
-    alignment: 'left' | 'right'
+    alignment: 'left' | 'right',
+    textClass: string
 }
 
 type textItem = {
@@ -21,7 +22,7 @@ type textItem = {
     ref: MutableRefObject<HTMLSpanElement | null>
 }
 
-const AnimatedTitle = ({ items, alignment }: textArray) => {
+const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
     const titleRef = useRef<HTMLHeadingElement>(null)
 
     const itemsWithRef: Array<textItem> = items.map((item: string) => {
@@ -68,9 +69,6 @@ const AnimatedTitle = ({ items, alignment }: textArray) => {
     }, [])
 
     const containerStyles: CSSProperties = {
-        fontSize: '3rem',
-        color: '#fff',
-        // backgroundColor: 'chocolate',
         overflow: 'hidden',
         display: 'flex',
         flexFlow: 'column',
@@ -82,7 +80,7 @@ const AnimatedTitle = ({ items, alignment }: textArray) => {
             {
                 itemsWithRef.map((item, index) => {
                     return (
-                        <span className="animated-segment" ref={item.ref} style={{ transitionDelay: `${index * 200}ms` }} key={item.item}>{item.item}</span>
+                        <span className= {`animated-segment ${textClass}`} ref={item.ref} style={{ transitionDelay: `${index * 200}ms` }} key={item.item}>{item.item}</span>
                     )
                 })
             }
