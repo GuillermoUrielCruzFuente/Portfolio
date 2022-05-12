@@ -1,5 +1,8 @@
 .animated-title {
+    
     .animated-segment {
+        height: fit-content;
+        width: fit-content;
         transition: 1000ms;
         display: inline-block;
         opacity: 0;

@@ -16,7 +16,7 @@ export default function Contact() {
 
     return (
         <>
-            <Nav transitionTime={10} callback={() => {}} currentRoute='/contact'/>
+            <Nav transitionTime={10} runBeforeNavigate={() => { }} currentRoute='/contact' />
             <header>
                 <CSSTransition in={titleState} classNames='video-anim' timeout={{ enter: 1000, exit: 500 }} mountOnEnter nodeRef={b}>
                     <h1 ref={b}>Contact</h1>

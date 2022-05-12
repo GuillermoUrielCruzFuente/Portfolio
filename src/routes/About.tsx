@@ -29,9 +29,9 @@ export default function About() {
         }
     ]
 
-    const refImgContainer = useRef<HTMLDivElement>(null)
-    const refEducationContainer = useRef<HTMLDivElement>(null)
-    const refHobbiesContainer = useRef<HTMLDivElement>(null)
+    // const refImgContainer = useRef<HTMLDivElement>(null)
+    // const refEducationContainer = useRef<HTMLDivElement>(null)
+    // const refHobbiesContainer = useRef<HTMLDivElement>(null)
 
 
 
@@ -76,7 +76,7 @@ export default function About() {
 
     return (
         <>
-            <Nav transitionTime={550} callback={hideElements} isHome={false} currentRoute='/about'/>
+            <Nav transitionTime={550} runBeforeNavigate={hideElements} currentRoute='/about' />
             <header id="about">
                 <p className="upper-title appear">sección</p>
                 <h1 className="main-title appear">Sobre mi</h1>
@@ -101,7 +101,7 @@ export default function About() {
             <main className="appear">
                 <section id="experiecia" className="split-big-title">
                     <div className="big-title">
-                        <AnimatedTitle items={['EXPERI', 'ENCIA']} alignment='left' textClass="titles"/>
+                        <AnimatedTitle items={['EXPERI', 'ENCIA']} alignment='left' textClass="titles" />
                         <p className="desc-title left">📝Una breve explicación</p>
 
                     </div>
@@ -116,7 +116,7 @@ export default function About() {
                 </section>
 
                 <section className="years">
-                    <div className="tech-images" ref={refImgContainer}>
+                    <div className="tech-images">
                         {
                             techImages.map(img => <img src={img} alt="" key={img} />)
                         }
@@ -125,7 +125,7 @@ export default function About() {
 
                 <section className="split-big-title reverse-row">
                     <div className="big-title">
-                        <AnimatedTitle items={['EDUCA', 'CIÓN']} alignment='right' textClass="titles"/>
+                        <AnimatedTitle items={['EDUCA', 'CIÓN']} alignment='right' textClass="titles" />
                         <p className="desc-title right">¿Aprendí algo en la universidad?📜</p>
                     </div>
 
@@ -139,7 +139,7 @@ export default function About() {
                 </section>
 
                 <section className="years">
-                    <div ref={refEducationContainer}>
+                    <div>
                         <p>INGENIERÍA MECATRÓNICA AGRÍCOLA</p>
                     </div>
                 </section>
@@ -160,7 +160,7 @@ export default function About() {
                 </section>
 
                 <section className="years">
-                    <div className="hobbies" ref={refHobbiesContainer}>
+                    <div className="hobbies">
                         {
                             hobbiesImages.map(img => <img src={img} alt="" key={img} className="hobbies-img" />)
                         }

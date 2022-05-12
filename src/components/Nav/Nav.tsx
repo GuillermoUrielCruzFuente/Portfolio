@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { BaseSyntheticEvent, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import timer from '../../helpers/Timer'
+import routes from '../../routes/routes'
 
 //third party libraries
 import Lottie from 'lottie-web'
@@ -12,35 +14,13 @@ import './Nav.scss'
 
 type NavProps = {
     transitionTime: number,
-    callback: () => void,
-    isHome?: boolean,
+    runBeforeNavigate: () => void,
     currentRoute: string
 }
 
-type NavRoutes = {
-    text: string,
-    route: string
-}
+const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
 
-const Nav = ({ transitionTime, callback, isHome = false, currentRoute }: NavProps) => {
-    const routes: Array<NavRoutes> = [
-        {
-            text: 'inicio',
-            route: '/'
-        },
-        {
-            text: 'sobre mi',
-            route: '/about'
-        },
-        {
-            text: 'trabajos',
-            route: '/work'
-        },
-        {
-            text: 'contacto',
-            route: '/contact'
-        }
-    ]
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (currentRoute != '/') {
@@ -60,22 +40,39 @@ const Nav = ({ transitionTime, callback, isHome = false, currentRoute }: NavProp
         }
     }, [])
 
-    const timer = (ms: number) => { return new Promise(res => setTimeout(res, ms)) }
-    const navigate = useNavigate()
-
     const timerImplementation = async (route: string) => {
-        callback()
-        const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
-        currentRoute === '/' ? undefined : navLogoContainer.style.opacity = '0'
+        runBeforeNavigate()
+        if (currentRoute != '/') {
+            const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
+            navLogoContainer.style.opacity = '0'
+        }
         await timer(transitionTime)
         navigate(route)
+    }
+
+    const navLinkClickHandler = (event: BaseSyntheticEvent<MouseEvent, EventTarget & HTMLAnchorElement, EventTarget>, route: string) => {
+        event.preventDefault()
+
+        if (currentRoute === route) {
+            window.scrollTo(0, 0)
+        }
+        else {
+            timerImplementation(route)
+        }
     }
 
     return (
         <nav className='no-blur-bg'>
             <div id="nav-container">
                 {
-                    currentRoute === '/' ? <span></span> : <a href="/" id='nav-logo-link'><div id="nav-logo"></div></a>
+                    currentRoute === '/' ?
+                        <span></span>
+                        :
+                        <div id="nav-logo-container">
+                            <a href="/" id="nav-logo-link">
+                                <div id="nav-logo"></div>
+                            </a>
+                        </div>
                 }
 
                 <div id="navigator">
@@ -83,12 +80,10 @@ const Nav = ({ transitionTime, callback, isHome = false, currentRoute }: NavProp
                         routes.map(route => {
                             return (
                                 <NavLink
-                                    onClick={(event) => {
-                                        event.preventDefault()
-                                        currentRoute === route.route ? window.scrollTo(0, 0) : timerImplementation(route.route)
-                                    }}
+                                    onClick={event => navLinkClickHandler(event, route.route)}
                                     to={route.route}
                                     key={route.text}
+                                    className='nav-link-item'
                                 >
                                     {route.text}
                                 </NavLink>

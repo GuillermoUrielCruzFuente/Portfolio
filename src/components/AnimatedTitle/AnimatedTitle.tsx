@@ -1,15 +1,5 @@
-import { CSSProperties, MutableRefObject, StyleHTMLAttributes, useEffect, useLayoutEffect, useRef } from 'react'
+import { CSSProperties, MutableRefObject, useLayoutEffect, useRef } from 'react'
 import './AnimatedTitle.scss'
-
-/**
- * Generar segmentos basado en un array
- * y realizar animaciones sobre esos segmentos
- * de esta manera no se generarán cortes letra por letra 
- * 
- * También es posible realizar cambios a la clase de
- * Animaciones, para generar segmentos basado en un
- * array de longitudes
- */
 
 type textArray = {
     items: Array<string>,
@@ -33,15 +23,8 @@ const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
         return itemWithRef
     })
 
-    useEffect(() => {
-
-    }, [])
-
     useLayoutEffect(() => {
-        setTimeout(() => {
-
-        }, 800);
-
+        
         const observerOptions: IntersectionObserverInit = {
             root: null,
             rootMargin: '0px',
@@ -69,10 +52,11 @@ const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
     }, [])
 
     const containerStyles: CSSProperties = {
-        overflow: 'hidden',
         display: 'flex',
-        flexFlow: 'column',
-        alignItems: alignment === 'left' ? 'flex-start' : 'flex-end'
+        flexFlow: 'row wrap',
+        overflow: 'hidden',
+        alignItems: 'center',
+        justifyContent: alignment === 'left' ? 'flex-start' : 'flex-end',
     }
 
     return (
@@ -80,7 +64,7 @@ const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
             {
                 itemsWithRef.map((item, index) => {
                     return (
-                        <span className= {`animated-segment ${textClass}`} ref={item.ref} style={{ transitionDelay: `${index * 200}ms` }} key={item.item}>{item.item}</span>
+                        <span className={`animated-segment ${textClass}`} ref={item.ref} style={{ transitionDelay: `${index * 200}ms` }} key={item.item}>{item.item}</span>
                     )
                 })
             }

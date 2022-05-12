@@ -5,7 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 //styles
 import './scss/index.scss'
 
-//routes
+//
+import routes from './routes/routes'
 import Home from './routes/Home'
 import Contact from './routes/Contact'
 import Work from './routes/Work'
@@ -22,10 +23,10 @@ ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/contact' element={<Contact />} />
-				<Route path='/work' element={<Work />} />
-				<Route path='/about' element={<About />} />
+				<Route path={routes[0].route} element={<Home />} />
+				<Route path={routes[1].route} element={<About />} />
+				<Route path={routes[2].route} element={<Work />} />
+				<Route path={routes[3].route} element={<Contact />} />
 				<Route path='*' element={<NoMatch />} />
 			</Routes>
 		</BrowserRouter>

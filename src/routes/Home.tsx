@@ -40,7 +40,7 @@ function Home() {
 			}, 3000);
 		}, 500);
 	}, [])
-	
+
 	const hideHome = () => {
 		logoAnimation.current.setDirection(-1)
 
@@ -73,7 +73,7 @@ function Home() {
 
 	return (
 		<>
-			<Nav transitionTime={1000} callback={hideHome} currentRoute='/'/>
+			<Nav transitionTime={1000} runBeforeNavigate={hideHome} currentRoute='/' />
 
 			<header id='home-container'>
 				<p className='big-text home-appear' >Hola👋🏾!, soy</p>
