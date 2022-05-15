@@ -49,10 +49,15 @@
     }
 
     .main-title {
-        font-size: 5rem;
+        // font-size: 10rem;
+        // font-size: clamp(1rem, 10rem, 5rem + 1vw);
+        // font-size: 12vw;
+        // font-size: calc(8vw + 2rem);
+        font-size: clamp(1.25rem, 12vw, 10rem);
+        text-transform: uppercase;
         color: #fff;
         font-weight: 900;
-        line-height: 1;
+        line-height: 0.85;
         position: relative;
 
         $width: 5rem;
@@ -118,22 +123,22 @@
             font-size: 0.75rem;
         }
 
-        .main-title {
-            font-size: 3rem;
+        // .main-title {
+        //     font-size: 8rem;
 
-            $width: 3rem;
-            &::before {
-                width: $width;
-                height: 0.25rem;
-                right: calc(100% + 1rem);
-            }
+        //     $width: 3rem;
+        //     &::before {
+        //         width: $width;
+        //         height: 0.25rem;
+        //         right: calc(100% + 1rem);
+        //     }
 
-            &::after {
-                width: $width;
-                height: 0.25rem;
-                left: calc(100% + 1rem);
-            }
-        }
+        //     &::after {
+        //         width: $width;
+        //         height: 0.25rem;
+        //         left: calc(100% + 1rem);
+        //     }
+        // }
     }
 }
 
@@ -153,22 +158,22 @@
             font-size: 0.75rem;
         }
 
-        .main-title {
-            font-size: 3rem;
+        // .main-title {
+        //     font-size: 5rem;
 
-            $width: 3rem;
-            &::before {
-                width: $width;
-                height: 0.25rem;
-                right: calc(100% + 1rem);
-            }
+        //     $width: 3rem;
+        //     &::before {
+        //         width: $width;
+        //         height: 0.25rem;
+        //         right: calc(100% + 1rem);
+        //     }
 
-            &::after {
-                width: $width;
-                height: 0.25rem;
-                left: calc(100% + 1rem);
-            }
-        }
+        //     &::after {
+        //         width: $width;
+        //         height: 0.25rem;
+        //         left: calc(100% + 1rem);
+        //     }
+        // }
 
         .cards-container {
             display: flex;
@@ -180,6 +185,22 @@
         }
     }
 }
+
+// @media screen and (max-width: 450px) {
+//     #about {
+//         .main-title {
+//             font-size: 3rem;
+//         }
+//     }
+// }
+
+// @media screen and (max-width: 280px) {
+//     #about {
+//         .main-title {
+//             font-size: 2rem;
+//         }
+//     }
+// }
 
 // #endregion
 
@@ -215,10 +236,12 @@ main {
     .big-title {
         flex-grow: 1;
         flex-basis: 0;
-        
+
         .titles {
             color: #fff;
-            font-size: 8rem;
+            // font-size: 8rem;
+            font-size: clamp(5rem, 12vw, 10rem);
+
             line-height: 0.85;
         }
 
@@ -269,6 +292,7 @@ main {
         font-size: 4rem;
         text-align: center;
         color: #2d2d2d;
+        box-sizing: border-box;
         // white-space: nowrap;
     }
 
@@ -285,14 +309,20 @@ main {
     }
 }
 
+@media screen and (min-width: 3000px) {
+    html {
+        font-size: 32px;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .split-big-title {
         width: 85%;
 
         .big-title {
-            .titles {
-                font-size: 7rem;
-            }
+            // .titles {
+            //     font-size: 7rem;
+            // }
 
             .desc-title {
                 font-size: 1rem;
@@ -302,13 +332,13 @@ main {
 }
 
 @media screen and (max-width: 1000px) {
-    .split-big-title {
-        .big-title {
-            .titles {
-                font-size: 5rem;
-            }
-        }
-    }
+    // .split-big-title {
+    //     .big-title {
+    //         .titles {
+    //             font-size: 5rem;
+    //         }
+    //     }
+    // }
 
     .years {
         .tech-images {
@@ -341,7 +371,7 @@ main {
             flex-basis: unset;
 
             .titles {
-                font-size: 7rem;
+                // font-size: 7rem;
                 margin: 0 auto;
             }
 
@@ -362,12 +392,20 @@ main {
     }
 }
 
-@media screen and (max-width: 600px) {
-    .split-big-title {
-        .big-title {
-            .titles {
-                font-size: 5rem;
-            }
+// @media screen and (max-width: 600px) {
+//     .split-big-title {
+//         .big-title {
+//             .titles {
+//                 font-size: 5rem;
+//             }
+//         }
+//     }
+// }
+
+@media screen and (max-width: 400px) {
+    .years {
+        p {
+            font-size: 1.5rem;
         }
     }
 }
@@ -376,7 +414,7 @@ main {
     .split-big-title {
         .big-title {
             .titles {
-                font-size: 4rem;
+                font-size: clamp(3.5rem, 12vw, 10rem);
             }
         }
     }
@@ -387,10 +425,6 @@ main {
                 width: 60px;
                 margin: 1rem;
             }
-        }
-
-        p {
-            font-size: 2rem;
         }
 
         .hobbies {

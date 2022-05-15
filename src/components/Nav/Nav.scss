@@ -54,21 +54,54 @@ span {
         display: none;
     }
 
-    .nav-link-item {
-        margin-left: 2rem;
-        transition: color 300ms;
-        font-size: 1rem;
-        font-weight: 900;
-        color: #fff;
-        text-decoration: none;
+    .links-container-desk {
+        display: block;
+
+        .nav-link-item-desk {
+            margin-left: 2rem;
+            transition: color 300ms;
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .active {
+            color: #b06bd4;
+        }
+
+        .inactive {
+            color: #fff;
+        }
     }
 
-    .active {
-        color: #b06bd4;
-    }
+    .links-container-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
 
-    .inactive {
-        color: #fff;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+
+        .nav-link-item-mob {
+            margin-block: 0.5rem;
+            font-size: 2rem;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .active {
+            color: #b06bd4;
+        }
+
+        .inactive {
+            color: #fff;
+        }
     }
 }
 
@@ -90,15 +123,30 @@ span {
     }
 
     #navigator {
+        .links-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 90;
+        }
+
+        .links-container-desk {
+            display: none;
+        }
+
         #menu-button {
             width: 30px;
             height: 30px;
             border-radius: 1rem;
-            display: block;
-        }
+            cursor: pointer;
+            z-index: 100;
 
-        .nav-link-item {
-            display: none;
+            display: block;
         }
     }
 }
@@ -109,4 +157,31 @@ span {
             height: calc(100% - 2rem);
         }
     }
+}
+
+.appear-enter {
+    opacity: 0;
+}
+
+.appear-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.appear-enter-done {
+    opacity: 1;
+}
+
+.appear-exit {
+    opacity: 1;
+}
+
+.appear-exit-active {
+    opacity: 0;
+
+    transition: opacity 300ms;
+}
+
+.appear-done-active {
+    opacity: 0;
 }

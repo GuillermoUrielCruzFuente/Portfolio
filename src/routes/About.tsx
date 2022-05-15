@@ -76,7 +76,7 @@ export default function About() {
 
     return (
         <>
-            <Nav transitionTime={550} runBeforeNavigate={hideElements} currentRoute='/about' />
+            <Nav transitionTime={550} runBeforeNavigate={hideElements} currentRoute='/sobre-mi' />
             <header id="about">
                 <p className="upper-title appear">sección</p>
                 <h1 className="main-title appear">Sobre mi</h1>

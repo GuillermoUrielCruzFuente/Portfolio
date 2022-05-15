@@ -84,7 +84,7 @@ function Home() {
 					Desarrollador Frontend de tiempo completo, con más de 4 años de experiencia. Mexicano, con intervención en distintos proyectos profesionales, una gran creatividad y atención a los detalles.
 				</p>
 
-				<Button transitionTime={1000} callback={hideHome} className='home-appear home-button' NavigateTo='/contact'>contáctame</Button>
+				<Button transitionTime={1000} callback={hideHome} className='home-appear home-button' NavigateTo='/contacto'>contáctame</Button>
 
 				<SocialMedia state={socialState} containerClass={'social-media-container'} />
 			</header>
