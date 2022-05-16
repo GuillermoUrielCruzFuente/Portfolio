@@ -1,8 +1,10 @@
-import { BaseSyntheticEvent, useEffect, useRef, useState } from 'react'
+import { BaseSyntheticEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
+
+//
 import timer from '../../helpers/Timer'
 import routes from '../../routes/routes'
-import { CSSTransition } from 'react-transition-group'
 
 //third party libraries
 import Lottie from 'lottie-web'
@@ -19,25 +21,50 @@ type NavProps = {
     currentRoute: string
 }
 
+type RoutesWithRefs = {
+    text: string,
+    route: string,
+    ref: MutableRefObject<HTMLAnchorElement | null>
+}
+
 const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
     const navigate = useNavigate()
-    let [menuDeviceState, setMenuDeviceState] = useState(false)
+
+    const [menuDeviceState, setMenuDeviceState] = useState(false)
+    const [mobItems, setMobItems] = useState(false)
+
     const menuMobileRef = useRef<HTMLDivElement>(null)
+    const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
+
+    const logoAnimationRef = useRef(
+        Lottie.loadAnimation({
+            container: logoAnimationContainerRef.current as HTMLDivElement
+        })
+    )
+
+    let routesWithRefs: Array<RoutesWithRefs> = []
+    for (const key in routes) {
+        if (Object.prototype.hasOwnProperty.call(routes, key)) {
+            const route = routes[key];
+            const mRef = useRef<HTMLAnchorElement>(null)
+            let newObj: RoutesWithRefs = { ...route, ref: mRef }
+
+            routesWithRefs.push(newObj)
+        }
+    }
 
     useEffect(() => {
         if (currentRoute != '/') {
-            const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
-            let logo = Lottie.loadAnimation({
-                container: navLogoContainer,
+            logoAnimationRef.current = Lottie.loadAnimation({
+                container: logoAnimationContainerRef.current as HTMLDivElement,
                 animationData: logoAnimation,
                 autoplay: false,
-                loop: false,
-                name: 'navLogo'
+                loop: false
             })
 
+
             setTimeout(() => {
-                navLogoContainer.style.opacity = '1'
-                logo.playSegments([0, 180], true)
+                logoAnimationRef.current ? logoAnimationRef.current.playSegments([0, 180], true) : undefined
             }, 500);
         }
     }, [])
@@ -45,8 +72,7 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
     const timerImplementation = async (route: string) => {
         runBeforeNavigate()
         if (currentRoute != '/') {
-            const navLogoContainer = document.getElementById('nav-logo') as HTMLElement
-            navLogoContainer.style.opacity = '0'
+            logoAnimationContainerRef.current ? logoAnimationContainerRef.current.style.opacity = '0' : undefined
         }
         await timer(transitionTime)
         navigate(route)
@@ -90,7 +116,7 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
                         :
                         <div id="nav-logo-container">
                             <a href="/" id="nav-logo-link">
-                                <div id="nav-logo"></div>
+                                <div id="nav-logo" ref={logoAnimationContainerRef}></div>
                             </a>
                         </div>
                 }
@@ -114,51 +140,40 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
                         }
                     </div>
 
-                    {/* {
-                        menuDeviceState ?
-                            <div className="links-container-mobile">
-                                {
-                                    routes.map(route => {
-                                        return (
-                                            <NavLink
-                                                onClick={event => navLinkClickHandler(event, route.route)}
-                                                to={route.route}
-                                                key={route.text}
-                                                className='nav-link-item-mob'
-                                            >
-                                                {route.text}
-                                            </NavLink>
-                                        )
-                                    })
-                                }
-                            </div>
-                            :
-                            undefined
-
-
-                    } */}
-
                     {
                         <CSSTransition
                             in={menuDeviceState}
                             classNames='appear'
-                            timeout={{ enter: 500, exit: 300 }}
+                            timeout={{ enter: 500, exit: 500 }}
                             mountOnEnter
                             unmountOnExit
                             nodeRef={menuMobileRef}
+                            addEndListener={() => setMobItems(!mobItems)}
                         >
                             <div className="links-container-mobile" ref={menuMobileRef}>
                                 {
-                                    routes.map(route => {
+                                    routesWithRefs.map((route, i) => {
                                         return (
-                                            <NavLink
-                                                onClick={event => navLinkClickHandler(event, route.route)}
-                                                to={route.route}
+                                            <CSSTransition
+                                                in={mobItems}
+                                                classNames="link-item-app"
+                                                timeout={{ enter: 500 + i * 80, exit: 500 + i * 80 }}
+                                                nodeRef={route.ref}
+                                                mountOnEnter
+                                                unmountOnExit
                                                 key={route.text}
-                                                className='nav-link-item-mob'
+                                                onExit={() => { }}
                                             >
-                                                {route.text}
-                                            </NavLink>
+                                                <NavLink
+                                                    onClick={event => navLinkClickHandler(event, route.route)}
+                                                    to={route.route}
+                                                    className="nav-link-item-mob"
+                                                    ref={route.ref}
+                                                    style={{ transitionDelay: mobItems ? `${i * 80}ms` : `${i * 80}ms` }}
+                                                >
+                                                    {route.text}
+                                                </NavLink>
+                                            </CSSTransition>
                                         )
                                     })
                                 }

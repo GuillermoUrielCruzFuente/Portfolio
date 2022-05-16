@@ -36,7 +36,6 @@ span {
         #nav-logo {
             height: 100%;
             aspect-ratio: 4.85;
-            opacity: 0;
             transition: 800ms opacity;
         }
     }
@@ -93,6 +92,7 @@ span {
             font-size: 2rem;
             font-weight: 900;
             text-decoration: none;
+            color: #fff;
         }
 
         .active {
@@ -179,9 +179,34 @@ span {
 .appear-exit-active {
     opacity: 0;
 
-    transition: opacity 300ms;
+    transition: opacity 500ms;
 }
 
 .appear-done-active {
     opacity: 0;
+}
+//------------------------------------------------------------------------------//
+//------------------------------------------------------------------------------//
+.link-item-app-enter {
+    opacity: 0;
+    transform: translateY(-32px);
+}
+
+.link-item-app-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+
+    transition: opacity 500ms, transform 500ms;
+}
+
+.link-item-app-exit {
+    opacity: 1;
+    transform: translateY(0px) translateX(0px);
+}
+
+.link-item-app-exit-active {
+    opacity: 0;
+    transform: translateY(0px) translateX(20px);
+
+    transition: opacity 300ms, transform 300ms;
 }
