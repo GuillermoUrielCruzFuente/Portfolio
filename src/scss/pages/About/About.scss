@@ -40,6 +40,7 @@
     align-items: center;
     padding-top: calc(var(--navbar-size) + 2rem);
     position: relative;
+    min-height: 100vh;
 
     .upper-title {
         font-size: 1.5rem;
@@ -263,10 +264,12 @@ main {
 
     .right {
         text-align: right;
+        margin-left: 2rem;
     }
 
     .left {
         text-align: left;
+        margin-right: 2rem;
     }
 }
 
@@ -387,6 +390,14 @@ main {
 
             p {
                 text-align: justify;
+            }
+
+            .right {
+                margin-left: 0;
+            }
+
+            .left {
+                margin-right: 0;
             }
         }
     }

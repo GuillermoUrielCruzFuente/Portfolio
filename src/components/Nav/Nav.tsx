@@ -33,14 +33,10 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
     const [menuDeviceState, setMenuDeviceState] = useState(false)
     const [mobItems, setMobItems] = useState(false)
 
+    const menuRef = useRef<HTMLDivElement>(null)
     const menuMobileRef = useRef<HTMLDivElement>(null)
     const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
-
-    const logoAnimationRef = useRef(
-        Lottie.loadAnimation({
-            container: logoAnimationContainerRef.current as HTMLDivElement
-        })
-    )
+    const logoAnimationRef = useRef(Lottie.loadAnimation({ container: logoAnimationContainerRef.current as HTMLDivElement }))
 
     let routesWithRefs: Array<RoutesWithRefs> = []
     for (const key in routes) {
@@ -62,12 +58,18 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
                 loop: false
             })
 
-
             setTimeout(() => {
                 logoAnimationRef.current ? logoAnimationRef.current.playSegments([0, 180], true) : undefined
             }, 500);
         }
     }, [])
+
+    useEffect(() => {
+        return () => {
+            window.removeEventListener('resize', hideMenuOnResize)
+            window.removeEventListener('keydown', hideMenuOnEsc)
+        }
+    })
 
     const timerImplementation = async (route: string) => {
         runBeforeNavigate()
@@ -91,20 +93,55 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
         }
     }
 
-    const menuRef = useRef<HTMLDivElement>(null)
+    const hideMenuOnResize = () => {
+        //if the menu is active and the window width is less than 700px
+        //then the menu need to be invisible
+        console.log('hide menu on resize')
+        if (window.innerWidth > 700 && !menuDeviceState) {
+            setMenuDeviceState(false)
+        }
+    }
+
+    const hideMenuOnEsc = (event: KeyboardEvent) => {
+        console.log('hide menu on esc')
+        if (event.key === 'Escape') {
+            setMenuDeviceState(false)
+        }
+    }
+
     const toggleMenu = () => {
         setMenuDeviceState(!menuDeviceState)
 
         const a = document.getElementsByTagName('html')[0]
         a.style.overflow = !menuDeviceState ? 'hidden hidden' : 'hidden auto'
 
-        const hideMenuOnResize = (): void => {
-            if (window.innerWidth > 700 && !menuDeviceState) {
-                setMenuDeviceState(false)
-            }
-        }
+        // const hideMenuOnResize = () => {
+        //     //if the menu is active and the window width is less than 700px
+        //     //then the menu need to be invisible
+        //     if (window.innerWidth > 700 && !menuDeviceState) {
+        //         setMenuDeviceState(false)
+        //         window.removeEventListener('resize', hideMenuOnResize)
+        //         window.removeEventListener('keydown', hideMenuOnEsc)
+        //     }
+        // }
 
-        !menuDeviceState ? window.addEventListener('resize', hideMenuOnResize) : window.removeEventListener('resize', hideMenuOnResize)
+        // const hideMenuOnEsc = (event: KeyboardEvent) => {
+        //     console.log('hide menu on esc')
+        //     if (event.key === 'Escape') {
+        //         setMenuDeviceState(false)
+        //         window.removeEventListener('resize', hideMenuOnResize)
+        //         window.removeEventListener('keydown', hideMenuOnEsc)
+        //     }
+        // }
+
+        if (!menuDeviceState) {
+            window.addEventListener('resize', hideMenuOnResize)
+            window.addEventListener('keydown', hideMenuOnEsc)
+        }
+        // else {
+        //     window.removeEventListener('resize', hideMenuOnResize)
+        //     window.removeEventListener('keydown', hideMenuOnEsc)
+        // }
     }
 
     return (
@@ -157,19 +194,18 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
                                             <CSSTransition
                                                 in={mobItems}
                                                 classNames="link-item-app"
-                                                timeout={{ enter: 500 + i * 80, exit: 500 + i * 80 }}
+                                                timeout={{ enter: 500 + i * 100, exit: 500 + i * 80 }}
                                                 nodeRef={route.ref}
                                                 mountOnEnter
                                                 unmountOnExit
                                                 key={route.text}
-                                                onExit={() => { }}
                                             >
                                                 <NavLink
                                                     onClick={event => navLinkClickHandler(event, route.route)}
                                                     to={route.route}
                                                     className="nav-link-item-mob"
                                                     ref={route.ref}
-                                                    style={{ transitionDelay: mobItems ? `${i * 80}ms` : `${i * 80}ms` }}
+                                                    style={{ transitionDelay: mobItems ? `${i * 100}ms` : `${i * 80}ms` }}
                                                 >
                                                     {route.text}
                                                 </NavLink>
