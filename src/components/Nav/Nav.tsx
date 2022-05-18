@@ -62,14 +62,12 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
                 logoAnimationRef.current ? logoAnimationRef.current.playSegments([0, 180], true) : undefined
             }, 500);
         }
-    }, [])
 
-    useEffect(() => {
         return () => {
             window.removeEventListener('resize', hideMenuOnResize)
             window.removeEventListener('keydown', hideMenuOnEsc)
         }
-    })
+    }, [])
 
     const timerImplementation = async (route: string) => {
         runBeforeNavigate()
@@ -83,6 +81,12 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
     const navLinkClickHandler = (event: BaseSyntheticEvent<MouseEvent, EventTarget & HTMLAnchorElement, EventTarget>, route: string) => {
         event.preventDefault()
 
+        //disable the NavLink element
+        //to avoid double clicks
+        event.currentTarget.style.pointerEvents = 'none'
+
+        //if a link was clicked in a screen with a width less than
+        //700px then need to toggle the menu state
         window.innerWidth <= 700 ? toggleMenu() : undefined
 
         if (currentRoute === route) {
@@ -96,14 +100,12 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
     const hideMenuOnResize = () => {
         //if the menu is active and the window width is less than 700px
         //then the menu need to be invisible
-        console.log('hide menu on resize')
         if (window.innerWidth > 700 && !menuDeviceState) {
             setMenuDeviceState(false)
         }
     }
 
     const hideMenuOnEsc = (event: KeyboardEvent) => {
-        console.log('hide menu on esc')
         if (event.key === 'Escape') {
             setMenuDeviceState(false)
         }
@@ -115,33 +117,10 @@ const Nav = ({ transitionTime, runBeforeNavigate, currentRoute }: NavProps) => {
         const a = document.getElementsByTagName('html')[0]
         a.style.overflow = !menuDeviceState ? 'hidden hidden' : 'hidden auto'
 
-        // const hideMenuOnResize = () => {
-        //     //if the menu is active and the window width is less than 700px
-        //     //then the menu need to be invisible
-        //     if (window.innerWidth > 700 && !menuDeviceState) {
-        //         setMenuDeviceState(false)
-        //         window.removeEventListener('resize', hideMenuOnResize)
-        //         window.removeEventListener('keydown', hideMenuOnEsc)
-        //     }
-        // }
-
-        // const hideMenuOnEsc = (event: KeyboardEvent) => {
-        //     console.log('hide menu on esc')
-        //     if (event.key === 'Escape') {
-        //         setMenuDeviceState(false)
-        //         window.removeEventListener('resize', hideMenuOnResize)
-        //         window.removeEventListener('keydown', hideMenuOnEsc)
-        //     }
-        // }
-
         if (!menuDeviceState) {
             window.addEventListener('resize', hideMenuOnResize)
             window.addEventListener('keydown', hideMenuOnEsc)
         }
-        // else {
-        //     window.removeEventListener('resize', hideMenuOnResize)
-        //     window.removeEventListener('keydown', hideMenuOnEsc)
-        // }
     }
 
     return (
