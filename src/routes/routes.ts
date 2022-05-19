@@ -1,24 +1,24 @@
 type NavRoutes = {
     text: string,
-    route: string
+    path: string
 }
 
 const routes: Array<NavRoutes> = [
     {
         text: 'inicio',
-        route: '/'
+        path: '/'
     },
     {
         text: 'sobre mi',
-        route: '/sobre-mi'
+        path: '/sobre-mi'
     },
     {
         text: 'proyectos',
-        route: '/proyectos'
+        path: '/proyectos'
     },
     {
         text: 'contacto',
-        route: '/contacto'
+        path: '/contacto'
     }
 ]
 

@@ -2,13 +2,12 @@
 import { useEffect, useLayoutEffect, useRef } from "react"
 
 //components
-import Nav from "../components/Nav/Nav"
-import AboutCard, { AboutCardContent } from "../components/AboutCard/AboutCard"
-import AnimatedTitle from "../components/AnimatedTitle/AnimatedTitle"
-import IntersectionContainer from "../components/IntersectionContainer/IntersectionContainer"
+import AboutCard, { AboutCardContent } from "../../components/AboutCard/AboutCard"
+import AnimatedTitle from "../../components/AnimatedTitle/AnimatedTitle"
+import IntersectionContainer from "../../components/IntersectionContainer/IntersectionContainer"
 
 //images and styles imports
-import { techImages, hobbiesImages } from "../helpers/exports/AboutExports"
+import { techImages, hobbiesImages } from "../../helpers/exports/AboutExports"
 
 export default function About() {
     const cards: Array<AboutCardContent> = [
@@ -76,7 +75,6 @@ export default function About() {
 
     return (
         <>
-            <Nav transitionTime={550} runBeforeNavigate={hideElements} currentRoute='/sobre-mi' />
             <header id="about">
                 {/* <p className="upper-title appear">sección</p> */}
                 <h1 className="main-title appear">Sobre mi</h1>
