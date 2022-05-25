@@ -1,10 +1,13 @@
 nav {
     width: 100vw;
     height: var(--navbar-size);
-    position: fixed;
     top: 0px;
-    left: 0px;
+    position: sticky;
+    // position: fixed;
+    // left: 0px;
     z-index: 100;
+
+    transition: 300ms background-color, 300ms backdrop-filter, 300ms box-shadow;
 }
 
 #nav-container {
@@ -120,8 +123,8 @@ span {
 }
 
 .blur-bg {
-    background-color: rgba($color: #000, $alpha: 0.25);
-    backdrop-filter: blur(3px);
+    background-color: rgba($color: rgb(42, 5, 51), $alpha: 0.5);
+    backdrop-filter: blur(4px);
     box-shadow: 0px 0px 16px rgba($color: #000, $alpha: 0.75);
 }
 

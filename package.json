@@ -2,6 +2,15 @@
   "name": "memo",
   "private": true,
   "version": "0.0.0",
+  "prettier": {
+    "bracketSpacing": true,
+    "useTabs": true,
+    "jsxSingleQuote": false,
+    "proseWrap": "always",
+    "printWidth": 100,
+    "semi": false,
+    "tabWidth": 4
+    },
   "scripts": {
     "dev": "vite --open",
     "dev-home": "vite --open --host",
