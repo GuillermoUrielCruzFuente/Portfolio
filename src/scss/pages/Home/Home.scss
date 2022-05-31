@@ -1,13 +1,16 @@
-#home-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: column;
-
+#home-main-container {
 	height: calc(100vh - var(--navbar-size));
 	// background-color: chocolate;
 
-	$logo-width: 60%;
+	.home-content {
+		height: 90%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: column;
+	}
+
+	$logo-width: 70%;
 	#lottie-animation {
 		width: $logo-width;
 		aspect-ratio: 4.85;
@@ -17,17 +20,15 @@
 	.description {
 		font-weight: 200;
 		margin: 0;
-		width: $logo-width;
-		padding-top: 1rem;
-		position: relative;
-		z-index: 1;
+		width: calc($logo-width - 15%);
+		padding-top: 2rem;
 		text-align: center;
 		color: #fff;
 	}
 
 	.big-text {
 		font-size: 2rem;
-		font-size: clamp(2rem, 3vw, 3rem);
+		font-size: clamp(2rem, 2vw, 2.5rem);
 		font-weight: 900;
 		line-height: 1;
 		color: #fff;
@@ -44,11 +45,18 @@
 	}
 }
 
+.appear {
+	opacity: 0;
+	transition: opacity 1s;
+}
+
 .bottom-info {
 	width: 100%;
 	margin-top: auto;
 	margin-bottom: 1rem;
-	height: 60px;
+	// background-color: crimson;
+	height: 10%;
+
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
