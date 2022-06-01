@@ -11,9 +11,11 @@ import './Home.scss'
 
 //data imports
 import logoAnimationData from '../../static/lottie/logo.json'
+import projectsIcon from '../../static/img/icons/home-buttons/portfolio.svg'
 
 //components
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
+import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
 
 const Home = () => {
 	const { nav, reactiveFunc }: ContextType = useNavSignal()
@@ -102,6 +104,11 @@ const Home = () => {
 						Mexicano, con intervención en distintos proyectos profesionales, una gran
 						creatividad y atención a los detalles.
 					</p>
+
+					<div className="buttons-container">
+						
+						<PrimaryButton img={projectsIcon}>proyectos</PrimaryButton>
+					</div>
 				</div>
 
 				<div className="bottom-info">

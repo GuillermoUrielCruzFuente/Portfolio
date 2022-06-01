@@ -1,7 +1,7 @@
 
 
 /**
- * it may return a useNavSignal instance
+ * it should return a useNavSignal instance
  * a reacive function to control the state of CSSTransition
  * 
  */
