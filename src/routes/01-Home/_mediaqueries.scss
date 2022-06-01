@@ -1,0 +1,42 @@
+@media screen and (max-width: 1000px) {
+	#home-main-container {
+		$logo-width: 90%;
+		#lottie-animation {
+			width: $logo-width;
+		}
+
+		.description {
+			width: $logo-width;
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#home-main-container {
+		$logo-width: 100%;
+		#lottie-animation {
+			width: $logo-width;
+		}
+
+		.description {
+			width: $logo-width;
+		}
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.bottom-info {
+		flex-flow: column;
+		justify-content: space-between;
+
+		.available {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+@media screen and (max-height: 500px) {
+	.bottom-info {
+		margin-bottom: 3rem;
+	}
+}

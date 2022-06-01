@@ -1,9 +1,10 @@
 #home-main-container {
-	height: calc(100vh - var(--navbar-size));
-	// background-color: chocolate;
+	height: max(calc(90vh - var(--navbar-size)), 500px);
+	display: flex;
+	flex-flow: column;
 
 	.home-content {
-		height: 90%;
+		flex-grow: 1;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -24,11 +25,12 @@
 		padding-top: 2rem;
 		text-align: center;
 		color: #fff;
+		font-size: 1rem;
 	}
 
 	.big-text {
 		font-size: 2rem;
-		font-size: clamp(2rem, 2vw, 2.5rem);
+		font-size: clamp(1rem, 2.5vw, 2.5rem);
 		font-weight: 900;
 		line-height: 1;
 		color: #fff;
@@ -45,17 +47,9 @@
 	}
 }
 
-.appear {
-	opacity: 0;
-	transition: opacity 1s;
-}
-
 .bottom-info {
 	width: 100%;
-	margin-top: auto;
-	margin-bottom: 1rem;
-	// background-color: crimson;
-	height: 10%;
+	height: fit-content;
 
 	display: flex;
 	flex-flow: row;
@@ -63,52 +57,50 @@
 	align-items: center;
 
 	.able-to-work {
-		font-weight: 900;
 		font-size: 0.75rem;
+		font-weight: 900;
 		color: #fff;
-		position: relative;
-		height: fit-content;
+	}
+
+	.available {
+		display: flex;
+		flex-flow: row;
+		align-items: center;
+		justify-content: flex-start;
 
 		#circle {
-			position: absolute;
 			display: inline-block;
-			left: -4px;
-			top: 50%;
-
-			transform: translate(-100%, -50%);
-
-			width: 8px;
-			height: 8px;
+			width: 0.5rem;
+			height: 0.5rem;
+			margin-right: 0.25rem;
 			border-radius: 1rem;
+
 			background-color: chartreuse;
 		}
 	}
 }
 
-@import "mediaqueries";
+.appear {
+	opacity: 0;
+	transition: opacity 1s;
+}
+
+@import './mediaqueries';
 
 .page-enter {
 	opacity: 1;
-	// transform: translateY(-50px);
 }
 
 .page-enter-active {
 	opacity: 1;
-	// transform: translateY(0px);
-
-	// transition: opacity 300ms, transform 300ms;
-	// transition-timing-function: ease;
 }
 
 .page-exit {
 	opacity: 1;
-	// transform: translateY(0px);
 }
 
 .page-exit-active {
 	opacity: 0;
-	// transform: translateY(50px);
 
 	transition: opacity 300ms, transform 300ms;
-	// transition-timing-function: ease;
 }

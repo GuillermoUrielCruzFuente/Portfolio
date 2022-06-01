@@ -7,7 +7,7 @@ import Lottie, { AnimationItem } from 'lottie-web'
 import { useNavSignal, ContextType } from '../../components/Nav/Nav'
 
 //styles imports
-import '../../scss/pages/Home/Home.scss'
+import './Home.scss'
 
 //data imports
 import logoAnimationData from '../../static/lottie/logo.json'
@@ -105,12 +105,12 @@ const Home = () => {
 				</div>
 
 				<div className="bottom-info">
-					<SocialMedia state={socialState} containerClass={'social-media-container'} />
-
-					<p className="able-to-work appear">
+					<div className="available appear">
 						<span id="circle"></span>
-						Disponible
-					</p>
+						<p className="able-to-work">Disponible</p>
+					</div>
+
+					<SocialMedia state={socialState} containerClass={'social-media-container'} />
 				</div>
 			</header>
 		</CSSTransition>

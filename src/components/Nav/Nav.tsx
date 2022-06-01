@@ -6,19 +6,19 @@ import {
 	useState,
 	Dispatch,
 	SetStateAction,
-} from "react"
-import { NavLink, Link, useLocation, useNavigate, Outlet, useOutletContext } from "react-router-dom"
-import { CSSTransition } from "react-transition-group"
-import routes from "../../routes/routes"
+} from 'react'
+import { NavLink, Link, useLocation, useNavigate, Outlet, useOutletContext } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
+import routes from '../../routes/routes'
 
 //styles
-import "./Nav.scss"
+import './Nav.scss'
 
 //third party libraries
-import Lottie, { AnimationItem } from "lottie-web"
+import Lottie, { AnimationItem } from 'lottie-web'
 
 //data
-import logoAnimationData from "../../static/lottie/logo.json"
+import logoAnimationData from '../../static/lottie/logo.json'
 
 type RoutesWithRefs = {
 	text: string
@@ -55,7 +55,7 @@ const Nav = () => {
 			to: to,
 		})
 
-		if (to === "/") {
+		if (to === '/') {
 			//here make the logo invisible
 			logoAnimationRef.current.setDirection(-1)
 			logoAnimationRef.current.setSpeed(2)
@@ -64,7 +64,7 @@ const Nav = () => {
 			//here make the logo visible
 			logoAnimationRef.current.setDirection(1)
 			logoAnimationRef.current.setSpeed(1)
-			logoAnimationRef.current.playSegments([0, 180], true)
+			logoAnimationRef.current.play()
 		}
 
 		disableLinks()
@@ -74,21 +74,21 @@ const Nav = () => {
 
 	const disableLinks = () => {
 		const links = document.getElementsByClassName(
-			"nav-link"
+			'nav-link'
 		) as HTMLCollectionOf<HTMLAnchorElement>
 
 		for (const link of links) {
-			link.style.pointerEvents = "none"
+			link.style.pointerEvents = 'none'
 		}
 	}
 
 	const enableLinks = () => {
 		const links = document.getElementsByClassName(
-			"nav-link"
+			'nav-link'
 		) as HTMLCollectionOf<HTMLAnchorElement>
 
 		for (const link of links) {
-			link.style.pointerEvents = "all"
+			link.style.pointerEvents = 'all'
 		}
 	}
 	// #endregion
@@ -122,6 +122,29 @@ const Nav = () => {
 	}
 	//#endregion
 
+	const changeStyleOnScroll = () => {
+		const nav = document.getElementsByTagName('nav')[0]
+		if (window.scrollY >= 300) {
+			nav.classList.replace('no-blur-bg', 'blur-bg')
+		} else {
+			nav.classList.replace('blur-bg', 'no-blur-bg')
+		}
+	}
+
+	const hideMenuOnResize = () => {
+		//if the menu is active and the window width is less than 700px
+		//then the menu need to be invisible
+		if (window.innerWidth > 700 && !menuDeviceState) {
+			setMenuDeviceState(false)
+		}
+	}
+
+	const hideMenuOnEsc = (event: KeyboardEvent) => {
+		if (event.key === 'Escape') {
+			setMenuDeviceState(false)
+		}
+	}
+
 	useEffect(() => {
 		logoAnimationRef.current = Lottie.loadAnimation({
 			container: logoAnimationContainerRef.current!,
@@ -130,26 +153,17 @@ const Nav = () => {
 			loop: false,
 		})
 
-		if (location.pathname != "/") {
+		if (location.pathname != '/') {
 			logoAnimationRef.current.playSegments([0, 180], true)
 		}
 
-		const changeStyleOnScroll = () => {
-			const nav = document.getElementsByTagName("nav")[0]
-			if (window.scrollY >= 300) {
-				nav.classList.replace("no-blur-bg", "blur-bg")
-			} else {
-				nav.classList.replace("blur-bg", "no-blur-bg")
-			}
-		}
-
-		window.addEventListener("scroll", changeStyleOnScroll)
+		window.addEventListener('scroll', changeStyleOnScroll)
 
 		return () => {
 			logoAnimationRef.current.destroy()
-			window.removeEventListener("resize", hideMenuOnResize)
-			window.removeEventListener("keydown", hideMenuOnEsc)
-			window.removeEventListener("scroll", changeStyleOnScroll)
+			window.removeEventListener('resize', hideMenuOnResize)
+			window.removeEventListener('keydown', hideMenuOnEsc)
+			window.removeEventListener('scroll', changeStyleOnScroll)
 		}
 	}, [])
 
@@ -165,29 +179,15 @@ const Nav = () => {
 		}
 	}, [readyToNavigate])
 
-	const hideMenuOnResize = () => {
-		//if the menu is active and the window width is less than 700px
-		//then the menu need to be invisible
-		if (window.innerWidth > 700 && !menuDeviceState) {
-			setMenuDeviceState(false)
-		}
-	}
-
-	const hideMenuOnEsc = (event: KeyboardEvent) => {
-		if (event.key === "Escape") {
-			setMenuDeviceState(false)
-		}
-	}
-
 	const toggleMenu = () => {
 		setMenuDeviceState(!menuDeviceState)
 
-		const a = document.getElementsByTagName("html")[0]
-		a.style.overflow = !menuDeviceState ? "hidden hidden" : "hidden auto"
+		const a = document.getElementsByTagName('html')[0]
+		a.style.overflow = !menuDeviceState ? 'hidden hidden' : 'hidden auto'
 
 		if (!menuDeviceState) {
-			window.addEventListener("resize", hideMenuOnResize)
-			window.addEventListener("keydown", hideMenuOnEsc)
+			window.addEventListener('resize', hideMenuOnResize)
+			window.addEventListener('keydown', hideMenuOnEsc)
 		}
 	}
 
@@ -196,7 +196,14 @@ const Nav = () => {
 			<nav className="no-blur-bg">
 				<div id="nav-container">
 					<div id="nav-logo-container">
-						<Link to="/" id="nav-logo-link">
+						<Link
+							to="/"
+							id="nav-logo-link"
+							onClick={(event) => {
+								event.preventDefault()
+								propagateNavigationSignal(routes[0].path)
+							}}
+						>
 							<div id="nav-logo" ref={logoAnimationContainerRef} />
 						</Link>
 					</div>

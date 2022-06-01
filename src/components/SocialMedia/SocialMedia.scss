@@ -1,7 +1,10 @@
-.social-media-container {
+.social-media-main-container {
     padding: 0.25rem 0px;
-    
+
     $icon-size: 30px;
+    box-sizing: content-box;
+    height: $icon-size;
+    
     .social-media-anchor-tag {
         text-decoration: none;
         width: $icon-size;
@@ -59,14 +62,14 @@
     transition: transform 500ms, opacity 500ms;
 }
 
-@media screen and (max-width: 500px) {
-    .social-media-container {
+// @media screen and (max-width: 500px) {
+//     .social-media-container {
         
-        $icon-size: 40px;
-        .social-media-icon {
-            height: $icon-size;
-            width: $icon-size;
-            padding-inline: 0.4rem;
-        }
-    }
-}
+//         $icon-size: 40px;
+//         .social-media-icon {
+//             height: $icon-size;
+//             width: $icon-size;
+//             padding-inline: 0.4rem;
+//         }
+//     }
+// }

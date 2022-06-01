@@ -1,14 +1,14 @@
-import { MutableRefObject, useLayoutEffect, useRef } from "react"
-import { CSSTransition } from "react-transition-group"
+import { MutableRefObject, useLayoutEffect, useRef } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 //styles
-import "./SocialMedia.scss"
+import './SocialMedia.scss'
 
 //images
-import githubIcon from "../../static/img/icons/social-media/github.svg"
-import linkedinIcon from "../../static/img/icons/social-media/linkedin.svg"
-import emailIcon from "../../static/img/icons/social-media/email.svg"
-import whatsappIcon from "../../static/img/icons/social-media/whatsapp.svg"
+import githubIcon from '../../static/img/icons/social-media/github.svg'
+import linkedinIcon from '../../static/img/icons/social-media/linkedin.svg'
+import emailIcon from '../../static/img/icons/social-media/email.svg'
+import whatsappIcon from '../../static/img/icons/social-media/whatsapp.svg'
 
 type imgLink = {
 	url: string
@@ -24,22 +24,22 @@ type SocialMediaProp = {
 const SocialMedia = ({ containerClass, state }: SocialMediaProp) => {
 	const SocialMediaIcons: Array<imgLink> = [
 		{
-			url: "https://github.com/GuillermoCruzFuente",
+			url: 'https://github.com/GuillermoCruzFuente',
 			src: githubIcon,
 			ref: useRef(null),
 		},
 		{
-			url: "https://www.linkedin.com/in/guillermo-uriel-cruz-fuente-b01378236/",
+			url: 'https://www.linkedin.com/in/guillermo-uriel-cruz-fuente-b01378236/',
 			src: linkedinIcon,
 			ref: useRef(null),
 		},
 		{
-			url: "mailto:guillermo.uriel.cruz.fuente@gmail.com",
+			url: 'mailto:guillermo.uriel.cruz.fuente@gmail.com',
 			src: emailIcon,
 			ref: useRef(null),
 		},
 		{
-			url: "https://api.whatsapp.com/send?phone=525951224620&text=Hola%2C%20vengo%20de%20tu%20p%C3%A1gina%20web.",
+			url: 'https://api.whatsapp.com/send?phone=525951224620&text=Hola%2C%20vengo%20de%20tu%20p%C3%A1gina%20web.',
 			src: whatsappIcon,
 			ref: useRef(null),
 		},
@@ -53,7 +53,7 @@ const SocialMedia = ({ containerClass, state }: SocialMediaProp) => {
 	}, [])
 
 	return (
-		<div className={`social-media-container ${containerClass}`}>
+		<div className={`social-media-main-container ${containerClass}`}>
 			{SocialMediaIcons.map((link: imgLink, i: number) => {
 				return (
 					<CSSTransition
@@ -68,7 +68,7 @@ const SocialMedia = ({ containerClass, state }: SocialMediaProp) => {
 						<a
 							className="social-media-anchor-tag"
 							href={link.url}
-							target={"_blank"}
+							target={'_blank'}
 							ref={link.ref}
 							style={{ transitionDelay: `${i * 50}ms` }}
 						>
