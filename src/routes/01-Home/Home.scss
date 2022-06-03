@@ -1,5 +1,7 @@
 #home-main-container {
-	height: max(calc(90vh - var(--navbar-size)), 500px);
+	height: max(calc(100vh - var(--navbar-size)), 500px);
+	padding-bottom: 1rem;
+
 	display: flex;
 	flex-flow: column;
 
@@ -26,6 +28,7 @@
 		text-align: center;
 		color: #fff;
 		font-size: 1rem;
+		font-size: clamp(0.75rem, 1.25vw, 1.25rem);
 	}
 
 	.big-text {
@@ -48,6 +51,18 @@
 
 	.buttons-container {
 		margin-top: 2rem;
+
+		display: flex;
+		flex-flow: row nowrap;
+
+		align-items: center;
+		justify-content: center;
+
+		& > button {
+			&:first-child {
+				margin-right: 2rem;
+			}
+		}
 	}
 }
 
@@ -58,7 +73,7 @@
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
 
 	.able-to-work {
 		font-size: 0.75rem;

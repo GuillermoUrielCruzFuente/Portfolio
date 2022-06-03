@@ -1,32 +1,44 @@
-.button-container {
-    position: relative;
-    z-index: 0;
+.base-button {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	padding: 0.35rem 1.25rem;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	font-weight: 900;
+	font-size: 0.75rem;
+}
 
-    .Button {
-        position: relative;
-        z-index: 1;
-        cursor: pointer;
-        background-color: #590b83;
-        border: none;
-        border-radius: 2rem;
-        color: #fff;
-        padding: 0.45rem 2.5rem;
-        font-weight: 900;
-        transition: background-color 300ms;
-        box-shadow: 3px 3px 16px #000;
+.primary-button {
+	background-color: #4a045b;
+	border: none;
+	color: #fff;
+	box-shadow: 0px 0px 16px #32043d;
 
-        &:hover {
-            background-color: #811cb8;
-        }
-    }
+	transition: background-color 300ms;
 
-    .confetti {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        aspect-ratio: 1;
-        z-index: -1;
-    }
+	&:hover {
+		background-color: #5e0874;
+	}
+}
+
+.secondary-button {
+	background-color: #32043d;
+	border: 1px solid #7e1e95;
+	color: #eeccf6;
+
+	transition: background-color 300ms;
+
+	&:hover {
+		background-color: #41074e;
+	}
+}
+
+.button-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-right: 0.5rem;
+
+	transition: transform 100ms;
 }

@@ -1,5 +1,14 @@
-@media screen and (max-width: 1000px) {
+// @media screen and (max-device-width: 1000px) {
+// 	#home-main-container {
+// 		height: max(calc(90vh - var(--navbar-size)), 500px);
+// 	}
+// }
+
+@media screen and (max-width: 1030px) {
 	#home-main-container {
+		height: max(calc(90vh - var(--navbar-size)), 500px);
+		padding-bottom: 0px;
+
 		$logo-width: 90%;
 		#lottie-animation {
 			width: $logo-width;
@@ -27,11 +36,63 @@
 @media screen and (max-width: 400px) {
 	.bottom-info {
 		flex-flow: column;
+		align-items: center;
 		justify-content: space-between;
 
 		.available {
 			margin-bottom: 1rem;
 		}
+	}
+
+	#home-main-container {
+		.buttons-container {
+			margin-top: 2rem;
+
+			display: flex;
+			flex-flow: column nowrap;
+
+			align-items: center;
+			justify-content: center;
+
+			// background-color: aqua;
+			width: 100%;
+
+			& > button {
+				width: 100%;
+
+				&:first-child {
+					margin-right: 0;
+				}
+
+				&:last-child {
+					margin-top: 1rem;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 320px) {
+	#home-main-container {
+		.home-content {
+			flex-grow: unset;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			flex-flow: column;
+		}
+
+		.home-button {
+			margin-top: 1rem;
+		}
+
+		.buttons-container {
+			margin-top: 1rem;
+		}
+	}
+
+	.bottom-info {
+		margin-top: 2rem;
 	}
 }
 

@@ -12,10 +12,11 @@ import './Home.scss'
 //data imports
 import logoAnimationData from '../../static/lottie/logo.json'
 import projectsIcon from '../../static/img/icons/home-buttons/portfolio.svg'
+import contactIcon from '../../static/img/icons/home-buttons/plane.svg'
 
 //components
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
+import Button from '../../components/Button/Button'
 
 const Home = () => {
 	const { nav, reactiveFunc }: ContextType = useNavSignal()
@@ -106,8 +107,13 @@ const Home = () => {
 					</p>
 
 					<div className="buttons-container">
-						
-						<PrimaryButton img={projectsIcon}>proyectos</PrimaryButton>
+						<Button img={contactIcon} className="appear" secondary>
+							contáctame
+						</Button>
+
+						<Button img={projectsIcon} className="appear">
+							proyectos
+						</Button>
 					</div>
 				</div>
 
