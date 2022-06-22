@@ -1,12 +1,4 @@
-import {
-	BaseSyntheticEvent,
-	MutableRefObject,
-	useEffect,
-	useRef,
-	useState,
-	Dispatch,
-	SetStateAction,
-} from 'react'
+import { MutableRefObject, useEffect, useRef, useState, Dispatch, SetStateAction } from 'react'
 import { NavLink, Link, useLocation, useNavigate, Outlet, useOutletContext } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 import routes from '../../routes/routes'
@@ -15,7 +7,7 @@ import routes from '../../routes/routes'
 import './Nav.scss'
 
 //third party libraries
-import Lottie, { AnimationItem } from 'lottie-web'
+import Lottie from 'lottie-web'
 
 //data
 import logoAnimationData from '../../static/lottie/logo.json'
@@ -38,6 +30,11 @@ export type ContextType = {
 
 export const useNavSignal = () => useOutletContext<ContextType>()
 
+type PropagationType = {
+	stateHandler: Dispatch<SetStateAction<Navigation | null>>
+}
+export const usePropagateNavigationSignal = () => {}
+
 const Nav = () => {
 	// #region basic logic for page navigation
 	const location = useLocation()
@@ -47,9 +44,12 @@ const Nav = () => {
 	const signal: ContextType = {
 		nav: clickedLink,
 		reactiveFunc: setReadyToNavigate,
+		//provide a state handler func to change the clickedLink from other component
 	}
 
-	const propagateNavigationSignal = async (to: string) => {
+	// I need to generate a hook to provide the propagation function
+
+	const propagateNavigationSignal = (to: string) => {
 		setClickedLink({
 			from: location.pathname,
 			to: to,
@@ -169,7 +169,7 @@ const Nav = () => {
 
 	// in order to navigate on CSSTransition unmounted
 	// listen for a flag that can be fired with a function
-	//provide to the OutletContext
+	// provide to the OutletContext
 	useEffect(() => {
 		if (readyToNavigate) {
 			if (clickedLink) {

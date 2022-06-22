@@ -107,11 +107,11 @@ const Home = () => {
 					</p>
 
 					<div className="buttons-container">
-						<Button img={contactIcon} className="appear" secondary>
+						<Button img={contactIcon} className="appear" secondary to="/contacto">
 							contáctame
 						</Button>
 
-						<Button img={projectsIcon} className="appear">
+						<Button img={projectsIcon} className="appear" to="/proyectos">
 							proyectos
 						</Button>
 					</div>
