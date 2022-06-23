@@ -26,6 +26,7 @@ type Navigation = {
 export type ContextType = {
 	nav: Navigation | null
 	reactiveFunc: Dispatch<SetStateAction<boolean>>
+	setNewClickedLink: Dispatch<SetStateAction<Navigation | null>>
 }
 
 export const useNavSignal = () => useOutletContext<ContextType>()
@@ -44,6 +45,7 @@ const Nav = () => {
 	const signal: ContextType = {
 		nav: clickedLink,
 		reactiveFunc: setReadyToNavigate,
+		setNewClickedLink: setClickedLink
 		//provide a state handler func to change the clickedLink from other component
 	}
 

@@ -16,10 +16,10 @@ import contactIcon from '../../static/img/icons/home-buttons/plane.svg'
 
 //components
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
-import Button from '../../components/Button/Button'
+import Button, { NavAction, Navigation } from '../../components/Button/Button'
 
 const Home = () => {
-	const { nav, reactiveFunc }: ContextType = useNavSignal()
+	const { nav, reactiveFunc, setNewClickedLink }: ContextType = useNavSignal()
 	const location = useLocation()
 	const refContainer = useRef<HTMLHeadElement>(null)
 	const [sectionState, setSectionState] = useState(false)
@@ -83,6 +83,13 @@ const Home = () => {
 		setSectionState(false)
 	}
 
+	const navigateTo = (to: string): NavAction => {
+		return {
+			navigation: { from: location.pathname, to: to },
+			navigator: setNewClickedLink,
+		}
+	}
+
 	return (
 		<CSSTransition
 			in={sectionState}
@@ -107,11 +114,20 @@ const Home = () => {
 					</p>
 
 					<div className="buttons-container">
-						<Button img={contactIcon} className="appear" secondary to="/contacto">
+						<Button
+							img={contactIcon}
+							className="appear"
+							secondary
+							navAction={navigateTo('/contacto')}
+						>
 							contáctame
 						</Button>
 
-						<Button img={projectsIcon} className="appear" to="/proyectos">
+						<Button
+							img={projectsIcon}
+							className="appear"
+							navAction={navigateTo('/proyectos')}
+						>
 							proyectos
 						</Button>
 					</div>

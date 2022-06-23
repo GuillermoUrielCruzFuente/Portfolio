@@ -12,12 +12,12 @@ type PropagationType = {
 }
 
 const usePropagateNavigationSignal = ({ to, stateHandler }: PropagationType) => {
-    const location = useLocation()
+	const location = useLocation()
 
-    stateHandler({
-        from: location.pathname,
-        to: to
-    })
+	stateHandler({
+		from: location.pathname,
+		to: to,
+	})
 }
 
 export default usePropagateNavigationSignal
