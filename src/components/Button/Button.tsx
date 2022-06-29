@@ -6,19 +6,23 @@ import './Button.scss'
 /**
  * this contain the main structure to navigate between pages
  * needs a Navigation object and a reactive function to change
- * the value of the new NavigationAction 
+ * the value of the new NavigationAction
  */
-export type NavAction = {
-	navigation: Navigation
-	navigator: Dispatch<SetStateAction<Navigation | null>>
-}
+// export type NavAction = {
+// 	navigation: Navigation
+// 	navigator: Dispatch<SetStateAction<Navigation | null>>
+// }
 
 type ButtonType = {
 	children: string
 	img: string
 	className: string
 	secondary?: true
-	navAction?: NavAction
+	// navAction?: NavAction
+	navigator?: {
+		to: string
+		navigator: (to: string) => void
+	}
 	// to?: string
 	// navCallback?: () => void
 }
@@ -28,9 +32,9 @@ export type Navigation = {
 	from: string | null
 }
 
-const Button: FC<ButtonType> = ({ children, img, className, secondary, navAction }) => {
-	const navigator = useNavigate()
-	const location = useLocation()
+const Button: FC<ButtonType> = ({ children, img, className, secondary, navigator }) => {
+	// const navigate = useNavigate()
+	// const location = useLocation()
 
 	const buttonClasses = secondary
 		? `base-button secondary-button ${className}`
@@ -38,12 +42,15 @@ const Button: FC<ButtonType> = ({ children, img, className, secondary, navAction
 
 	const navigateTo = () => {
 		// navigator(navAction!.navigation.to!)
-		navAction!.navigator(navAction!.navigation)
+		// navAction!.navigator(navAction!.navigation)
+		// navigator!('')
 	}
 
 	const clickHandler = () => {
-		if (navAction) {
-			navigateTo()
+		if (navigator) {
+			navigator.navigator(navigator.to)
+		} else {
+			console.log(children)
 		}
 	}
 

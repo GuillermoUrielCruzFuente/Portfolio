@@ -25,16 +25,95 @@ type Navigation = {
 
 export type ContextType = {
 	nav: Navigation | null
-	reactiveFunc: Dispatch<SetStateAction<boolean>>
-	setNewClickedLink: Dispatch<SetStateAction<Navigation | null>>
+	setReadyToNavigate: Dispatch<SetStateAction<boolean>>
+	navigateTo: (to: string) => void
 }
-
+/**
+ * custom hook to provide structure to the outlet context by react router
+ * @returns context
+ */
 export const useNavSignal = () => useOutletContext<ContextType>()
 
-type PropagationType = {
-	stateHandler: Dispatch<SetStateAction<Navigation | null>>
+// type PropagationProps = {
+// 	to: string
+// 	setClickedLink: Dispatch<SetStateAction<Navigation | null>>
+// 	animationHandler: {
+// 		show: () => {}
+// 		hide: () => {}
+// 	}
+// 	linksHandler: () => {}
+// 	noReadyToNavigate: Dispatch<SetStateAction<boolean>>
+// }
+
+/**
+ * provide a function to programatically navigate to the specified route
+ */
+// export const usePropagateNavigationSignal = ({
+// 	to,
+// 	setClickedLink,
+// 	animationHandler,
+// 	linksHandler,
+// 	noReadyToNavigate,
+// }: PropagationProps) => {
+// 	// change the reactive value for clicked link
+// 	setClickedLink({
+// 		from: location.pathname,
+// 		to: to,
+// 	})
+
+// 	// run navbar animation depends on destination route
+// 	if (to === '/') {
+// 		animationHandler.hide()
+// 	} else {
+// 		animationHandler.show()
+// 	}
+
+// 	// disable all links in order to avoid multiple clicks
+// 	linksHandler()
+
+// 	// change the reactive value that handles the navigation to false, in order to listen for animation finish
+// 	noReadyToNavigate(false)
+
+// 	return () => {}
+// }
+
+type NavigateTo = {
+	setClickedLink: Dispatch<SetStateAction<Navigation | null>>
+	animationHandler: {
+		show: () => void
+		hide: () => void
+	}
+	disableLinks: () => void
+	noReadyToNavigate: Dispatch<SetStateAction<boolean>>
 }
-export const usePropagateNavigationSignal = () => {}
+
+export const useNavigateTo = ({
+	setClickedLink,
+	animationHandler,
+	disableLinks,
+	noReadyToNavigate,
+}: NavigateTo) => {
+	return (to: string) => {
+		// change the reactive value for clicked link
+		setClickedLink({
+			from: location.pathname,
+			to: to,
+		})
+
+		// run navbar animation depends on destination route
+		if (to === '/') {
+			animationHandler.hide()
+		} else {
+			animationHandler.show()
+		}
+
+		// disable all links in order to avoid multiple clicks
+		disableLinks()
+
+		// change the reactive value that handles the navigation to false, in order to listen for animation finish
+		noReadyToNavigate(false)
+	}
+}
 
 const Nav = () => {
 	// #region basic logic for page navigation
@@ -42,36 +121,17 @@ const Nav = () => {
 	const navigate = useNavigate()
 	const [clickedLink, setClickedLink] = useState<Navigation | null>(null)
 	const [readyToNavigate, setReadyToNavigate] = useState<boolean>(false)
-	const signal: ContextType = {
-		nav: clickedLink,
-		reactiveFunc: setReadyToNavigate,
-		setNewClickedLink: setClickedLink
-		//provide a state handler func to change the clickedLink from other component
+
+	const showNavLogo = () => {
+		logoAnimationRef.current.setDirection(1)
+		logoAnimationRef.current.setSpeed(1)
+		logoAnimationRef.current.play()
 	}
 
-	// I need to generate a hook to provide the propagation function
-
-	const propagateNavigationSignal = (to: string) => {
-		setClickedLink({
-			from: location.pathname,
-			to: to,
-		})
-
-		if (to === '/') {
-			//here make the logo invisible
-			logoAnimationRef.current.setDirection(-1)
-			logoAnimationRef.current.setSpeed(2)
-			logoAnimationRef.current.playSegments([180, 0], true)
-		} else {
-			//here make the logo visible
-			logoAnimationRef.current.setDirection(1)
-			logoAnimationRef.current.setSpeed(1)
-			logoAnimationRef.current.play()
-		}
-
-		disableLinks()
-
-		setReadyToNavigate(false)
+	const hideNavLogo = () => {
+		logoAnimationRef.current.setDirection(-1)
+		logoAnimationRef.current.setSpeed(2)
+		logoAnimationRef.current.playSegments([180, 0], true)
 	}
 
 	const disableLinks = () => {
@@ -83,6 +143,53 @@ const Nav = () => {
 			link.style.pointerEvents = 'none'
 		}
 	}
+
+	const navigator = useNavigateTo({
+		setClickedLink: setClickedLink,
+		animationHandler: {
+			show: showNavLogo,
+			hide: hideNavLogo,
+		},
+		disableLinks: disableLinks,
+		noReadyToNavigate: setReadyToNavigate,
+	})
+
+	const signal: ContextType = {
+		nav: clickedLink,
+		setReadyToNavigate: setReadyToNavigate,
+		navigateTo: navigator,
+	}
+
+	// /**
+	//  * 1. change the reactive value for clicked link
+	//  * 2. run navbar animation depends on destination route
+	//  * 3. disable all links in order to avoid multiple clicks
+	//  * 4. change the reactive value that handles the navigation to false,
+	//  * 	  in order to listen for animation finish
+	//  * @param to route to navigate
+	//  */
+	// const propagateNavigationSignal = (to: string) => {
+	// 	setClickedLink({
+	// 		from: location.pathname,
+	// 		to: to,
+	// 	})
+
+	// 	if (to === '/') {
+	// 		//here make the logo invisible
+	// 		logoAnimationRef.current.setDirection(-1)
+	// 		logoAnimationRef.current.setSpeed(2)
+	// 		logoAnimationRef.current.playSegments([180, 0], true)
+	// 	} else {
+	// 		//here make the logo visible
+	// 		logoAnimationRef.current.setDirection(1)
+	// 		logoAnimationRef.current.setSpeed(1)
+	// 		logoAnimationRef.current.play()
+	// 	}
+
+	// 	disableLinks()
+
+	// 	setReadyToNavigate(false)
+	// }
 
 	const enableLinks = () => {
 		const links = document.getElementsByClassName(
@@ -203,7 +310,8 @@ const Nav = () => {
 							id="nav-logo-link"
 							onClick={(event) => {
 								event.preventDefault()
-								propagateNavigationSignal(routes[0].path)
+								// propagateNavigationSignal(routes[0].path)
+								navigator(routes[0].path)
 							}}
 						>
 							<div id="nav-logo" ref={logoAnimationContainerRef} />
@@ -217,7 +325,8 @@ const Nav = () => {
 									<NavLink
 										onClick={(event) => {
 											event.preventDefault()
-											propagateNavigationSignal(route.path)
+											// propagateNavigationSignal(route.path)
+											navigator(route.path)
 										}}
 										to={route.path}
 										key={route.text}
@@ -258,7 +367,8 @@ const Nav = () => {
 													onClick={(event) => {
 														event.preventDefault()
 														toggleMenu()
-														propagateNavigationSignal(route.path)
+														// propagateNavigationSignal(route.path)
+														navigator(route.path)
 													}}
 													to={route.path}
 													className="nav-link-item-mob | nav-link"

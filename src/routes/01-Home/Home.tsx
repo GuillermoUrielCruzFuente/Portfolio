@@ -16,10 +16,10 @@ import contactIcon from '../../static/img/icons/home-buttons/plane.svg'
 
 //components
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
-import Button, { NavAction, Navigation } from '../../components/Button/Button'
+import Button from '../../components/Button/Button'
 
 const Home = () => {
-	const { nav, reactiveFunc, setNewClickedLink }: ContextType = useNavSignal()
+	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavSignal()
 	const location = useLocation()
 	const refContainer = useRef<HTMLHeadElement>(null)
 	const [sectionState, setSectionState] = useState(false)
@@ -83,12 +83,12 @@ const Home = () => {
 		setSectionState(false)
 	}
 
-	const navigateTo = (to: string): NavAction => {
-		return {
-			navigation: { from: location.pathname, to: to },
-			navigator: setNewClickedLink,
-		}
-	}
+	// const navigateTo = (to: string): NavAction => {
+	// 	return {
+	// 		navigation: { from: location.pathname, to: to },
+	// 		navigator: setNewClickedLink,
+	// 	}
+	// }
 
 	return (
 		<CSSTransition
@@ -99,7 +99,7 @@ const Home = () => {
 			mountOnEnter
 			unmountOnExit
 			onEnter={playLogoAnimation}
-			onExited={() => reactiveFunc(true)}
+			onExited={() => setReadyToNavigate(true)}
 		>
 			<header id="home-main-container" ref={refContainer}>
 				<div className="home-content">
@@ -118,7 +118,10 @@ const Home = () => {
 							img={contactIcon}
 							className="appear"
 							secondary
-							navAction={navigateTo('/contacto')}
+							navigator={{
+								to: '/contacto',
+								navigator: navigateTo,
+							}}
 						>
 							contáctame
 						</Button>
@@ -126,9 +129,16 @@ const Home = () => {
 						<Button
 							img={projectsIcon}
 							className="appear"
-							navAction={navigateTo('/proyectos')}
+							navigator={{
+								to: '/proyectos',
+								navigator: navigateTo,
+							}}
 						>
 							proyectos
+						</Button>
+
+						<Button img={projectsIcon} className="appear">
+							hola
 						</Button>
 					</div>
 				</div>

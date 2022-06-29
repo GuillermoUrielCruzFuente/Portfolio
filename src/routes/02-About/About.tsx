@@ -1,21 +1,21 @@
 // react imports
-import { useEffect, useRef, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 //components
-import AboutCard, { AboutCardContent } from "../../components/AboutCard/AboutCard"
-import AnimatedTitle from "../../components/AnimatedTitle/AnimatedTitle"
-import IntersectionContainer from "../../components/IntersectionContainer/IntersectionContainer"
+import AboutCard, { AboutCardContent } from '../../components/AboutCard/AboutCard'
+import AnimatedTitle from '../../components/AnimatedTitle/AnimatedTitle'
+import IntersectionContainer from '../../components/IntersectionContainer/IntersectionContainer'
 
 //images and styles imports
-import { techImages, hobbiesImages } from "../../helpers/exports/AboutExports"
+import { techImages, hobbiesImages } from '../../helpers/exports/AboutExports'
 
 //outlet custom hook
-import { useNavSignal, ContextType } from "../../components/Nav/Nav"
-import { CSSTransition } from "react-transition-group"
+import { useNavSignal, ContextType } from '../../components/Nav/Nav'
+import { CSSTransition } from 'react-transition-group'
 
 const About = () => {
-	const { nav, reactiveFunc }: ContextType = useNavSignal()
+	const { nav, setReadyToNavigate: reactiveFunc }: ContextType = useNavSignal()
 	const location = useLocation()
 	const refContainer = useRef<HTMLDivElement>(null)
 	const [sectionState, setSectionState] = useState(false)
@@ -42,19 +42,19 @@ const About = () => {
 
 	const cards: Array<AboutCardContent> = [
 		{
-			main: "+4",
-			middle: "años de",
-			bottom: "EXPERIENCIA",
+			main: '+4',
+			middle: 'años de',
+			bottom: 'EXPERIENCIA',
 		},
 		{
-			main: "3",
-			middle: "proyectos con",
-			bottom: "EMPRESAS",
+			main: '3',
+			middle: 'proyectos con',
+			bottom: 'EMPRESAS',
 		},
 		{
-			main: "Y",
-			middle: "muchas",
-			bottom: "PRUEBAS",
+			main: 'Y',
+			middle: 'muchas',
+			bottom: 'PRUEBAS',
 		},
 	]
 
@@ -147,7 +147,7 @@ const About = () => {
 					<section id="experiecia" className="split-big-title">
 						<div className="big-title">
 							<AnimatedTitle
-								items={["EXPERI", "ENCIA"]}
+								items={['EXPERI', 'ENCIA']}
 								alignment="left"
 								textClass="titles"
 							/>
@@ -157,39 +157,39 @@ const About = () => {
 						<div className="description-container">
 							<IntersectionContainer
 								from={{
-									opacity: "0",
-									transform: "translateY(40px)",
+									opacity: '0',
+									transform: 'translateY(40px)',
 								}}
 								to={{
-									opacity: "1",
-									transform: "translateY(0px)",
+									opacity: '1',
+									transform: 'translateY(0px)',
 								}}
 								transitionTime={1000}
 							>
 								<div>
 									<p className="right">
-										Aproximadamente <span className="accent">hace 4 años</span>{" "}
+										Aproximadamente <span className="accent">hace 4 años</span>{' '}
 										comencé con el desarrollo web, impulsado principalmente por
 										resolver las necesidades de una empresa enfocada en la venta
 										de agroinsumos, desarrollé su landing page y descubrí lo
-										interesante y entretenido que resultaba el{" "}
+										interesante y entretenido que resultaba el{' '}
 										<span className="accent">frontend</span>
 										.<br />
 										<br />A día de hoy he mejorado mi flujo de trabajo mediante
 										la adopción de distintas herramientas y lenguajes, por
-										ejemplo, css se ha covertido en{" "}
-										<span className="accent">SCSS</span>, JavaScript en{" "}
+										ejemplo, css se ha covertido en{' '}
+										<span className="accent">SCSS</span>, JavaScript en{' '}
 										<span className="accent">TypeScript</span> y el insulso
 										LiveServer en <span className="accent">ViteJS</span>, además
-										he conocido el poder de bibliotecas como{" "}
-										<span className="accent">React</span>,{" "}
-										<span className="accent">Vue</span> y{" "}
+										he conocido el poder de bibliotecas como{' '}
+										<span className="accent">React</span>,{' '}
+										<span className="accent">Vue</span> y{' '}
 										<span className="accent">Svelte</span>, que no me atrevería
 										a mencionar que las domino, sin embargo las he adoptado
 										progresivamente en escenarios donde el posicionamiento no es
 										un problema y vaya que generan un cambio en el flujo de
 										trabajo. Probablemente mi siguiente meta sea la adopción de
-										frameworks ssr como <span className="accent">NextJS</span> o{" "}
+										frameworks ssr como <span className="accent">NextJS</span> o{' '}
 										<span className="accent">NuxtJS</span>
 									</p>
 								</div>
@@ -208,7 +208,7 @@ const About = () => {
 					<section className="split-big-title reverse-row">
 						<div className="big-title">
 							<AnimatedTitle
-								items={["EDUCA", "CIÓN"]}
+								items={['EDUCA', 'CIÓN']}
 								alignment="right"
 								textClass="titles"
 							/>
@@ -218,12 +218,12 @@ const About = () => {
 						<div className="description-container">
 							<IntersectionContainer
 								from={{
-									opacity: "0",
-									transform: "translateY(40px)",
+									opacity: '0',
+									transform: 'translateY(40px)',
 								}}
 								to={{
-									opacity: "1",
-									transform: "translateY(0px)",
+									opacity: '1',
+									transform: 'translateY(0px)',
 								}}
 								transitionTime={1000}
 							>
@@ -235,19 +235,19 @@ const About = () => {
 										cantidad de factores influyeron en mi deserción.
 										<br />
 										<br />
-										Comencé mis estudios universitarios en la{" "}
+										Comencé mis estudios universitarios en la{' '}
 										<span className="accent">
 											Universidad Autónoma Chapingo
 										</span>
-										, me apunté a la{" "}
+										, me apunté a la{' '}
 										<span className="accent">
 											primer generación de ingenieros mecatrónicos
 											especializados en la rama agronómica
 										</span>
 										, es aqui donde reforcé mi gusto por la programación con
-										lenguajes como <span className="accent">C</span>,{" "}
-										<span className="accent">C++</span>,{" "}
-										<span className="accent">C#</span> y{" "}
+										lenguajes como <span className="accent">C</span>,{' '}
+										<span className="accent">C++</span>,{' '}
+										<span className="accent">C#</span> y{' '}
 										<span className="accent">Java</span>, las clases de métodos
 										numéricos pasaban como agua entre mis manos y mis compañeros
 										y yo creábamos mancuernas de excelencia.
@@ -255,11 +255,11 @@ const About = () => {
 										<br />
 										Ante la llegada del <span className="accent">
 											COVID-19
-										</span>{" "}
+										</span>{' '}
 										y las clases en línea muchas aspiraciones y deseos tuvieron
 										que verse truncados, pues la nueva realidad no contribuía ni
 										un poco a su realización, así decidí embarcarme en lo que
-										sería un nuevo yo, enfocado en el{" "}
+										sería un nuevo yo, enfocado en el{' '}
 										<span className="accent">desarrollo web</span>.
 									</p>
 								</div>
@@ -276,7 +276,7 @@ const About = () => {
 					<section id="experiecia" className="split-big-title">
 						<div className="big-title">
 							<AnimatedTitle
-								items={["HOB", "BIES"]}
+								items={['HOB', 'BIES']}
 								alignment="left"
 								textClass="titles"
 							/>
@@ -286,27 +286,27 @@ const About = () => {
 						<div className="description-container">
 							<IntersectionContainer
 								from={{
-									opacity: "0",
-									transform: "translateY(40px)",
+									opacity: '0',
+									transform: 'translateY(40px)',
 								}}
 								to={{
-									opacity: "1",
-									transform: "translateY(0px)",
+									opacity: '1',
+									transform: 'translateY(0px)',
 								}}
 								transitionTime={1000}
 							>
 								<div>
 									<p className="right">
 										A lo largo de mi corta vida he desarrollado varios hobbies.
-										Por ejemplo, me he enganchado a la{" "}
+										Por ejemplo, me he enganchado a la{' '}
 										<span className="accent">acuariofilia</span> especialmente
 										el aquascaping, paisajismo en acuarios de agua dulce, he
 										jugado <span className="accent">videojuegos</span> una
 										cantidad de horas bastante considerable, he doblado papel
 										por días enteros (<span className="accent">Origami</span>) y
-										sin embargo, siempre hay un factor en común, la{" "}
+										sin embargo, siempre hay un factor en común, la{' '}
 										<span className="accent">música</span>. Quizá resulte
-										gracioso, pero me autodenominaría como{" "}
+										gracioso, pero me autodenominaría como{' '}
 										<span className="accent">melómano</span>, me encanta
 										investigar, leer y adentrarme en el mundo de la música, la
 										gente que la crea e interpreta. Podría pasar horas hablando
