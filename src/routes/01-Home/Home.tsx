@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import Lottie, { AnimationItem } from 'lottie-web'
 
 //outlet custom hook
-import { useNavSignal, ContextType } from '../../components/Nav/Nav'
+import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
 //styles imports
 import './Home.scss'
@@ -19,7 +19,7 @@ import SocialMedia from '../../components/SocialMedia/SocialMedia'
 import Button from '../../components/Button/Button'
 
 const Home = () => {
-	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavSignal()
+	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
 	const location = useLocation()
 	const refContainer = useRef<HTMLHeadElement>(null)
 	const [sectionState, setSectionState] = useState(false)
@@ -83,13 +83,6 @@ const Home = () => {
 		setSectionState(false)
 	}
 
-	// const navigateTo = (to: string): NavAction => {
-	// 	return {
-	// 		navigation: { from: location.pathname, to: to },
-	// 		navigator: setNewClickedLink,
-	// 	}
-	// }
-
 	return (
 		<CSSTransition
 			in={sectionState}
@@ -135,10 +128,6 @@ const Home = () => {
 							}}
 						>
 							proyectos
-						</Button>
-
-						<Button img={projectsIcon} className="appear">
-							hola
 						</Button>
 					</div>
 				</div>

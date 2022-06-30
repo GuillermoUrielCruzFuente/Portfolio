@@ -1,7 +1,9 @@
 import { MutableRefObject, useEffect, useRef, useState, Dispatch, SetStateAction } from 'react'
 import { NavLink, Link, useLocation, useNavigate, Outlet, useOutletContext } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
-import routes from '../../routes/routes'
+
+//routes
+import getRoutesWithRef, { RouteWithRef } from '../../routes/routes'
 
 //styles
 import './Nav.scss'
@@ -12,108 +14,9 @@ import Lottie from 'lottie-web'
 //data
 import logoAnimationData from '../../static/lottie/logo.json'
 
-type RoutesWithRefs = {
-	text: string
-	path: string
-	ref: MutableRefObject<HTMLAnchorElement | null>
-}
-
-type Navigation = {
-	to: string | null
-	from: string | null
-}
-
-export type ContextType = {
-	nav: Navigation | null
-	setReadyToNavigate: Dispatch<SetStateAction<boolean>>
-	navigateTo: (to: string) => void
-}
-/**
- * custom hook to provide structure to the outlet context by react router
- * @returns context
- */
-export const useNavSignal = () => useOutletContext<ContextType>()
-
-// type PropagationProps = {
-// 	to: string
-// 	setClickedLink: Dispatch<SetStateAction<Navigation | null>>
-// 	animationHandler: {
-// 		show: () => {}
-// 		hide: () => {}
-// 	}
-// 	linksHandler: () => {}
-// 	noReadyToNavigate: Dispatch<SetStateAction<boolean>>
-// }
-
-/**
- * provide a function to programatically navigate to the specified route
- */
-// export const usePropagateNavigationSignal = ({
-// 	to,
-// 	setClickedLink,
-// 	animationHandler,
-// 	linksHandler,
-// 	noReadyToNavigate,
-// }: PropagationProps) => {
-// 	// change the reactive value for clicked link
-// 	setClickedLink({
-// 		from: location.pathname,
-// 		to: to,
-// 	})
-
-// 	// run navbar animation depends on destination route
-// 	if (to === '/') {
-// 		animationHandler.hide()
-// 	} else {
-// 		animationHandler.show()
-// 	}
-
-// 	// disable all links in order to avoid multiple clicks
-// 	linksHandler()
-
-// 	// change the reactive value that handles the navigation to false, in order to listen for animation finish
-// 	noReadyToNavigate(false)
-
-// 	return () => {}
-// }
-
-type NavigateTo = {
-	setClickedLink: Dispatch<SetStateAction<Navigation | null>>
-	animationHandler: {
-		show: () => void
-		hide: () => void
-	}
-	disableLinks: () => void
-	noReadyToNavigate: Dispatch<SetStateAction<boolean>>
-}
-
-export const useNavigateTo = ({
-	setClickedLink,
-	animationHandler,
-	disableLinks,
-	noReadyToNavigate,
-}: NavigateTo) => {
-	return (to: string) => {
-		// change the reactive value for clicked link
-		setClickedLink({
-			from: location.pathname,
-			to: to,
-		})
-
-		// run navbar animation depends on destination route
-		if (to === '/') {
-			animationHandler.hide()
-		} else {
-			animationHandler.show()
-		}
-
-		// disable all links in order to avoid multiple clicks
-		disableLinks()
-
-		// change the reactive value that handles the navigation to false, in order to listen for animation finish
-		noReadyToNavigate(false)
-	}
-}
+//hooks
+import useNavigateTo from '../../hooks/useNavigateTo'
+import { ContextType, Navigation } from '../../hooks/useNavContext'
 
 const Nav = () => {
 	// #region basic logic for page navigation
@@ -126,12 +29,16 @@ const Nav = () => {
 		logoAnimationRef.current.setDirection(1)
 		logoAnimationRef.current.setSpeed(1)
 		logoAnimationRef.current.play()
+
+		document.getElementById('nav-logo-link')!.style.pointerEvents = 'auto'
 	}
 
 	const hideNavLogo = () => {
 		logoAnimationRef.current.setDirection(-1)
 		logoAnimationRef.current.setSpeed(2)
 		logoAnimationRef.current.playSegments([180, 0], true)
+
+		document.getElementById('nav-logo-link')!.style.pointerEvents = 'none'
 	}
 
 	const disableLinks = () => {
@@ -160,37 +67,6 @@ const Nav = () => {
 		navigateTo: navigator,
 	}
 
-	// /**
-	//  * 1. change the reactive value for clicked link
-	//  * 2. run navbar animation depends on destination route
-	//  * 3. disable all links in order to avoid multiple clicks
-	//  * 4. change the reactive value that handles the navigation to false,
-	//  * 	  in order to listen for animation finish
-	//  * @param to route to navigate
-	//  */
-	// const propagateNavigationSignal = (to: string) => {
-	// 	setClickedLink({
-	// 		from: location.pathname,
-	// 		to: to,
-	// 	})
-
-	// 	if (to === '/') {
-	// 		//here make the logo invisible
-	// 		logoAnimationRef.current.setDirection(-1)
-	// 		logoAnimationRef.current.setSpeed(2)
-	// 		logoAnimationRef.current.playSegments([180, 0], true)
-	// 	} else {
-	// 		//here make the logo visible
-	// 		logoAnimationRef.current.setDirection(1)
-	// 		logoAnimationRef.current.setSpeed(1)
-	// 		logoAnimationRef.current.play()
-	// 	}
-
-	// 	disableLinks()
-
-	// 	setReadyToNavigate(false)
-	// }
-
 	const enableLinks = () => {
 		const links = document.getElementsByClassName(
 			'nav-link'
@@ -218,17 +94,7 @@ const Nav = () => {
 
 	// #region reference for CSSTransition NodeRef Attribute in responsive menu
 	const menuMobileRef = useRef<HTMLDivElement>(null)
-
-	let routesWithRefs: Array<RoutesWithRefs> = []
-	for (const key in routes) {
-		if (Object.prototype.hasOwnProperty.call(routes, key)) {
-			const route = routes[key]
-			const mRef = useRef<HTMLAnchorElement>(null)
-			let newObj: RoutesWithRefs = { ...route, ref: mRef }
-
-			routesWithRefs.push(newObj)
-		}
-	}
+	let routesWithRef = getRoutesWithRef()
 	//#endregion
 
 	const changeStyleOnScroll = () => {
@@ -263,7 +129,10 @@ const Nav = () => {
 		})
 
 		if (location.pathname != '/') {
-			logoAnimationRef.current.playSegments([0, 180], true)
+			// logoAnimationRef.current.playSegments([0, 180], true)
+			showNavLogo()
+		} else {
+			document.getElementById('nav-logo-link')!.style.pointerEvents = 'none'
 		}
 
 		window.addEventListener('scroll', changeStyleOnScroll)
@@ -310,8 +179,7 @@ const Nav = () => {
 							id="nav-logo-link"
 							onClick={(event) => {
 								event.preventDefault()
-								// propagateNavigationSignal(routes[0].path)
-								navigator(routes[0].path)
+								navigator(routesWithRef[0].path)
 							}}
 						>
 							<div id="nav-logo" ref={logoAnimationContainerRef} />
@@ -320,12 +188,11 @@ const Nav = () => {
 
 					<div id="navigator">
 						<div className="links-container-desk">
-							{routes.map((route) => {
+							{routesWithRef.map((route) => {
 								return (
 									<NavLink
 										onClick={(event) => {
 											event.preventDefault()
-											// propagateNavigationSignal(route.path)
 											navigator(route.path)
 										}}
 										to={route.path}
@@ -349,7 +216,7 @@ const Nav = () => {
 								addEndListener={() => setMobItems(!mobItems)}
 							>
 								<div className="links-container-mobile" ref={menuMobileRef}>
-									{routesWithRefs.map((route: RoutesWithRefs, i: number) => {
+									{routesWithRef.map((route: RouteWithRef, i: number) => {
 										return (
 											<CSSTransition
 												in={mobItems}
@@ -367,7 +234,6 @@ const Nav = () => {
 													onClick={(event) => {
 														event.preventDefault()
 														toggleMenu()
-														// propagateNavigationSignal(route.path)
 														navigator(route.path)
 													}}
 													to={route.path}

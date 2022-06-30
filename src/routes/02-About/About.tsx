@@ -1,6 +1,7 @@
 // react imports
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
 
 //components
 import AboutCard, { AboutCardContent } from '../../components/AboutCard/AboutCard'
@@ -11,11 +12,11 @@ import IntersectionContainer from '../../components/IntersectionContainer/Inters
 import { techImages, hobbiesImages } from '../../helpers/exports/AboutExports'
 
 //outlet custom hook
-import { useNavSignal, ContextType } from '../../components/Nav/Nav'
-import { CSSTransition } from 'react-transition-group'
+import useNavContext, { ContextType } from '../../hooks/useNavContext'
+
 
 const About = () => {
-	const { nav, setReadyToNavigate: reactiveFunc }: ContextType = useNavSignal()
+	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
 	const location = useLocation()
 	const refContainer = useRef<HTMLDivElement>(null)
 	const [sectionState, setSectionState] = useState(false)
@@ -109,7 +110,7 @@ const About = () => {
 			classNames="page-about"
 			mountOnEnter
 			unmountOnExit
-			onExited={() => reactiveFunc(true)}
+			onExited={() => setReadyToNavigate(true)}
 		>
 			<div ref={refContainer} className="a">
 				<header id="about">

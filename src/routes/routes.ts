@@ -1,25 +1,34 @@
-type NavRoutes = {
-    text: string,
-    path: string
+import { MutableRefObject, useRef } from 'react'
+
+export type RouteWithRef = {
+	text: string
+	path: string
+	ref: MutableRefObject<HTMLAnchorElement | null>
 }
 
-const routes: Array<NavRoutes> = [
-    {
-        text: 'inicio',
-        path: '/'
-    },
-    {
-        text: 'sobre mi',
-        path: '/sobre-mi'
-    },
-    {
-        text: 'proyectos',
-        path: '/proyectos'
-    },
-    {
-        text: 'contacto',
-        path: '/contacto'
-    }
-]
+export const getRoutesWithRef = () => {
+	return [
+		{
+			text: 'inicio',
+			path: '/',
+			ref: useRef<HTMLAnchorElement>(null),
+		},
+		{
+			text: 'sobre mi',
+			path: '/sobre-mi',
+			ref: useRef<HTMLAnchorElement>(null),
+		},
+		{
+			text: 'proyectos',
+			path: '/proyectos',
+			ref: useRef<HTMLAnchorElement>(null),
+		},
+		{
+			text: 'contacto',
+			path: '/contacto',
+			ref: useRef<HTMLAnchorElement>(null),
+		},
+	]
+}
 
-export default routes
+export default getRoutesWithRef

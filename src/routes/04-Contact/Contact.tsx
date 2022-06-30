@@ -1,11 +1,12 @@
 import { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-
-import { useNavSignal, ContextType } from '../../components/Nav/Nav'
 import { CSSTransition } from 'react-transition-group'
 
+//outlet custom hook
+import useNavContext, { ContextType } from '../../hooks/useNavContext'
+
 export default function Contact() {
-	const { nav, setReadyToNavigate: reactiveFunc }: ContextType = useNavSignal()
+	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
 	const location = useLocation()
 	const refContainer = useRef<HTMLDivElement>(null)
 	const [sectionState, setSectionState] = useState(false)
@@ -38,7 +39,7 @@ export default function Contact() {
 			classNames="page"
 			mountOnEnter
 			unmountOnExit
-			onExited={() => reactiveFunc(true)}
+			onExited={() => setReadyToNavigate(true)}
 		>
 			<header ref={refContainer}>
 				<h1>Contact</h1>
