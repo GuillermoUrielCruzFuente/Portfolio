@@ -68,7 +68,9 @@
 
 .bottom-info {
 	width: 100%;
-	height: fit-content;
+
+	$icon-size: 30px;
+	height: calc($icon-size + 10px);
 
 	display: flex;
 	flex-flow: row;
