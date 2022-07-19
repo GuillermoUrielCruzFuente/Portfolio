@@ -1,6 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState, Dispatch, SetStateAction } from 'react'
 import { NavLink, Link, useLocation, useNavigate, Outlet, useOutletContext } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
+import ShapesBackground from '../ShapesBackground/ShapesBackground'
 
 //routes
 import getRoutesWithRef, { RouteWithRef } from '../../routes/routes'
@@ -169,6 +170,19 @@ const Nav = () => {
 		}
 	}
 
+	const [bgPos, setBgPos] = useState(1)
+	useEffect(() => {
+		let posInterval = setInterval(() => {
+			console.log('interval')
+			bgPos === 1 ? setBgPos(2) : setBgPos(1)
+			console.log(bgPos)
+		}, 3000)
+
+		return () => {
+			clearInterval(posInterval)
+		}
+	}, [])
+
 	return (
 		<>
 			<nav className="no-blur-bg">
@@ -260,6 +274,7 @@ const Nav = () => {
 			</nav>
 
 			<div>
+				<ShapesBackground pos={bgPos} />
 				<Outlet context={signal} />
 			</div>
 		</>

@@ -1,0 +1,39 @@
+.bg-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+
+	z-index: -1;
+	display: flex;
+
+	#triangle {
+		width: 250px;
+		height: 250px;
+		fill: #7e1e95;
+		opacity: 0;
+
+		position: absolute;
+
+		// background-color: aquamarine;
+
+		transition: transform 1500ms, opacity 1500ms;
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	.triangle-pos-01 {
+		// top: 1rem;
+		// left: 2rem;
+		transform: translate(0%, 0%) rotate(0deg);
+	}
+
+	.triangle-pos-02 {
+		// top: 3rem;
+		// left: 5rem;
+		// bottom: 1rem;
+		// right: 2rem;
+		transform: translate(200%, 100%) rotate(40deg);
+	}
+}
