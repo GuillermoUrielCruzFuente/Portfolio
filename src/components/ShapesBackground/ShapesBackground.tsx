@@ -1,29 +1,30 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import './ShapesBackground.scss'
 
 type BackgroundPos = {
 	pos: number
 }
 
-const ShapesBackground: FC<BackgroundPos> = ({ pos }) => {
+const ShapesBackground: FC = () => {
+	const triangleRef = useRef<SVGSVGElement>(null)
+	const location = useLocation()
+
 	useEffect(() => {
 		document.getElementById('triangle')!.style.opacity = '0.2'
-	})
+	}, [])
 
 	useEffect(() => {
-		let tri = document.getElementById('triangle')!
+		setCurrentBGPosition(location.pathname)
+	}, [location])
 
-		tri.classList.remove('triangle-pos-02', 'triangle-pos-01')
-		tri.classList.add(`triangle-pos-0${pos}`)
-
-		console.log('actualizacion de pos', pos)
-		return () => {}
-	}, [pos])
+	const setCurrentBGPosition = (currentPage: string) => {}
 
 	return (
 		<div className="bg-container">
 			<svg
 				id="triangle"
+				ref={triangleRef}
 				className="triangle-pos-01"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 324.718 303.931"

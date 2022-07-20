@@ -23,6 +23,12 @@
 		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
+	//every piece of background is gonna be centered
+	//and the change to the initial route a seconds later
+	.bg-piece-pos-initial {
+		transform: translate(10px);
+	}
+
 	.triangle-pos-01 {
 		// top: 1rem;
 		// left: 2rem;
