@@ -10,6 +10,9 @@ const ShapesBackground: FC = () => {
 	const triangleRef = useRef<SVGSVGElement>(null)
 	const location = useLocation()
 
+	/**
+	 * change opacity on first load
+	 */
 	useEffect(() => {
 		document.getElementById('triangle')!.style.opacity = '0.2'
 	}, [])
@@ -18,7 +21,31 @@ const ShapesBackground: FC = () => {
 		setCurrentBGPosition(location.pathname)
 	}, [location])
 
-	const setCurrentBGPosition = (currentPage: string) => {}
+	const setCurrentBGPosition = (currentPage: string) => {
+		switch (currentPage) {
+			case '/':
+				changeClass(1)
+				break
+			case '/sobre-mi':
+				changeClass(2)
+				break
+			case '/proyectos':
+				changeClass(3)
+				break
+			case '/contacto':
+				changeClass(4)
+				break
+			default:
+				break
+		}
+	}
+
+	const changeClass = (position: number) => {
+		triangleRef.current!.classList.replace(
+			triangleRef.current!.classList.value,
+			`triangle-pos-0${position}`
+		)
+	}
 
 	return (
 		<div className="bg-container">

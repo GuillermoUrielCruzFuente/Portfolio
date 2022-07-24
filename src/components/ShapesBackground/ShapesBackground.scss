@@ -30,16 +30,18 @@
 	}
 
 	.triangle-pos-01 {
-		// top: 1rem;
-		// left: 2rem;
 		transform: translate(0%, 0%) rotate(0deg);
 	}
 
 	.triangle-pos-02 {
-		// top: 3rem;
-		// left: 5rem;
-		// bottom: 1rem;
-		// right: 2rem;
 		transform: translate(200%, 100%) rotate(40deg);
+	}
+
+	.triangle-pos-03 {
+		transform: translate(300%, 100%) rotate(70deg);
+	}
+
+	.triangle-pos-04 {
+		transform: translate(0%, 180%) rotate(120deg);
 	}
 }
