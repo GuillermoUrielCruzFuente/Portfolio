@@ -10,38 +10,94 @@
 	display: flex;
 
 	#triangle {
-		width: 250px;
-		height: 250px;
-		fill: #7e1e95;
+		width: 20vmax;
+		fill: #400c4d;
 		opacity: 0;
 
 		position: absolute;
+		transition: transform 1500ms, opacity 1500ms;
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
 
-		// background-color: aquamarine;
+	#square {
+		width: 12vmax;
+		fill: #21040e;
+		opacity: 0;
 
+		position: absolute;
+		transition: transform 1500ms, opacity 1500ms;
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	#pentagon {
+		width: 16vmax;
+		fill: #211f05;
+		opacity: 0;
+
+		position: absolute;
+		transition: transform 1500ms, opacity 1500ms;
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	#hexagon {
+		width: 17vmax;
+		fill: #052107;
+		opacity: 0;
+
+		position: absolute;
+		transition: transform 1500ms, opacity 1500ms;
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	#circle {
+		width: 15vmax;
+		fill: #090021;
+		opacity: 0;
+
+		position: absolute;
 		transition: transform 1500ms, opacity 1500ms;
 		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	//every piece of background is gonna be centered
 	//and the change to the initial route a seconds later
-	.bg-piece-pos-initial {
-		transform: translate(10px);
+	// .bg-piece-pos-initial {
+	// 	transform: translate(10px);
+	// }
+
+	// .triangle-pos-01 {
+	// 	transform: translate(5vmax, 3vmin) rotate(0deg);
+	// }
+
+	// .triangle-pos-02 {
+	// 	transform: translate(200%, 100%) rotate(40deg);
+	// }
+
+	// .triangle-pos-03 {
+	// 	transform: translate(300%, 100%) rotate(70deg);
+	// }
+
+	// .triangle-pos-04 {
+	// 	transform: translate(0%, 180%) rotate(120deg);
+	// }
+
+	.position-01 {
+		transform: translate(5vmax, 4vmin) rotate(-20deg);
 	}
 
-	.triangle-pos-01 {
-		transform: translate(0%, 0%) rotate(0deg);
+	.position-02 {
+		transform: translate(calc(60vmax - 50%), 8vmin) rotate(48deg);
 	}
 
-	.triangle-pos-02 {
-		transform: translate(200%, 100%) rotate(40deg);
+	.position-03 {
+		transform: translate(calc(85vmax - 50%), 50vmin) rotate(30deg);
 	}
 
-	.triangle-pos-03 {
-		transform: translate(300%, 100%) rotate(70deg);
+	.position-04 {
+		transform: translate(10vmax, calc(88vmin - 100%)) rotate(-84deg);
 	}
 
-	.triangle-pos-04 {
-		transform: translate(0%, 180%) rotate(120deg);
+	.position-05 {
+		transform: translate(34vmax, 35vmin) rotate(104deg);
 	}
 }

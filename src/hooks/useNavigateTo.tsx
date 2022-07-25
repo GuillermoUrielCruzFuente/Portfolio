@@ -25,24 +25,26 @@ const useNavigateTo = ({
 	const location = useLocation()
 
 	return (to: string) => {
-		// change the reactive value for clicked link
-		setClickedLink({
-			from: location.pathname,
-			to: to,
-		})
+		if (to != location.pathname) {
+			// change the reactive value for clicked link
+			setClickedLink({
+				from: location.pathname,
+				to: to,
+			})
 
-		// run navbar animation depends on destination route
-		if (to === '/') {
-			animationHandler.hide()
-		} else {
-			animationHandler.show()
+			// run navbar animation depends on destination route
+			if (to === '/') {
+				animationHandler.hide()
+			} else {
+				animationHandler.show()
+			}
+
+			// disable all links in order to avoid multiple clicks
+			disableLinks()
+
+			// change the reactive value that handles the navigation to false, in order to listen for animation finish
+			noReadyToNavigate(false)
 		}
-
-		// disable all links in order to avoid multiple clicks
-		disableLinks()
-
-		// change the reactive value that handles the navigation to false, in order to listen for animation finish
-		noReadyToNavigate(false)
 	}
 }
 
