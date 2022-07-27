@@ -52,28 +52,28 @@
         line-height: 0.85;
         position: relative;
 
-        $width: 5rem;
-        &::before {
-            content: "";
-            position: absolute;
-            width: $width;
-            height: 0.5rem;
-            background-color: #7e1e95;
-            right: calc(100% + 2rem);
-            top: 50%;
-            border-radius: 1rem;
-        }
+        // $width: 5rem;
+        // &::before {
+        //     content: "";
+        //     position: absolute;
+        //     width: $width;
+        //     height: 0.5rem;
+        //     background-color: #7e1e95;
+        //     right: calc(100% + 2rem);
+        //     top: 50%;
+        //     border-radius: 1rem;
+        // }
 
-        &::after {
-            content: "";
-            position: absolute;
-            width: $width;
-            height: 0.5rem;
-            background-color: #7e1e95;
-            left: calc(100% + 2rem);
-            top: 50%;
-            border-radius: 1rem;
-        }
+        // &::after {
+        //     content: "";
+        //     position: absolute;
+        //     width: $width;
+        //     height: 0.5rem;
+        //     background-color: #7e1e95;
+        //     left: calc(100% + 2rem);
+        //     top: 50%;
+        //     border-radius: 1rem;
+        // }
     }
 
     .bottom-title {
