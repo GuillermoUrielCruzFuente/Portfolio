@@ -14,7 +14,6 @@ import { techImages, hobbiesImages } from '../../helpers/exports/AboutExports'
 //outlet custom hook
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
-
 const About = () => {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
 	const location = useLocation()
@@ -299,20 +298,25 @@ const About = () => {
 								<div>
 									<p className="right">
 										A lo largo de mi corta vida he desarrollado varios hobbies.
+										<br />
+										<br />
 										Por ejemplo, me he enganchado a la{' '}
 										<span className="accent">acuariofilia</span> especialmente
-										el aquascaping, paisajismo en acuarios de agua dulce, he
-										jugado <span className="accent">videojuegos</span> una
-										cantidad de horas bastante considerable, he doblado papel
-										por días enteros (<span className="accent">Origami</span>) y
-										sin embargo, siempre hay un factor en común, la{' '}
-										<span className="accent">música</span>. Quizá resulte
-										gracioso, pero me autodenominaría como{' '}
+										al aquascaping (paisajismo en acuarios de agua dulce), he
+										pasado horas frente a un pantalla jugando{' '}
+										<span className="accent">videojuegos</span>, he doblado
+										papel por días enteros (
+										<span className="accent">Origami</span>) y sin embargo,
+										siempre hay un factor en común, la{' '}
+										<span className="accent">música</span>.
+										<br />
+										<br />
+										Quizá resulte gracioso, pero me autodenominaría como{' '}
 										<span className="accent">melómano</span>, me encanta
 										investigar, leer y adentrarme en el mundo de la música, la
 										gente que la crea e interpreta. Podría pasar horas hablando
-										de las bandas que me gustan, de su historia y de los
-										mensajes que vierten en sus líricas.
+										de aquellas canciones que me encantan, de su historia y de
+										los mensajes que se vierten en ellas.
 									</p>
 								</div>
 							</IntersectionContainer>
