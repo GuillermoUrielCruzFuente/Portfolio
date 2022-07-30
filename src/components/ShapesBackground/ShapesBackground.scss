@@ -10,7 +10,7 @@
 	display: flex;
 
 	#triangle {
-		width: 20vmax;
+		width: 23vmax;
 		fill: #400c4d;
 		fill: #7e1e95;
 		opacity: 0;
@@ -21,7 +21,7 @@
 	}
 
 	#square {
-		width: 12vmax;
+		width: 16vmax;
 		fill: #21040e;
 		fill: #7e1e95;
 		opacity: 0;
@@ -54,7 +54,7 @@
 	}
 
 	#circle {
-		width: 15vmax;
+		width: 18vmax;
 		fill: #090021;
 		fill: #7e1e95;
 		opacity: 0;
@@ -87,22 +87,22 @@
 	// }
 
 	.position-01 {
-		transform: translate(5vmax, 4vmin) rotate(-20deg);
+		transform: translate(-5vmax, -4vmin) rotate(-35deg);
 	}
 
 	.position-02 {
-		transform: translate(calc(60vmax - 50%), 8vmin) rotate(48deg);
+		transform: translate(calc(75vmax - 50%), -8vmin) rotate(48deg);
 	}
 
 	.position-03 {
-		transform: translate(calc(85vmax - 50%), 50vmin) rotate(30deg);
+		transform: translate(calc(95vmax - 50%), 65vmin) rotate(30deg);
 	}
 
 	.position-04 {
-		transform: translate(10vmax, calc(88vmin - 100%)) rotate(-84deg);
+		transform: translate(10vmax, calc(78vmin - 100%)) rotate(-84deg);
 	}
 
 	.position-05 {
-		transform: translate(34vmax, 35vmin) rotate(104deg);
+		transform: translate(40vmax, 65vmin) rotate(104deg);
 	}
 }
