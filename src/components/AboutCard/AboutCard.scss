@@ -1,6 +1,7 @@
 .about-card {
 	background-color: rgba($color: #290432, $alpha: 0.25);
-	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	        backdrop-filter: blur(4px);
 	border-radius: 1rem;
 	padding-top: 0rem;
 	padding-inline: 1rem;
@@ -9,13 +10,15 @@
 	margin-inline: 2rem;
 	box-shadow: 5px 3px 16px rgba($color: #000, $alpha: 0.5);
 	transition: background-color 500ms;
-
-	&:hover {
-		background-color: rgba($color: #520c63, $alpha: 0.5);
-	}
+	position: relative;
+	overflow: hidden;
 
 	p {
 		color: #fff;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		        user-select: none;
 	}
 
 	.main {
@@ -32,12 +35,34 @@
 	}
 
 	.middle {
-		font-size: 0.85rem;
+		font-size: 0.95rem;
 	}
 
 	.bottom {
 		font-weight: 900;
-		font-size: 1.25rem;
+		font-size: 1.35rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.bottom-line {
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		width: 100%;
+		height: 8px;
+		transition: height 200ms;
+		background-color: #b174bf;
+		transition-timing-function: ease-out;
+		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		z-index: -1;
+	}
+
+	&:hover {
+		background-color: rgba($color: #520c63, $alpha: 0.5);
+	}
+
+	&:hover > .bottom-line {
+		height: 16px;
 	}
 }
 

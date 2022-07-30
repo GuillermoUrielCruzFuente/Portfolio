@@ -1,12 +1,7 @@
-// .appear {
-//     opacity: 0;
-//     transition: opacity 500ms;
-// }
-
 .scroll {
 	position: absolute;
-	bottom: 0;
-	right: 2rem;
+	bottom: 0px;
+	right: 0rem;
 	display: flex;
 	align-items: center;
 	flex-flow: column;
@@ -16,7 +11,6 @@
 		writing-mode: vertical-rl;
 		margin-bottom: 0.5rem;
 		font-weight: 900;
-		// background-color: chocolate;
 	}
 
 	#scroll-line {
@@ -32,10 +26,11 @@
 #about {
 	display: flex;
 	flex-flow: column;
-	text-align: center;
+	justify-content: center;
 	align-items: center;
 	position: relative;
-	min-height: 75vh;
+	min-height: calc(95vh - var(--navbar-size));
+	text-align: center;
 
 	.upper-title {
 		font-size: 1.5rem;
@@ -45,7 +40,7 @@
 	}
 
 	.main-title {
-		font-size: clamp(1.25rem, 12vw, 10rem);
+		font-size: clamp(1.25rem, 10vw, 9rem);
 		text-transform: uppercase;
 		color: #fff;
 		font-weight: 900;
@@ -71,7 +66,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
-		margin: 5rem 0;
+		margin-top: 3rem;
 	}
 }
 
