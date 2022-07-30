@@ -14,11 +14,11 @@ const ShapesBackground: FC = () => {
 	 * change opacity on first load
 	 */
 	useEffect(() => {
-		document.getElementById('triangle')!.style.opacity = '0.4'
-		document.getElementById('square')!.style.opacity = '0.4'
-		document.getElementById('pentagon')!.style.opacity = '0.4'
-		document.getElementById('hexagon')!.style.opacity = '0.4'
-		document.getElementById('circle')!.style.opacity = '0.4'
+		document.getElementById('triangle')!.style.opacity = '0.2'
+		document.getElementById('square')!.style.opacity = '0.2'
+		document.getElementById('pentagon')!.style.opacity = '0.2'
+		document.getElementById('hexagon')!.style.opacity = '0.2'
+		document.getElementById('circle')!.style.opacity = '0.2'
 	}, [])
 
 	useEffect(() => {
@@ -73,7 +73,7 @@ const ShapesBackground: FC = () => {
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 371.776 324.566"
 			>
-				<path d="M185.888,0,371.776,324.566H0Z" fill="#7e1e95" opacity="0.2" />
+				<path d="M185.888,0,371.776,324.566H0Z"/>
 			</svg>
 
 			<svg
