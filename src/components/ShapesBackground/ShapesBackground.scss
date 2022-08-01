@@ -9,59 +9,68 @@
 	z-index: -1;
 	display: flex;
 
-	#triangle {
-		width: 23vmax;
-		fill: #400c4d;
+	.shape {
 		fill: #7e1e95;
 		opacity: 0;
 
 		position: absolute;
 		transition: transform 1500ms, opacity 1500ms;
 		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	#triangle {
+		width: 23vmax;
+		// fill: #400c4d;
+		// fill: #7e1e95;
+		// opacity: 0;
+
+		// position: absolute;
+		// transition: transform 1500ms, opacity 1500ms;
+		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#square {
 		width: 16vmax;
-		fill: #21040e;
-		fill: #7e1e95;
-		opacity: 0;
+		// fill: #21040e;
+		// fill: #7e1e95;
+		// opacity: 0;
 
-		position: absolute;
-		transition: transform 1500ms, opacity 1500ms;
-		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		// position: absolute;
+		// transition: transform 1500ms, opacity 1500ms;
+		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#pentagon {
 		width: 16vmax;
-		fill: #211f05;
-		fill: #7e1e95;
-		opacity: 0;
+		// fill: #211f05;
+		// fill: #7e1e95;
+		// opacity: 0;
 
-		position: absolute;
-		transition: transform 1500ms, opacity 1500ms;
-		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		// position: absolute;
+		// transition: transform 1500ms, opacity 1500ms;
+		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#hexagon {
-		width: 17vmax;
-		fill: #052107;
-		fill: #7e1e95;
-		opacity: 0;
+		width: 27vmax;
+		// fill: #052107;
+		// fill: #7e1e95;
+		// opacity: 0;
 
-		position: absolute;
-		transition: transform 1500ms, opacity 1500ms;
-		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		// position: absolute;
+		// transition: transform 1500ms, opacity 1500ms;
+		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#circle {
-		width: 18vmax;
-		fill: #090021;
-		fill: #7e1e95;
-		opacity: 0;
+		width: 28vmax;
+		// fill: #090021;
+		// fill: #7e1e95;
+		// opacity: 0;
 
-		position: absolute;
-		transition: transform 1500ms, opacity 1500ms;
-		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		// position: absolute;
+		// transition: transform 1500ms, opacity 1500ms;
+		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	//every piece of background is gonna be centered
@@ -70,36 +79,20 @@
 	// 	transform: translate(10px);
 	// }
 
-	// .triangle-pos-01 {
-	// 	transform: translate(5vmax, 3vmin) rotate(0deg);
-	// }
-
-	// .triangle-pos-02 {
-	// 	transform: translate(200%, 100%) rotate(40deg);
-	// }
-
-	// .triangle-pos-03 {
-	// 	transform: translate(300%, 100%) rotate(70deg);
-	// }
-
-	// .triangle-pos-04 {
-	// 	transform: translate(0%, 180%) rotate(120deg);
-	// }
-
 	.position-01 {
 		transform: translate(-5vmax, -4vmin) rotate(-35deg);
 	}
 
 	.position-02 {
-		transform: translate(calc(75vmax - 50%), -8vmin) rotate(48deg);
+		transform: translate(calc(55vmax - 50%), -8vmin) rotate(48deg);
 	}
 
 	.position-03 {
-		transform: translate(calc(95vmax - 50%), 65vmin) rotate(30deg);
+		transform: translate(calc(85vmax - 50%), 65vmin) rotate(30deg);
 	}
 
 	.position-04 {
-		transform: translate(10vmax, calc(78vmin - 100%)) rotate(-84deg);
+		transform: translate(50vmax, calc(78vmin - 100%)) rotate(-84deg);
 	}
 
 	.position-05 {

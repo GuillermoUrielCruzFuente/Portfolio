@@ -6,7 +6,7 @@ export type RouteWithRef = {
 	ref: MutableRefObject<HTMLAnchorElement | null>
 }
 
-export const getRoutesWithRef = () => {
+const getRoutesWithRef = () => {
 	return [
 		{
 			text: 'inicio',
