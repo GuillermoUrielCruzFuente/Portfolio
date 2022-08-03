@@ -7,6 +7,7 @@ import { CSSTransition } from 'react-transition-group'
 import AboutCard, { AboutCardContent } from '../../components/AboutCard/AboutCard'
 import AnimatedTitle from '../../components/AnimatedTitle/AnimatedTitle'
 import IntersectionContainer from '../../components/IntersectionContainer/IntersectionContainer'
+import ScrollDown from '../../components/ScrollDown/ScrollDown'
 
 //images and styles imports
 import { techImages, hobbiesImages } from '../../helpers/exports/AboutExports'
@@ -58,49 +59,6 @@ const About = () => {
 		},
 	]
 
-	// const refImgContainer = useRef<HTMLDivElement>(null)
-	// const refEducationContainer = useRef<HTMLDivElement>(null)
-	// const refHobbiesContainer = useRef<HTMLDivElement>(null)
-
-	// const appearElements = () => {
-	//     let aboutElements = document.getElementsByClassName('appear')
-
-	//     for (let i = 0; i < aboutElements.length; i++) {
-	//         const element = aboutElements[i] as HTMLElement;
-	//         element.style.opacity = '1'
-	//     }
-	// }
-
-	// const hideElements = () => {
-	//     let aboutElements = document.getElementsByClassName('appear')
-
-	//     for (let i = 0; i < aboutElements.length; i++) {
-	//         const element = aboutElements[i] as HTMLElement;
-	//         element.style.opacity = '0'
-	//     }
-	// }
-
-	// useLayoutEffect(() => {
-	//     setTimeout(() => {
-	//         appearElements()
-	//     }, 500);
-	// }, [])
-
-	// xMovement for Elements based on scroll event
-	// useEffect(() => {
-	//     const moveImgList = (e: Event) => {
-	//         refImgContainer.current ? refImgContainer.current.style.transform = `translateX(${150 - (window.scrollY / 4)}px)` : console.error('ref img container not exists')
-	//         refEducationContainer.current ? refEducationContainer.current.style.transform = `translateX(${-500 + (window.scrollY / 4)}px)` : console.error('ref education container not exists')
-	//         refHobbiesContainer.current ? refHobbiesContainer.current.style.transform = `translateX(${750 - (window.scrollY / 4)}px)` : console.error('ref education container not exists')
-	//     }
-
-	//     window.addEventListener('scroll', moveImgList)
-
-	//     return () => {
-	//         window.removeEventListener('scroll', moveImgList)
-	//     }
-	// }, [])
-
 	return (
 		<CSSTransition
 			in={sectionState}
@@ -114,7 +72,9 @@ const About = () => {
 			<div ref={refContainer} className="a">
 				<header id="about">
 					<h1 className="main-title">Sobre mi</h1>
-					<p className="bottom-title">Lo que he hecho, hago y seguiré haciendo (pero mejor)</p>
+					<p className="bottom-title">
+						Lo que he hecho, hago y seguiré haciendo (pero mejor)
+					</p>
 
 					<p className="about-description">
 						Mi nombre es <span className="accent">Guillermo Cruz</span>, desarrollador
@@ -137,10 +97,7 @@ const About = () => {
 						})}
 					</div>
 
-					<div className="scroll">
-						<p>scroll</p>
-						<span id="scroll-line"></span>
-					</div>
+					<ScrollDown />
 				</header>
 
 				<main>

@@ -1,16 +1,69 @@
+header#projects {
+	position: relative;
+	min-height: calc(100vh - var(--navbar-size));
+
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}
+
+$harbest-blue: #1A4D8A;
+
+$campofuerte-brown: #7A5125;
+$campofuerte-green: #90B527;
+
+$intelligentia-red: #b20000;
+
+.harbest-blue {
+    color: $harbest-blue;
+}
+
+.intelligentia-red {
+    color: $intelligentia-red;
+}
+
+.campofuerte-brown {
+    color: $campofuerte-brown;
+}
+
+.campofuerte-green {
+    color: $campofuerte-green;
+}
+
 .page-title {
-    font-size: clamp(2rem, 10vw, 8rem);
-    color: #fff;
-    text-transform: uppercase;
-    text-align: center;
-    margin-top: 3rem;
+	font-size: clamp(2rem, 10vw, 8rem);
+	color: #fff;
+	text-transform: uppercase;
+	text-align: center;
+	padding-top: 3rem;
+	// margin-top: 3rem;
 }
 
 .page-description {
-    font-size: 1rem;
-    font-weight: 400;
-    text-align: center;
-    width: 50%;
-    margin: 0 auto;
-    color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	text-align: center;
+	width: 50%;
+	margin: 0 auto;
+	color: #fff;
+}
+
+.works {
+	margin-top: auto;
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-around;
+	padding: 3rem;
+	background-color: rgba($color: #4f165e, $alpha: 0.5);
+	backdrop-filter: blur(5px);
+	width: 100vw;
+
+	p {
+		color: #fff;
+		// margin-inline: 2rem; 
+		font-size: 2rem;
+		font-weight: 900;
+	}
 }

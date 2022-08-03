@@ -6,6 +6,9 @@ import { CSSTransition } from 'react-transition-group'
 //outlet custom hook
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
+//components
+import ScrollDown from '../../components/ScrollDown/ScrollDown'
+
 //styles
 import './Projects.scss'
 
@@ -45,13 +48,21 @@ const Projects = () => {
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}
 		>
-			<header ref={refContainer}>
+			<header ref={refContainer} id="projects">
 				<h1 className="page-title">Proyectos</h1>
 				<p className='page-description'>
 					Comencé hace ya un tiempo en el desarrollo web, tras varias iteraciones estos
 					son mis proyectos destacados, aquellos en los que he colocado esfuerzo y
 					dedicación, te agradezco el tiempo que te tome revisarlos.
 				</p>
+
+				<div className="works">
+					<p><span className="harbest-blue">har</span>Best</p>
+					<p><span className="intelligentia-red">i</span>NTELLiGENTiA</p>
+					<p><span className="campofuerte-brown">Campo</span> <span className="campofuerte-green">Fuerte</span></p>
+				</div>
+
+				<ScrollDown />
 			</header>
 		</CSSTransition>
 	)

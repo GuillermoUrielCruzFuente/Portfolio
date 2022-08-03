@@ -1,26 +1,26 @@
-.scroll {
-	position: absolute;
-	bottom: 0px;
-	right: 0rem;
-	display: flex;
-	align-items: center;
-	flex-flow: column;
+// .scroll {
+// 	position: absolute;
+// 	bottom: 0px;
+// 	right: 0rem;
+// 	display: flex;
+// 	align-items: center;
+// 	flex-flow: column;
 
-	p {
-		color: #7e1e95;
-		writing-mode: vertical-rl;
-		margin-bottom: 0.5rem;
-		font-weight: 900;
-	}
+// 	p {
+// 		color: #7e1e95;
+// 		writing-mode: vertical-rl;
+// 		margin-bottom: 0.5rem;
+// 		font-weight: 900;
+// 	}
 
-	#scroll-line {
-		height: 5rem;
-		width: 2px;
-		display: block;
-		background-color: #7e1e95;
-		animation: scroll 1.5s ease alternate infinite;
-	}
-}
+// 	#scroll-line {
+// 		height: 5rem;
+// 		width: 2px;
+// 		display: block;
+// 		background-color: #7e1e95;
+// 		animation: scroll 1.5s ease alternate infinite;
+// 	}
+// }
 
 // #region header section
 #about {
@@ -121,14 +121,7 @@
 	color: #fff;
 }
 
-@keyframes scroll {
-	from {
-		height: 5rem;
-	}
-	to {
-		height: 4rem;
-	}
-}
+
 
 main {
 	background-color: rgba($color: #000000, $alpha: 0.65);
