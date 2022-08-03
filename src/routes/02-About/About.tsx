@@ -114,7 +114,7 @@ const About = () => {
 			<div ref={refContainer} className="a">
 				<header id="about">
 					<h1 className="main-title">Sobre mi</h1>
-					<p className="bottom-title">Lo que he hecho, hago y seguiré haciendo</p>
+					<p className="bottom-title">Lo que he hecho, hago y seguiré haciendo (pero mejor)</p>
 
 					<p className="about-description">
 						Mi nombre es <span className="accent">Guillermo Cruz</span>, desarrollador
