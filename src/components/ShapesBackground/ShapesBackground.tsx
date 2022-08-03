@@ -2,22 +2,14 @@ import { FC, useEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 import './ShapesBackground.scss'
 
-type BackgroundPos = {
-	pos: number
-}
-
-const routesList = () => {
-	return ['/', '/sobre-mi', 'proyectos', '/contacto']
-}
-
 const ShapesBackground: FC = () => {
 	const triangleRef = useRef<SVGSVGElement>(null)
 	const squareRef = useRef<SVGSVGElement>(null)
 	const pentagonRef = useRef<SVGSVGElement>(null)
 	const hexagonRef = useRef<SVGSVGElement>(null)
-	// const circleRef = useRef<SVGSVGElement>(null)
+	const circleRef = useRef<SVGSVGElement>(null)
 
-	const shapes = [triangleRef, squareRef, pentagonRef, hexagonRef]
+	const shapes = [triangleRef, squareRef, pentagonRef, hexagonRef, circleRef]
 	const navType = useNavigationType()
 
 	const location = useLocation()
@@ -31,25 +23,36 @@ const ShapesBackground: FC = () => {
 		})
 	}, [])
 
+	/**
+	 * change the shape's positon on every navigation
+	 */
 	useEffect(() => {
 		changeShapesPosition(routes.indexOf(location.pathname) + 1)
 	}, [location])
 
 	const changeShapesPosition = (position: number) => {
-		shapes.forEach((shape) => {
-			// console.log(`${shape.current!.id} -> ${shape.current!.classList.value.split(' ')[1]} -> ${navType}`)
+		switch (position) {
+			case 1:
+				replacePositionClasses([1, 2, 3, 4, 5])
+				break
+			case 2:
+				replacePositionClasses([2, 5, 4, 1, 3])
+				break
+			case 3:
+				replacePositionClasses([5, 4, 2, 3, 1])
+				break
+			case 4:
+				replacePositionClasses([4, 3, 1, 5, 2])
+				break
+			default:
+				break
+		}
+	}
 
-			// if (navType === 'PUSH') {
-				const currentClassPos = shape.current!.classList.value.split(' ')[1]
-				// let position = parseInt(currentClassPos[currentClassPos.length - 1])
-				const nextPosition = position >= 5 ? 1 : position++
-				// console.log(nextPosition)
-
-				shape.current!.classList.replace(
-					currentClassPos,
-					`position-0${nextPosition}`
-				)
-			// }
+	const replacePositionClasses = (newClasses: Array<number>) => {
+		shapes.forEach((shape, index) => {
+			const currentClassPos = shape.current!.classList.value.split(' ')[1]
+			shape.current!.classList.replace(currentClassPos, `position-0${newClasses[index]}`)
 		})
 	}
 
@@ -95,7 +98,7 @@ const ShapesBackground: FC = () => {
 				<path data-name="Polígono 5" d="M277.5,0,370,160,277.5,320H92.5L0,160,92.5,0Z" />
 			</svg>
 
-			{/* <svg
+			<svg
 				id="circle"
 				ref={circleRef}
 				className="shape position-05"
@@ -103,7 +106,7 @@ const ShapesBackground: FC = () => {
 				viewBox="0 0 351 351"
 			>
 				<circle cx="175.5" cy="175.5" r="175.5" />
-			</svg> */}
+			</svg>
 		</div>
 	)
 }

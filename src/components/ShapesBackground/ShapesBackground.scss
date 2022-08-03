@@ -15,87 +15,52 @@
 
 		position: absolute;
 		transition: transform 1500ms, opacity 1500ms;
-		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		transition-timing-function: ease;
 	}
 
 	#triangle {
 		width: 23vmax;
-		// fill: #400c4d;
-		// fill: #7e1e95;
-		// opacity: 0;
-
-		// position: absolute;
-		// transition: transform 1500ms, opacity 1500ms;
-		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#square {
 		width: 16vmax;
-		// fill: #21040e;
-		// fill: #7e1e95;
-		// opacity: 0;
-
-		// position: absolute;
-		// transition: transform 1500ms, opacity 1500ms;
-		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#pentagon {
 		width: 16vmax;
-		// fill: #211f05;
-		// fill: #7e1e95;
-		// opacity: 0;
-
-		// position: absolute;
-		// transition: transform 1500ms, opacity 1500ms;
-		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#hexagon {
 		width: 27vmax;
-		// fill: #052107;
-		// fill: #7e1e95;
-		// opacity: 0;
-
-		// position: absolute;
-		// transition: transform 1500ms, opacity 1500ms;
-		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	#circle {
-		width: 28vmax;
-		// fill: #090021;
-		// fill: #7e1e95;
-		// opacity: 0;
-
-		// position: absolute;
-		// transition: transform 1500ms, opacity 1500ms;
-		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		width: 30vmax;
 	}
 
-	//every piece of background is gonna be centered
-	//and the change to the initial route a seconds later
-	// .bg-piece-pos-initial {
-	// 	transform: translate(10px);
-	// }
-
+	//triangle
 	.position-01 {
-		transform: translate(-5vmax, -4vmin) rotate(-35deg);
+		transform: translate(-5vmax, -4vmin) rotate(-35deg) scale(1.5);
 	}
 
+	//square
 	.position-02 {
-		transform: translate(calc(55vmax - 50%), -8vmin) rotate(48deg);
+		transform: translate(55vmax, -8vmin) rotate(48deg) scale(0.6);
 	}
 
+	//pentagon
 	.position-03 {
-		transform: translate(calc(85vmax - 50%), 65vmin) rotate(30deg);
+		transform: translate(85vmax, 65vmin) rotate(30deg) scale(1.3);
 	}
 
+	//hexagon
 	.position-04 {
-		transform: translate(50vmax, calc(78vmin - 100%)) rotate(-84deg);
+		transform: translate(60vmax, 38vmin) rotate(-84deg) scale(0.8);
 	}
 
+	//circle
 	.position-05 {
-		transform: translate(40vmax, 65vmin) rotate(104deg);
+		transform: translate(10vmax, 65vmin) rotate(104deg) scale(1.75);
 	}
 }
