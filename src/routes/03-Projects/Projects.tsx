@@ -48,22 +48,46 @@ const Projects = () => {
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}
 		>
-			<header ref={refContainer} id="projects">
-				<h1 className="page-title">Proyectos</h1>
-				<p className='page-description'>
-					Comencé hace ya un tiempo en el desarrollo web, tras varias iteraciones estos
-					son mis proyectos destacados, aquellos en los que he colocado esfuerzo y
-					dedicación, te agradezco el tiempo que te tome revisarlos.
-				</p>
+			<>
+				<header ref={refContainer} id="projects">
+					<h1 className="page-title">Proyectos</h1>
+					<p className="page-description">
+						Comencé hace ya un tiempo en el desarrollo web, tras varias iteraciones
+						estos son mis proyectos destacados, aquellos en los que he colocado esfuerzo
+						y dedicación, te agradezco el tiempo que te tome revisarlos.
+					</p>
 
-				<div className="works">
-					<p><span className="harbest-blue">har</span>Best</p>
-					<p><span className="intelligentia-red">i</span>NTELLiGENTiA</p>
-					<p><span className="campofuerte-brown">Campo</span> <span className="campofuerte-green">Fuerte</span></p>
-				</div>
+					<div className="works">
+						<p>
+							<span className="harbest-blue">har</span>Best
+						</p>
+						<p>
+							<span className="intelligentia-red">i</span>NTELLiGENTiA
+						</p>
+						<p>
+							<span className="campofuerte-brown">Campo</span>{' '}
+							<span className="campofuerte-green">Fuerte</span>
+						</p>
+					</div>
 
-				<ScrollDown />
-			</header>
+					<ScrollDown />
+				</header>
+
+				<section>
+					<p>💼Proyecto #1</p>
+					<h1>harBest</h1>
+					<p>
+						Empresa dedicada a la producción y comercialización de fertilizantes
+						commodities y multiminerales. Una clásica landing page, con la información
+						necesaria para clientes potenciales.
+					</p>
+					<p>🔧Tecnologías empleadas</p>
+					<p>HTML</p>
+					<p>SCSS</p>
+					<p>JavaScript</p>
+					<p>ViteJS</p>
+				</section>
+			</>
 		</CSSTransition>
 	)
 }
