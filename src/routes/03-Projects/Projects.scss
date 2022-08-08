@@ -32,12 +32,10 @@ $intelligentia-red: #db0000;
 }
 
 .page-title {
-	font-size: clamp(2rem, 10vw, 8rem);
+	font-size: clamp(1.5rem, 10vw, 8rem);
 	color: #fff;
 	text-transform: uppercase;
 	text-align: center;
-	padding-top: 3rem;
-	// margin-top: 3rem;
 }
 
 .page-description {
@@ -51,20 +49,25 @@ $intelligentia-red: #db0000;
 
 .works {
 	display: flex;
-	flex-flow: row;
+	flex-flow: row wrap;
 	align-items: center;
 	justify-content: space-around;
-	padding: 3rem 12.5vw;
-	margin-top: auto;
+
+	padding: 3rem 20%;
 	background-color: rgba($color: #4f165e, $alpha: 0.5);
 	backdrop-filter: blur(5px);
 	width: 100vw;
 	box-shadow: 0px 0px 16px rgba($color: #000000, $alpha: 0.75);
 
+	margin: 4rem 0;
+
 	p {
 		color: #fff;
 		// margin-inline: 2rem;
-		font-size: 2rem;
+		// font-size: 2rem;
+		font-size: clamp(1rem, 2.5vw, 2rem);
 		font-weight: 900;
 	}
 }
+
+@import './mediaqueries';

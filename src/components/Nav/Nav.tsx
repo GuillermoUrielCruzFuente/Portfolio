@@ -154,6 +154,7 @@ const Nav = () => {
 			if (clickedLink) {
 				navigate(clickedLink.to!)
 				enableLinks()
+				window.scrollTo(0, 0)
 			}
 		}
 	}, [readyToNavigate])

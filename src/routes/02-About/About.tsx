@@ -71,7 +71,7 @@ const About = () => {
 		>
 			<div ref={refContainer} className="a">
 				<header id="about">
-					<h1 className="main-title">Sobre mi</h1>
+					<h1 className="main-title">Sobre mí</h1>
 					<p className="bottom-title">
 						Lo que he hecho, hago y seguiré haciendo (pero mejor)
 					</p>
