@@ -100,7 +100,7 @@ const Nav = () => {
 
 	const changeStyleOnScroll = () => {
 		const nav = document.getElementsByTagName('nav')[0]
-		if (window.scrollY >= 300) {
+		if (window.scrollY >= 100) {
 			nav.classList.replace('no-blur-bg', 'blur-bg')
 		} else {
 			nav.classList.replace('blur-bg', 'no-blur-bg')
