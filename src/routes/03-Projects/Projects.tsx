@@ -8,7 +8,7 @@ import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
 //components
 import ScrollDown from '../../components/ScrollDown/ScrollDown'
-import ProjectInfo from '../../components/ProjectInfo/ProjectInfo'
+import ProjectInfo, { ProjectContent, projects } from '../../components/ProjectInfo/ProjectInfo'
 
 //styles
 import './Projects.scss'
@@ -75,7 +75,19 @@ const Projects = () => {
 				</header>
 
 				<section>
-					<ProjectInfo />
+					{projects.map((project: ProjectContent) => {
+						return (
+							<ProjectInfo
+								key={project.name}
+								order={project.order}
+								name={project.name}
+								description={project.description}
+								techStack={project.techStack}
+								repository={project.repository}
+								url={project.url}
+							/>
+						)
+					})}
 				</section>
 			</>
 		</CSSTransition>
