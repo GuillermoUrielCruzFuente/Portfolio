@@ -68,4 +68,20 @@ $intelligentia-red: #db0000;
 	}
 }
 
+.project-container {
+	display: flex;
+	flex-flow: row wrap;
+
+	&:nth-child(2n) {
+		// background-color: crimson;
+		flex-flow: row-reverse wrap;
+	}
+
+	.project-images {
+		padding-left: 3rem;
+		color: #fff;
+	}
+}
+
+
 @import './mediaqueries';

@@ -128,7 +128,7 @@ const ProjectInfo: FC<ProjectContent> = ({
 	}
 
 	return (
-		<article className="project">
+		<article className="project-info">
 			<p className="project-number">💼 Proyecto #{order}</p>
 			<h1 className="project-name">{name}</h1>
 			<p className="project-description">{description}</p>
