@@ -73,22 +73,24 @@ const Projects = () => {
 
 					<ScrollDown />
 				</header>
-
-				<section>
-					{projects.map((project: ProjectContent) => {
-						return (
-							<ProjectInfo
-								key={project.name}
-								order={project.order}
-								name={project.name}
-								description={project.description}
-								techStack={project.techStack}
-								repository={project.repository}
-								url={project.url}
-							/>
-						)
-					})}
-				</section>
+				
+				<main>
+					<section className="projects">
+						{projects.map((project: ProjectContent) => {
+							return (
+								<ProjectInfo
+									key={project.name}
+									order={project.order}
+									name={project.name}
+									description={project.description}
+									techStack={project.techStack}
+									repository={project.repository}
+									url={project.url}
+								/>
+							)
+						})}
+					</section>
+				</main>
 			</>
 		</CSSTransition>
 	)

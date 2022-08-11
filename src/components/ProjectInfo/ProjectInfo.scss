@@ -1,0 +1,56 @@
+.project {
+	// margin-block: 3rem;
+	padding-block: 5rem;
+
+	.project-number {
+		font-size: 1.25rem;
+		color: #7e1e95;
+		font-weight: 900;
+		text-transform: uppercase;
+	}
+
+	.project-name {
+		font-size: 5rem;
+		color: #fff;
+	}
+
+	.project-description {
+		font-size: 1rem;
+		color: #f2dbff;
+		width: 500px;
+	}
+
+	.project-techs {
+		font-size: 1rem;
+		color: #7e1e95;
+		font-weight: 900;
+		text-transform: uppercase;
+		margin-top: 3rem;
+	}
+
+	.project-tech-icon {
+		width: 40px;
+		height: 40px;
+		margin-inline: 1rem;
+
+		&:first-child {
+			margin-left: 0rem;
+		}
+	}
+
+	.project-tech-icons-container {
+		display: flex;
+		flex-flow: row wrap;
+		margin-top: 1rem;
+	}
+
+	.project-buttons-container {
+		margin-top: 2rem;
+		display: flex;
+		flex-flow: row wrap;
+
+		button:first-child {
+			margin-right: 1rem;
+		}
+	}
+}

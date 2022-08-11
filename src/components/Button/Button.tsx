@@ -8,23 +8,15 @@ import './Button.scss'
  * needs a Navigation object and a reactive function to change
  * the value of the new NavigationAction
  */
-// export type NavAction = {
-// 	navigation: Navigation
-// 	navigator: Dispatch<SetStateAction<Navigation | null>>
-// }
-
 type ButtonType = {
 	children: string
 	img: string
 	className: string
 	secondary?: true
-	// navAction?: NavAction
 	navigator?: {
 		to: string
 		navigator: (to: string) => void
 	}
-	// to?: string
-	// navCallback?: () => void
 }
 
 export type Navigation = {
@@ -33,18 +25,9 @@ export type Navigation = {
 }
 
 const Button: FC<ButtonType> = ({ children, img, className, secondary, navigator }) => {
-	// const navigate = useNavigate()
-	// const location = useLocation()
-
 	const buttonClasses = secondary
 		? `base-button secondary-button ${className}`
 		: `base-button primary-button ${className}`
-
-	const navigateTo = () => {
-		// navigator(navAction!.navigation.to!)
-		// navAction!.navigator(navAction!.navigation)
-		// navigator!('')
-	}
 
 	const clickHandler = () => {
 		if (navigator) {
