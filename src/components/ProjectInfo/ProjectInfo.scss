@@ -2,6 +2,9 @@
 	padding-block: 5rem;
 	width: fit-content;
 
+	display: flex;
+	flex-flow: column;
+
 	.project-number {
 		font-size: 1.25rem;
 		color: #7e1e95;
@@ -43,12 +46,18 @@
 		display: flex;
 		flex-flow: row wrap;
 		margin-top: 1rem;
+
+		// background-color: crimson;
+		width: fit-content;
 	}
 
 	.project-buttons-container {
 		margin-top: 2rem;
 		display: flex;
 		flex-flow: row wrap;
+		width: fit-content;
+
+		// background-color: blueviolet;
 
 		button:first-child {
 			margin-right: 1rem;

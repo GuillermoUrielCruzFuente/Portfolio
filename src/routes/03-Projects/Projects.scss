@@ -75,8 +75,25 @@ $intelligentia-red: #db0000;
 	&:nth-child(2n) {
 		// background-color: crimson;
 		flex-flow: row-reverse wrap;
+		text-align: right;
+
+		.project-info {
+			align-items: flex-end;
+
+			.project-tech-icons-container {
+				flex-flow: row-reverse wrap;
+			}
+
+			.project-buttons-container {
+				flex-flow: row-reverse wrap;
+
+				button:first-child {
+					margin-right: 0;
+					margin-left: 1rem
+				}
+			}
+		}
 	}
 }
-
 
 @import './mediaqueries';
