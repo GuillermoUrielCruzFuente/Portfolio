@@ -89,9 +89,16 @@ $intelligentia-red: #db0000;
 
 				button:first-child {
 					margin-right: 0;
-					margin-left: 1rem
+					margin-left: 1rem;
 				}
 			}
+		}
+
+		.project-images {
+			align-items: flex-start;
+
+			padding-left: 0rem;
+			padding-right: 3rem
 		}
 	}
 }

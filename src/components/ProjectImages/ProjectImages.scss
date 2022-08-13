@@ -2,9 +2,15 @@
 	padding-left: 3rem;
 	color: #fff;
 	font-weight: 900;
+	
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: flex-end;
+	flex-grow: 1;
 
 	.project-image {
-		max-width: 500px;
-		max-height: 300px;
+		max-width: 300px;
+		// max-height: 300px;
 	}
 }
