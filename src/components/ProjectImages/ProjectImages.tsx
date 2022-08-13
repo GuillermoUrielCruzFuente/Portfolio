@@ -1,7 +1,16 @@
-const ProjectImages = () => {
-    return (
+import { FC } from 'react'
+import './ProjectImages.scss'
+
+type PathImages = {
+	paths: [string, string, string, string]
+}
+
+const ProjectImages: FC<PathImages> = ({ paths }) => {
+	return (
 		<div className="project-images">
-			<p>images</p>
+			{paths.map((path) => {
+				return <img className="project-image" src={path} alt="project image" />
+			})}
 		</div>
 	)
 }
