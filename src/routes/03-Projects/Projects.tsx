@@ -12,6 +12,7 @@ import ProjectInfo, { ProjectContent, projects } from '../../components/ProjectI
 
 //styles
 import './Projects.scss'
+import ProjectImages from '../../components/ProjectImages/ProjectImages'
 
 const Projects = () => {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
@@ -89,9 +90,7 @@ const Projects = () => {
 										url={project.url}
 									/>
 
-									<div className='project-images'>
-										<p>images</p>
-									</div>
+									<ProjectImages />
 								</div>
 							)
 						})}
