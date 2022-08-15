@@ -99,13 +99,19 @@ $intelligentia-red: #db0000;
 					margin-left: 1rem;
 				}
 			}
+
+			.project-tech-icon {
+				&:first-child {
+					margin-right: 0rem;
+				}
+			}
 		}
 
 		.project-images {
 			align-items: flex-start;
 
 			padding-left: 0rem;
-			padding-right: 3rem
+			padding-right: 3rem;
 		}
 	}
 }

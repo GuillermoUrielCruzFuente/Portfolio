@@ -9,13 +9,13 @@
 	align-items: flex-end;
 	flex-grow: 1;
 	flex-basis: 0;
-	// background-color: crimson;
 	position: relative;
+
+	// background-color: chartreuse;
 
 	.project-image {
 		max-width: 100%;
-		max-height: 600px;
-
-		// background-color: crimson;
+		max-height: 700px;
+		border-radius: 16px;
 	}
 }

@@ -15,17 +15,17 @@ import ProjectImages from '../../components/ProjectImages/ProjectImages'
 import './Projects.scss'
 
 //project images
-import harbestImg1 from '../../static/img/web-images/harbest/collage.png'
+import harbestImg1 from '../../static/img/web-images/harbest/harbest-collage.png'
 import harbestImg2 from '../../static/img/web-images/harbest/collage-01.png'
 import harbestImg3 from '../../static/img/web-images/harbest/collage-02.png'
-import harbestImg4 from '../../static/img/web-images/harbest/screen-04.jpg'
+import harbestImg4 from '../../static/img/web-images/harbest/test-01.png'
 
-import intelligentiaImg1 from '../../static/img/web-images/intelligentia/screen-01.jpg'
+import intelligentiaImg1 from '../../static/img/web-images/intelligentia/intelligentia-collage.png'
 import intelligentiaImg2 from '../../static/img/web-images/intelligentia/screen-02.jpg'
 import intelligentiaImg3 from '../../static/img/web-images/intelligentia/screen-03.jpg'
 import intelligentiaImg4 from '../../static/img/web-images/intelligentia/screen-04.jpg'
 
-import campoFuerteImg1 from '../../static/img/web-images/campo-fuerte/screen-01.jpg'
+import campoFuerteImg1 from '../../static/img/web-images/campo-fuerte/campo-fuerte-collage.png'
 import campoFuerteImg2 from '../../static/img/web-images/campo-fuerte/screen-02.jpg'
 import campoFuerteImg3 from '../../static/img/web-images/campo-fuerte/screen-03.jpg'
 import campoFuerteImg4 from '../../static/img/web-images/campo-fuerte/screen-04.jpg'
@@ -42,7 +42,12 @@ import guillermoImg4 from '../../static/img/web-images/guillermo/screen-04.jpg'
 // 	[guillermoImg1, guillermoImg2, guillermoImg3, guillermoImg4],
 // ]
 
-const projectImages: Array<string[]> = [[harbestImg3], [harbestImg1], [harbestImg2], [harbestImg2]]
+const projectImages: Array<string[]> = [
+	[harbestImg1],
+	[intelligentiaImg1],
+	[campoFuerteImg1],
+	[harbestImg3],
+]
 
 const Projects = () => {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
