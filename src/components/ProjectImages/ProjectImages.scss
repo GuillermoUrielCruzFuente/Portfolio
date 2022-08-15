@@ -8,9 +8,14 @@
 	justify-content: center;
 	align-items: flex-end;
 	flex-grow: 1;
+	flex-basis: 0;
+	// background-color: crimson;
+	position: relative;
 
 	.project-image {
-		max-width: 300px;
-		// max-height: 300px;
+		max-width: 100%;
+		max-height: 600px;
+
+		// background-color: crimson;
 	}
 }

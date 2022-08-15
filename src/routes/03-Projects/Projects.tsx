@@ -15,9 +15,9 @@ import ProjectImages from '../../components/ProjectImages/ProjectImages'
 import './Projects.scss'
 
 //project images
-import harbestImg1 from '../../static/img/web-images/harbest/screen-01.jpg'
-import harbestImg2 from '../../static/img/web-images/harbest/screen-02.jpg'
-import harbestImg3 from '../../static/img/web-images/harbest/screen-03.jpg'
+import harbestImg1 from '../../static/img/web-images/harbest/collage.png'
+import harbestImg2 from '../../static/img/web-images/harbest/collage-01.png'
+import harbestImg3 from '../../static/img/web-images/harbest/collage-02.png'
 import harbestImg4 from '../../static/img/web-images/harbest/screen-04.jpg'
 
 import intelligentiaImg1 from '../../static/img/web-images/intelligentia/screen-01.jpg'
@@ -35,12 +35,14 @@ import guillermoImg2 from '../../static/img/web-images/guillermo/screen-02.jpg'
 import guillermoImg3 from '../../static/img/web-images/guillermo/screen-03.jpg'
 import guillermoImg4 from '../../static/img/web-images/guillermo/screen-04.jpg'
 
-const projectImages: Array<[string, string, string, string]> = [
-	[harbestImg1, harbestImg2, harbestImg3, harbestImg4],
-	[intelligentiaImg1, intelligentiaImg2, intelligentiaImg3, intelligentiaImg4],
-	[campoFuerteImg1, campoFuerteImg2, campoFuerteImg3, campoFuerteImg4],
-	[guillermoImg1, guillermoImg2, guillermoImg3, guillermoImg4],
-]
+// const projectImages: Array<string[]> = [
+// 	[harbestImg1],
+// 	[intelligentiaImg1, intelligentiaImg2, intelligentiaImg3, intelligentiaImg4],
+// 	[campoFuerteImg1, campoFuerteImg2, campoFuerteImg3, campoFuerteImg4],
+// 	[guillermoImg1, guillermoImg2, guillermoImg3, guillermoImg4],
+// ]
+
+const projectImages: Array<string[]> = [[harbestImg3], [harbestImg1], [harbestImg2], [harbestImg2]]
 
 const Projects = () => {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()

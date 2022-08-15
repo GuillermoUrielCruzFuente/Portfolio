@@ -68,9 +68,16 @@ $intelligentia-red: #db0000;
 	}
 }
 
+.projects {
+	width: 70%;
+	// background-color: crimson;
+}
+
 .project-container {
 	display: flex;
 	flex-flow: row wrap;
+	min-height: max(900px, 100vh);
+	padding-top: 20vh;
 
 	&:nth-child(2n) {
 		// background-color: crimson;

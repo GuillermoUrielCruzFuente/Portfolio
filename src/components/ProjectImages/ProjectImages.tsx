@@ -2,7 +2,7 @@ import { FC } from 'react'
 import './ProjectImages.scss'
 
 type PathImages = {
-	paths: [string, string, string, string]
+	paths: Array<string>
 }
 
 const ProjectImages: FC<PathImages> = ({ paths }) => {
