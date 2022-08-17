@@ -11,8 +11,7 @@ import VueImg from '../../static/img/icons/about-experience/vue.svg'
 
 import Aquarium from '../../static/img/photos/hobbies/aquarium.jpg'
 import Origami from '../../static/img/photos/hobbies/origami.jpg'
-import Minecraft from '../../static/img/icons/hobbies/minecraft.svg'
-import Music from '../../static/img/icons/hobbies/music.svg'
+import Minecraft from '../../static/img/icons/hobbies/videogames.png'
 import Headphones from '../../static/img/icons/hobbies/headphones.svg'
 
 export const techImages = [
@@ -28,8 +27,7 @@ export const techImages = [
 
 export const hobbiesImages = [
     Aquarium,
-    Origami,
     Minecraft,
-    Music,
+    Origami,
     Headphones
 ]
