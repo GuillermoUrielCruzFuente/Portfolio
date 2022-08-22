@@ -20,11 +20,11 @@ import intelligentiaImg1 from '../../static/img/web-images/intelligentia/intelli
 import campoFuerteImg1 from '../../static/img/web-images/campo-fuerte/campo-fuerte-collage.png'
 import guillermoImg1 from '../../static/img/web-images/guillermo/guillermo-collage.png'
 
-const projectImages: Array<string[]> = [
-	[harbestImg1],
-	[intelligentiaImg1],
-	[campoFuerteImg1],
-	[guillermoImg1],
+const projectImages: Array<string> = [
+	harbestImg1,
+	intelligentiaImg1,
+	campoFuerteImg1,
+	guillermoImg1,
 ]
 
 const Projects = () => {
@@ -103,7 +103,7 @@ const Projects = () => {
 										url={project.url}
 									/>
 
-									<ProjectImages paths={projectImages[index]} />
+									<ProjectImages path={projectImages[index]} />
 								</div>
 							)
 						})}

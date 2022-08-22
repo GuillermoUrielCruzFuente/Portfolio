@@ -1,16 +1,14 @@
 import { FC } from 'react'
 import './ProjectImages.scss'
 
-type PathImages = {
-	paths: Array<string>
+type CollagePath = {
+	path: string
 }
 
-const ProjectImages: FC<PathImages> = ({ paths }) => {
+const ProjectImages: FC<CollagePath> = ({ path }) => {
 	return (
-		<div className="project-images">
-			{paths.map((path) => {
-				return <img className="project-image" src={path} alt="project image" />
-			})}
+		<div className="project-collage">
+			<img className="project-image" src={path} alt="project image" />
 		</div>
 	)
 }
