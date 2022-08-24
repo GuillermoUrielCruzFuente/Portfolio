@@ -1,25 +1,36 @@
-.project-collage {
-	padding-left: 1rem;
-	color: #fff;
-	font-weight: 900;
+.project-collage-main {
+	position: relative;
+	flex-grow: 1;
+	flex-basis: 0;
+	// overflow: auto;
+
+	// padding-left: 3rem;
+	// background-color: violet;
+}
+
+.project-collage-img-container {
+	padding-left: 0rem;
+	height: 100%;
+	position: relative;
 	
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
 	align-items: flex-end;
-	flex-grow: 1;
-	flex-basis: 0;
-	position: relative;
+	
 
-	overflow: auto;
 
-	background-color: chartreuse;
+	// background-color: chartreuse;
 
-	.project-image {
+	.project-collage {
 		// max-width: 100%;
 		// max-height: 700px;
-		min-height: 100%;
-		width: 100%;
+		// min-height: 100%;
+		width: 80%;
+		aspect-ratio: 1169/963;
+		// right: -12.50vw;
 		// border-radius: 16px;
+		// background-color: crimson;
+		// position: absolute;
 	}
 }

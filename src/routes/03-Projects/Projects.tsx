@@ -9,22 +9,39 @@ import useNavContext, { ContextType } from '../../hooks/useNavContext'
 //components
 import ScrollDown from '../../components/ScrollDown/ScrollDown'
 import ProjectInfo, { ProjectContent, projects } from '../../components/ProjectInfo/ProjectInfo'
-import ProjectImages from '../../components/ProjectImages/ProjectImages'
+import ProjectImages, { CollagePath } from '../../components/ProjectImages/ProjectImages'
 
 //styles
 import './Projects.scss'
 
 //project images
-import harbestImg1 from '../../static/img/web-images/harbest/harbest-collage.png'
-import intelligentiaImg1 from '../../static/img/web-images/intelligentia/intelligentia-collage.png'
-import campoFuerteImg1 from '../../static/img/web-images/campo-fuerte/campo-fuerte-collage.png'
-import guillermoImg1 from '../../static/img/web-images/guillermo/guillermo-collage.png'
+import harbestImg from '../../static/img/web-images/harbest-collage.png'
+import intelligentiaImg from '../../static/img/web-images/intelligentia-collage.png'
+import campoFuerteImg from '../../static/img/web-images/campo-fuerte-collage.png'
+import guillermoImg from '../../static/img/web-images/guillermo-collage.png'
 
-const projectImages: Array<string> = [
-	harbestImg1,
-	intelligentiaImg1,
-	campoFuerteImg1,
-	guillermoImg1,
+import harbestThumb from '../../static/img/web-images/thumbnails/harbest-thumb.jpg'
+import intelligentiaThumb from '../../static/img/web-images/thumbnails/intelligentia-thumb.jpg'
+import campoFuerteThumb from '../../static/img/web-images/thumbnails/campo-fuerte-thumb.jpg'
+import guillermoThumb from '../../static/img/web-images/thumbnails/guillermo-thumb.jpg'
+
+const proImgs: Array<CollagePath> = [
+	{
+		fullImagePath: harbestImg,
+		thumbnailPath: harbestThumb,
+	},
+	{
+		fullImagePath: intelligentiaImg,
+		thumbnailPath: intelligentiaThumb,
+	},
+	{
+		fullImagePath: campoFuerteImg,
+		thumbnailPath: campoFuerteThumb,
+	},
+	{
+		fullImagePath: guillermoImg,
+		thumbnailPath: guillermoThumb,
+	},
 ]
 
 const Projects = () => {
@@ -103,7 +120,10 @@ const Projects = () => {
 										url={project.url}
 									/>
 
-									<ProjectImages path={projectImages[index]} />
+									<ProjectImages
+										fullImagePath={proImgs[index].fullImagePath}
+										thumbnailPath={proImgs[index].thumbnailPath}
+									/>
 								</div>
 							)
 						})}

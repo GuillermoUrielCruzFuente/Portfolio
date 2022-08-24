@@ -1,14 +1,17 @@
 import { FC } from 'react'
 import './ProjectImages.scss'
 
-type CollagePath = {
-	path: string
+export type CollagePath = {
+	fullImagePath: string
+	thumbnailPath: string
 }
 
-const ProjectImages: FC<CollagePath> = ({ path }) => {
+const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 	return (
-		<div className="project-collage">
-			<img className="project-image" src={path} alt="project image" />
+		<div className="project-collage-main">
+			<div className="project-collage-img-container">
+				<img className="project-collage" src={thumbnailPath} alt="project image" />
+			</div>
 		</div>
 	)
 }
