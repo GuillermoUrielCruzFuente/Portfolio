@@ -10,7 +10,14 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 	return (
 		<div className="project-collage-main">
 			<div className="project-collage-img-container">
-				<img className="project-collage" src={thumbnailPath} alt="project image" />
+				<div className="project-collage screen-blur"></div>
+
+				<img
+					className="project-collage"
+					src={thumbnailPath}
+					src-set={fullImagePath}
+					alt="project image"
+				/>
 			</div>
 		</div>
 	)
