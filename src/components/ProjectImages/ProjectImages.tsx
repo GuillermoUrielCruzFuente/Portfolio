@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, SyntheticEvent, useEffect, useRef } from 'react'
 import './ProjectImages.scss'
 
 export type CollagePath = {
@@ -24,7 +24,7 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 			: console.log('download image failed')
 
 		return () => {
-			observer.unobserve(collageRef.current as HTMLImageElement)
+			observer.unobserve(collageRef.current!)
 		}
 	}, [])
 
@@ -35,9 +35,6 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				loadFullImage()
-
-				deleteBlur()
-
 				observer.unobserve(collageRef.current!)
 			}
 		})
@@ -45,6 +42,17 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 
 	const loadFullImage = () => {
 		collageRef.current ? (collageRef.current.src = fullImagePath) : undefined
+	}
+
+	const handleImageLoad = () => {
+		const currentPath = collageRef.current!.src.slice(
+			collageRef.current!.src.length - fullImagePath.length,
+			collageRef.current!.src.length
+		)
+
+		if (currentPath === fullImagePath) {
+			deleteBlur()
+		}
 	}
 
 	const deleteBlur = () => {
@@ -57,11 +65,11 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 				<div ref={blur} className="project-collage screen-blur"></div>
 
 				<img
+					ref={collageRef}
 					className="project-collage"
 					src={thumbnailPath}
-					src-set={fullImagePath}
+					onLoad={handleImageLoad}
 					alt="project image"
-					ref={collageRef}
 				/>
 			</div>
 		</div>

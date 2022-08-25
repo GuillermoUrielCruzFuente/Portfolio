@@ -13,25 +13,32 @@
 	justify-content: center;
 	align-items: flex-end;
 
+	// background-color: crimson;
+
 	.screen-blur {
 		backdrop-filter: blur(10px);
 		background-color: rgba($color: #770686, $alpha: 0.15);
 		position: absolute;
 
-		transition: backdrop-filter 500ms;
+		transition: backdrop-filter 500ms, background-color 500ms;
+
+		border-radius: 16px;
 	}
 
 	.screen-noblur {
 		backdrop-filter: blur(0px);
 
-		background-color: rgba($color: #770686, $alpha: 0.15);
+		background-color: rgba($color: #770686, $alpha: 0);
 		position: absolute;
 
 		transition: backdrop-filter 500ms;
+		border-radius: 16px;
 	}
 
 	.project-collage {
 		width: 80%;
 		aspect-ratio: 1169/963;
+
+		border-radius: 16px;
 	}
 }
