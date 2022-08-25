@@ -8,6 +8,7 @@ export type CollagePath = {
 
 const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 	const collageRef = useRef<HTMLImageElement>(null)
+	const blur = useRef<HTMLDivElement>(null)
 
 	const intersectionOptions: IntersectionObserverInit = {
 		root: null,
@@ -23,22 +24,37 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 			: console.log('download image failed')
 
 		return () => {
-			observer.unobserve(collageRef.current)
+			observer.unobserve(collageRef.current as HTMLImageElement)
 		}
 	}, [])
 
-	const computeEntries = (entries: Array<IntersectionObserverEntry>) => {
+	const computeEntries: IntersectionObserverCallback = (
+		entries: Array<IntersectionObserverEntry>,
+		observer: IntersectionObserver
+	) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
-				console.log('intersection', fullImagePath)
+				loadFullImage()
+
+				deleteBlur()
+
+				observer.unobserve(collageRef.current!)
 			}
 		})
+	}
+
+	const loadFullImage = () => {
+		collageRef.current ? (collageRef.current.src = fullImagePath) : undefined
+	}
+
+	const deleteBlur = () => {
+		blur.current ? blur.current.classList.replace('screen-blur', 'screen-noblur') : undefined
 	}
 
 	return (
 		<div className="project-collage-main">
 			<div className="project-collage-img-container">
-				<div className="project-collage screen-blur"></div>
+				<div ref={blur} className="project-collage screen-blur"></div>
 
 				<img
 					className="project-collage"

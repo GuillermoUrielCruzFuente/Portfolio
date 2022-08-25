@@ -17,6 +17,17 @@
 		backdrop-filter: blur(10px);
 		background-color: rgba($color: #770686, $alpha: 0.15);
 		position: absolute;
+
+		transition: backdrop-filter 500ms;
+	}
+
+	.screen-noblur {
+		backdrop-filter: blur(0px);
+
+		background-color: rgba($color: #770686, $alpha: 0.15);
+		position: absolute;
+
+		transition: backdrop-filter 500ms;
 	}
 
 	.project-collage {
