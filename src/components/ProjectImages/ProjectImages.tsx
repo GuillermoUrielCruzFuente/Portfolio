@@ -24,7 +24,7 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 			: console.log('download image failed')
 
 		return () => {
-			observer.unobserve(collageRef.current!)
+			collageRef.current ? observer.unobserve(collageRef.current!) : undefined
 		}
 	}, [])
 
