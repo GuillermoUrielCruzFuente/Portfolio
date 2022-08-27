@@ -1,0 +1,33 @@
+#contact {
+
+    .page-main-title {
+        color: #fff;
+        font-size: clamp(1rem, 5vw, 5rem);
+    }
+}
+
+.page-contact-enter {
+	opacity: 0;
+	transform: translateY(-50px);
+}
+
+.page-contact-enter-active {
+	opacity: 1;
+	transform: translateY(0px);
+
+	transition: opacity 300ms, transform 300ms;
+	transition-timing-function: ease;
+}
+
+.page-contact-exit {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.page-contact-exit-active {
+	opacity: 0;
+	transform: translateY(50px);
+
+	transition: opacity 300ms, transform 300ms;
+	transition-timing-function: ease;
+}

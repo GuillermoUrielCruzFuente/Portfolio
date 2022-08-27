@@ -47,7 +47,7 @@ export const projects: Array<ProjectContent> = [
 	},
 	{
 		order: 4,
-		name: '{Guillermo}',
+		name: 'Guillermo',
 		description:
 			'Portafolio Frontend developer. Mediante mi portafolio busco expresar mi verdadero estilo de diseño y desarrollo, sin ataduras, fechas límite o clientes con cambios de diseño.',
 		techStack: ['react', 'scss', 'ts', 'vite'],

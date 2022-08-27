@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
+import './Contact.scss'
+
 //outlet custom hook
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
@@ -36,13 +38,13 @@ export default function Contact() {
 			in={sectionState}
 			nodeRef={refContainer}
 			timeout={350}
-			classNames="page"
+			classNames="page-contact"
 			mountOnEnter
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}
 		>
-			<header ref={refContainer}>
-				<h1>Contact</h1>
+			<header id="contact" ref={refContainer}>
+				<h1 className="page-main-title">Contáctame</h1>
 			</header>
 		</CSSTransition>
 	)
