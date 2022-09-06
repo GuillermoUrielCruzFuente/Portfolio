@@ -1,0 +1,32 @@
+.download-pdf {
+	max-width: 150px;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	box-shadow: 3px 3px 16px rgba($color: #000000, $alpha: 0.75);
+    margin-top: 2rem;
+
+	// background-color: crimson;
+
+	.thumb-container {
+		width: 100%;
+
+		img {
+			width: 100%;
+		}
+	}
+
+    .button-container {
+
+        a {
+            color: #F5C8FF;
+            font-size: .85rem;
+            text-decoration: none;
+            font-weight: 900;
+            text-align: center;
+            display: block;
+            width: 100%;
+            // background-color: chartreuse;
+            padding: 0.5rem 0 0.25rem 0;
+        }
+    }
+}

@@ -1,16 +1,71 @@
 #contact {
+	display: flex;
+	flex-flow: column;
+
+	.top-container {
+		// background-color: #333;
+		width: 100%;
+	}
 
     .page-main-title {
         color: #fff;
-        font-size: clamp(1rem, 5vw, 5rem);
+        font-size: clamp(1rem, 6vw, 6rem);
+		text-transform: uppercase;
+		// margin: 0 auto;
+		width: 100%;
+		text-align: center;
     }
+
+    p {
+        font-size: 0.8rem;
+        color: #F5C8FF;
+        // max-width: 60%;
+        // line-height: 1.8;
+    }
+
+	.contact-social-media {
+		display: flex;
+		flex-flow: row;
+	}
+
+	.phone-number {
+		font-weight: 900;
+		font-size: 1.5rem;
+		color: #fff;
+		margin-left: 1rem;
+	}
+}
+
+form#contact-form {
+	display: flex;
+	flex-flow: column;
+
+	margin-top: 2rem;
+
+	.form-input {
+		margin-top: 1rem;
+	}
+}
+
+.split-container {
+	display: flex;
+	flex-flow: row;
+
+	.split {
+		// background-color: crimson;
+
+		// width: 50%;
+
+		flex-basis: 0;
+		flex-grow: 1;
+	}
 }
 
 .page-contact-enter {
 	opacity: 0;
 	transform: translateY(-50px);
 }
-
+    
 .page-contact-enter-active {
 	opacity: 1;
 	transform: translateY(0px);
