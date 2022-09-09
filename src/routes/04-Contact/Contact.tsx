@@ -33,7 +33,7 @@ export default function Contact() {
 
 		setTimeout(() => {
 			setSocialState(true)
-		}, 800)
+		}, 200)
 	}
 
 	const hideContent = () => {
@@ -57,7 +57,7 @@ export default function Contact() {
 				</div>
 				<div className="split-container">
 					<div className="split">
-						<p>
+						<p className="contact-text">
 							Puedes encontrarme en distintas redes sociales, usa aquella con la que
 							te sientas más cómodo, te regresaré el mensaje tan pronto como me sea
 							posible.
@@ -67,8 +67,9 @@ export default function Contact() {
 							celular: <span className="phone-number">555 158 89 11</span>
 						</p>
 
-						<p>
-							También puedes darle un vistazo a mi CV, esta es la versión más reciente, con toda mi información en el.
+						<p className="contact-text">
+							También puedes darle un vistazo a mi CV, esta es la versión más
+							reciente, con toda mi información en el.
 						</p>
 
 						<DownloadPDF />
@@ -85,9 +86,42 @@ export default function Contact() {
 						</p>
 
 						<form action="" id="contact-form">
-							<input className="form-input" type="text" placeholder="nombre" />
-							<input className="form-input" type="mail" placeholder="correo" />
+							<div className="input-container">
+								<input
+									id="name_input"
+									className="form-input"
+									type="text"
+									placeholder="nombre"
+									required
+								/>
+								<label htmlFor="name_input">nombre</label>
+							</div>
 
+							<div className="input-container">
+								<input
+									id="mail_input"
+									className="form-input"
+									type="text"
+									placeholder="mail"
+									required
+								/>
+								<label htmlFor="name_input">mail</label>
+							</div>
+
+							<div className="input-container">
+								<textarea
+									className="form-input"
+									name="message"
+									id="form-message"
+									cols={30}
+									rows={10}
+									placeholder="mensaje"
+									required
+								></textarea>
+
+								<label htmlFor="name_input">mensaje</label>
+							</div>
+{/* 
 							<textarea
 								className="form-input"
 								name="message"
@@ -95,7 +129,7 @@ export default function Contact() {
 								cols={30}
 								rows={10}
 								placeholder="mensaje"
-							></textarea>
+							></textarea> */}
 						</form>
 					</div>
 				</div>

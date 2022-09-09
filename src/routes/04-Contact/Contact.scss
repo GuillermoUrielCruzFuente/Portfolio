@@ -3,29 +3,30 @@
 	flex-flow: column;
 
 	.top-container {
-		// background-color: #333;
 		width: 100%;
 	}
 
-    .page-main-title {
-        color: #fff;
-        font-size: clamp(1rem, 6vw, 6rem);
+	.page-main-title {
+		color: #fff;
+		font-size: clamp(1rem, 6vw, 6rem);
 		text-transform: uppercase;
 		// margin: 0 auto;
 		width: 100%;
 		text-align: center;
-    }
+		font-weight: 900;
+	}
 
-    p {
-        font-size: 0.8rem;
-        color: #F5C8FF;
-        // max-width: 60%;
-        // line-height: 1.8;
-    }
+	p {
+		font-size: 1rem;
+		color: #f5c8ff;
+		// max-width: 60%;
+		// line-height: 1.8;
+	}
 
 	.contact-social-media {
 		display: flex;
 		flex-flow: row;
+		margin-block: 1rem;
 	}
 
 	.phone-number {
@@ -42,8 +43,71 @@ form#contact-form {
 
 	margin-top: 2rem;
 
+	background-color: black;
+	padding: 1rem;
+	border-radius: 0.75rem;
+	box-shadow: 0px 0px 16px rgba($color: #000000, $alpha: 0.5);
+}
+
+.input-container {
+	position: relative;
+	padding-top: 1.25rem;
+	margin-top: 1rem;
+	// background-color: crimson;
+
+	label {
+		position: absolute;
+		display: block;
+		color: #f5c8ff;
+		// bottom: 0.25rem;
+		top: 1.75rem;
+		left: 0.5rem;
+		font-size: 1rem;
+		text-anchor: start;
+		transform-origin: left;
+		user-select: none;
+		pointer-events: none;
+		font-weight: 400;
+		transition: top 200ms, left 200ms, transform 200ms;
+	}
+
 	.form-input {
-		margin-top: 1rem;
+		background-color: #3e0b49;
+		outline: none;
+		border: 0px transparent;
+		padding: 0.5rem;
+		font-size: 1rem;
+		color: #fff;
+		width: 100%;
+		border-radius: 0.5rem;
+		box-shadow: 0px 0px 16px rgba($color: #000000, $alpha: 0.5);
+
+		&::placeholder {
+			color: #f5c8ff;
+			color: transparent;
+		}
+
+		&:focus {
+			& + label {
+				top: 0rem;
+				left: 0rem;
+				transform: scale(0.75);
+				font-weight: 900;
+			}
+		}
+
+		&:valid {
+			& + label {
+				top: 0rem;
+				left: 0rem;
+				transform: scale(0.75);
+				font-weight: 900;
+			}
+		}
+	}
+
+	textarea {
+		resize: none;
 	}
 }
 
@@ -61,28 +125,8 @@ form#contact-form {
 	}
 }
 
-.page-contact-enter {
-	opacity: 0;
-	transform: translateY(-50px);
-}
-    
-.page-contact-enter-active {
-	opacity: 1;
-	transform: translateY(0px);
-
-	transition: opacity 300ms, transform 300ms;
-	transition-timing-function: ease;
+.contact-text {
+	width: 75%;
 }
 
-.page-contact-exit {
-	opacity: 1;
-	transform: translateY(0px);
-}
-
-.page-contact-exit-active {
-	opacity: 0;
-	transform: translateY(50px);
-
-	transition: opacity 300ms, transform 300ms;
-	transition-timing-function: ease;
-}
+@import './page_transition';
