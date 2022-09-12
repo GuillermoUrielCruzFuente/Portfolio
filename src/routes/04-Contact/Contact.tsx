@@ -9,6 +9,11 @@ import useNavContext, { ContextType } from '../../hooks/useNavContext'
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
 import DownloadPDF from '../../components/DownloadPDF/DownloadPDF'
 
+//img
+import emailIcon from '../../static/img/icons/social-media/email.svg'
+import userIcon from '../../static/img/icons/contact/user.svg'
+import messageIcon from '../../static/img/icons/contact/message.svg'
+
 export default function Contact() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
 	const location = useLocation()
@@ -63,9 +68,13 @@ export default function Contact() {
 							posible.
 						</p>
 						<SocialMedia containerClass="contact-social-media" state={socialState} />
-						<p>
-							celular: <span className="phone-number">555 158 89 11</span>
-						</p>
+
+						<div className="phone-number-container">
+							<p>celular</p>
+							<a className="tel-tag" href="tel:+52-5551588911">
+								5551588911
+							</a>
+						</div>
 
 						<p className="contact-text">
 							También puedes darle un vistazo a mi CV, esta es la versión más
@@ -95,6 +104,8 @@ export default function Contact() {
 									required
 								/>
 								<label htmlFor="name_input">nombre</label>
+
+								<img className="label-icon" src={userIcon} alt="asasdfad" />
 							</div>
 
 							<div className="input-container">
@@ -106,6 +117,8 @@ export default function Contact() {
 									required
 								/>
 								<label htmlFor="name_input">mail</label>
+
+								<img className="label-icon" src={emailIcon} alt="asasdfad" />
 							</div>
 
 							<div className="input-container">
@@ -113,23 +126,13 @@ export default function Contact() {
 									className="form-input"
 									name="message"
 									id="form-message"
-									cols={30}
-									rows={10}
 									placeholder="mensaje"
 									required
 								></textarea>
-
 								<label htmlFor="name_input">mensaje</label>
+
+								<img className="label-icon" src={messageIcon} alt="asasdfad" />
 							</div>
-{/* 
-							<textarea
-								className="form-input"
-								name="message"
-								id="form-message"
-								cols={30}
-								rows={10}
-								placeholder="mensaje"
-							></textarea> */}
 						</form>
 					</div>
 				</div>

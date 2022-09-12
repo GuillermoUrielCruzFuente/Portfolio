@@ -1,6 +1,7 @@
 #contact {
 	display: flex;
 	flex-flow: column;
+	width: 70%;
 
 	.top-container {
 		width: 100%;
@@ -8,19 +9,18 @@
 
 	.page-main-title {
 		color: #fff;
-		font-size: clamp(1rem, 6vw, 6rem);
+		font-size: clamp(1rem, 4vw, 4rem);
 		text-transform: uppercase;
-		// margin: 0 auto;
 		width: 100%;
 		text-align: center;
 		font-weight: 900;
+		margin-block-end: 1rem;
 	}
 
 	p {
 		font-size: 1rem;
 		color: #f5c8ff;
-		// max-width: 60%;
-		// line-height: 1.8;
+		font-size: 0.85rem;
 	}
 
 	.contact-social-media {
@@ -37,32 +37,49 @@
 	}
 }
 
+.phone-number-container {
+	display: flex;
+	flex-flow: column;
+	align-items: flex-start;
+
+	margin-block: 2rem;
+
+	p {
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.tel-tag {
+		font-size: 2rem;
+		font-weight: 900;
+		color: #fff;
+		line-height: 1;
+	}
+}
+
 form#contact-form {
 	display: flex;
 	flex-flow: column;
-
 	margin-top: 2rem;
-
-	background-color: black;
-	padding: 1rem;
-	border-radius: 0.75rem;
-	box-shadow: 0px 0px 16px rgba($color: #000000, $alpha: 0.5);
 }
 
 .input-container {
 	position: relative;
 	padding-top: 1.25rem;
 	margin-top: 1rem;
-	// background-color: crimson;
 
+	&:first-child {
+		margin-top: 0;
+	}
+
+	$left-padding: 2.25rem;
 	label {
 		position: absolute;
 		display: block;
 		color: #f5c8ff;
-		// bottom: 0.25rem;
 		top: 1.75rem;
-		left: 0.5rem;
-		font-size: 1rem;
+		left: $left-padding;
+		font-size: 0.85rem;
 		text-anchor: start;
 		transform-origin: left;
 		user-select: none;
@@ -71,37 +88,37 @@ form#contact-form {
 		transition: top 200ms, left 200ms, transform 200ms;
 	}
 
+	.label-icon {
+		width: 20px;
+		height: 20px;
+		display: inline-block;
+		position: absolute;
+		left: 0.5rem;
+		top: 1.75rem;
+	}
+
 	.form-input {
 		background-color: #3e0b49;
 		outline: none;
 		border: 0px transparent;
 		padding: 0.5rem;
-		font-size: 1rem;
+		padding-left: $left-padding;
+		font-size: 0.85rem;
 		color: #fff;
 		width: 100%;
 		border-radius: 0.5rem;
-		box-shadow: 0px 0px 16px rgba($color: #000000, $alpha: 0.5);
 
 		&::placeholder {
 			color: #f5c8ff;
 			color: transparent;
 		}
 
-		&:focus {
-			& + label {
-				top: 0rem;
-				left: 0rem;
-				transform: scale(0.75);
-				font-weight: 900;
-			}
-		}
-
+		&:focus,
 		&:valid {
 			& + label {
 				top: 0rem;
 				left: 0rem;
 				transform: scale(0.75);
-				font-weight: 900;
 			}
 		}
 	}
@@ -116,17 +133,13 @@ form#contact-form {
 	flex-flow: row;
 
 	.split {
-		// background-color: crimson;
-
-		// width: 50%;
-
 		flex-basis: 0;
 		flex-grow: 1;
 	}
 }
 
 .contact-text {
-	width: 75%;
+	width: 85%;
 }
 
 @import './page_transition';
