@@ -121,9 +121,8 @@ const Projects = () => {
 					<section className="projects">
 						{projects.map((project: ProjectContent, index: number) => {
 							return (
-								<div className="project-container" key={project.name}>
+								<div className="project-container" key={project.url}>
 									<ProjectInfo
-										key={project.name}
 										order={project.order}
 										name={project.name}
 										description={project.description}

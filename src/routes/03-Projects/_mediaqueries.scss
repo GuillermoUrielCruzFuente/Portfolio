@@ -1,15 +1,60 @@
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1300px) {
+	main#projects-main {
+		.projects {
+			width: 85%;
+		}
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	main#projects-main {
+		.projects {
+			width: 90%;
+		}
+	}
+}
+
+@media screen and (max-width: 1000px) {
 	.page-description {
-		width: 100%;
+		width: 80%;
 	}
 
 	.works {
-		padding: 2rem 10%;
-
 		margin: 4rem 0;
 
-        p {
-            margin-inline: 1rem;
-        }
+		.project-logo {
+			$logo-size: 60px;
+			width: $logo-size;
+			height: $logo-size;
+			margin-inline: 2rem;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.page-description {
+		width: 100%;
+		text-align: justify;
+	}
+
+	.works {
+
+		.project-logo {
+			$logo-size: 50px;
+			width: $logo-size;
+			height: $logo-size;
+			margin-inline: 1rem;
+		}
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.works {
+		.project-logo {
+			$logo-size: 40px;
+			width: $logo-size;
+			height: $logo-size;
+			margin-inline: 0.5rem;
+		}
 	}
 }
