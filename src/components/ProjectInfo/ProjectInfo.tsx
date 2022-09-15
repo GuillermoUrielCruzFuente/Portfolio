@@ -29,7 +29,7 @@ export const projects: Array<ProjectContent> = [
 	},
 	{
 		order: 2,
-		name: 'iNTELLiGENTiA',
+		name: 'Intelligentia',
 		description:
 			'Agencia de marketing político enfocado en el tratamiento integral del proceso electoral. Realiza actividades que comprenden desde el análisis estadístico hasta el desarrollo de la marca personal de sus clientes. Una landing page enfocada en demostrar seriedad, minimalismo y creatividad.',
 		techStack: ['html', 'scss', 'ts', 'vite'],

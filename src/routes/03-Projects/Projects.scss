@@ -1,7 +1,6 @@
 header#projects {
 	position: relative;
 	min-height: calc(100vh - var(--navbar-size));
-
 	display: flex;
 	flex-flow: column;
 	align-items: center;
@@ -32,17 +31,17 @@ $intelligentia-red: #db0000;
 }
 
 .page-title {
-	font-size: clamp(1.5rem, 10vw, 8rem);
+	font-size: clamp(1.5rem, 10vw, 6rem);
 	color: #fff;
 	text-transform: uppercase;
 	text-align: center;
 }
 
 .page-description {
-	font-size: 1rem;
+	font-size: 0.85rem;
 	font-weight: 400;
 	text-align: center;
-	width: 50%;
+	width: 40%;
 	margin: 0 auto;
 	color: #fff;
 }
@@ -51,26 +50,41 @@ $intelligentia-red: #db0000;
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;
-	justify-content: space-around;
-
+	justify-content: center;
 	padding: 3rem 20%;
-	background-color: rgba($color: #4f165e, $alpha: 0.5);
-	backdrop-filter: blur(5px);
 	width: 100vw;
-	box-shadow: 0px 0px 16px rgba($color: #000000, $alpha: 0.75);
-
 	margin: 4rem 0;
 
-	p {
-		color: #fff;
-		font-size: clamp(1rem, 2.5vw, 2rem);
-		font-weight: 900;
+	.project-logo {
+		$logo-size: 90px;
+		width: $logo-size;
+		height: $logo-size;
+		margin-inline: 3rem;
+		animation: up-down ease-in-out 1s alternate infinite;
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 }
 
-// .projects {
-// 	width: 70%;
-// }
+@keyframes up-down {
+	$y-movement: 8px;
+	from {
+		transform: translateY($y-movement);
+	}
+	to {
+		transform: translateY(-$y-movement);
+	}
+}
+
+main#projects-main {
+	background-color: #000;
+}
 
 .project-container {
 	display: flex;
@@ -79,7 +93,6 @@ $intelligentia-red: #db0000;
 	padding-top: 20vh;
 
 	&:nth-child(2n) {
-		// background-color: crimson;
 		flex-flow: row-reverse wrap;
 		text-align: right;
 

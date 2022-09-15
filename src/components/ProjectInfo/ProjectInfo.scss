@@ -9,10 +9,10 @@
 	// background-color: chartreuse;
 
 	.project-number {
-		font-size: 1.25rem;
+		font-size: 1rem;
 		color: #7e1e95;
 		font-weight: 900;
-		text-transform: uppercase;
+		// text-transform: uppercase;
 	}
 
 	.project-name {
@@ -22,8 +22,9 @@
 
 	.project-description {
 		font-size: 1rem;
+		font-size: 0.85rem;
 		color: #f2dbff;
-		width: 500px;
+		width: 450px;
 		line-height: 1.6;
 	}
 
@@ -31,7 +32,7 @@
 		font-size: 1rem;
 		color: #7e1e95;
 		font-weight: 900;
-		text-transform: uppercase;
+		// text-transform: uppercase;
 		margin-top: 3rem;
 	}
 

@@ -72,7 +72,7 @@ export default function Contact() {
 						<div className="phone-number-container">
 							<p>celular</p>
 							<a className="tel-tag" href="tel:+52-5551588911">
-								5551588911
+								555 158 8911
 							</a>
 						</div>
 

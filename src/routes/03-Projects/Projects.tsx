@@ -25,6 +25,13 @@ import intelligentiaThumb from '../../static/img/web-images/thumbnails/intellige
 import campoFuerteThumb from '../../static/img/web-images/thumbnails/campo-fuerte-thumb.jpg'
 import guillermoThumb from '../../static/img/web-images/thumbnails/guillermo-thumb.jpg'
 
+import harbestLogo from '../../static/img/icons/project-logos/harbest.svg'
+import intelligentiaLogo from '../../static/img/icons/project-logos/intelligentia.svg'
+import campoFuerteLogo from '../../static/img/icons/project-logos/campo-fuerte.svg'
+import guillermoLogo from '../../static/img/icons/project-logos/guillermo.svg'
+
+const projectLogos = [harbestLogo, intelligentiaLogo, campoFuerteLogo, guillermoLogo]
+
 const proImgs: Array<CollagePath> = [
 	{
 		fullImagePath: harbestImg,
@@ -84,28 +91,33 @@ const Projects = () => {
 				<header ref={refContainer} id="projects">
 					<h1 className="page-title">Proyectos</h1>
 					<p className="page-description">
-						Comencé hace ya un tiempo en el desarrollo web, tras varias iteraciones
-						estos son mis proyectos destacados, aquellos en los que he colocado esfuerzo
-						y dedicación, te agradezco el tiempo que te tome revisarlos.
+						Comencé hace ya un tiempo en el{' '}
+						<span className="accent">desarrollo web</span>, tras varias iteraciones
+						estos son mis <span className="accent">proyectos destacados</span>, aquellos
+						en los que he colocado esfuerzo y dedicación, te agradezco el tiempo que te
+						tome revisarlos.
 					</p>
 
 					<div className="works">
-						<p>
-							<span className="harbest-blue">har</span>Best
-						</p>
-						<p>
-							<span className="intelligentia-red">i</span>NTELLiGENTiA
-						</p>
-						<p>
-							<span className="campofuerte-brown">Campo</span>{' '}
-							<span className="campofuerte-green">Fuerte</span>
-						</p>
+						{projectLogos.map((logo: string, index: number) => {
+							return (
+								<img
+									key={logo}
+									className="project-logo"
+									src={logo}
+									alt="harbest logo"
+									style={{
+										animationDelay: `${100 * index}ms`,
+									}}
+								/>
+							)
+						})}
 					</div>
 
 					<ScrollDown />
 				</header>
 
-				<main>
+				<main id="projects-main">
 					<section className="projects">
 						{projects.map((project: ProjectContent, index: number) => {
 							return (

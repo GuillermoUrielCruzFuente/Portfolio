@@ -100,7 +100,7 @@ const About = () => {
 					<ScrollDown />
 				</header>
 
-				<main>
+				<main id='about-main'>
 					<section id="experiecia" className="split-big-title">
 						<div className="big-title">
 							<AnimatedTitle
