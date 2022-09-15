@@ -1,5 +1,5 @@
 import { FC, SyntheticEvent, useEffect, useRef } from 'react'
-import './ProjectImages.scss'
+// import './ProjectImages.scss'
 
 export type CollagePath = {
 	fullImagePath: string

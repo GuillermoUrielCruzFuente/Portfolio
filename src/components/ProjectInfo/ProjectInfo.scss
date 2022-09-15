@@ -23,8 +23,10 @@
 	.project-description {
 		font-size: 0.85rem;
 		color: #f2dbff;
-		width: 450px;
+		width: min(450px, 100%);
 		line-height: 1.6;
+
+		// background-color: chartreuse;
 	}
 
 	.project-techs {

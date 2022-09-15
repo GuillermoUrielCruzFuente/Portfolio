@@ -98,6 +98,10 @@ main#projects-main {
 	min-height: max(900px, 100vh);
 	padding-top: 20vh;
 
+	// .project-collage-img-container {
+	// 	align-items: flex-end;
+	// }
+
 	&:nth-child(2n) {
 		flex-flow: row-reverse wrap;
 		text-align: right;

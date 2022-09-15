@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import './ProjectInfo.scss'
+// import './ProjectInfo.scss'
 import { techImages } from '../../helpers/exports/AboutExports'
 import Button from '../Button/Button'
 

@@ -7,18 +7,69 @@
 }
 
 @media screen and (max-width: 1100px) {
-	main#projects-main {
-		.projects {
-			width: 90%;
+	//change the orientation of the project info component
+	.project-collage-img-container {
+		height: 100%;
+		position: relative;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.project-container {
+		display: flex;
+		flex-flow: column;
+
+		// min-height: max(900px, 100vh);
+		padding-top: 10vh;
+
+		&:nth-child(2n) {
+			flex-flow: column;
+			text-align: right;
+
+			.project-info {
+				align-items: center; //change the orientation from alternate to center
+
+				.project-tech-icons-container {
+					flex-flow: row wrap;
+				}
+
+				.project-buttons-container {
+					flex-flow: row wrap;
+
+					button:first-child {
+						margin-right: 1rem;
+						margin-left: 0rem;
+					}
+				}
+
+				.project-tech-icon {
+					&:first-child {
+						margin-right: 1rem;
+					}
+				}
+			}
+
+			.project-collage-img-container {
+				align-items: center;
+			}
+		}
+
+		.project-info {
+			align-items: center;
+			// background-color: crimson;
+			width: 100%;
+
+			.project-description {
+				text-align: center;
+				margin-top: 1rem;
+			}
 		}
 	}
 }
 
 @media screen and (max-width: 1000px) {
-	.page-description {
-		width: 80%;
-	}
-
 	.works {
 		margin: 4rem 0;
 
@@ -38,12 +89,19 @@
 	}
 
 	.works {
-
 		.project-logo {
 			$logo-size: 50px;
 			width: $logo-size;
 			height: $logo-size;
 			margin-inline: 1rem;
+		}
+	}
+
+	.project-container {
+		.project-info {
+			.project-description {
+				text-align: justify;
+			}
 		}
 	}
 }
