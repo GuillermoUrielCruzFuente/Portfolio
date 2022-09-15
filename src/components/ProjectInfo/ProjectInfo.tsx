@@ -10,7 +10,7 @@ type Technology = 'html' | 'scss' | 'js' | 'ts' | 'react' | 'vite'
 
 export type ProjectContent = {
 	order: number
-	name: string
+	name: JSX.Element
 	description: string
 	techStack: Array<Technology>
 	repository: string
@@ -20,7 +20,11 @@ export type ProjectContent = {
 export const projects: Array<ProjectContent> = [
 	{
 		order: 1,
-		name: 'harBest',
+		name: (
+			<h1 className="project-name">
+				<span className="harbest-blue">har</span>Best
+			</h1>
+		),
 		description:
 			'Empresa dedicada a la producción y comercialización de fertilizantes commodities y multiminerales. Una clásica landing page, con la información necesaria para clientes potenciales.',
 		techStack: ['html', 'scss', 'js', 'vite'],
@@ -29,7 +33,7 @@ export const projects: Array<ProjectContent> = [
 	},
 	{
 		order: 2,
-		name: 'Intelligentia',
+		name: <h1 className="project-name">Intelligentia</h1>,
 		description:
 			'Agencia de marketing político enfocado en el tratamiento integral del proceso electoral. Realiza actividades que comprenden desde el análisis estadístico hasta el desarrollo de la marca personal de sus clientes. Una landing page enfocada en demostrar seriedad, minimalismo y creatividad.',
 		techStack: ['html', 'scss', 'ts', 'vite'],
@@ -38,7 +42,12 @@ export const projects: Array<ProjectContent> = [
 	},
 	{
 		order: 3,
-		name: 'Campo Fuerte',
+		name: (
+			<h1 className="project-name">
+				<span className="campofuerte-brown">Campo </span>
+				<span className="campofuerte-green">Fuerte</span>
+			</h1>
+		),
 		description:
 			'Empresa dedicada a la comercialización de agroinsumos y servicios de vanguardia. Realicé un rediseño de su presencia en la web, buscando expresar una identidad fresca y a la vez seria.',
 		techStack: ['html', 'scss', 'ts', 'vite'],
@@ -47,7 +56,7 @@ export const projects: Array<ProjectContent> = [
 	},
 	{
 		order: 4,
-		name: 'Guillermo',
+		name: <h1 className="project-name">Guillermo</h1>,
 		description:
 			'Portafolio Frontend developer. Mediante mi portafolio busco expresar mi verdadero estilo de diseño y desarrollo, sin ataduras, fechas límite o clientes con cambios de diseño.',
 		techStack: ['react', 'scss', 'ts', 'vite'],
@@ -130,7 +139,7 @@ const ProjectInfo: FC<ProjectContent> = ({
 	return (
 		<article className="project-info">
 			<p className="project-number">💼 Proyecto #{order}</p>
-			<h1 className="project-name">{name}</h1>
+			{name}
 			<p className="project-description">{description}</p>
 			<p className="project-techs">🔧 Tecnologías empleadas</p>
 			<div className="project-tech-icons-container">
