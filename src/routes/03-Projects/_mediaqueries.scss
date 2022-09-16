@@ -11,7 +11,11 @@
 	.project-container {
 		display: flex;
 		flex-flow: column;
-		padding-top: 10vh;
+
+		padding-top: unset;
+		min-height: unset;
+		margin-top: 1rem;
+		padding-bottom: 5rem;
 
 		&:nth-child(2n) {
 			flex-flow: column;
@@ -47,9 +51,19 @@
 			}
 		}
 
+		&:first-child {
+			padding-top: 5rem;
+		}
+
 		.project-info {
 			align-items: center;
 			width: 100%;
+			margin-bottom: 2rem;
+
+			//in this checkpoint is necessary reset the values of basis and grow,
+			//the flex-flow has changed and now is causing some troubles
+			flex-basis: unset;
+			padding-block: 1rem;
 
 			.project-description {
 				text-align: center;
@@ -65,13 +79,26 @@
 					margin-inline: 1rem;
 				}
 			}
+
+			//safari is overflowing the project info container
+		}
+
+		.project-collage-main {
+			//in this checkpoint is necessary reset the values of basis and grow,
+			//the flex-flow has changed and now is causing some troubles
+			flex-grow: unset;
+			flex-basis: unset;
 		}
 
 		.project-collage-img-container {
 			align-items: center;
 
+			// background-color: cadetblue;
+
 			.project-collage {
 				width: 100%;
+
+				// width: 80%;
 			}
 		}
 	}
