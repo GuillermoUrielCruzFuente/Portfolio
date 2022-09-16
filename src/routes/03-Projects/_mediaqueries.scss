@@ -15,7 +15,7 @@
 		padding-top: unset;
 		min-height: unset;
 		margin-top: 1rem;
-		padding-bottom: 5rem;
+		padding-bottom: 2rem;
 
 		&:nth-child(2n) {
 			flex-flow: column;
@@ -79,8 +79,6 @@
 					margin-inline: 1rem;
 				}
 			}
-
-			//safari is overflowing the project info container
 		}
 
 		.project-collage-main {
@@ -93,12 +91,8 @@
 		.project-collage-img-container {
 			align-items: center;
 
-			// background-color: cadetblue;
-
 			.project-collage {
 				width: 100%;
-
-				// width: 80%;
 			}
 		}
 	}
@@ -120,7 +114,6 @@
 @media screen and (max-width: 600px) {
 	.page-description {
 		width: 100%;
-		text-align: justify;
 	}
 
 	.works {
@@ -129,14 +122,6 @@
 			width: $logo-size;
 			height: $logo-size;
 			margin-inline: 1rem;
-		}
-	}
-
-	.project-container {
-		.project-info {
-			.project-description {
-				text-align: justify;
-			}
 		}
 	}
 }
@@ -152,9 +137,8 @@
 	}
 }
 
+// change button distribution and tech icons
 @media screen and (max-width: 350px) {
-	// change button distribution
-
 	.project-container {
 		.project-info {
 			.project-tech-icon {

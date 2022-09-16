@@ -121,21 +121,24 @@ const Projects = () => {
 					<section className="projects">
 						{projects.map((project: ProjectContent, index: number) => {
 							return (
-								<div className="project-container" key={project.url}>
-									<ProjectInfo
-										order={project.order}
-										name={project.name}
-										description={project.description}
-										techStack={project.techStack}
-										repository={project.repository}
-										url={project.url}
-									/>
+								<>
+									<div className="project-container" key={project.url}>
+										<ProjectInfo
+											order={project.order}
+											name={project.name}
+											description={project.description}
+											techStack={project.techStack}
+											repository={project.repository}
+											url={project.url}
+										/>
 
-									<ProjectImages
-										fullImagePath={proImgs[index].fullImagePath}
-										thumbnailPath={proImgs[index].thumbnailPath}
-									/>
-								</div>
+										<ProjectImages
+											fullImagePath={proImgs[index].fullImagePath}
+											thumbnailPath={proImgs[index].thumbnailPath}
+										/>
+									</div>
+									<hr className='project-separator'/>
+								</>
 							)
 						})}
 					</section>
