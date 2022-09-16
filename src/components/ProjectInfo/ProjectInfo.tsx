@@ -44,7 +44,7 @@ export const projects: Array<ProjectContent> = [
 		order: 3,
 		name: (
 			<h1 className="project-name">
-				<span className="campofuerte-brown">Campo </span>
+				<span className="campofuerte-brown">Campo</span>
 				<span className="campofuerte-green">Fuerte</span>
 			</h1>
 		),
