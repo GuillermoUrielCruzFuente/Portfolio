@@ -137,7 +137,7 @@ const Projects = () => {
 											thumbnailPath={proImgs[index].thumbnailPath}
 										/>
 									</div>
-									<hr className='project-separator'/>
+									<hr className="project-separator" />
 								</>
 							)
 						})}

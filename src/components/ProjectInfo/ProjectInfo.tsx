@@ -1,7 +1,5 @@
 import { FC } from 'react'
-// import './ProjectInfo.scss'
 import { techImages } from '../../helpers/exports/AboutExports'
-import Button from '../Button/Button'
 
 import webIcon from '../../static/img/icons/social-media/web.svg'
 import githubIcon from '../../static/img/icons/social-media/github.svg'
@@ -149,13 +147,15 @@ const ProjectInfo: FC<ProjectContent> = ({
 			</div>
 
 			<div className="project-buttons-container">
-				<Button img={webIcon} className="appear1">
+				<a className="project-button primary" href={url} target={'_blank'}>
+					<img src={webIcon} alt="button web icon" />
 					visitar
-				</Button>
+				</a>
 
-				<Button img={githubIcon} className="appear1" secondary>
+				<a className="project-button secondary" href={repository} target={'_blank'}>
+					<img src={githubIcon} alt="button web icon" />
 					repositorio
-				</Button>
+				</a>
 			</div>
 		</article>
 	)
