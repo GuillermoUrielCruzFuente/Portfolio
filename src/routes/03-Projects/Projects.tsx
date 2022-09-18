@@ -57,8 +57,14 @@ const Projects = () => {
 	const refContainer = useRef<HTMLDivElement>(null)
 	const [sectionState, setSectionState] = useState(false)
 
+	const projectsLogos = useRef<HTMLDivElement>(null)
+
 	useEffect(() => {
 		showContent()
+
+		setTimeout(() => {
+			projectsLogos.current ? (projectsLogos.current.style.opacity = '1') : undefined
+		}, 800)
 	}, [])
 
 	useEffect(() => {
@@ -87,8 +93,8 @@ const Projects = () => {
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}
 		>
-			<>
-				<header ref={refContainer} id="projects">
+			<div ref={refContainer}>
+				<header id="projects">
 					<h1 className="page-title">Proyectos</h1>
 					<p className="page-description">
 						Comencé hace ya un tiempo en el{' '}
@@ -98,7 +104,7 @@ const Projects = () => {
 						tome revisarlos.
 					</p>
 
-					<div className="works">
+					<div className="works" ref={projectsLogos}>
 						{projectLogos.map((logo: string, index: number) => {
 							return (
 								<img
@@ -121,8 +127,8 @@ const Projects = () => {
 					<section className="projects">
 						{projects.map((project: ProjectContent, index: number) => {
 							return (
-								<>
-									<div className="project-container" key={project.url}>
+								<div key={project.url} className='project-box'>
+									<div className="project-container">
 										<ProjectInfo
 											order={project.order}
 											name={project.name}
@@ -137,13 +143,14 @@ const Projects = () => {
 											thumbnailPath={proImgs[index].thumbnailPath}
 										/>
 									</div>
+
 									<hr className="project-separator" />
-								</>
+								</div>
 							)
 						})}
 					</section>
 				</main>
-			</>
+			</div>
 		</CSSTransition>
 	)
 }

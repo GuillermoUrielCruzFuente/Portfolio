@@ -7,18 +7,8 @@
 }
 
 @media screen and (max-width: 1100px) {
-	//change the orientation of the project info component
-	.project-container {
-		display: flex;
-		flex-flow: column;
-
-		padding-top: unset;
-		min-height: unset;
-		margin-top: 1rem;
-		padding-bottom: 2rem;
-
-		&:nth-child(3),
-		&:nth-child(7) {
+	.project-box {
+		&:nth-child(2n) > .project-container {
 			flex-flow: column;
 			text-align: right;
 
@@ -51,6 +41,16 @@
 				align-items: center;
 			}
 		}
+	}
+	//change the orientation of the project info component
+	.project-container {
+		display: flex;
+		flex-flow: column;
+
+		padding-top: unset;
+		min-height: unset;
+		margin-top: 1rem;
+		padding-bottom: 2rem;
 
 		&:first-child {
 			padding-top: 5rem;
@@ -166,9 +166,10 @@
 				}
 			}
 		}
+	}
 
-		&:nth-child(3),
-		&:nth-child(7) {
+	.project-box {
+		&:nth-child(2n) > .project-container {
 			.project-info {
 				.project-buttons-container {
 					.project-button:first-child {

@@ -57,6 +57,10 @@ $guillermo-red: #a03535;
 	width: 100vw;
 	margin: 4rem 0;
 
+	opacity: 0;
+	transition-duration: 1500ms;
+	// transition-delay: 600ms;
+
 	.project-logo {
 		$logo-size: 90px;
 		width: $logo-size;
@@ -101,6 +105,45 @@ main#projects-main {
 
 	.projects {
 		width: 75%;
+	}
+}
+
+.project-box {
+	// background-color: #222;
+
+	&:nth-child(2n) > .project-container {
+		// background-color: crimson;
+		flex-flow: row-reverse wrap;
+		text-align: right;
+
+		.project-info {
+			align-items: flex-end;
+
+			.project-tech-icons-container {
+				flex-flow: row-reverse wrap;
+			}
+
+			.project-tech-icon {
+				margin-inline: 1rem;
+
+				&:first-child {
+					margin-right: 0rem;
+				}
+			}
+
+			.project-buttons-container {
+				flex-flow: row-reverse wrap;
+
+				.project-button:first-child {
+					margin-right: 0;
+					margin-left: 1rem;
+				}
+			}
+		}
+
+		.project-collage-img-container {
+			align-items: flex-start;
+		}
 	}
 }
 
@@ -276,40 +319,40 @@ main#projects-main {
 		}
 	}
 
-	&:nth-child(3),
-	&:nth-child(7) {
-		flex-flow: row-reverse wrap;
-		text-align: right;
+	// &:nth-child(3),
+	// &:nth-child(7) {
+	// 	flex-flow: row-reverse wrap;
+	// 	text-align: right;
 
-		.project-info {
-			align-items: flex-end;
+	// 	.project-info {
+	// 		align-items: flex-end;
 
-			.project-tech-icons-container {
-				flex-flow: row-reverse wrap;
-			}
+	// 		.project-tech-icons-container {
+	// 			flex-flow: row-reverse wrap;
+	// 		}
 
-			.project-tech-icon {
-				margin-inline: 1rem;
+	// 		.project-tech-icon {
+	// 			margin-inline: 1rem;
 
-				&:first-child {
-					margin-right: 0rem;
-				}
-			}
+	// 			&:first-child {
+	// 				margin-right: 0rem;
+	// 			}
+	// 		}
 
-			.project-buttons-container {
-				flex-flow: row-reverse wrap;
+	// 		.project-buttons-container {
+	// 			flex-flow: row-reverse wrap;
 
-				.project-button:first-child {
-					margin-right: 0;
-					margin-left: 1rem;
-				}
-			}
-		}
+	// 			.project-button:first-child {
+	// 				margin-right: 0;
+	// 				margin-left: 1rem;
+	// 			}
+	// 		}
+	// 	}
 
-		.project-collage-img-container {
-			align-items: flex-start;
-		}
-	}
+	// 	.project-collage-img-container {
+	// 		align-items: flex-start;
+	// 	}
+	// }
 }
 
 .project-separator {
