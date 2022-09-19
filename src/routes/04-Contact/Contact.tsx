@@ -14,6 +14,8 @@ import emailIcon from '../../static/img/icons/social-media/email.svg'
 import userIcon from '../../static/img/icons/contact/user.svg'
 import messageIcon from '../../static/img/icons/contact/message.svg'
 
+import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
+
 export default function Contact() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
 	const location = useLocation()
@@ -94,7 +96,15 @@ export default function Contact() {
 							compartirla conmigo.
 						</p>
 
-						<form action="" id="contact-form">
+						<form
+							action=""
+							id="contact-form"
+							onSubmit={(e) => {
+								e.preventDefault()
+								console.log('hola')
+							}}
+						>
+							<h1 className='form-title'>Envíame un mensaje</h1>
 							<div className="input-container">
 								<input
 									id="name_input"
@@ -128,11 +138,18 @@ export default function Contact() {
 									id="form-message"
 									placeholder="mensaje"
 									required
+									rows={4}
 								></textarea>
 								<label htmlFor="name_input">mensaje</label>
 
 								<img className="label-icon" src={messageIcon} alt="asasdfad" />
 							</div>
+
+							{/* <input type="submit" value="enviar" /> */}
+							<button className="send" type="submit">
+								<img src={sendIcon} alt="send icon" />
+								enviar
+							</button>
 						</form>
 					</div>
 				</div>

@@ -61,6 +61,50 @@ form#contact-form {
 	display: flex;
 	flex-flow: column;
 	margin-top: 2rem;
+
+	background-color: rgba($color: #000000, $alpha: 0.6);
+	backdrop-filter: blur(8px);
+	padding: 1.5rem;
+	border-radius: 0.5rem;
+
+	.form-title {
+		color: #fff;
+		margin: 0 auto;
+		font-size: 1rem;
+		text-align: center;
+	}
+
+	button.send {
+		background-color: #3e0b49;
+		border: none;
+		display: flex;
+		flex-flow: row;
+		align-items: center;
+		justify-content: center;
+		color: #fff;
+		font-weight: 900;
+		padding: 0.75rem 2rem;
+		margin-top: 1rem;
+		border-radius: 0.5rem;
+		font-size: 0.8rem;
+		cursor: pointer;
+		transition: background-color 300ms, box-shadow 300ms;
+		box-shadow: 0px 0px 16px rgba($color: #5e0874, $alpha: 0);
+		margin-left: auto;
+		width: fit-content;
+
+		&:hover {
+			background-color: #5e0874;
+			box-shadow: 0px 0px 16px rgba($color: #5e0874, $alpha: 1);
+		}
+
+		img {
+			$icon-size: 20px;
+			width: $icon-size;
+			height: $icon-size;
+			margin-right: 0.35rem;
+		}
+	}
 }
 
 .input-container {
