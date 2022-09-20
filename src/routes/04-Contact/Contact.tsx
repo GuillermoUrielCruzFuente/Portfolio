@@ -104,13 +104,15 @@ export default function Contact() {
 								console.log('hola')
 							}}
 						>
-							<h1 className='form-title'>Envíame un mensaje</h1>
+							<h1 className="form-title">Envíame un mensaje</h1>
+
 							<div className="input-container">
 								<input
 									id="name_input"
 									className="form-input"
 									type="text"
 									placeholder="nombre"
+									autoComplete="off"
 									required
 								/>
 								<label htmlFor="name_input">nombre</label>
@@ -122,9 +124,10 @@ export default function Contact() {
 								<input
 									id="mail_input"
 									className="form-input"
-									type="text"
+									type="email"
 									placeholder="mail"
 									required
+									autoComplete="off"
 								/>
 								<label htmlFor="name_input">mail</label>
 
@@ -145,7 +148,6 @@ export default function Contact() {
 								<img className="label-icon" src={messageIcon} alt="asasdfad" />
 							</div>
 
-							{/* <input type="submit" value="enviar" /> */}
 							<button className="send" type="submit">
 								<img src={sendIcon} alt="send icon" />
 								enviar
