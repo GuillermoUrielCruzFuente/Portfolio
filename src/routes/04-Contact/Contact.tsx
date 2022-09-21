@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, SyntheticEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
@@ -46,6 +46,36 @@ export default function Contact() {
 	const hideContent = () => {
 		setSectionState(false)
 		setSocialState(false)
+	}
+
+	const nameInput = useRef<HTMLInputElement>(null)
+	const mailInput = useRef<HTMLInputElement>(null)
+	const messageInput = useRef<HTMLTextAreaElement>(null)
+
+	const handleSubmit = (event: SyntheticEvent) => {
+		event.preventDefault()
+
+		const name = nameInput.current!.value
+		const mail = mailInput.current!.value
+		const message = messageInput.current!.value
+
+		fetch('https://formsubmit.co/ajax/guillermo.uriel.cruz.fuente@gmail.com', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+			body: JSON.stringify({
+				name: name,
+				mail: mail,
+				message: message,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data)
+			})
+			.catch((error) => console.log(error))
 	}
 
 	return (
@@ -96,14 +126,7 @@ export default function Contact() {
 							compartirla conmigo.
 						</p>
 
-						<form
-							action=""
-							id="contact-form"
-							onSubmit={(e) => {
-								e.preventDefault()
-								console.log('hola')
-							}}
-						>
+						<form id="contact-form" onSubmit={handleSubmit}>
 							<h1 className="form-title">Envíame un mensaje</h1>
 
 							<div className="input-container">
@@ -114,10 +137,12 @@ export default function Contact() {
 									placeholder="nombre"
 									autoComplete="off"
 									required
+									name="name"
+									ref={nameInput}
 								/>
 								<label htmlFor="name_input">nombre</label>
 
-								<img className="label-icon" src={userIcon} alt="asasdfad" />
+								<img className="label-icon" src={userIcon} alt="" />
 							</div>
 
 							<div className="input-container">
@@ -128,24 +153,27 @@ export default function Contact() {
 									placeholder="mail"
 									required
 									autoComplete="off"
+									name="email"
+									ref={mailInput}
 								/>
 								<label htmlFor="name_input">mail</label>
 
-								<img className="label-icon" src={emailIcon} alt="asasdfad" />
+								<img className="label-icon" src={emailIcon} alt="" />
 							</div>
 
 							<div className="input-container">
 								<textarea
 									className="form-input"
-									name="message"
 									id="form-message"
 									placeholder="mensaje"
 									required
 									rows={4}
+									name="message"
+									ref={messageInput}
 								></textarea>
 								<label htmlFor="name_input">mensaje</label>
 
-								<img className="label-icon" src={messageIcon} alt="asasdfad" />
+								<img className="label-icon" src={messageIcon} alt="" />
 							</div>
 
 							<button className="send" type="submit">
