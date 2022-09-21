@@ -59,7 +59,7 @@ export default function Contact() {
 		const mail = mailInput.current!.value
 		const message = messageInput.current!.value
 
-		fetch('https://formsubmit.co/ajax/guillermo.uriel.cruz.fuente@gmail.com', {
+		fetch('https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
