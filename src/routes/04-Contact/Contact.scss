@@ -38,11 +38,18 @@
 	}
 
 	.modal {
-		width: 100%;
-		height: 100%;
+		width: 100vw;
+		height: 100vh;
+		// height: 150vh;
 
 		background-color: rgba($color: #000000, $alpha: 0.95);
-		position: absolute;
+		position: fixed;
+
+		// top: 50%;
+		// left: 50%;
+		// transform: translate(-50%, -50%);
+		// z-index: 1000;
+
 		top: 0;
 		left: 0;
 		z-index: 1000;
@@ -53,6 +60,22 @@
 		justify-content: center;
 
 		color: #fff;
+
+		h1 {
+			font-size: 1.5rem;
+			text-align: center;
+			width: 100%;
+			background-color: rgba($color: #fff, $alpha: 0.1);
+			backdrop-filter: blur(5px);
+			padding: 1rem;
+		}
+
+		#message-success {
+			width: 200px;
+			height: 200px;
+			// background-color: cadetblue;
+			// border: 2px solid crimson;
+		}
 	}
 }
 
@@ -80,6 +103,7 @@ form#contact-form {
 	display: flex;
 	flex-flow: column;
 	margin-top: 2rem;
+	width: 100%;
 
 	background-color: rgba($color: #000000, $alpha: 0.6);
 	-webkit-backdrop-filter: blur(8px);
@@ -146,6 +170,7 @@ form#contact-form {
 		top: 1.75rem;
 		left: $left-padding;
 		font-size: 0.85rem;
+		font-size: 1rem;
 		text-anchor: start;
 		transform-origin: left;
 		-webkit-user-select: none;
@@ -173,6 +198,7 @@ form#contact-form {
 		padding: 0.5rem;
 		padding-left: $left-padding;
 		font-size: 0.85rem;
+		font-size: 1rem;
 		color: #fff;
 		width: 100%;
 		border-radius: 0.5rem;
@@ -238,12 +264,13 @@ form#contact-form {
 	width: 100px;
 	height: 100px;
 	margin: 2rem auto;
+	margin-top: 5rem;
 }
 
 .sk-cube-grid .sk-cube {
 	width: 33.33%;
 	height: 33.33%;
-	background-color: #540F64;
+	background-color: #540f64;
 	float: left;
 	-webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
 	animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
@@ -308,5 +335,33 @@ form#contact-form {
 	35% {
 		-webkit-transform: scale3D(0, 0, 1);
 		transform: scale3D(0, 0, 1);
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	#contact {
+		width: 85%;
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	.split-container {
+		flex-flow: column;
+
+		.split {
+			flex-basis: unset;
+			flex-grow: unset;
+
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+
+			text-align: center;
+
+			&:last-child {
+				margin-top: 5rem;
+			}
+		}
 	}
 }

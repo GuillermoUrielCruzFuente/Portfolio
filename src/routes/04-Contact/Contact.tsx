@@ -15,6 +15,10 @@ import userIcon from '../../static/img/icons/contact/user.svg'
 import messageIcon from '../../static/img/icons/contact/message.svg'
 
 import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
+import timer from '../../helpers/Timer'
+
+import Lottie, { AnimationItem } from 'lottie-web'
+import messageSuccessAnimation from '../../static/lottie/message-success.json'
 
 export default function Contact() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
@@ -23,8 +27,20 @@ export default function Contact() {
 	const [sectionState, setSectionState] = useState(false)
 	const [socialState, setSocialState] = useState(false)
 
+	// const messageSuccessContainer = useRef<HTMLDivElement>(null)
+	// const messageSuccessLottie = useRef<AnimationItem>(
+	// 	Lottie.loadAnimation({
+	// 		container: messageSuccessContainer.current as HTMLDivElement,
+	// 		animationData: messageSuccessAnimation,
+	// 		renderer: 'svg',
+	// 		autoplay: true,
+	// 		loop: true,
+	// 	})
+	// )
+
 	useEffect(() => {
 		showContent()
+		// Lottie.setQuality('low')
 	}, [])
 
 	useEffect(() => {
@@ -53,9 +69,18 @@ export default function Contact() {
 	const messageInput = useRef<HTMLTextAreaElement>(null)
 
 	const [modalState, setModalState] = useState(false)
+	const [confirmation, setConfirmation] = useState(false)
 
 	const openSendConfirmationModal = (responseState: boolean) => {
+		//open the modal to show the user that his message is sending
+		//and also disable the vertical scroll
 		setModalState(!responseState)
+		//load lottie animation to show the next step
+		//based on response state, show a new screen with the lottie animation
+		//this must be loaded before start, Idk what would be the best approach
+		//load as soon as the user enter contact page or
+		//when the message has been send
+		//in fact, make it once the page is fully loaded would be the best
 	}
 
 	const handleSubmit = async (event: SyntheticEvent) => {
@@ -68,26 +93,46 @@ export default function Contact() {
 		try {
 			openSendConfirmationModal(false)
 
-			const response = await fetch(
-				'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json',
-					},
-					body: JSON.stringify({
-						name: name,
-						mail: mail,
-						message: message,
-					}),
-				}
-			)
+			// const response = await fetch(
+			// 	'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772',
+			// 	{
+			// 		method: 'POST',
+			// 		headers: {
+			// 			'Content-Type': 'application/json',
+			// 			Accept: 'application/json',
+			// 		},
+			// 		body: JSON.stringify({
+			// 			name: name,
+			// 			mail: mail,
+			// 			message: message,
+			// 		}),
+			// 	}
+			// )
 
-			const data = await response.json()
+			// const data = await response.json()
 
-			console.log(data)
-			data.success ? openSendConfirmationModal(true) : undefined
+			// console.log(data)
+			// data.success ? openSendConfirmationModal(true) : undefined
+
+			await timer(1000)
+			// openSendConfirmationModal(true)
+			setConfirmation(true)
+
+			// messageSuccessLottie.current.destroy()
+			//even when the component has been mounted
+			//it must await certain time to complete the the process to make it
+			//available for the dom query selectors
+			await timer(100)
+
+			Lottie.loadAnimation({
+				container: document.getElementById('message-success')!,
+				animationData: messageSuccessAnimation,
+				renderer: 'svg',
+				autoplay: true,
+				loop: true,
+			})
+
+			// messageSuccessLottie.current!.play()
 		} catch (error) {
 			console.log(error)
 		}
@@ -106,18 +151,30 @@ export default function Contact() {
 			<header id="contact" ref={refContainer}>
 				{modalState ? (
 					<div className="modal">
-						<h1>Estamos enviando su mensaje...</h1>
-						<div className="sk-cube-grid">
-							<div className="sk-cube sk-cube1"></div>
-							<div className="sk-cube sk-cube2"></div>
-							<div className="sk-cube sk-cube3"></div>
-							<div className="sk-cube sk-cube4"></div>
-							<div className="sk-cube sk-cube5"></div>
-							<div className="sk-cube sk-cube6"></div>
-							<div className="sk-cube sk-cube7"></div>
-							<div className="sk-cube sk-cube8"></div>
-							<div className="sk-cube sk-cube9"></div>
-						</div>
+						{confirmation ? (
+							<>
+								<h1>
+									su mensaje ha sido enviado, pronto me comunicaré con usted,
+									gracias!
+								</h1>
+								<div id="message-success"></div>
+							</>
+						) : (
+							<>
+								<h1>Estamos enviando su mensaje...</h1>
+								<div className="sk-cube-grid">
+									<div className="sk-cube sk-cube1"></div>
+									<div className="sk-cube sk-cube2"></div>
+									<div className="sk-cube sk-cube3"></div>
+									<div className="sk-cube sk-cube4"></div>
+									<div className="sk-cube sk-cube5"></div>
+									<div className="sk-cube sk-cube6"></div>
+									<div className="sk-cube sk-cube7"></div>
+									<div className="sk-cube sk-cube8"></div>
+									<div className="sk-cube sk-cube9"></div>
+								</div>
+							</>
+						)}
 					</div>
 				) : undefined}
 
