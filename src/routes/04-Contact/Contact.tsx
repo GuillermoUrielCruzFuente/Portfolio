@@ -52,30 +52,45 @@ export default function Contact() {
 	const mailInput = useRef<HTMLInputElement>(null)
 	const messageInput = useRef<HTMLTextAreaElement>(null)
 
-	const handleSubmit = (event: SyntheticEvent) => {
+	const [modalState, setModalState] = useState(false)
+
+	const openSendConfirmationModal = (responseState: boolean) => {
+		setModalState(!responseState)
+	}
+
+	const handleSubmit = async (event: SyntheticEvent) => {
 		event.preventDefault()
 
 		const name = nameInput.current!.value
 		const mail = mailInput.current!.value
 		const message = messageInput.current!.value
 
-		fetch('https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-			},
-			body: JSON.stringify({
-				name: name,
-				mail: mail,
-				message: message,
-			}),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data)
-			})
-			.catch((error) => console.log(error))
+		try {
+			openSendConfirmationModal(false)
+
+			const response = await fetch(
+				'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+					body: JSON.stringify({
+						name: name,
+						mail: mail,
+						message: message,
+					}),
+				}
+			)
+
+			const data = await response.json()
+
+			console.log(data)
+			data.success ? openSendConfirmationModal(true) : undefined
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	return (
@@ -89,6 +104,23 @@ export default function Contact() {
 			onExited={() => setReadyToNavigate(true)}
 		>
 			<header id="contact" ref={refContainer}>
+				{modalState ? (
+					<div className="modal">
+						<h1>Estamos enviando su mensaje...</h1>
+						<div className="sk-cube-grid">
+							<div className="sk-cube sk-cube1"></div>
+							<div className="sk-cube sk-cube2"></div>
+							<div className="sk-cube sk-cube3"></div>
+							<div className="sk-cube sk-cube4"></div>
+							<div className="sk-cube sk-cube5"></div>
+							<div className="sk-cube sk-cube6"></div>
+							<div className="sk-cube sk-cube7"></div>
+							<div className="sk-cube sk-cube8"></div>
+							<div className="sk-cube sk-cube9"></div>
+						</div>
+					</div>
+				) : undefined}
+
 				<div className="top-container">
 					<h1 className="page-main-title">Contáctame</h1>
 				</div>
