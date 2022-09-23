@@ -93,28 +93,27 @@ export default function Contact() {
 		try {
 			openSendConfirmationModal(false)
 
-			// const response = await fetch(
-			// 	'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772',
-			// 	{
-			// 		method: 'POST',
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 			Accept: 'application/json',
-			// 		},
-			// 		body: JSON.stringify({
-			// 			name: name,
-			// 			mail: mail,
-			// 			message: message,
-			// 		}),
-			// 	}
-			// )
+			const response = await fetch(
+				'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+					body: JSON.stringify({
+						name: name,
+						mail: mail,
+						message: message,
+					}),
+				}
+			)
 
-			// const data = await response.json()
+			const data = await response.json()
 
-			// console.log(data)
-			// data.success ? openSendConfirmationModal(true) : undefined
+			console.log(data)
 
-			await timer(1000)
+			// await timer(1500)
 			// openSendConfirmationModal(true)
 			setConfirmation(true)
 
@@ -124,12 +123,17 @@ export default function Contact() {
 			//available for the dom query selectors
 			await timer(100)
 
-			Lottie.loadAnimation({
+			const messageAnimation = Lottie.loadAnimation({
 				container: document.getElementById('message-success')!,
 				animationData: messageSuccessAnimation,
 				renderer: 'svg',
 				autoplay: true,
-				loop: true,
+				loop: false,
+			})
+
+			messageAnimation.addEventListener('complete', () => {
+				// data.success ? openSendConfirmationModal(true) : undefined
+				openSendConfirmationModal(true)
 			})
 
 			// messageSuccessLottie.current!.play()
