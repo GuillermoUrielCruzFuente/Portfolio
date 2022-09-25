@@ -96,7 +96,7 @@ export default function Contact() {
 		//show to ther user that the send process has been started
 		openModal()
 
-		const isSuccessful = await sendEmail({ name, mail, message }, true)
+		const isSuccessful = await sendEmail({ name, mail, message })
 
 		if (isSuccessful) {
 			//change the confirmation state
@@ -174,7 +174,8 @@ export default function Contact() {
 						<p className="contact-text">
 							Puedes encontrarme en distintas redes sociales, usa aquella con la que
 							te sientas más cómodo, te regresaré el mensaje tan pronto como me sea
-							posible.
+							posible. Apreciaré cualquier sugerencia o propuesta de trabajo, siéntete
+							libre de compartirla conmigo.
 						</p>
 						<SocialMedia containerClass="contact-social-media" state={socialState} />
 
@@ -194,15 +195,6 @@ export default function Contact() {
 					</div>
 
 					<div className="split">
-						<p>
-							O aun mejor, mándame un mensaje por este medio, tu información solo será
-							utilizada para volver a contactarte.
-							<br />
-							<br />
-							Apreciaré cualquier sugerencia o propuesta de trabajo, siéntete libre de
-							compartirla conmigo.
-						</p>
-
 						<form id="contact-form" onSubmit={handleSubmit}>
 							<h1 className="form-title">Envíame un mensaje</h1>
 
