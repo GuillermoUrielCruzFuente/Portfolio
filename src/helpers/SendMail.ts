@@ -9,7 +9,7 @@ type UserInfo = {
 const sendEmail = async ({ name, mail, message }: UserInfo, dev?: boolean): Promise<boolean> => {
 	if (dev) {
 		//in order to simulate a request wait ceratin amount of time
-		await timer(5000)
+		await timer(1000)
 		return true
 	} else {
 		const FORM_SUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772'
