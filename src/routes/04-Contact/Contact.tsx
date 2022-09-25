@@ -19,6 +19,7 @@ import timer from '../../helpers/Timer'
 
 import Lottie, { AnimationItem } from 'lottie-web'
 import messageSuccessAnimation from '../../static/lottie/message-success.json'
+import sendEmail from '../../helpers/SendMail'
 
 export default function Contact() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
@@ -40,7 +41,7 @@ export default function Contact() {
 
 	useEffect(() => {
 		showContent()
-		// Lottie.setQuality('low')
+		Lottie.setQuality('low')
 	}, [])
 
 	useEffect(() => {
@@ -71,58 +72,41 @@ export default function Contact() {
 	const [modalState, setModalState] = useState(false)
 	const [confirmation, setConfirmation] = useState(false)
 
-	const openSendConfirmationModal = (responseState: boolean) => {
+	const openModal = () => {
 		//open the modal to show the user that his message is sending
 		//and also disable the vertical scroll
-		setModalState(!responseState)
-		//load lottie animation to show the next step
-		//based on response state, show a new screen with the lottie animation
-		//this must be loaded before start, Idk what would be the best approach
-		//load as soon as the user enter contact page or
-		//when the message has been send
-		//in fact, make it once the page is fully loaded would be the best
+		setModalState(true)
+		document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+	}
+
+	const closeModal = () => {
+		setModalState(false)
+		document.getElementsByTagName('html')[0].style.overflow = 'hidden auto'
 	}
 
 	const handleSubmit = async (event: SyntheticEvent) => {
+		//prevent page reload
 		event.preventDefault()
 
+		//get all the information from inputs
 		const name = nameInput.current!.value
 		const mail = mailInput.current!.value
 		const message = messageInput.current!.value
 
-		try {
-			openSendConfirmationModal(false)
+		//show to ther user that the send process has been started
+		openModal()
 
-			const response = await fetch(
-				'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json',
-					},
-					body: JSON.stringify({
-						name: name,
-						mail: mail,
-						message: message,
-					}),
-				}
-			)
+		const isSuccessful = await sendEmail({ name, mail, message }, true)
 
-			const data = await response.json()
-
-			console.log(data)
-
-			// await timer(1500)
-			// openSendConfirmationModal(true)
+		if (isSuccessful) {
+			//change the confirmation state
 			setConfirmation(true)
 
-			// messageSuccessLottie.current.destroy()
-			//even when the component has been mounted
-			//it must await certain time to complete the the process to make it
-			//available for the dom query selectors
+			//this is probably hacky and comes here for my lack of knowledge
+			//but if we don't await for a minimum amount of time the next step just broke
 			await timer(100)
 
+			//load the animation
 			const messageAnimation = Lottie.loadAnimation({
 				container: document.getElementById('message-success')!,
 				animationData: messageSuccessAnimation,
@@ -131,14 +115,14 @@ export default function Contact() {
 				loop: false,
 			})
 
+			//close the modal window once the animation has been completed
 			messageAnimation.addEventListener('complete', () => {
-				// data.success ? openSendConfirmationModal(true) : undefined
-				openSendConfirmationModal(true)
+				closeModal()
+				//better on exit transition
+				setConfirmation(false)
 			})
-
-			// messageSuccessLottie.current!.play()
-		} catch (error) {
-			console.log(error)
+		} else {
+			alert('hubo un error al enviar el mensaje, intente más tarde, por favor.')
 		}
 	}
 
