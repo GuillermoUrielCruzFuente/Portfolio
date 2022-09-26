@@ -1,10 +1,11 @@
-import { FC } from 'react'
+import { FC, useRef } from 'react'
 import './Input.scss'
 
 type Validation = 'required' | 'semi-required' | 'not-required'
 
-type InputType = {
+export type InputType = {
 	name: string
+	img: string
 	validation: Validation
 }
 
@@ -26,25 +27,46 @@ type InputType = {
  * input mail       -> semi-required    [mail]
  * input phone      -> semi-required    [phone]
  *
+ *
+ * return {
+ *  render,
+ *  getValueFunc
+ * }
  */
 
-const Input: FC<InputType> = ({ name, validation }) => {
-	return (
+
+
+type UseInput = {
+	render: JSX.Element
+	getValue: () => string
+}
+
+export const useInput = ({ name, img, validation }: InputType): UseInput => {
+	const inputRef = useRef<HTMLInputElement>(null)
+	const getValue = () => (inputRef.current ? inputRef.current.value : '')
+
+	const input = (
 		<div className="input-container">
 			<input
-				id="name-input"
-				className="form-input"
-				type="text"
-				placeholder={name}
 				autoComplete="off"
-				required
+				className="form-input"
+				ref={inputRef}
+				required = {validation === 'required' ? true : false}
+
 				name={name}
+				placeholder={name}
+				type="text"
 			/>
 			<label htmlFor="name-input">{name}</label>
 
-			<img className="label-icon" alt="" />
+			<img className="label-icon" src={img} alt="" />
 		</div>
 	)
+
+	return {
+		render: input,
+		getValue: getValue,
+	}
 }
 
-export default Input
+export default useInput

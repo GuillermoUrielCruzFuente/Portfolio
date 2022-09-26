@@ -2,6 +2,8 @@ import { useRef, useState, useEffect, SyntheticEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
+import useInput, { InputType } from '../../components/Input/Input'
+
 import './Contact.scss'
 
 //outlet custom hook
@@ -65,7 +67,6 @@ export default function Contact() {
 		setSocialState(false)
 	}
 
-	const nameInput = useRef<HTMLInputElement>(null)
 	const mailInput = useRef<HTMLInputElement>(null)
 	const messageInput = useRef<HTMLTextAreaElement>(null)
 
@@ -89,14 +90,14 @@ export default function Contact() {
 		event.preventDefault()
 
 		//get all the information from inputs
-		const name = nameInput.current!.value
+		const name = nameInput.getValue()
 		const mail = mailInput.current!.value
 		const message = messageInput.current!.value
 
 		//show to ther user that the send process has been started
 		openModal()
 
-		const isSuccessful = await sendEmail({ name, mail, message })
+		const isSuccessful = await sendEmail({ name, mail, message }, true)
 
 		if (isSuccessful) {
 			//change the confirmation state
@@ -125,6 +126,9 @@ export default function Contact() {
 			alert('hubo un error al enviar el mensaje, intente más tarde, por favor.')
 		}
 	}
+
+	const nameInputInfo: InputType = { name: 'nombre', img: userIcon, validation: 'required' }
+	const nameInput = useInput(nameInputInfo)
 
 	return (
 		<CSSTransition
@@ -198,21 +202,7 @@ export default function Contact() {
 						<form id="contact-form" onSubmit={handleSubmit}>
 							<h1 className="form-title">Envíame un mensaje</h1>
 
-							<div className="input-container">
-								<input
-									id="name_input"
-									className="form-input"
-									type="text"
-									placeholder="nombre"
-									autoComplete="off"
-									required
-									name="name"
-									ref={nameInput}
-								/>
-								<label htmlFor="name_input">nombre</label>
-
-								<img className="label-icon" src={userIcon} alt="" />
-							</div>
+							{nameInput.render}
 
 							<div className="input-container">
 								<input
@@ -229,7 +219,6 @@ export default function Contact() {
 
 								<img className="label-icon" src={emailIcon} alt="" />
 							</div>
-
 							<div className="input-container">
 								<textarea
 									className="form-input"
