@@ -162,13 +162,16 @@ form#contact-form {
 		margin-top: 0;
 	}
 
+	//this value allow to put the icon inside the input
+	//without being in front of the text
 	$left-padding: 2.25rem;
+
 	label {
 		position: absolute;
 		display: block;
 		color: #f5c8ff;
 		top: 1.75rem;
-		left: $left-padding;
+		left: calc($left-padding + 0.25rem);
 		font-size: 0.85rem;
 		font-size: 1rem;
 		text-anchor: start;
@@ -223,6 +226,17 @@ form#contact-form {
 			color: transparent;
 		}
 
+		// &:invalid:not(:placeholder-shown) + label::after {
+		// 	content: ' - verifica tu información. Ejemplo: correo@ejemplo.com';
+		// 	color: rgb(218, 82, 82);
+		// }
+
+		/*
+			animation state handling
+		*/
+
+		//if the input is focused OR the input is valid OR the placeholder is not visible
+		//ELEVATE THE LABEL
 		&:focus,
 		&:valid,
 		&:not(:placeholder-shown) {
@@ -233,9 +247,14 @@ form#contact-form {
 			}
 		}
 
-		&:invalid:not(:placeholder-shown) + label::after {
-			content: ' - verifica tu información. Ejemplo: correo@ejemplo.com';
-			color: rgb(218, 82, 82);
+		// if placeholder is visible AND the input is not focused
+		// then go back to the base state inside the input
+		&:placeholder-shown:not(:focus) {
+			& + label {
+				top: 1.75rem;
+				left: calc($left-padding + 0.25rem);
+				transform: scale(1);
+			}
 		}
 	}
 
