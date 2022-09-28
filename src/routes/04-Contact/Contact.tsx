@@ -70,6 +70,7 @@ export default function Contact() {
 
 	const [modalState, setModalState] = useState(false)
 	const [confirmation, setConfirmation] = useState(false)
+	const modalRef = useRef<HTMLDivElement>(null)
 
 	const openModal = () => {
 		//open the modal to show the user that his message is sending
@@ -119,8 +120,6 @@ export default function Contact() {
 			messageAnimation.addEventListener('complete', () => {
 				closeModal()
 				messageAnimation.destroy()
-				//better on exit transition
-				setConfirmation(false)
 			})
 		} else {
 			alert(
@@ -168,8 +167,18 @@ export default function Contact() {
 			onExited={() => setReadyToNavigate(true)}
 		>
 			<header id="contact" ref={refContainer}>
-				{modalState ? (
-					<div className="modal">
+				<CSSTransition
+					mountOnEnter
+					unmountOnExit
+					nodeRef={modalRef}
+					timeout={400}
+					in={modalState}
+					classNames="modal"
+					onExited={() => {
+						setConfirmation(false)
+					}}
+				>
+					<div className="modal" ref={modalRef}>
 						{confirmation ? (
 							<>
 								<h1>
@@ -195,7 +204,7 @@ export default function Contact() {
 							</>
 						)}
 					</div>
-				) : undefined}
+				</CSSTransition>
 
 				<div className="split-container">
 					<div className="split">
