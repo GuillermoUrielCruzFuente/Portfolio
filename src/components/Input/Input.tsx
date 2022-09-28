@@ -1,14 +1,6 @@
 import { FC, useRef } from 'react'
 import './Input.scss'
 
-type Validation = 'required' | 'semi-required' | 'not-required'
-
-export type InputType = {
-	name: string
-	img: string
-	validation: Validation
-}
-
 /**
  *
  * <Input required textarea text>placeholder</Input>
@@ -34,30 +26,60 @@ export type InputType = {
  * }
  */
 
-
-
 type UseInput = {
 	render: JSX.Element
 	getValue: () => string
 }
 
-export const useInput = ({ name, img, validation }: InputType): UseInput => {
+export type InputType = {
+	name: string
+	img: string
+	validation: 'required' | 'semi-required' | 'not-required'
+	inputType: 'textarea' | 'text' | 'email' | 'tel'
+}
+
+export const useInput = ({
+	name,
+	img,
+	validation,
+	inputType,
+}: InputType): UseInput => {
 	const inputRef = useRef<HTMLInputElement>(null)
-	const getValue = () => (inputRef.current ? inputRef.current.value : '')
+	const areaRef = useRef<HTMLTextAreaElement>(null)
+
+	const getValue = () =>
+		inputType === 'textarea'
+			? areaRef.current
+				? areaRef.current.value
+				: ''
+			: inputRef.current
+			? inputRef.current.value
+			: ''
 
 	const input = (
 		<div className="input-container">
-			<input
-				autoComplete="off"
-				className="form-input"
-				ref={inputRef}
-				required = {validation === 'required' ? true : false}
+			{inputType === 'textarea' ? (
+				<textarea
+					className="form-input"
+					placeholder={name}
+					required={validation === 'required' ? true : false}
+					rows={3}
+					name={name}
+					ref={areaRef}
+				></textarea>
+			) : (
+				<input
+					autoComplete="off"
+					className="form-input"
+					ref={inputRef}
+					required={validation === 'required' ? true : false}
+					name={name}
+					placeholder={name}
+					type={inputType}
+				/>
+			)}
 
-				name={name}
-				placeholder={name}
-				type="text"
-			/>
-			<label htmlFor="name-input">{name}</label>
+			<label>{name}</label>
 
 			<img className="label-icon" src={img} alt="" />
 		</div>
