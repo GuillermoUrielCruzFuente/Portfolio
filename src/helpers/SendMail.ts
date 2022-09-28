@@ -4,15 +4,23 @@ type UserInfo = {
 	name: string
 	mail: string
 	message: string
+	tel: string
 }
 
-const sendEmail = async ({ name, mail, message }: UserInfo, dev?: boolean): Promise<boolean> => {
+const sendEmail = async (
+	{ name, mail, message, tel }: UserInfo,
+	dev?: boolean
+): Promise<boolean> => {
 	if (dev) {
 		//in order to simulate a request wait ceratin amount of time
-		await timer(1000)
+		await timer(1500)
+		console.log(
+			`name: 		${name}\nemail: 		${mail}\ntel:		${tel}\nmessage: 	${message}\n`
+		)
 		return true
 	} else {
-		const FORM_SUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772'
+		const FORM_SUBMIT_ENDPOINT =
+			'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772'
 
 		try {
 			//send request to the FORMSUBMIT endpoint
