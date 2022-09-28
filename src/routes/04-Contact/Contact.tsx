@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, SyntheticEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
-import useInput, { InputType } from '../../components/Input/Input'
+import useInput from '../../components/Input/Input'
 
 import './Contact.scss'
 
@@ -11,16 +11,16 @@ import useNavContext, { ContextType } from '../../hooks/useNavContext'
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
 import DownloadPDF from '../../components/DownloadPDF/DownloadPDF'
 
-//img
+//iconst for UI
 import emailIcon from '../../static/img/icons/social-media/email.svg'
 import userIcon from '../../static/img/icons/contact/user.svg'
 import messageIcon from '../../static/img/icons/contact/message.svg'
 import telIcon from '../../static/img/icons/contact/tel.svg'
-
 import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
+
 import timer from '../../helpers/Timer'
 
-import Lottie, { AnimationItem } from 'lottie-web'
+import Lottie from 'lottie-web'
 import messageSuccessAnimation from '../../static/lottie/message-success.json'
 import sendEmail from '../../helpers/SendMail'
 
@@ -68,9 +68,6 @@ export default function Contact() {
 		setSocialState(false)
 	}
 
-	const mailInput = useRef<HTMLInputElement>(null)
-	const messageInput = useRef<HTMLTextAreaElement>(null)
-
 	const [modalState, setModalState] = useState(false)
 	const [confirmation, setConfirmation] = useState(false)
 
@@ -98,7 +95,7 @@ export default function Contact() {
 
 		openModal()
 
-		const isSuccessful = await sendEmail({ name, mail, message, tel })
+		const isSuccessful = await sendEmail({ name, mail, message, tel }, true)
 
 		if (isSuccessful) {
 			//change the confirmation state
@@ -106,6 +103,7 @@ export default function Contact() {
 
 			//this is probably hacky and comes here for my lack of knowledge
 			//but if we don't await for a minimum amount of time the next step just broke
+			//I think it could be due to the time that takes to react to mount the animation container
 			await timer(100)
 
 			//load the animation
