@@ -2,6 +2,8 @@
 	display: flex;
 	flex-flow: column;
 	width: 70%;
+	padding-bottom: 3rem;
+	// background-color: black;
 
 	.top-container {
 		width: 100%;
@@ -9,10 +11,10 @@
 
 	.page-main-title {
 		color: #fff;
-		font-size: clamp(1rem, 4vw, 4rem);
-		text-transform: uppercase;
-		width: 100%;
-		text-align: center;
+		font-size: clamp(1rem, 4.5vw, 4.25rem);
+		// text-transform: uppercase;
+		// width: 100%;
+		// text-align: center;
 		font-weight: 900;
 		-webkit-margin-after: 1rem;
 		margin-block-end: 1rem;
@@ -40,15 +42,9 @@
 	.modal {
 		width: 100vw;
 		height: 100vh;
-		// height: 150vh;
 
 		background-color: rgba($color: #000000, $alpha: 0.95);
 		position: fixed;
-
-		// top: 50%;
-		// left: 50%;
-		// transform: translate(-50%, -50%);
-		// z-index: 1000;
 
 		top: 0;
 		left: 0;
@@ -58,7 +54,6 @@
 		flex-flow: column;
 		align-items: center;
 		justify-content: center;
-
 		color: #fff;
 
 		h1 {
@@ -73,8 +68,6 @@
 		#message-success {
 			width: 400px;
 			height: 400px;
-			// background-color: cadetblue;
-			// border: 2px solid crimson;
 		}
 	}
 }
@@ -102,20 +95,30 @@
 form#contact-form {
 	display: flex;
 	flex-flow: column;
-	margin-top: 2rem;
 	width: 100%;
 
-	background-color: rgba($color: #000000, $alpha: 0.6);
-	-webkit-backdrop-filter: blur(8px);
-	backdrop-filter: blur(8px);
-	padding: 1.5rem;
+	box-shadow: 3px 3px 32px rgba($color: #000000, $alpha: 1);
+	background-color: rgba($color: #16011b, $alpha: 0.45);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+
+	padding: 2rem;
 	border-radius: 0.5rem;
+
+	border: dashed #4f0f5e 2px;
 
 	.form-title {
 		color: #fff;
 		margin: 0 auto;
-		font-size: 1rem;
+		font-size: 1.5rem;
 		text-align: center;
+	}
+
+	.form-text {
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 1.5rem;
 	}
 
 	button.send {
@@ -128,12 +131,12 @@ form#contact-form {
 		color: #fff;
 		font-weight: 900;
 		padding: 0.5rem 1.25rem;
-		margin-top: 1rem;
+		margin-top: 2.75rem;
 		border-radius: 0.5rem;
 		font-size: 0.8rem;
 		cursor: pointer;
 		transition: background-color 300ms, box-shadow 300ms;
-		box-shadow: 0px 0px 16px rgba($color: #5e0874, $alpha: 0);
+		box-shadow: 2px 2px 8px rgba($color: #000, $alpha: 0.5);
 		margin-left: auto;
 		width: -webkit-fit-content;
 		width: -moz-fit-content;
@@ -141,7 +144,7 @@ form#contact-form {
 
 		&:hover {
 			background-color: #5e0874;
-			box-shadow: 0px 0px 16px rgba($color: #5e0874, $alpha: 1);
+			box-shadow: 2px 2px 8px rgba($color: #5e0874, $alpha: 1);
 		}
 
 		img {
@@ -155,56 +158,70 @@ form#contact-form {
 
 .input-container {
 	position: relative;
-	padding-top: 1.25rem;
-	margin-top: 1rem;
 
-	&:first-child {
-		margin-top: 0;
+	//space necessary for the floating level
+	padding-top: 1.25rem;
+
+	//extra top spacing
+	margin-top: 1.5rem;
+
+	//total spacing between inputs 2.75rem
+
+	//second child counting the h1 tag
+	&:nth-child(2) {
+		//remove the margin to the first input, look better
+		margin-top: 0px;
 	}
 
 	//this value allow to put the icon inside the input
 	//without being in front of the text
-	$left-padding: 2.25rem;
+	$left-padding: 2.5rem;
+	$top-padding: 2rem;
 
 	label {
 		position: absolute;
 		display: block;
 		color: #f5c8ff;
-		top: 1.75rem;
-		left: calc($left-padding + 0.25rem);
-		font-size: 0.85rem;
+		font-weight: 400;
+
 		font-size: 1rem;
-		text-anchor: start;
 		transform-origin: left;
+
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
 		pointer-events: none;
-		font-weight: 400;
-		transition: top 200ms, left 200ms, transform 200ms;
+
+		$label-animation-duration: 400ms;
+		transition: top $label-animation-duration,
+			left $label-animation-duration, transform $label-animation-duration,
+			opacity $label-animation-duration;
+		transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 	}
 
 	.label-icon {
-		width: 20px;
-		height: 20px;
+		$icon-size: 22px;
+		width: $icon-size;
+		height: $icon-size;
 		display: inline-block;
 		position: absolute;
-		left: 0.5rem;
-		top: 1.75rem;
+		left: 0.75rem;
+		top: $top-padding;
 	}
 
 	.form-input {
 		background-color: #3e0b49;
 		outline: none;
 		border: 0px transparent;
-		padding: 0.5rem;
-		padding-left: $left-padding;
-		font-size: 0.85rem;
+		padding: 0.75rem;
+		padding-left: calc($left-padding + 0.25rem);
 		font-size: 1rem;
 		color: #fff;
 		width: 100%;
 		border-radius: 0.5rem;
+
+		box-shadow: 3px 3px 16px rgba($color: #000000, $alpha: 0.5);
 
 		&::-webkit-input-placeholder {
 			color: transparent;
@@ -226,34 +243,31 @@ form#contact-form {
 			color: transparent;
 		}
 
-		// &:invalid:not(:placeholder-shown) + label::after {
-		// 	content: ' - verifica tu información. Ejemplo: correo@ejemplo.com';
-		// 	color: rgb(218, 82, 82);
-		// }
-
 		/*
 			animation state handling
 		*/
 
-		//if the input is focused OR the input is valid OR the placeholder is not visible
+		//if the input is focused OR the input is valid OR the placeholder is not visible then
 		//ELEVATE THE LABEL
 		&:focus,
 		&:valid,
 		&:not(:placeholder-shown) {
 			& + label {
-				top: 0rem;
+				top: -0.1rem;
 				left: 0rem;
 				transform: scale(0.75);
+				opacity: 1;
 			}
 		}
 
-		// if placeholder is visible AND the input is not focused
-		// then go back to the base state inside the input
+		// if placeholder is visible AND the input is not focused then
+		// KEEP THE LABEL IN THE BASE STATE
 		&:placeholder-shown:not(:focus) {
 			& + label {
-				top: 1.75rem;
+				top: $top-padding;
 				left: calc($left-padding + 0.25rem);
 				transform: scale(1);
+				opacity: 0.5;
 			}
 		}
 	}
@@ -267,14 +281,27 @@ form#contact-form {
 	display: flex;
 	flex-flow: row;
 
+	margin-top: 2rem;
+	// background-color: chartreuse;
+
 	.split {
 		flex-basis: 0;
 		flex-grow: 1;
+
+		&:first-child {
+			// background-color: cadetblue;
+			flex-grow: 0;
+			padding-right: 3rem;
+		}
+
+		&:last-child {
+			// background-color: chartreuse;
+		}
 	}
 }
 
 .contact-text {
-	width: 85%;
+	width: 100%;
 }
 
 @import './page_transition';
