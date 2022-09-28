@@ -15,6 +15,7 @@ import DownloadPDF from '../../components/DownloadPDF/DownloadPDF'
 import emailIcon from '../../static/img/icons/social-media/email.svg'
 import userIcon from '../../static/img/icons/contact/user.svg'
 import messageIcon from '../../static/img/icons/contact/message.svg'
+import telIcon from '../../static/img/icons/contact/tel.svg'
 
 import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
 import timer from '../../helpers/Timer'
@@ -91,13 +92,13 @@ export default function Contact() {
 
 		//get all the information from inputs
 		const name = nameInput.getValue()
-		const mail = mailInput.current!.value
-		const message = messageInput.current!.value
+		const mail = emailInput.getValue()
+		const message = messageTextArea.getValue()
+		const tel = phoneInput.getValue()
 
-		//show to ther user that the send process has been started
 		openModal()
 
-		const isSuccessful = await sendEmail({ name, mail, message }, true)
+		const isSuccessful = await sendEmail({ name, mail, message, tel })
 
 		if (isSuccessful) {
 			//change the confirmation state
@@ -119,16 +120,44 @@ export default function Contact() {
 			//close the modal window once the animation has been completed
 			messageAnimation.addEventListener('complete', () => {
 				closeModal()
+				messageAnimation.destroy()
 				//better on exit transition
 				setConfirmation(false)
 			})
 		} else {
-			alert('hubo un error al enviar el mensaje, intente más tarde, por favor.')
+			alert(
+				'hubo un error al enviar el mensaje, intente más tarde, por favor.'
+			)
 		}
 	}
 
-	const nameInputInfo: InputType = { name: 'nombre', img: userIcon, validation: 'required' }
-	const nameInput = useInput(nameInputInfo)
+	const nameInput = useInput({
+		name: 'nombre',
+		img: userIcon,
+		validation: 'required',
+		inputType: 'text',
+	})
+
+	const messageTextArea = useInput({
+		name: 'mensaje',
+		img: messageIcon,
+		inputType: 'textarea',
+		validation: 'required',
+	})
+
+	const emailInput = useInput({
+		name: 'correo',
+		img: emailIcon,
+		inputType: 'email',
+		validation: 'semi-required',
+	})
+
+	const phoneInput = useInput({
+		name: 'teléfono',
+		img: telIcon,
+		inputType: 'tel',
+		validation: 'semi-required',
+	})
 
 	return (
 		<CSSTransition
@@ -146,8 +175,8 @@ export default function Contact() {
 						{confirmation ? (
 							<>
 								<h1>
-									su mensaje ha sido enviado, pronto me comunicaré con usted,
-									gracias!
+									su mensaje ha sido enviado, pronto me
+									comunicaré con usted, gracias!
 								</h1>
 								<div id="message-success"></div>
 							</>
@@ -170,18 +199,20 @@ export default function Contact() {
 					</div>
 				) : undefined}
 
-				<div className="top-container">
-					<h1 className="page-main-title">Contáctame</h1>
-				</div>
 				<div className="split-container">
 					<div className="split">
+						<h1 className="page-main-title">Contáctame!</h1>
 						<p className="contact-text">
-							Puedes encontrarme en distintas redes sociales, usa aquella con la que
-							te sientas más cómodo, te regresaré el mensaje tan pronto como me sea
-							posible. Apreciaré cualquier sugerencia o propuesta de trabajo, siéntete
-							libre de compartirla conmigo.
+							Puedes encontrarme en distintas redes sociales, usa
+							aquella con la que te sientas más cómodo, te
+							regresaré el mensaje tan pronto como me sea posible.
+							Apreciaré cualquier sugerencia o propuesta de
+							trabajo, siéntete libre de compartirla conmigo.
 						</p>
-						<SocialMedia containerClass="contact-social-media" state={socialState} />
+						<SocialMedia
+							containerClass="contact-social-media"
+							state={socialState}
+						/>
 
 						<div className="phone-number-container">
 							<p>celular</p>
@@ -191,8 +222,8 @@ export default function Contact() {
 						</div>
 
 						<p className="contact-text">
-							También puedes darle un vistazo a mi CV, esta es la versión más
-							reciente, con toda mi información en el.
+							También puedes darle un vistazo a mi CV, esta es la
+							versión más reciente, con toda mi información en el.
 						</p>
 
 						<DownloadPDF />
@@ -203,36 +234,16 @@ export default function Contact() {
 							<h1 className="form-title">Envíame un mensaje</h1>
 
 							{nameInput.render}
+							{messageTextArea.render}
 
-							<div className="input-container">
-								<input
-									id="mail_input"
-									className="form-input"
-									type="email"
-									placeholder="mail"
-									required
-									autoComplete="off"
-									name="email"
-									ref={mailInput}
-								/>
-								<label htmlFor="name_input">mail</label>
+							<p className="form-text">
+								Permíteme devolverte el mensaje. Por favor,
+								rellena al menos un campo, si lo deseas pueden
+								ser ambos
+							</p>
 
-								<img className="label-icon" src={emailIcon} alt="" />
-							</div>
-							<div className="input-container">
-								<textarea
-									className="form-input"
-									id="form-message"
-									placeholder="mensaje"
-									required
-									rows={4}
-									name="message"
-									ref={messageInput}
-								></textarea>
-								<label htmlFor="name_input">mensaje</label>
-
-								<img className="label-icon" src={messageIcon} alt="" />
-							</div>
+							{emailInput.render}
+							{phoneInput.render}
 
 							<button className="send" type="submit">
 								<img src={sendIcon} alt="send icon" />
