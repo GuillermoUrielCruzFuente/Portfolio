@@ -23,6 +23,7 @@ import timer from '../../helpers/Timer'
 import Lottie from 'lottie-web'
 import messageSuccessAnimation from '../../static/lottie/message-success.json'
 import sendEmail from '../../helpers/SendMail'
+import FormModal from '../../components/FormModal/FormModal'
 
 export default function Contact() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
@@ -30,17 +31,6 @@ export default function Contact() {
 	const refContainer = useRef<HTMLDivElement>(null)
 	const [sectionState, setSectionState] = useState(false)
 	const [socialState, setSocialState] = useState(false)
-
-	// const messageSuccessContainer = useRef<HTMLDivElement>(null)
-	// const messageSuccessLottie = useRef<AnimationItem>(
-	// 	Lottie.loadAnimation({
-	// 		container: messageSuccessContainer.current as HTMLDivElement,
-	// 		animationData: messageSuccessAnimation,
-	// 		renderer: 'svg',
-	// 		autoplay: true,
-	// 		loop: true,
-	// 	})
-	// )
 
 	useEffect(() => {
 		showContent()
@@ -68,25 +58,31 @@ export default function Contact() {
 		setSocialState(false)
 	}
 
+	//form submit modal state
 	const [modalState, setModalState] = useState(false)
-	const [confirmation, setConfirmation] = useState(false)
-	const modalRef = useRef<HTMLDivElement>(null)
+
+	const [success, setSuccess] = useState(false)
+	const [waiting, setWaiting] = useState(false)
+
+	//form send mail confirmation
 
 	const openModal = () => {
-		//open the modal to show the user that his message is sending
-		//and also disable the vertical scroll
 		setModalState(true)
-		document.getElementsByTagName('html')[0].style.overflow = 'hidden'
 	}
 
 	const closeModal = () => {
 		setModalState(false)
-		document.getElementsByTagName('html')[0].style.overflow = 'hidden auto'
 	}
 
 	const handleSubmit = async (event: SyntheticEvent) => {
 		//prevent page reload
 		event.preventDefault()
+
+		openModal()
+
+		await timer(200)
+		setWaiting(true)
+		setSuccess(false)
 
 		//get all the information from inputs
 		const name = nameInput.getValue()
@@ -94,37 +90,39 @@ export default function Contact() {
 		const message = messageTextArea.getValue()
 		const tel = phoneInput.getValue()
 
-		openModal()
-
 		const isSuccessful = await sendEmail({ name, mail, message, tel }, true)
 
 		if (isSuccessful) {
 			//change the confirmation state
-			setConfirmation(true)
+			setWaiting(false)
+			setSuccess(true)
 
 			//this is probably hacky and comes here for my lack of knowledge
 			//but if we don't await for a minimum amount of time the next step just broke
 			//I think it could be due to the time that takes to react to mount the animation container
-			await timer(100)
+			await timer(1000)
+			closeModal()
 
 			//load the animation
-			const messageAnimation = Lottie.loadAnimation({
-				container: document.getElementById('message-success')!,
-				animationData: messageSuccessAnimation,
-				renderer: 'svg',
-				autoplay: true,
-				loop: false,
-			})
+			// const messageAnimation = Lottie.loadAnimation({
+			// 	container: document.getElementById('message-success')!,
+			// 	animationData: messageSuccessAnimation,
+			// 	renderer: 'svg',
+			// 	autoplay: true,
+			// 	loop: false,
+			// })
 
 			//close the modal window once the animation has been completed
-			messageAnimation.addEventListener('complete', () => {
-				closeModal()
-				messageAnimation.destroy()
-			})
+			// messageAnimation.addEventListener('complete', () => {
+			// 	closeModal()
+			// 	messageAnimation.destroy()
+			// })
 		} else {
 			alert(
 				'hubo un error al enviar el mensaje, intente más tarde, por favor.'
 			)
+
+			closeModal()
 		}
 	}
 
@@ -167,45 +165,6 @@ export default function Contact() {
 			onExited={() => setReadyToNavigate(true)}
 		>
 			<header id="contact" ref={refContainer}>
-				<CSSTransition
-					mountOnEnter
-					unmountOnExit
-					nodeRef={modalRef}
-					timeout={400}
-					in={modalState}
-					classNames="modal"
-					onExited={() => {
-						setConfirmation(false)
-					}}
-				>
-					<div className="modal" ref={modalRef}>
-						{confirmation ? (
-							<>
-								<h1>
-									su mensaje ha sido enviado, pronto me
-									comunicaré con usted, gracias!
-								</h1>
-								<div id="message-success"></div>
-							</>
-						) : (
-							<>
-								<h1>Estamos enviando su mensaje...</h1>
-								<div className="sk-cube-grid">
-									<div className="sk-cube sk-cube1"></div>
-									<div className="sk-cube sk-cube2"></div>
-									<div className="sk-cube sk-cube3"></div>
-									<div className="sk-cube sk-cube4"></div>
-									<div className="sk-cube sk-cube5"></div>
-									<div className="sk-cube sk-cube6"></div>
-									<div className="sk-cube sk-cube7"></div>
-									<div className="sk-cube sk-cube8"></div>
-									<div className="sk-cube sk-cube9"></div>
-								</div>
-							</>
-						)}
-					</div>
-				</CSSTransition>
-
 				<div className="split-container">
 					<div className="split">
 						<h1 className="page-main-title">Contáctame!</h1>
@@ -258,6 +217,13 @@ export default function Contact() {
 							</button>
 						</form>
 					</div>
+
+					<FormModal
+						modalState={modalState}
+						wainting={waiting}
+						success={success}
+						onExit={() => setSuccess(false)}
+					/>
 				</div>
 			</header>
 		</CSSTransition>
