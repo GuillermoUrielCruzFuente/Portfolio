@@ -35,6 +35,11 @@ export default function Contact() {
 	useEffect(() => {
 		showContent()
 		Lottie.setQuality('low')
+
+		//styling box pourpuses
+		// openModal()
+		// setWaiting(true)
+		// setSuccess(false)
 	}, [])
 
 	useEffect(() => {

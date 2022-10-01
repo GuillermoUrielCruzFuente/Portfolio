@@ -38,38 +38,6 @@
 		color: #fff;
 		margin-left: 1rem;
 	}
-
-	.modal {
-		width: 100vw;
-		height: 100vh;
-
-		background-color: rgba($color: #000000, $alpha: 0.95);
-		position: fixed;
-
-		top: 0;
-		left: 0;
-		z-index: 1000;
-
-		display: flex;
-		flex-flow: column;
-		align-items: center;
-		justify-content: center;
-		color: #fff;
-
-		h1 {
-			font-size: 1.5rem;
-			text-align: center;
-			width: 100%;
-			background-color: rgba($color: #fff, $alpha: 0.1);
-			backdrop-filter: blur(5px);
-			padding: 1rem;
-		}
-
-		#message-success {
-			width: 400px;
-			height: 400px;
-		}
-	}
 }
 
 .phone-number-container {
@@ -293,10 +261,6 @@ form#contact-form {
 			flex-grow: 0;
 			padding-right: 3rem;
 		}
-
-		&:last-child {
-			// background-color: chartreuse;
-		}
 	}
 }
 
@@ -306,17 +270,120 @@ form#contact-form {
 
 @import './page_transition';
 
+@media screen and (max-width: 1400px) {
+	#contact {
+		width: 85%;
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	.split-container {
+		flex-flow: column;
+
+		.split {
+			flex-basis: unset;
+			flex-grow: unset;
+
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+
+			text-align: center;
+
+			&:last-child {
+				margin-top: 5rem;
+			}
+		}
+	}
+}
+
+$modal-transition-time: 400ms;
+.modal-enter {
+	opacity: 0;
+	// transform: scale(1.25);
+}
+
+.modal-enter-active {
+	opacity: 1;
+	// transform: scale(1);
+
+	transition: opacity $modal-transition-time, transform $modal-transition-time;
+	transition-timing-function: ease;
+}
+
+.modal-exit {
+	opacity: 1;
+	// transform: scale(1);
+}
+
+.modal-exit-active {
+	opacity: 0;
+	// transform: scale(1.25);
+
+	transition: opacity $modal-transition-time, transform $modal-transition-time;
+	transition-timing-function: ease;
+}
+
+.modal {
+	width: 100vw;
+	height: 100vh;
+
+	background-color: rgba($color: #000000, $alpha: 0.95);
+	position: fixed;
+
+	top: 0;
+	left: 0;
+	z-index: 1000;
+
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+
+	#message-success {
+		width: 400px;
+		height: 400px;
+	}
+}
+
+.waiting {
+	background-color: #510660;
+	border-radius: 1rem;
+	overflow: hidden;
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-around;
+	padding: 2rem;
+	width: fit-content;
+	box-shadow: 0px 0px 32px rgba($color: #551255, $alpha: 0.75);
+
+	h1 {
+		font-size: 1rem;
+		line-height: 1.2;
+		color: #f5c8ff;
+		width: fit-content;
+	}
+}
+
 .sk-cube-grid {
-	width: 100px;
-	height: 100px;
-	margin: 2rem auto;
-	margin-top: 5rem;
+	$loader-size: 2.5rem;
+	width: $loader-size;
+	height: $loader-size;
+
+	// background-color: crimson;
+	margin-right: 2rem;
+	// padding: 1rem;
+	// margin: 2rem auto;
+	// margin-top: 5rem;
 }
 
 .sk-cube-grid .sk-cube {
 	width: 33.33%;
 	height: 33.33%;
-	background-color: #540f64;
+	background-color: #2f0838;
 	float: left;
 	-webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
 	animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
@@ -382,59 +449,4 @@ form#contact-form {
 		-webkit-transform: scale3D(0, 0, 1);
 		transform: scale3D(0, 0, 1);
 	}
-}
-
-@media screen and (max-width: 1400px) {
-	#contact {
-		width: 85%;
-	}
-}
-
-@media screen and (max-width: 1100px) {
-	.split-container {
-		flex-flow: column;
-
-		.split {
-			flex-basis: unset;
-			flex-grow: unset;
-
-			display: flex;
-			flex-flow: column;
-			align-items: center;
-			justify-content: center;
-
-			text-align: center;
-
-			&:last-child {
-				margin-top: 5rem;
-			}
-		}
-	}
-}
-
-$modal-transition-time: 400ms;
-.modal-enter {
-	opacity: 0;
-	// transform: scale(1.25);
-}
-
-.modal-enter-active {
-	opacity: 1;
-	// transform: scale(1);
-
-	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: ease;
-}
-
-.modal-exit {
-	opacity: 1;
-	// transform: scale(1);
-}
-
-.modal-exit-active {
-	opacity: 0;
-	// transform: scale(1.25);
-
-	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: ease;
 }
