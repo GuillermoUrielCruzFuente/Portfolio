@@ -23,10 +23,6 @@ const FormModal: FC<Modal> = ({ modalState, wainting, success, onExit }) => {
 		document.getElementsByTagName('html')[0].style.overflow = 'hidden auto'
 	}
 
-	// useEffect(() => {
-	// 	success &&
-	// }, [success])
-
 	return (
 		<CSSTransition
 			mountOnEnter
@@ -67,7 +63,9 @@ const FormModal: FC<Modal> = ({ modalState, wainting, success, onExit }) => {
 							<div className="sk-cube sk-cube8"></div>
 							<div className="sk-cube sk-cube9"></div>
 						</div>
-						<h1>Su mensaje esta siendo enviado.</h1>
+						<h1>
+							Su mensaje esta <br /> siendo enviado
+						</h1>
 					</div>
 				</CSSTransition>
 
@@ -80,7 +78,7 @@ const FormModal: FC<Modal> = ({ modalState, wainting, success, onExit }) => {
 					classNames="modal"
 				>
 					<div className="waiting" ref={successRef}>
-						<h1>Su mensaje ha sido enviado.</h1>
+						<h1>Su mensaje ha sido enviado, gracias!</h1>
 					</div>
 				</CSSTransition>
 			</div>
