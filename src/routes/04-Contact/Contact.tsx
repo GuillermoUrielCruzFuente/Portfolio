@@ -35,11 +35,6 @@ export default function Contact() {
 	useEffect(() => {
 		showContent()
 		Lottie.setQuality('low')
-
-		//styling box pourpuses
-		// openModal()
-		// setWaiting(true)
-		// setSuccess(false)
 	}, [])
 
 	useEffect(() => {
@@ -64,7 +59,8 @@ export default function Contact() {
 	}
 
 	//form submit modal state
-	const [modalState, setModalState] = useState(false)
+	// const [modalState, setModalState] = useState(false)
+	const modalControl = useState(false)
 
 	const [success, setSuccess] = useState(false)
 	const [waiting, setWaiting] = useState(false)
@@ -72,11 +68,13 @@ export default function Contact() {
 	//form send mail confirmation
 
 	const openModal = () => {
-		setModalState(true)
+		// setModalState(true)
+		modalControl[1](true)
 	}
 
 	const closeModal = () => {
-		setModalState(false)
+		// setModalState(false)
+		modalControl[1](false)
 	}
 
 	const handleSubmit = async (event: SyntheticEvent) => {
@@ -85,7 +83,7 @@ export default function Contact() {
 
 		openModal()
 
-		await timer(200)
+		// await timer(200)
 		setWaiting(true)
 		setSuccess(false)
 
@@ -105,8 +103,9 @@ export default function Contact() {
 			//this is probably hacky and comes here for my lack of knowledge
 			//but if we don't await for a minimum amount of time the next step just broke
 			//I think it could be due to the time that takes to react to mount the animation container
-			await timer(1000)
-			closeModal()
+
+			// await timer(1000)
+			// closeModal()
 
 			//load the animation
 			// const messageAnimation = Lottie.loadAnimation({
@@ -224,7 +223,7 @@ export default function Contact() {
 					</div>
 
 					<FormModal
-						modalState={modalState}
+						modalControl={modalControl}
 						wainting={waiting}
 						success={success}
 						onExit={() => setSuccess(false)}

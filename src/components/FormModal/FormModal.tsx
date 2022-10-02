@@ -1,14 +1,20 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import {
+	Dispatch,
+	FC,
+	SetStateAction,
+	useRef,
+	useState,
+} from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 type Modal = {
-	modalState: boolean
+	modalControl: [boolean, Dispatch<SetStateAction<boolean>>]
 	wainting: boolean
 	success: boolean
 	onExit?: () => void
 }
 
-const FormModal: FC<Modal> = ({ modalState, wainting, success, onExit }) => {
+const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 	const modalRef = useRef<HTMLDivElement>(null)
 	const waintingRef = useRef<HTMLDivElement>(null)
 	const successRef = useRef<HTMLDivElement>(null)
@@ -29,7 +35,7 @@ const FormModal: FC<Modal> = ({ modalState, wainting, success, onExit }) => {
 			unmountOnExit
 			nodeRef={modalRef}
 			timeout={400}
-			in={modalState}
+			in={modalControl[0]}
 			classNames="modal"
 			onEnter={hideScrollBar}
 			onExit={showScrollBar}
@@ -77,8 +83,22 @@ const FormModal: FC<Modal> = ({ modalState, wainting, success, onExit }) => {
 					in={innerSuccess}
 					classNames="modal"
 				>
-					<div className="waiting" ref={successRef}>
-						<h1>Su mensaje ha sido enviado, gracias!</h1>
+					<div className="success" ref={successRef}>
+						<h1>
+							Muchas gracias por su mensaje, pronto me comunicaré
+							con usted.
+						</h1>
+						<div className="animations-container">
+							<div id="message-success"></div>
+						</div>
+						<button
+						className='modal-button'
+							onClick={() => {
+								modalControl[1](false)
+							}}
+						>
+							OK
+						</button>
 					</div>
 				</CSSTransition>
 			</div>

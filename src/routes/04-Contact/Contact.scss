@@ -425,6 +425,52 @@ $modal-transition-time: 400ms;
 	animation-delay: 0.2s;
 }
 
+.success {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+
+	background-color: #4f0f5e;
+	padding: 1.5rem;
+	border-radius: 1rem;
+
+	h1 {
+		font-size: 1rem;
+		color: #f5c8ff;
+	}
+
+	.animations-container {
+		width: 100%;
+		margin-block: 2rem;
+		background-color: #2f0838;
+		box-sizing: content-box;
+		padding: 1.5rem;
+	}
+
+	#message-success {
+		$animation-size: 250px;
+		width: $animation-size;
+		height: $animation-size;
+
+		background-color: #16011b;
+		margin: 0 auto;
+	}
+
+	.modal-button {
+		background-color: #3e0b49;
+		outline: none;
+		border: none;
+		padding: 0.5rem 1.5rem;
+		color: #fff;
+		font-weight: 900;
+		border-radius: 0.5rem;
+		box-shadow: 1px 3px 16px #000;
+		margin-left: auto;
+		cursor: pointer;
+	}
+}
+
 @-webkit-keyframes sk-cubeGridScaleDelay {
 	0%,
 	70%,
