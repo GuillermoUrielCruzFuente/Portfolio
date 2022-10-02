@@ -496,3 +496,30 @@ $modal-transition-time: 400ms;
 		transform: scale3D(0, 0, 1);
 	}
 }
+
+$success-transition-time: 400ms;
+.success-enter {
+	opacity: 0;
+	transform: scale(1.25) rotate(8deg) translate(0px, 20px);
+}
+
+.success-enter-active {
+	opacity: 1;
+	transform: scale(1) rotate(0deg) translate(0px, 0px);
+
+	transition: opacity $modal-transition-time, transform $modal-transition-time;
+	transition-timing-function: ease;
+}
+
+.success-exit {
+	opacity: 1;
+	transform: scale(1) rotate(0deg) translate(0px, 0px);
+}
+
+.success-exit-active {
+	opacity: 0;
+	transform: scale(1.25) rotate(8deg) translate(0px, 20px);
+
+	transition: opacity $modal-transition-time, transform $modal-transition-time;
+	transition-timing-function: ease;
+}

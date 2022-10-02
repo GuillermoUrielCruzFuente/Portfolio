@@ -1,10 +1,4 @@
-import {
-	Dispatch,
-	FC,
-	SetStateAction,
-	useRef,
-	useState,
-} from 'react'
+import { Dispatch, FC, SetStateAction, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 type Modal = {
@@ -81,7 +75,7 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 					nodeRef={successRef}
 					timeout={400}
 					in={innerSuccess}
-					classNames="modal"
+					classNames="success"
 				>
 					<div className="success" ref={successRef}>
 						<h1>
@@ -92,7 +86,7 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 							<div id="message-success"></div>
 						</div>
 						<button
-						className='modal-button'
+							className="modal-button"
 							onClick={() => {
 								modalControl[1](false)
 							}}
