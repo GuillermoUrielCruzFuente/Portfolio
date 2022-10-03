@@ -18,10 +18,10 @@ import messageIcon from '../../static/img/icons/contact/message.svg'
 import telIcon from '../../static/img/icons/contact/tel.svg'
 import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
 
-import timer from '../../helpers/Timer'
+// import timer from '../../helpers/Timer'
 
-import Lottie from 'lottie-web'
-import messageSuccessAnimation from '../../static/lottie/message-success.json'
+// import Lottie from 'lottie-web'
+// import messageSuccessAnimation from '../../static/lottie/message-success.json'
 import sendEmail from '../../helpers/SendMail'
 import FormModal from '../../components/FormModal/FormModal'
 
@@ -34,7 +34,7 @@ export default function Contact() {
 
 	useEffect(() => {
 		showContent()
-		Lottie.setQuality('low')
+		// Lottie.setQuality('low')
 	}, [])
 
 	useEffect(() => {

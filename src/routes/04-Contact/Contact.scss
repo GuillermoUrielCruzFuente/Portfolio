@@ -435,26 +435,49 @@ $modal-transition-time: 400ms;
 	padding: 1.5rem;
 	border-radius: 1rem;
 
-	h1 {
-		font-size: 1rem;
+	p {
+		font-size: 1.25rem;
 		color: #f5c8ff;
+		text-align: center;
+		font-weight: 400;
 	}
 
+	$animation-size: 350px;
 	.animations-container {
 		width: 100%;
+		height: $animation-size;
 		margin-block: 2rem;
 		background-color: #2f0838;
 		box-sizing: content-box;
 		padding: 1.5rem;
+
+		position: relative;
+	}
+
+	@mixin absolute-center {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	#message-success {
-		$animation-size: 250px;
 		width: $animation-size;
 		height: $animation-size;
 
-		background-color: #16011b;
-		margin: 0 auto;
+		position: absolute;
+		@include absolute-center;
+
+		// background-color: #16011b;
+	}
+
+	#ok {
+		width: $animation-size;
+		height: $animation-size;
+
+		position: absolute;
+		@include absolute-center;
+
+		// background-color: chartreuse;
 	}
 
 	.modal-button {
@@ -465,7 +488,7 @@ $modal-transition-time: 400ms;
 		color: #fff;
 		font-weight: 900;
 		border-radius: 0.5rem;
-		box-shadow: 1px 3px 16px #000;
+		box-shadow: 3px 3px 8px #000;
 		margin-left: auto;
 		cursor: pointer;
 	}
@@ -497,10 +520,10 @@ $modal-transition-time: 400ms;
 	}
 }
 
-$success-transition-time: 400ms;
+$success-transition-time: 800ms;
 .success-enter {
 	opacity: 0;
-	transform: scale(1.25) rotate(8deg) translate(0px, 20px);
+	transform: scale(0.5) rotate(8deg) translate(0px, 20px);
 }
 
 .success-enter-active {
@@ -508,7 +531,7 @@ $success-transition-time: 400ms;
 	transform: scale(1) rotate(0deg) translate(0px, 0px);
 
 	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: ease;
+	transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 }
 
 .success-exit {
@@ -518,8 +541,8 @@ $success-transition-time: 400ms;
 
 .success-exit-active {
 	opacity: 0;
-	transform: scale(1.25) rotate(8deg) translate(0px, 20px);
+	transform: scale(0.5) rotate(8deg) translate(0px, 20px);
 
 	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: ease;
+	transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 }

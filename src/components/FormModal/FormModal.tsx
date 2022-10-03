@@ -1,5 +1,18 @@
-import { Dispatch, FC, SetStateAction, useRef, useState } from 'react'
+import {
+	Dispatch,
+	FC,
+	SetStateAction,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
 import { CSSTransition } from 'react-transition-group'
+
+//Lottie animations
+import Lottie, { AnimationItem } from 'lottie-web'
+import succesAnimation from '../../static/lottie/message-success.json'
+// import okAnimation from '../../static/lottie/confetti.json'
+import okAnimation from '../../static/lottie/ok.json'
 
 type Modal = {
 	modalControl: [boolean, Dispatch<SetStateAction<boolean>>]
@@ -13,7 +26,30 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 	const waintingRef = useRef<HTMLDivElement>(null)
 	const successRef = useRef<HTMLDivElement>(null)
 
+	const successAnimationContainerRef = useRef<HTMLDivElement>(null)
+	const successAnimationLottie = useRef<AnimationItem>(
+		Lottie.loadAnimation({
+			container: successAnimationContainerRef.current!,
+		})
+	)
+
+	const okAnimationContainerRef = useRef<HTMLDivElement>(null)
+	const okAnimationLottie = useRef<AnimationItem>(
+		Lottie.loadAnimation({
+			container: okAnimationContainerRef.current!,
+		})
+	)
+
 	const [innerSuccess, setInnerSucces] = useState(false)
+
+	useEffect(() => {
+		Lottie.setQuality('low')
+
+		return () => {
+			okAnimationLottie.current.destroy()
+			successAnimationLottie.current.destroy()
+		}
+	}, [])
 
 	const hideScrollBar = () => {
 		document.getElementsByTagName('html')[0].style.overflow = 'hidden'
@@ -21,6 +57,28 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 
 	const showScrollBar = () => {
 		document.getElementsByTagName('html')[0].style.overflow = 'hidden auto'
+	}
+
+	const loadAnimations = () => {
+		successAnimationLottie.current = Lottie.loadAnimation({
+			container: successAnimationContainerRef.current!,
+			animationData: succesAnimation,
+			autoplay: true,
+			loop: false,
+			renderer: 'svg',
+		})
+
+		successAnimationLottie.current.addEventListener('complete', () => {
+			successAnimationLottie.current.destroy()
+
+			okAnimationLottie.current = Lottie.loadAnimation({
+				container: okAnimationContainerRef.current!,
+				animationData: okAnimation,
+				autoplay: true,
+				loop: false,
+				renderer: 'svg',
+			})
+		})
 	}
 
 	return (
@@ -47,7 +105,7 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 					in={wainting}
 					classNames="modal"
 					onExited={() => {
-						//change the success
+						//change the inner success
 						success && setInnerSucces(true)
 					}}
 				>
@@ -73,22 +131,35 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 					mountOnEnter
 					unmountOnExit
 					nodeRef={successRef}
-					timeout={400}
+					timeout={800}
 					in={innerSuccess}
 					classNames="success"
+					onEntered={loadAnimations}
+					onExited={() => {
+						okAnimationLottie.current.destroy()
+						successAnimationLottie.current.destroy()
+					}}
 				>
 					<div className="success" ref={successRef}>
-						<h1>
-							Muchas gracias por su mensaje, pronto me comunicaré
-							con usted.
-						</h1>
+						<p>
+							Muchas gracias por su mensaje,
+							<br />
+							pronto me comunicaré con usted.
+						</p>
 						<div className="animations-container">
-							<div id="message-success"></div>
+							<div
+								id="message-success"
+								ref={successAnimationContainerRef}
+							></div>
+
+							<div id="ok" ref={okAnimationContainerRef}></div>
 						</div>
 						<button
 							className="modal-button"
 							onClick={() => {
 								modalControl[1](false)
+								setInnerSucces(false)
+								Lottie.destroy()
 							}}
 						>
 							OK
