@@ -435,14 +435,19 @@ $modal-transition-time: 400ms;
 	padding: 1.5rem;
 	border-radius: 1rem;
 
+	max-width: min(80%, 350px);
+	max-height: 65vh;
+
+	$animation-size: 350px;
+
 	p {
 		font-size: 1.25rem;
 		color: #f5c8ff;
 		text-align: center;
 		font-weight: 400;
+		width: min($animation-size, 100%);
 	}
 
-	$animation-size: 350px;
 	.animations-container {
 		width: 100%;
 		height: $animation-size;
@@ -461,8 +466,11 @@ $modal-transition-time: 400ms;
 	}
 
 	#message-success {
-		width: $animation-size;
-		height: $animation-size;
+		// width: $animation-size;
+		// height: $animation-size;
+
+		width: min($animation-size, 100%);
+		height: min($animation-size, 100%);
 
 		position: absolute;
 		@include absolute-center;
@@ -471,8 +479,11 @@ $modal-transition-time: 400ms;
 	}
 
 	#ok {
-		width: $animation-size;
-		height: $animation-size;
+		// width: $animation-size;
+		// height: $animation-size;
+
+		width: min($animation-size, 100%);
+		height: min($animation-size, 100%);
 
 		position: absolute;
 		@include absolute-center;

@@ -12,7 +12,7 @@ import { CSSTransition } from 'react-transition-group'
 import Lottie, { AnimationItem } from 'lottie-web'
 import succesAnimation from '../../static/lottie/message-success.json'
 // import okAnimation from '../../static/lottie/confetti.json'
-import okAnimation from '../../static/lottie/ok.json'
+import okAnimation from '../../static/lottie/ok-02.json'
 
 type Modal = {
 	modalControl: [boolean, Dispatch<SetStateAction<boolean>>]
@@ -142,9 +142,8 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 				>
 					<div className="success" ref={successRef}>
 						<p>
-							Muchas gracias por su mensaje,
-							<br />
-							pronto me comunicaré con usted.
+							Muchas gracias por su mensaje, pronto me comunicaré
+							con usted.
 						</p>
 						<div className="animations-container">
 							<div
