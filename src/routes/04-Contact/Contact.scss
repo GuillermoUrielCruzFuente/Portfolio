@@ -278,6 +278,12 @@ form#contact-form {
 }
 
 @media screen and (max-width: 1100px) {
+	#contact {
+		.page-main-title {
+			font-size: clamp(1.5rem, 11vw, 6rem);
+		}
+	}
+
 	.split-container {
 		flex-flow: column;
 
