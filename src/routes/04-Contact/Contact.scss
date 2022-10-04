@@ -90,13 +90,14 @@ form#contact-form {
 	}
 
 	button.send {
-		background-color: #3e0b49;
+		background-color: #65067a;
+
 		border: none;
 		display: flex;
 		flex-flow: row;
 		align-items: center;
 		justify-content: center;
-		color: #fff;
+		color: #f5c8ff;
 		font-weight: 900;
 		padding: 0.5rem 1.25rem;
 		margin-top: 2.75rem;
@@ -111,7 +112,7 @@ form#contact-form {
 		width: fit-content;
 
 		&:hover {
-			background-color: #5e0874;
+			background-color: #9507b4;
 			box-shadow: 2px 2px 8px rgba($color: #5e0874, $alpha: 1);
 		}
 
@@ -294,6 +295,27 @@ form#contact-form {
 			&:last-child {
 				margin-top: 5rem;
 			}
+
+			&:first-child {
+				padding-right: 0rem;
+			}
+		}
+	}
+
+	form#contact-form {
+		padding: 1rem;
+
+		.form-title {
+			font-size: 1.25rem;
+		}
+
+		.form-text {
+			width: 100%;
+		}
+
+		button.send {
+			padding: 0.85rem 0;
+			width: 100%;
 		}
 	}
 }
