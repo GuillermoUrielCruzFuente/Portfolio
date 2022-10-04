@@ -1,18 +1,24 @@
 import CVThumb from '../../static/img/photos/cv-thumb.jpg'
+import cv from '../../static/cv.pdf'
 import './DownloadPDF.scss'
+import downloadIcon from '../../static/img/icons/contact/download.svg'
 
 const DownloadPDF = () => {
 	return (
-		<article className="download-pdf">
-			<div className="thumb-container">
-				<img src={CVThumb} alt="resume-thumbnail" />
+		<a className="download-cv" href={cv} target="_blank">
+			<div className="icon-container">
+				<p className="icon">cv</p>
 			</div>
-			<div className="button-container">
-				<a download={true} href="">
-					descargar
-				</a>
+
+			<div className="label-container">
+				<img
+					className="download-icon"
+					src={downloadIcon}
+					alt="descargar"
+				/>
+				<p className="button-label">Descargar</p>
 			</div>
-		</article>
+		</a>
 	)
 }
 
