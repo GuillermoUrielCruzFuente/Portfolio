@@ -66,8 +66,8 @@ $guillermo-red: #a03535;
 		width: $logo-size;
 		height: $logo-size;
 		margin-inline: 3rem;
-		-webkit-animation: up-down ease-in-out 1s alternate infinite;
-		animation: up-down ease-in-out 1s alternate infinite;
+		-webkit-animation: up-down ease-in-out 0.75s alternate infinite;
+		animation: up-down ease-in-out 0.75s alternate infinite;
 
 		&:first-child {
 			margin-left: 0;
@@ -300,7 +300,8 @@ main#projects-main {
 			position: absolute;
 			transition: background-color 500ms, -webkit-backdrop-filter 500ms;
 			transition: backdrop-filter 500ms, background-color 500ms;
-			transition: backdrop-filter 500ms, background-color 500ms, -webkit-backdrop-filter 500ms;
+			transition: backdrop-filter 500ms, background-color 500ms,
+				-webkit-backdrop-filter 500ms;
 		}
 
 		.screen-noblur {

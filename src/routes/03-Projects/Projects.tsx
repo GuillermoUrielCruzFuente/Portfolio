@@ -8,8 +8,13 @@ import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
 //components
 import ScrollDown from '../../components/ScrollDown/ScrollDown'
-import ProjectInfo, { ProjectContent, projects } from '../../components/ProjectInfo/ProjectInfo'
-import ProjectImages, { CollagePath } from '../../components/ProjectImages/ProjectImages'
+import ProjectInfo, {
+	ProjectContent,
+	projects,
+} from '../../components/ProjectInfo/ProjectInfo'
+import ProjectImages, {
+	CollagePath,
+} from '../../components/ProjectImages/ProjectImages'
 
 //styles
 import './Projects.scss'
@@ -30,7 +35,12 @@ import intelligentiaLogo from '../../static/img/icons/project-logos/intelligenti
 import campoFuerteLogo from '../../static/img/icons/project-logos/campo-fuerte.svg'
 import guillermoLogo from '../../static/img/icons/project-logos/guillermo.svg'
 
-const projectLogos = [harbestLogo, intelligentiaLogo, campoFuerteLogo, guillermoLogo]
+const projectLogos = [
+	harbestLogo,
+	intelligentiaLogo,
+	campoFuerteLogo,
+	guillermoLogo,
+]
 
 const proImgs: Array<CollagePath> = [
 	{
@@ -62,9 +72,12 @@ const Projects = () => {
 	useEffect(() => {
 		showContent()
 
+		//delay to await for the icons to load
 		setTimeout(() => {
-			projectsLogos.current ? (projectsLogos.current.style.opacity = '1') : undefined
-		}, 800)
+			projectsLogos.current
+				? (projectsLogos.current.style.opacity = '1')
+				: undefined
+		}, 500)
 	}, [])
 
 	useEffect(() => {
@@ -98,10 +111,11 @@ const Projects = () => {
 					<h1 className="page-title">Proyectos</h1>
 					<p className="page-description">
 						Comencé hace ya un tiempo en el{' '}
-						<span className="accent">desarrollo web</span>, tras varias iteraciones
-						estos son mis <span className="accent">proyectos destacados</span>, aquellos
-						en los que he colocado esfuerzo y dedicación, te agradezco el tiempo que te
-						tome revisarlos.
+						<span className="accent">desarrollo web</span>, tras
+						varias iteraciones estos son mis{' '}
+						<span className="accent">proyectos destacados</span>,
+						aquellos en los que he colocado esfuerzo y dedicación,
+						te agradezco el tiempo que te tome revisarlos.
 					</p>
 
 					<div className="works" ref={projectsLogos}>
@@ -125,29 +139,40 @@ const Projects = () => {
 
 				<main id="projects-main">
 					<section className="projects">
-						{projects.map((project: ProjectContent, index: number) => {
-							return (
-								<div key={project.url} className='project-box'>
-									<div className="project-container">
-										<ProjectInfo
-											order={project.order}
-											name={project.name}
-											description={project.description}
-											techStack={project.techStack}
-											repository={project.repository}
-											url={project.url}
-										/>
+						{projects.map(
+							(project: ProjectContent, index: number) => {
+								return (
+									<div
+										key={project.url}
+										className="project-box"
+									>
+										<div className="project-container">
+											<ProjectInfo
+												order={project.order}
+												name={project.name}
+												description={
+													project.description
+												}
+												techStack={project.techStack}
+												repository={project.repository}
+												url={project.url}
+											/>
 
-										<ProjectImages
-											fullImagePath={proImgs[index].fullImagePath}
-											thumbnailPath={proImgs[index].thumbnailPath}
-										/>
+											<ProjectImages
+												fullImagePath={
+													proImgs[index].fullImagePath
+												}
+												thumbnailPath={
+													proImgs[index].thumbnailPath
+												}
+											/>
+										</div>
+
+										<hr className="project-separator" />
 									</div>
-
-									<hr className="project-separator" />
-								</div>
-							)
-						})}
+								)
+							}
+						)}
 					</section>
 				</main>
 			</div>
