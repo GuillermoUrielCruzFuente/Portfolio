@@ -148,7 +148,7 @@ const Nav = () => {
 
 	// in order to navigate on CSSTransition unmounted
 	// listen for a flag that can be fired with a function
-	// provide to the OutletContext
+	// provided to the OutletContext
 	useEffect(() => {
 		if (readyToNavigate) {
 			if (clickedLink) {

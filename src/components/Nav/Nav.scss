@@ -2,9 +2,9 @@ nav {
     width: 100vw;
     height: var(--navbar-size);
     top: 0px;
-    position: sticky;
-    // position: fixed;
-    // left: 0px;
+    // position: sticky;
+    position: fixed;
+    left: 0px;
     z-index: 100;
 
     transition: 300ms background-color, 300ms backdrop-filter, 300ms box-shadow;
