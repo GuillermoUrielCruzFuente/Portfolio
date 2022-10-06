@@ -1,10 +1,13 @@
 nav {
 	width: 100vw;
 	height: var(--navbar-size);
-	top: 0px;
 	// position: sticky;
+
+	//
 	position: fixed;
 	left: 0px;
+	top: 0px;
+
 	z-index: 100;
 
 	transition: 300ms background-color, 300ms box-shadow,
@@ -38,7 +41,7 @@ span {
 	align-items: center;
 
 	#nav-logo-link {
-		height: calc(100% - 3.25rem);
+		height: calc(100% - 2.2rem);
 		display: inline-block;
 		text-decoration: none;
 
@@ -48,6 +51,26 @@ span {
 			transition: 800ms opacity;
 		}
 	}
+}
+
+//style applied on Scroll event
+.blur-bg {
+	background-color: rgba($color: rgb(42, 5, 51), $alpha: 0.65);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	box-shadow: 0px 0px 16px rgba($color: #000, $alpha: 0.85);
+}
+
+//style applied on top of pages
+.no-blur-bg {
+	background-color: unset;
+
+	//testing purposes
+	// background-color: darkslategrey;
+
+	-webkit-backdrop-filter: unset;
+	backdrop-filter: unset;
+	box-shadow: unset;
 }
 
 #navigator {
@@ -122,20 +145,6 @@ span {
 			color: #fff;
 		}
 	}
-}
-
-.blur-bg {
-	background-color: rgba($color: rgb(42, 5, 51), $alpha: 0.5);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
-	box-shadow: 0px 0px 16px rgba($color: #000, $alpha: 0.75);
-}
-
-.no-blur-bg {
-	background-color: unset;
-	-webkit-backdrop-filter: unset;
-	backdrop-filter: unset;
-	box-shadow: unset;
 }
 
 @media screen and (max-width: 700px) {

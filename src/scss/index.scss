@@ -1,9 +1,9 @@
-@import "./base/reset.scss";
-@import "./layout/page.scss";
-@import "./base/scrollbar.scss";
+@import './base/reset.scss';
+@import './layout/page.scss';
+@import './base/scrollbar.scss';
 
 body {
-	font-family: "Poppins", sans-serif;
+	font-family: 'Poppins', sans-serif;
 	overflow-x: hidden;
 	width: 100vw;
 	height: 100%;
@@ -15,14 +15,16 @@ body {
 // }
 
 :root {
-	--navbar-size: 80px;
+	--navbar-size: 60px;
+	// --navbar-size: 10vh;
 }
 
-@media screen and (max-width: 500px) {
-	:root {
-		--navbar-size: 60px;
-	}
-}
+// @media screen and (max-width: 500px) {
+// 	:root {
+// 		--navbar-size: 60px;
+// 		// --navbar-size: 6.5vh;
+// 	}
+// }
 
 .page-a-enter {
 	opacity: 0;
