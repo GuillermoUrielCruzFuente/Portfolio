@@ -158,7 +158,6 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 							onClick={() => {
 								modalControl[1](false)
 								setInnerSucces(false)
-								Lottie.destroy()
 							}}
 						>
 							OK
