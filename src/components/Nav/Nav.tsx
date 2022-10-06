@@ -1,5 +1,11 @@
-import { MutableRefObject, useEffect, useRef, useState, Dispatch, SetStateAction } from 'react'
-import { NavLink, Link, useLocation, useNavigate, Outlet, useOutletContext } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import {
+	NavLink,
+	Link,
+	useLocation,
+	useNavigate,
+	Outlet,
+} from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 import ShapesBackground from '../ShapesBackground/ShapesBackground'
 
@@ -133,7 +139,8 @@ const Nav = () => {
 			// logoAnimationRef.current.playSegments([0, 180], true)
 			showNavLogo()
 		} else {
-			document.getElementById('nav-logo-link')!.style.pointerEvents = 'none'
+			document.getElementById('nav-logo-link')!.style.pointerEvents =
+				'none'
 		}
 
 		window.addEventListener('scroll', changeStyleOnScroll)
@@ -184,7 +191,10 @@ const Nav = () => {
 								navigator(routesWithRef[0].path)
 							}}
 						>
-							<div id="nav-logo" ref={logoAnimationContainerRef} />
+							<div
+								id="nav-logo"
+								ref={logoAnimationContainerRef}
+							/>
 						</Link>
 					</div>
 
@@ -217,41 +227,55 @@ const Nav = () => {
 								nodeRef={menuMobileRef}
 								addEndListener={() => setMobItems(!mobItems)}
 							>
-								<div className="links-container-mobile" ref={menuMobileRef}>
-									{routesWithRef.map((route: RouteWithRef, i: number) => {
-										return (
-											<CSSTransition
-												in={mobItems}
-												classNames="link-item-app"
-												timeout={{
-													enter: 500 + i * 100,
-													exit: 500 + i * 80,
-												}}
-												nodeRef={route.ref}
-												mountOnEnter
-												unmountOnExit
-												key={route.text}
-											>
-												<NavLink
-													onClick={(event) => {
-														event.preventDefault()
-														toggleMenu()
-														navigator(route.path)
+								<div
+									className="links-container-mobile"
+									ref={menuMobileRef}
+								>
+									{routesWithRef.map(
+										(route: RouteWithRef, i: number) => {
+											return (
+												<CSSTransition
+													in={mobItems}
+													classNames="link-item-app"
+													timeout={{
+														enter: 500 + i * 100,
+														exit: 500 + i * 80,
 													}}
-													to={route.path}
-													className="nav-link-item-mob | nav-link"
-													ref={route.ref}
-													style={{
-														transitionDelay: mobItems
-															? `${i * 100}ms`
-															: `${i * 80}ms`,
-													}}
+													nodeRef={route.ref}
+													mountOnEnter
+													unmountOnExit
+													key={route.text}
 												>
-													{route.text}
-												</NavLink>
-											</CSSTransition>
-										)
-									})}
+													<NavLink
+														onClick={(event) => {
+															event.preventDefault()
+															toggleMenu()
+															navigator(
+																route.path
+															)
+														}}
+														to={route.path}
+														className="nav-link-item-mob | nav-link"
+														ref={route.ref}
+														style={{
+															transitionDelay:
+																mobItems
+																	? `${
+																			i *
+																			100
+																	  }ms`
+																	: `${
+																			i *
+																			80
+																	  }ms`,
+														}}
+													>
+														{route.text}
+													</NavLink>
+												</CSSTransition>
+											)
+										}
+									)}
 								</div>
 							</CSSTransition>
 						}
