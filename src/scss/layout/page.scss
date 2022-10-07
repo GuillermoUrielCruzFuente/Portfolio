@@ -1,14 +1,18 @@
 main {
-    width: 100vw;
+	width: 100vw;
 }
 
 section {
-    width: 75%;
-    margin: 0px auto;
-    position: relative;
+	width: 75%;
+	margin: 0px auto;
+	position: relative;
 }
 
 header {
-    width: 75%;
-    margin: 0px auto;
+	width: 75%;
+	margin: 0px auto;
+
+	// in order to avoid the superposition with the navbar,
+	// this margin is necessary for all the header elements
+	margin-top: calc(var(--navbar-size));
 }
