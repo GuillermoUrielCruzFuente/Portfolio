@@ -185,15 +185,19 @@ export default function Contact() {
 						/>
 
 						<div className="phone-number-container">
-							<p>celular</p>
+							<p>
+								Una llamada también será bien recibida, he aqui
+								mi número personal
+							</p>
 							<a className="tel-tag" href="tel:+52-5551588911">
 								555 158 8911
 							</a>
 						</div>
 
 						<p className="contact-text">
-							También puedes darle un vistazo a mi CV, esta es la
-							versión más reciente, con toda mi información en el.
+							Y por último, puedes darle un vistazo a mi CV, esta
+							es la versión más reciente, con toda mi información
+							en él.
 						</p>
 
 						<DownloadPDF />

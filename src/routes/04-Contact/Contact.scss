@@ -48,8 +48,8 @@
 	margin-block: 2rem;
 
 	p {
-		font-weight: 900;
-		line-height: 1;
+		font-weight: 400;
+		// line-height: 1;
 	}
 
 	.tel-tag {
@@ -249,18 +249,15 @@ form#contact-form {
 .split-container {
 	display: flex;
 	flex-flow: row;
-
 	margin-top: 2rem;
-	// background-color: chartreuse;
 
 	.split {
 		flex-basis: 0;
 		flex-grow: 1;
 
 		&:first-child {
-			// background-color: cadetblue;
 			flex-grow: 0;
-			padding-right: 3rem;
+			padding-right: 5rem;
 		}
 	}
 }
@@ -400,12 +397,7 @@ $modal-transition-time: 400ms;
 	$loader-size: 2.5rem;
 	width: $loader-size;
 	height: $loader-size;
-
-	// background-color: crimson;
 	margin-right: 2rem;
-	// padding: 1rem;
-	// margin: 2rem auto;
-	// margin-top: 5rem;
 }
 
 .sk-cube-grid .sk-cube {
