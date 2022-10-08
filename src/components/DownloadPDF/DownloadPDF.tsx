@@ -16,7 +16,7 @@ const DownloadPDF = () => {
 					src={downloadIcon}
 					alt="descargar"
 				/>
-				<p className="button-label">Descargar</p>
+				<p className="button-label">descargar</p>
 			</div>
 		</a>
 	)
