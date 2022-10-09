@@ -1,5 +1,4 @@
 #home-main-container {
-	//solucionar
 	height: calc(100vh - var(--navbar-size));
 	padding-bottom: var(--navbar-size);
 	display: flex;
@@ -32,12 +31,10 @@
 		font-weight: 400;
 		margin: 0;
 		width: calc($logo-width + 5%);
-		// margin-top: 1rem;
 		text-align: left;
 		color: #fff;
 		font-size: 1rem;
 		color: #f5c8ff;
-
 		margin-block: 2rem;
 	}
 
