@@ -24,7 +24,13 @@ export type Navigation = {
 	from: string | null
 }
 
-const Button: FC<ButtonType> = ({ children, img, className, secondary, navigator }) => {
+const Button: FC<ButtonType> = ({
+	children,
+	img,
+	className,
+	secondary,
+	navigator,
+}) => {
 	const buttonClasses = secondary
 		? `base-button secondary-button ${className}`
 		: `base-button primary-button ${className}`
