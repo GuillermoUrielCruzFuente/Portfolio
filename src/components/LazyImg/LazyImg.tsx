@@ -1,30 +1,34 @@
-import { FC, SyntheticEvent, useEffect, useRef } from 'react'
-// import './ProjectImages.scss'
+import { FC, useEffect, useRef } from 'react'
 
-export type CollagePath = {
+export type LazyImgPath = {
 	fullImagePath: string
 	thumbnailPath: string
 }
 
-const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
+const LazyImg: FC<LazyImgPath> = ({ fullImagePath, thumbnailPath }) => {
 	const collageRef = useRef<HTMLImageElement>(null)
 	const blur = useRef<HTMLDivElement>(null)
 
 	const intersectionOptions: IntersectionObserverInit = {
 		root: null,
-		rootMargin: '0px',
-		threshold: 0.75,
+		rootMargin: '200px',
+		threshold: 0,
 	}
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(computeEntries, intersectionOptions)
+		const observer = new IntersectionObserver(
+			computeEntries,
+			intersectionOptions
+		)
 
 		collageRef.current
 			? observer.observe(collageRef.current)
 			: console.log('download image failed')
 
 		return () => {
-			collageRef.current ? observer.unobserve(collageRef.current!) : undefined
+			collageRef.current
+				? observer.unobserve(collageRef.current!)
+				: undefined
 		}
 	}, [])
 
@@ -41,7 +45,9 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 	}
 
 	const loadFullImage = () => {
-		collageRef.current ? (collageRef.current.src = fullImagePath) : undefined
+		collageRef.current
+			? (collageRef.current.src = fullImagePath)
+			: undefined
 	}
 
 	const handleImageLoad = () => {
@@ -56,7 +62,9 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 	}
 
 	const deleteBlur = () => {
-		blur.current ? blur.current.classList.replace('screen-blur', 'screen-noblur') : undefined
+		blur.current
+			? blur.current.classList.replace('screen-blur', 'screen-noblur')
+			: undefined
 	}
 
 	return (
@@ -76,4 +84,4 @@ const ProjectImages: FC<CollagePath> = ({ fullImagePath, thumbnailPath }) => {
 	)
 }
 
-export default ProjectImages
+export default LazyImg
