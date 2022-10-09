@@ -136,10 +136,12 @@ const Home = () => {
 							proyectos
 						</Button>
 					</div>
+
 					<SocialMedia
 						state={socialState}
 						containerClass={'social-media-container'}
 					/>
+
 					<div className="available appear">
 						<span id="circle"></span>
 						<p className="able-to-work">Disponible</p>
