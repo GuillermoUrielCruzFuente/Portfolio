@@ -18,7 +18,7 @@
 	.social-media-icon {
 		width: 100%;
 		height: 100%;
-		transition: 300ms transform;
+		transition: 200ms transform;
 		transform-origin: center center;
 		display: inline-block;
 
@@ -53,15 +53,3 @@
 
 	transition: transform 500ms, opacity 500ms;
 }
-
-// @media screen and (max-width: 500px) {
-//     .social-media-container {
-
-//         $icon-size: 40px;
-//         .social-media-icon {
-//             height: $icon-size;
-//             width: $icon-size;
-//             padding-inline: 0.4rem;
-//         }
-//     }
-// }
