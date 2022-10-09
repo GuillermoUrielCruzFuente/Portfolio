@@ -9,6 +9,8 @@ import useNavContext, { ContextType } from '../../hooks/useNavContext'
 //styles imports
 import './Home.scss'
 
+import collage from '../../static/img/web-images/collage.png'
+
 //data imports
 import logoAnimationData from '../../static/lottie/logo.json'
 import projectsIcon from '../../static/img/icons/home-buttons/portfolio.svg'
@@ -51,7 +53,9 @@ const Home = () => {
 	}, [nav])
 
 	const showElements = () => {
-		const elements = document.getElementsByClassName('appear') as HTMLCollectionOf<HTMLElement>
+		const elements = document.getElementsByClassName(
+			'appear'
+		) as HTMLCollectionOf<HTMLElement>
 
 		for (const element of elements) {
 			element.style.opacity = '1'
@@ -97,15 +101,17 @@ const Home = () => {
 			<header id="home-main-container" ref={refContainer}>
 				<div className="home-content">
 					<p className="big-text appear">Hola!👋🏾soy</p>
-
-					<div ref={logoAnimationHomeContainerRef} id="lottie-animation"></div>
-
+					<div
+						ref={logoAnimationHomeContainerRef}
+						id="lottie-animation"
+					></div>
 					<p className="description appear">
-						Desarrollador Frontend de tiempo completo, con más de 4 años de experiencia.
-						Mexicano, con intervención en distintos proyectos profesionales, una gran
-						creatividad y atención a los detalles.
+						<span className="accent">Desarrollador Frontend</span>{' '}
+						de tiempo completo, con más de 4 años de experiencia.
+						Mexicano, con intervención en distintos proyectos
+						profesionales, una gran creatividad y atención a los
+						detalles.
 					</p>
-
 					<div className="buttons-container">
 						<Button
 							img={contactIcon}
@@ -116,7 +122,7 @@ const Home = () => {
 								navigator: navigateTo,
 							}}
 						>
-							contáctame
+							contacto
 						</Button>
 
 						<Button
@@ -130,15 +136,22 @@ const Home = () => {
 							proyectos
 						</Button>
 					</div>
-				</div>
-
-				<div className="bottom-info">
+					<SocialMedia
+						state={socialState}
+						containerClass={'social-media-container'}
+					/>
 					<div className="available appear">
 						<span id="circle"></span>
 						<p className="able-to-work">Disponible</p>
 					</div>
 
-					<SocialMedia state={socialState} containerClass={'social-media-container'} />
+					<div className="collage-container appear">
+						<img
+							src={collage}
+							alt="projects images"
+							className="collage"
+						/>
+					</div>
 				</div>
 			</header>
 		</CSSTransition>
