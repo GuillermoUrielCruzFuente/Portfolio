@@ -108,51 +108,10 @@ main#projects-main {
 	}
 }
 
-.project-box {
-	// background-color: #222;
-
-	&:nth-child(2n) > .project-container {
-		// background-color: crimson;
-		flex-flow: row-reverse wrap;
-		text-align: right;
-
-		.project-info {
-			align-items: flex-end;
-
-			.project-tech-icons-container {
-				flex-flow: row-reverse wrap;
-			}
-
-			.project-tech-icon {
-				margin-inline: 1rem;
-
-				&:first-child {
-					margin-right: 0rem;
-				}
-			}
-
-			.project-buttons-container {
-				flex-flow: row-reverse wrap;
-
-				.project-button:first-child {
-					margin-right: 0;
-					margin-left: 1rem;
-				}
-			}
-		}
-
-		.project-collage-img-container {
-			align-items: flex-start;
-		}
-	}
-}
-
-//this part must control the alternate behavior desired in the projects page
 .project-container {
 	display: flex;
 	min-height: max(900px, 100vh);
 	padding-top: 20vh;
-
 	flex-flow: row wrap;
 	text-align: left;
 
@@ -165,7 +124,6 @@ main#projects-main {
 		flex-flow: column;
 		justify-content: center;
 		flex-basis: 0;
-
 		align-items: flex-start;
 
 		.project-number {
@@ -196,9 +154,10 @@ main#projects-main {
 		}
 
 		.project-tech-icon {
-			width: 40px;
-			height: 40px;
-			margin-inline: 1rem;
+			$tech-icon-size: 24px;
+			width: $tech-icon-size;
+			height: $tech-icon-size;
+			margin-inline: 0.5rem;
 
 			&:first-child {
 				margin-left: 0rem;
@@ -227,7 +186,6 @@ main#projects-main {
 
 			.project-button:first-child {
 				margin-right: 1rem;
-
 				margin-left: 0;
 			}
 		}
@@ -241,13 +199,13 @@ main#projects-main {
 		font-weight: 900;
 		text-decoration: none;
 		line-height: 1;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
 		height: fit-content;
 		border-radius: 0.5rem;
 		font-size: 0.8rem;
 		padding: 0.75rem 1.25rem;
 		transition: background-color 300ms;
-
-		// margin-right: 1rem;
 
 		img {
 			$button-icon-size: 18px;
@@ -290,70 +248,69 @@ main#projects-main {
 		display: flex;
 		flex-flow: column;
 		justify-content: center;
-
 		align-items: flex-end;
 
-		.screen-blur {
-			-webkit-backdrop-filter: blur(10px);
-			backdrop-filter: blur(10px);
-			background-color: rgba($color: #770686, $alpha: 0.15);
+		$unblur-time-transition: 800ms;
+		@mixin screen-properties {
 			position: absolute;
-			transition: background-color 500ms, -webkit-backdrop-filter 500ms;
-			transition: backdrop-filter 500ms, background-color 500ms;
-			transition: backdrop-filter 500ms, background-color 500ms,
-				-webkit-backdrop-filter 500ms;
+			-webkit-backdrop-filter: blur(16px);
+			backdrop-filter: blur(16px);
+			background-color: rgba($color: #43074b, $alpha: 0.5);
+			transition: opacity $unblur-time-transition;
+		}
+
+		.screen-blur {
+			@include screen-properties;
+
+			opacity: 1;
 		}
 
 		.screen-noblur {
-			-webkit-backdrop-filter: blur(0px);
-			backdrop-filter: blur(0px);
-			background-color: rgba($color: #770686, $alpha: 0);
-			position: absolute;
-			transition: -webkit-backdrop-filter 500ms;
-			transition: backdrop-filter 500ms;
-			transition: backdrop-filter 500ms, -webkit-backdrop-filter 500ms;
+			@include screen-properties;
+
+			opacity: 0;
 		}
 
 		.project-collage {
-			width: 90%;
+			width: 75%;
 			aspect-ratio: 1169/963;
 		}
 	}
+}
 
-	// &:nth-child(3),
-	// &:nth-child(7) {
-	// 	flex-flow: row-reverse wrap;
-	// 	text-align: right;
+//this part must control the alternate behavior desired in the projects page
+.project-box {
+	&:nth-child(2n) > .project-container {
+		flex-flow: row-reverse wrap;
+		text-align: right;
 
-	// 	.project-info {
-	// 		align-items: flex-end;
+		.project-info {
+			align-items: flex-end;
 
-	// 		.project-tech-icons-container {
-	// 			flex-flow: row-reverse wrap;
-	// 		}
+			.project-tech-icons-container {
+				flex-flow: row-reverse wrap;
+			}
 
-	// 		.project-tech-icon {
-	// 			margin-inline: 1rem;
+			.project-tech-icon {
+				&:first-child {
+					margin-right: 0rem;
+				}
+			}
 
-	// 			&:first-child {
-	// 				margin-right: 0rem;
-	// 			}
-	// 		}
+			.project-buttons-container {
+				flex-flow: row-reverse wrap;
 
-	// 		.project-buttons-container {
-	// 			flex-flow: row-reverse wrap;
+				.project-button:first-child {
+					margin-right: 0;
+					margin-left: 1rem;
+				}
+			}
+		}
 
-	// 			.project-button:first-child {
-	// 				margin-right: 0;
-	// 				margin-left: 1rem;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	.project-collage-img-container {
-	// 		align-items: flex-start;
-	// 	}
-	// }
+		.project-collage-img-container {
+			align-items: flex-start;
+		}
+	}
 }
 
 .project-separator {

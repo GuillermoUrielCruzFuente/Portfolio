@@ -12,9 +12,7 @@ import ProjectInfo, {
 	ProjectContent,
 	projects,
 } from '../../components/ProjectInfo/ProjectInfo'
-import ProjectImages, {
-	CollagePath,
-} from '../../components/ProjectImages/ProjectImages'
+import LazyImg, { LazyImgPath } from '../../components/LazyImg/LazyImg'
 
 //styles
 import './Projects.scss'
@@ -42,7 +40,7 @@ const projectLogos = [
 	guillermoLogo,
 ]
 
-const proImgs: Array<CollagePath> = [
+const proImgs: Array<LazyImgPath> = [
 	{
 		fullImagePath: harbestImg,
 		thumbnailPath: harbestThumb,
@@ -158,7 +156,7 @@ const Projects = () => {
 												url={project.url}
 											/>
 
-											<ProjectImages
+											<LazyImg
 												fullImagePath={
 													proImgs[index].fullImagePath
 												}
