@@ -87,6 +87,7 @@ export const useInput = ({
 					name={name}
 					placeholder={name}
 					type={inputType}
+					pattern={inputType === 'tel' ? '[0-9]{10}' : undefined}
 				/>
 			)}
 
