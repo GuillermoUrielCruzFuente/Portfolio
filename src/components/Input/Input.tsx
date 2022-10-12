@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { CSSProperties, FC, SyntheticEvent, useRef, useState } from 'react'
 import './Input.scss'
 
 /**
@@ -26,13 +26,14 @@ import './Input.scss'
 type UseInput = {
 	render: JSX.Element
 	getValue: () => string
+	isValid: boolean
 }
 
 export type InputConfig = {
 	name: string
 	img: string
-	validation: 'required' | 'semi-required' | 'not-required'
-	inputType: 'textarea' | 'text' | 'email' | 'tel'
+	required: boolean
+	inputType: 'text' | 'email' | 'tel'
 }
 
 /**
@@ -52,54 +53,92 @@ export type InputConfig = {
 export const useInput = ({
 	name,
 	img,
-	validation,
+	required,
 	inputType,
 }: InputConfig): UseInput => {
 	const inputRef = useRef<HTMLInputElement>(null)
-	const areaRef = useRef<HTMLTextAreaElement>(null)
+	const [inputState, setInputState] = useState(false)
 
-	const getValue = () =>
-		inputType === 'textarea'
-			? areaRef.current
-				? areaRef.current.value
-				: ''
-			: inputRef.current
-			? inputRef.current.value
-			: ''
+	const getValue = () => inputRef.current!.value
+	const isInputFilled = () => getValue() != ''
+	const isInputValid = () => inputRef.current?.validity.valid
+
+	const handleInputContentChange = () => {
+		if (isInputValid()) {
+			if (isInputFilled()) {
+				setInputState(true)
+			} else {
+				//a weird way to force the re render
+				setInputState(false)
+				setTimeout(() => {
+					setInputState(true)
+				}, 100)
+			}
+		} else {
+			setInputState(false)
+		}
+	}
+
+	const VALIDATION_DESCRIPTIONS = {
+		text: 'Ingresa aquel nombre con el que podré referirme a ti.',
+		tel: 'Ingresa un número telefónico con 10 dígitos. Ejemplo: 5551588911',
+		email: 'Ingresa una dirección de correo válida. Ej. correo@gmail.com',
+	}
+
+	const LABEL_STATE_COLORS = {
+		OK: '#99fb9c',
+		ERROR: '#fb9999',
+		NEUTRAL: '#f5c8ff',
+	}
+
+	const getInlineValidationDescription = (): string => {
+		return VALIDATION_DESCRIPTIONS[inputType]
+	}
+
+	const computeLabelColor = (): CSSProperties => {
+		if (inputState) {
+			if (isInputFilled()) {
+				return { color: LABEL_STATE_COLORS.OK }
+			} else {
+				return { color: LABEL_STATE_COLORS.NEUTRAL }
+			}
+		} else if (required) {
+			return { color: LABEL_STATE_COLORS.ERROR }
+		} else {
+			return { color: LABEL_STATE_COLORS.NEUTRAL }
+		}
+	}
 
 	const input = (
-		<div className="input-container">
-			{inputType === 'textarea' ? (
-				<textarea
-					className="form-input"
-					placeholder={name}
-					required={validation === 'required' ? true : false}
-					rows={3}
-					name={name}
-					ref={areaRef}
-				></textarea>
-			) : (
+		<>
+			<div className="input-container">
 				<input
 					autoComplete="off"
 					className="form-input"
 					ref={inputRef}
-					required={validation === 'required' ? true : false}
 					name={name}
 					placeholder={name}
 					type={inputType}
+					onChange={handleInputContentChange}
 					pattern={inputType === 'tel' ? '[0-9]{10}' : undefined}
+					required={required}
 				/>
-			)}
 
-			<label>{name}</label>
+				<label>{name}</label>
 
-			<img className="label-icon" src={img} alt="" />
-		</div>
+				<img className="label-icon" src={img} alt="" />
+			</div>
+
+			<span className="error-label" style={computeLabelColor()}>
+				{getInlineValidationDescription()}
+			</span>
+		</>
 	)
 
 	return {
 		render: input,
 		getValue: getValue,
+		isValid: inputState,
 	}
 }
 
