@@ -24,6 +24,7 @@ import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
 // import messageSuccessAnimation from '../../static/lottie/message-success.json'
 import sendEmail from '../../helpers/SendMail'
 import FormModal from '../../components/FormModal/FormModal'
+import useTextarea from '../../components/Textarea/useTextarea'
 
 export default function Contact() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
@@ -99,28 +100,6 @@ export default function Contact() {
 			//change the confirmation state
 			setWaiting(false)
 			setSuccess(true)
-
-			//this is probably hacky and comes here for my lack of knowledge
-			//but if we don't await for a minimum amount of time the next step just broke
-			//I think it could be due to the time that takes to react to mount the animation container
-
-			// await timer(1000)
-			// closeModal()
-
-			//load the animation
-			// const messageAnimation = Lottie.loadAnimation({
-			// 	container: document.getElementById('message-success')!,
-			// 	animationData: messageSuccessAnimation,
-			// 	renderer: 'svg',
-			// 	autoplay: true,
-			// 	loop: false,
-			// })
-
-			//close the modal window once the animation has been completed
-			// messageAnimation.addEventListener('complete', () => {
-			// 	closeModal()
-			// 	messageAnimation.destroy()
-			// })
 		} else {
 			alert(
 				'hubo un error al enviar el mensaje, intente más tarde, por favor.'
@@ -133,29 +112,30 @@ export default function Contact() {
 	const nameInput = useInput({
 		name: 'nombre',
 		img: userIcon,
-		validation: 'required',
 		inputType: 'text',
+		required: true,
 	})
 
-	const messageTextArea = useInput({
+	const messageTextArea = useTextarea({
 		name: 'mensaje',
 		img: messageIcon,
-		inputType: 'textarea',
-		validation: 'required',
+		required: true,
 	})
 
 	const emailInput = useInput({
 		name: 'correo',
 		img: emailIcon,
 		inputType: 'email',
-		validation: 'semi-required',
+		required: false,
+		// validation: 'semi-required',
 	})
 
 	const phoneInput = useInput({
 		name: 'teléfono',
 		img: telIcon,
 		inputType: 'tel',
-		validation: 'semi-required',
+		required: false,
+		// validation: 'semi-required',
 	})
 
 	return (
@@ -204,7 +184,11 @@ export default function Contact() {
 					</div>
 
 					<div className="split">
-						<form id="contact-form" onSubmit={handleSubmit}>
+						<form
+							id="contact-form"
+							onSubmit={handleSubmit}
+							noValidate
+						>
 							<h1 className="form-title">Envíame un mensaje</h1>
 
 							{nameInput.render}
