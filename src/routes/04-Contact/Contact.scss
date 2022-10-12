@@ -125,6 +125,15 @@ form#contact-form {
 	}
 }
 
+.error-label {
+	width: fit-content;
+	height: fit-content;
+	transition: color 300ms;
+	font-size: 0.75rem;
+	margin-top: 0.25rem;
+	margin-left: auto;
+}
+
 .input-container {
 	position: relative;
 
