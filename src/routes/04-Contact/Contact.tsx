@@ -2,11 +2,14 @@ import { useRef, useState, useEffect, SyntheticEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
-import useInput from '../../components/Input/Input'
-
+//styles
 import './Contact.scss'
 
-//outlet custom hook
+//custom components and hooks
+import useInput from '../../components/useInput/useInput'
+import sendEmail from '../../helpers/SendMail'
+import FormModal from '../../components/FormModal/FormModal'
+import useTextarea from '../../components/useTextarea/useTextarea'
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
 import DownloadPDF from '../../components/DownloadPDF/DownloadPDF'
@@ -18,14 +21,6 @@ import messageIcon from '../../static/img/icons/contact/message.svg'
 import telIcon from '../../static/img/icons/contact/tel.svg'
 import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
 
-// import timer from '../../helpers/Timer'
-
-// import Lottie from 'lottie-web'
-// import messageSuccessAnimation from '../../static/lottie/message-success.json'
-import sendEmail from '../../helpers/SendMail'
-import FormModal from '../../components/FormModal/FormModal'
-import useTextarea from '../../components/Textarea/useTextarea'
-
 export default function Contact() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
 	const location = useLocation()
@@ -35,7 +30,6 @@ export default function Contact() {
 
 	useEffect(() => {
 		showContent()
-		// Lottie.setQuality('low')
 	}, [])
 
 	useEffect(() => {
@@ -45,6 +39,80 @@ export default function Contact() {
 			}
 		}
 	}, [nav])
+
+	const nameInput = useInput({
+		name: 'nombre',
+		img: userIcon,
+		inputType: 'text',
+		required: true,
+	})
+
+	const messageTextArea = useTextarea({
+		name: 'mensaje',
+		img: messageIcon,
+		required: true,
+	})
+
+	const emailInput = useInput({
+		name: 'correo',
+		img: emailIcon,
+		inputType: 'email',
+		required: false,
+	})
+
+	const phoneInput = useInput({
+		name: 'teléfono',
+		img: telIcon,
+		inputType: 'tel',
+		required: false,
+	})
+
+	let inputsAreValid = false
+
+	useEffect(() => {
+		inputsAreValid =
+			nameInput.isValid &&
+			messageTextArea.isValid &&
+			thereIsAtLeastAWayOfContact()
+	}, [nameInput, messageTextArea, emailInput, phoneInput])
+
+	const thereIsAtLeastAWayOfContact = (): boolean => {
+		//if the email and phone inputs are valid but empty -> false
+		if (
+			emailInput.isValid &&
+			emailInput.getValue() === '' &&
+			phoneInput.isValid &&
+			phoneInput.getValue() === ''
+		) {
+			return false
+		}
+		//if both inputs are invalid -> false
+		else if (!emailInput.isValid && !phoneInput.isValid) {
+			return false
+		}
+		//if one is invalid -> false
+		else if (!emailInput.isValid || !phoneInput.isValid) {
+			return false
+		}
+		//if both are valid and just one is empty -> true
+		else if (
+			(emailInput.isValid && emailInput.getValue() != '') ||
+			(phoneInput.isValid && phoneInput.getValue() != '')
+		) {
+			return true
+		}
+		//if both are valid and filled -> true
+		else if (
+			emailInput.isValid &&
+			emailInput.getValue() != '' &&
+			phoneInput.isValid &&
+			phoneInput.getValue() != ''
+		) {
+			return true
+		} else {
+			return false
+		}
+	}
 
 	const showContent = () => {
 		setSectionState(true)
@@ -78,65 +146,52 @@ export default function Contact() {
 		modalControl[1](false)
 	}
 
+	const showWrongInput = () => {
+		if (!nameInput.isValid) nameInput.shakeLabel()
+		else if (!messageTextArea.isValid) messageTextArea.shakeLabel()
+		else if (!emailInput.isValid) emailInput.shakeLabel()
+		else if (!phoneInput.isValid) phoneInput.shakeLabel()
+		else if (!thereIsAtLeastAWayOfContact()) emailInput.shakeLabel()
+	}
+
 	const handleSubmit = async (event: SyntheticEvent) => {
 		//prevent page reload
 		event.preventDefault()
 
-		openModal()
+		//check the inputs validity
+		if (inputsAreValid) {
+			openModal()
 
-		// await timer(200)
-		setWaiting(true)
-		setSuccess(false)
+			// await timer(200)
+			setWaiting(true)
+			setSuccess(false)
 
-		//get all the information from inputs
-		const name = nameInput.getValue()
-		const mail = emailInput.getValue()
-		const message = messageTextArea.getValue()
-		const tel = phoneInput.getValue()
+			//get all the information from inputs
+			const name = nameInput.getValue()
+			const mail = emailInput.getValue()
+			const message = messageTextArea.getValue()
+			const tel = phoneInput.getValue()
 
-		const isSuccessful = await sendEmail({ name, mail, message, tel }, true)
-
-		if (isSuccessful) {
-			//change the confirmation state
-			setWaiting(false)
-			setSuccess(true)
-		} else {
-			alert(
-				'hubo un error al enviar el mensaje, intente más tarde, por favor.'
+			const isSuccessful = await sendEmail(
+				{ name, mail, message, tel },
+				true
 			)
 
-			closeModal()
+			if (isSuccessful) {
+				//change the confirmation state
+				setWaiting(false)
+				setSuccess(true)
+			} else {
+				alert(
+					'hubo un error al enviar el mensaje, intente más tarde, por favor.'
+				)
+
+				closeModal()
+			}
+		} else {
+			showWrongInput()
 		}
 	}
-
-	const nameInput = useInput({
-		name: 'nombre',
-		img: userIcon,
-		inputType: 'text',
-		required: true,
-	})
-
-	const messageTextArea = useTextarea({
-		name: 'mensaje',
-		img: messageIcon,
-		required: true,
-	})
-
-	const emailInput = useInput({
-		name: 'correo',
-		img: emailIcon,
-		inputType: 'email',
-		required: false,
-		// validation: 'semi-required',
-	})
-
-	const phoneInput = useInput({
-		name: 'teléfono',
-		img: telIcon,
-		inputType: 'tel',
-		required: false,
-		// validation: 'semi-required',
-	})
 
 	return (
 		<CSSTransition
@@ -197,7 +252,7 @@ export default function Contact() {
 							<p className="form-text">
 								Permíteme devolverte el mensaje. Por favor,
 								rellena al menos un campo, si lo deseas pueden
-								ser ambos
+								ser ambos.
 							</p>
 
 							{emailInput.render}
