@@ -132,6 +132,27 @@ form#contact-form {
 	font-size: 0.75rem;
 	margin-top: 0.25rem;
 	margin-left: auto;
+	text-align: right;
+}
+
+@keyframes shake {
+	$shake-step: 4px;
+
+	@for $step from 1 to 4 {
+		#{$step * 20%} {
+			@if ($step % 2 == 0) {
+				transform: translateX($shake-step);
+				color: #fb9999;
+			} @else {
+				transform: translateX(-$shake-step);
+				color: #fff;
+			}
+		}
+		100% {
+			transform: translateX(0px);
+			color: #fb9999;
+		}
+	}
 }
 
 .input-container {
