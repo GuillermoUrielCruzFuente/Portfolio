@@ -1,5 +1,4 @@
-import { CSSProperties, FC, SyntheticEvent, useRef, useState } from 'react'
-import './Input.scss'
+import { CSSProperties, useEffect, useRef, useState } from 'react'
 
 /**
  * Required type, there are three cases for this, in order
@@ -27,6 +26,7 @@ type UseInput = {
 	render: JSX.Element
 	getValue: () => string
 	isValid: boolean
+	shakeLabel: () => void
 }
 
 export type InputConfig = {
@@ -57,11 +57,25 @@ export const useInput = ({
 	inputType,
 }: InputConfig): UseInput => {
 	const inputRef = useRef<HTMLInputElement>(null)
-	const [inputState, setInputState] = useState(false)
+	const [inputState, setInputState] = useState(!required)
+	const labelRef = useRef<HTMLSpanElement>(null)
 
-	const getValue = () => inputRef.current!.value
+	const getValue = () => (inputRef.current ? inputRef.current.value : '')
 	const isInputFilled = () => getValue() != ''
 	const isInputValid = () => inputRef.current?.validity.valid
+	
+	const shakeLabel = () => {
+		labelRef.current!.style.animation = 'shake 400ms ease'
+
+		labelRef.current!.addEventListener(
+			'animationend',
+			(event: AnimationEvent) => {
+				if (event.animationName === 'shake') {
+					labelRef.current!.style.animation = 'unset'
+				}
+			}
+		)
+	}
 
 	const handleInputContentChange = () => {
 		if (isInputValid()) {
@@ -70,9 +84,7 @@ export const useInput = ({
 			} else {
 				//a weird way to force the re render
 				setInputState(false)
-				setTimeout(() => {
-					setInputState(true)
-				}, 100)
+				setTimeout(() => setInputState(true), 10)
 			}
 		} else {
 			setInputState(false)
@@ -81,7 +93,7 @@ export const useInput = ({
 
 	const VALIDATION_DESCRIPTIONS = {
 		text: 'Ingresa aquel nombre con el que podré referirme a ti.',
-		tel: 'Ingresa un número telefónico con 10 dígitos. Ejemplo: 5551588911',
+		tel: 'Ingresa un número telefónico con 10 dígitos. Ej. 5551588911',
 		email: 'Ingresa una dirección de correo válida. Ej. correo@gmail.com',
 	}
 
@@ -129,7 +141,11 @@ export const useInput = ({
 				<img className="label-icon" src={img} alt="" />
 			</div>
 
-			<span className="error-label" style={computeLabelColor()}>
+			<span
+				className="error-label"
+				style={computeLabelColor()}
+				ref={labelRef}
+			>
 				{getInlineValidationDescription()}
 			</span>
 		</>
@@ -139,6 +155,7 @@ export const useInput = ({
 		render: input,
 		getValue: getValue,
 		isValid: inputState,
+		shakeLabel: shakeLabel,
 	}
 }
 

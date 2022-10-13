@@ -4,6 +4,7 @@ type UseInput = {
 	render: JSX.Element
 	getValue: () => string
 	isValid: boolean
+	shakeLabel: () => void
 }
 
 export type TextareaConfig = {
@@ -19,8 +20,10 @@ export const useTextarea = ({
 }: TextareaConfig): UseInput => {
 	const textareaRef = useRef<HTMLTextAreaElement>(null)
 	const [textareaState, setTextareaState] = useState(false)
+	const labelRef = useRef<HTMLSpanElement>(null)
 
-	const getValue = () => textareaRef.current!.value
+	const getValue = () =>
+		textareaRef.current ? textareaRef.current.value : ''
 
 	const handleTextareaContentChange = () => {
 		if (textareaRef.current?.validity.valid && getValue() != '') {
@@ -28,6 +31,19 @@ export const useTextarea = ({
 		} else {
 			setTextareaState(false)
 		}
+	}
+
+	const shakeLabel = () => {
+		labelRef.current!.style.animation = 'shake 400ms ease'
+
+		labelRef.current!.addEventListener(
+			'animationend',
+			(event: AnimationEvent) => {
+				if (event.animationName === 'shake') {
+					labelRef.current!.style.animation = 'unset'
+				}
+			}
+		)
 	}
 
 	const LABEL_STATE_COLORS = {
@@ -54,7 +70,7 @@ export const useTextarea = ({
 					ref={textareaRef}
 					placeholder={name}
 					name={name}
-					rows={3}
+					rows={2}
 					required={required}
 					onChange={handleTextareaContentChange}
 				/>
@@ -64,7 +80,11 @@ export const useTextarea = ({
 				<img className="label-icon" src={img} alt={`${name} icon`} />
 			</div>
 
-			<span className="error-label" style={computeLabelColor()}>
+			<span
+				className="error-label"
+				style={computeLabelColor()}
+				ref={labelRef}
+			>
 				Coloca aquí el mensaje que desees
 			</span>
 		</>
@@ -73,7 +93,8 @@ export const useTextarea = ({
 	return {
 		render: textarea,
 		getValue: getValue,
-		isValid: false,
+		isValid: textareaState,
+		shakeLabel: shakeLabel,
 	}
 }
 
