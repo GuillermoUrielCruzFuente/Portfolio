@@ -92,8 +92,8 @@ export const useInput = ({
 	}
 
 	const VALIDATION_DESCRIPTIONS = {
-		text: 'Ingresa aquel nombre con el que podré referirme a ti.',
-		tel: 'Ingresa un número telefónico con 10 dígitos. Ej. 5551588911',
+		text: 'Ingresa tu nombre.',
+		tel: 'Ingresa tu número telefónico a 10 dígitos. Ej. 5551588911',
 		email: 'Ingresa una dirección de correo válida. Ej. correo@gmail.com',
 	}
 
