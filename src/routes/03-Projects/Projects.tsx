@@ -99,7 +99,7 @@ const Projects = () => {
 			in={sectionState}
 			nodeRef={refContainer}
 			timeout={350}
-			classNames="page-a"
+			classNames="page-anim"
 			mountOnEnter
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}

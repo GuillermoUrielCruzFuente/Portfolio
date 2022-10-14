@@ -198,7 +198,7 @@ export default function Contact() {
 			in={sectionState}
 			nodeRef={refContainer}
 			timeout={350}
-			classNames="page-contact"
+			classNames="page-anim"
 			mountOnEnter
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}

@@ -64,7 +64,7 @@ const About = () => {
 			in={sectionState}
 			nodeRef={refContainer}
 			timeout={350}
-			classNames="page-about"
+			classNames="page-anim"
 			mountOnEnter
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}
