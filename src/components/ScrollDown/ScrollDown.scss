@@ -1,15 +1,8 @@
 .scroll {
 	position: fixed;
 
-	bottom: var(--navbar-size);
-	right: 7.5vw;
-
-	$scroll-size: 45px;
-	width: $scroll-size;
-	height: $scroll-size * 2;
-
-	//make it circle
-	border-radius: 50%;
+	bottom: 0px;
+	right: 3rem;
 
 	display: flex;
 	flex-flow: column;
@@ -17,57 +10,53 @@
 	align-items: center;
 	justify-content: center;
 
-	background-color: #7e1e95;
-	box-shadow: 0px 0px 32px rgba($color: #000000, $alpha: 0.75);
+	// background-color: #7e1e95;
+	// box-shadow: 0px 0px 32px rgba($color: #000000, $alpha: 0.75);
+	// animation: tilt 1000ms linear alternate infinite;
+
 	overflow: hidden;
 	z-index: 900;
 
-	animation: tilt 1000ms linear alternate infinite;
-
-	img {
-		width: 60%;
-		height: 60%;
-		display: none;
-		// animation: updown 500ms ease-in-out infinite alternate;
-	}
-
 	p {
 		color: #7e1e95;
+		color: rgb(216, 149, 242);
 		writing-mode: vertical-rl;
 		margin-bottom: 0.5rem;
 		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-size: 0.7rem;
+		text-shadow: 0px 0px 10px rgba($color: #000, $alpha: 0.85);
 	}
 
-	#scroll-line {
-		height: 5rem;
-		width: 2px;
-		display: block;
-		background-color: #7e1e95;
-		animation: scroll 1s linear alternate infinite;
-	}
+	.line-container {
+		width: 100%;
+		height: 60px;
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
 
-	#line {
-		width: 0.01rem;
-		width: 1px;
-		height: 100%;
-		position: absolute;
-		background-color: #fff;
-		transform-origin: top;
-		// writing-mode: vertical-rl;
-
-		// transform: translateY(0%);
-
-		animation: scroll 1300ms ease infinite;
-		// animation-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
+		#line {
+			width: 0.01rem;
+			width: 0.08rem;
+			height: 100%;
+			position: absolute;
+			background-color: #fff;
+			background-color: rgb(216, 149, 242);
+			transform-origin: top;
+			animation: scroll 1800ms ease infinite;
+			// animation-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
+		}
 	}
 }
 
 @keyframes scroll {
 	0% {
-		transform: translateY(-115%);
+		transform: translateY(-110%);
 	}
 	100% {
-		transform: translateY(115%);
+		transform: translateY(100%);
 	}
 }
 
@@ -87,4 +76,31 @@
 	to {
 		transform: translateY(-25px);
 	}
+}
+
+$transition-time: 800ms;
+.scroll-enter {
+	opacity: 0;
+	transform: translateY(-50px);
+}
+
+.scroll-enter-active {
+	opacity: 1;
+	transform: translateY(0px);
+
+	transition: opacity $transition-time, transform $transition-time;
+	transition-timing-function: ease;
+}
+
+.scroll-exit {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.scroll-exit-active {
+	opacity: 0;
+	transform: translateY(50px);
+
+	transition: opacity $transition-time, transform $transition-time;
+	transition-timing-function: ease;
 }
