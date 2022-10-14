@@ -16,3 +16,24 @@ header {
 	// this margin is necessary for all the header elements
 	margin-top: calc(var(--navbar-size));
 }
+
+$page-anim-time: 500ms;
+.page-anim-enter {
+	opacity: 0;
+}
+
+.page-anim-enter-active {
+	opacity: 1;
+
+	transition: opacity $page-anim-time;
+}
+
+.page-anim-exit {
+	opacity: 1;
+}
+
+.page-anim-exit-active {
+	opacity: 0;
+
+	transition: opacity $page-anim-time;
+}
