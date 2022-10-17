@@ -251,8 +251,8 @@ export default function Contact() {
 
 							<p className="form-text">
 								Permíteme devolverte el mensaje. Por favor,
-								rellena al menos un campo, si lo deseas pueden
-								ser ambos.
+								rellena al menos uno de los siguientes campos,
+								si lo deseas pueden ser ambos.
 							</p>
 
 							{emailInput.render}
