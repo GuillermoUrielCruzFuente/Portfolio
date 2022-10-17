@@ -1,27 +1,5 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 
-/**
- * Required type, there are three cases for this, in order
- * to avoid to force the user enter all his data
- *
- * semi-required    - validate only if it is filled
- * required         - validate always
- * not-required     - there is no validation method, it coud be empty or not
- *
- * Input type
- *
- * input text       -> required         [username]
- * input textarea   -> required         [message]
- * input mail       -> semi-required    [mail]
- * input phone      -> semi-required    [phone]
- *
- *
- * return {
- *  render,
- *  getValueFunc
- * }
- */
-
 type UseInput = {
 	render: JSX.Element
 	getValue: () => string
@@ -41,14 +19,13 @@ export type InputConfig = {
  * @param InputConfig object with all the necessary information for  the input.
  * - name: submit name and placeholder
  * - img: input left icon
- * - validation: this value can be
- * 'required' for inputs that can't be empty and have a validation method
- * 'semi-required' for inputs that can be empty but once filled have a validation method
- * 'not-required' for inputs that can be empty and don't have a validation method
- * - inputType: can be 'textarea', 'text', 'email' and 'text'
- * @returns Object that contains the JSX.Element in this case an input
- * and the getValue() method that provide to the parent an easy way to
- * access the input value
+ * - required: if the input is required, the unrequired inputs will validate data only if it is not empty
+ * - inputType: can be 'text', 'email' and 'tel'
+ * @returns Object that contains:
+ * - Component to render
+ * - getValue() method that provide to the parent an easy way to access the input value
+ * - isValid property
+ * - shakeLabel() method that provide to the parent an easy way to give visual feedback to user on invalid inputs
  */
 export const useInput = ({
 	name,
@@ -63,7 +40,7 @@ export const useInput = ({
 	const getValue = () => (inputRef.current ? inputRef.current.value : '')
 	const isInputFilled = () => getValue() != ''
 	const isInputValid = () => inputRef.current?.validity.valid
-	
+
 	const shakeLabel = () => {
 		labelRef.current!.style.animation = 'shake 400ms ease'
 
@@ -138,7 +115,7 @@ export const useInput = ({
 
 				<label>{name}</label>
 
-				<img className="label-icon" src={img} alt="" />
+				<img className="label-icon" src={img} alt={`${name} icon`} />
 			</div>
 
 			<span
