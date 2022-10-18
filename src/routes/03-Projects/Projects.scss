@@ -271,9 +271,21 @@ main#projects-main {
 			opacity: 0;
 		}
 
+		.no-loaded {
+			opacity: 0;
+			transform: scale(0.95);
+		}
+
+		.loaded {
+			opacity: 1;
+			transform: scale(1);
+		}
+
 		.project-collage {
-			width: 75%;
-			aspect-ratio: 1169/963;
+			width: 90%;
+			aspect-ratio: 1.2;
+
+			transition: opacity 1s, transform 1s;
 		}
 	}
 }
