@@ -18,15 +18,10 @@ import LazyImg, { LazyImgPath } from '../../components/LazyImg/LazyImg'
 import './Projects.scss'
 
 //project images
-import harbestImg from '../../static/img/web-images/harbest-collage.png'
-import intelligentiaImg from '../../static/img/web-images/intelligentia-collage.png'
-import campoFuerteImg from '../../static/img/web-images/campo-fuerte-collage.png'
-import guillermoImg from '../../static/img/web-images/guillermo-collage.png'
-
-import harbestThumb from '../../static/img/web-images/thumbnails/harbest-thumb.jpg'
-import intelligentiaThumb from '../../static/img/web-images/thumbnails/intelligentia-thumb.jpg'
-import campoFuerteThumb from '../../static/img/web-images/thumbnails/campo-fuerte-thumb.jpg'
-import guillermoThumb from '../../static/img/web-images/thumbnails/guillermo-thumb.jpg'
+import harbestImg from '../../static/img/web-images/collages/harbest-collage.png'
+import intelligentiaImg from '../../static/img/web-images/collages/intelligentia-collage.png'
+import campoFuerteImg from '../../static/img/web-images/collages/campofuerte-collage.png'
+import guillermoImg from '../../static/img/web-images/collages/guillermo-collage.png'
 
 import harbestLogo from '../../static/img/icons/project-logos/harbest.svg'
 import intelligentiaLogo from '../../static/img/icons/project-logos/intelligentia.svg'
@@ -40,22 +35,18 @@ const projectLogos = [
 	guillermoLogo,
 ]
 
-const proImgs: Array<LazyImgPath> = [
+const projectCollages: Array<LazyImgPath> = [
 	{
-		fullImagePath: harbestImg,
-		thumbnailPath: harbestThumb,
+		imagePath: harbestImg,
 	},
 	{
-		fullImagePath: intelligentiaImg,
-		thumbnailPath: intelligentiaThumb,
+		imagePath: intelligentiaImg,
 	},
 	{
-		fullImagePath: campoFuerteImg,
-		thumbnailPath: campoFuerteThumb,
+		imagePath: campoFuerteImg,
 	},
 	{
-		fullImagePath: guillermoImg,
-		thumbnailPath: guillermoThumb,
+		imagePath: guillermoImg,
 	},
 ]
 
@@ -157,11 +148,9 @@ const Projects = () => {
 											/>
 
 											<LazyImg
-												fullImagePath={
-													proImgs[index].fullImagePath
-												}
-												thumbnailPath={
-													proImgs[index].thumbnailPath
+												imagePath={
+													projectCollages[index]
+														.imagePath
 												}
 											/>
 										</div>
