@@ -7,31 +7,21 @@ type ToAppear = {
 	to: CSSProperties
 }
 
-const IntersectionContainer: FC<ToAppear> = ({ children, from, to, transitionTime }: ToAppear) => {
+const IntersectionContainer: FC<ToAppear> = ({
+	children,
+	from,
+	to,
+	transitionTime,
+}: ToAppear) => {
 	const containerRef = useRef<HTMLDivElement>(null)
 
 	const computeEntries = (entries: Array<IntersectionObserverEntry>) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
-				// containerRef.current ? containerRef.current.style.opacity = '1' : undefined
-
-				containerRef.current ? (containerRef.current.style.opacity = '1') : undefined
-
 				for (let key in to) {
-					const value = to[key as keyof typeof to] //type assertion -> https://bobbyhadz.com/blog/typescript-no-index-signature-with-parameter-of-type-string
-
-					if (containerRef.current) {
-						switch (key) {
-							case 'opacity': {
-								containerRef.current.style.opacity = value as string
-								break
-							}
-							case 'transform': {
-								containerRef.current.style.transform = value as string
-								break
-							}
-						}
-					}
+					const value = to[key as keyof typeof to] as string //type assertion -> https://bobbyhadz.com/blog/typescript-no-index-signature-with-parameter-of-type-string
+					const property = key as any
+					containerRef.current!.style[property] = value
 				}
 			}
 		})
@@ -48,7 +38,10 @@ const IntersectionContainer: FC<ToAppear> = ({ children, from, to, transitionTim
 			? (containerRef.current.style.transition = `all ${transitionTime}ms`)
 			: undefined
 
-		const observer = new IntersectionObserver(computeEntries, intersectionOptions)
+		const observer = new IntersectionObserver(
+			computeEntries,
+			intersectionOptions
+		)
 		observer.observe(containerRef.current as Element)
 	}, [])
 
