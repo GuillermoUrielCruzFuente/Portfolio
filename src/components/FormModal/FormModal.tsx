@@ -110,7 +110,7 @@ const FormModal: FC<Modal> = ({ modalControl, wainting, success, onExit }) => {
 					}}
 				>
 					<div className="waiting" ref={waintingRef}>
-						<div className="sk-cube-grid">
+						<div className="sk-cube-grid loader-modal">
 							<div className="sk-cube sk-cube1"></div>
 							<div className="sk-cube sk-cube2"></div>
 							<div className="sk-cube sk-cube3"></div>
