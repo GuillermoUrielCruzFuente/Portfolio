@@ -437,13 +437,16 @@ $modal-transition-time: 400ms;
 	$loader-size: 2.5rem;
 	width: $loader-size;
 	height: $loader-size;
+}
+
+.loader-modal {
 	margin-right: 2rem;
 }
 
 .sk-cube-grid .sk-cube {
+	background-color: #2f0838 !important;
 	width: 33.33%;
 	height: 33.33%;
-	background-color: #2f0838;
 	float: left;
 	-webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
 	animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
