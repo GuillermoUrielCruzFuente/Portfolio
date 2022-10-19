@@ -1,9 +1,14 @@
 import { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
+import AnimatedTitle from '../../components/AnimatedTitle/AnimatedTitle'
+import './NoMatch.scss'
 
 //outlet custom hook
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
+
+import monsterAnimationData from '../../static/lottie/404-pet.json'
+import Lottie from 'lottie-web'
 
 export default function NoMatch() {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
@@ -13,6 +18,10 @@ export default function NoMatch() {
 
 	useEffect(() => {
 		showContent()
+
+		return () => {
+			// monsterAnimationLottie.destroy()
+		}
 	}, [])
 
 	useEffect(() => {
@@ -25,6 +34,16 @@ export default function NoMatch() {
 
 	const showContent = () => {
 		setSectionState(true)
+	}
+
+	const loadMonsterAnimation = () => {
+		const monsterAnimationLottie = Lottie.loadAnimation({
+			container: document.getElementById('monster-animation')!,
+			animationData: monsterAnimationData,
+			loop: true,
+			autoplay: true,
+			renderer: 'svg',
+		})
 	}
 
 	const hideContent = () => {
@@ -40,10 +59,18 @@ export default function NoMatch() {
 			mountOnEnter
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}
+			onEntered={loadMonsterAnimation}
 		>
-			<header>
-				<h1>Error 404</h1>
-				<p>Parece que alguien no revisó bien lo que copió y pegó</p>
+			<header id="no-match">
+				<AnimatedTitle
+					alignment="right"
+					items={['Error', '404']}
+					textClass="error-text"
+				/>
+
+				<p>La página a la que intentas acceder no existe</p>
+
+				<div id="monster-animation"></div>
 			</header>
 		</CSSTransition>
 	)
