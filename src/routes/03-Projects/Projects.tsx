@@ -145,6 +145,7 @@ const Projects = () => {
 												techStack={project.techStack}
 												repository={project.repository}
 												url={project.url}
+												animation={project.animation}
 											/>
 
 											<LazyImg
