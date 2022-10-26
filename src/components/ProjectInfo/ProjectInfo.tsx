@@ -1,8 +1,14 @@
-import { FC } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { techImages } from '../../helpers/exports/AboutExports'
 
 import webIcon from '../../static/img/icons/social-media/web.svg'
 import githubIcon from '../../static/img/icons/social-media/github.svg'
+
+import Lottie, { AnimationItem } from 'lottie-web'
+
+import harbestAnimation from '../../static/lottie/projects/harbest.json'
+import intelligentiaAnimation from '../../static/lottie/projects/intelligentia.json'
+import campofuerteAnimation from '../../static/lottie/projects/campofuerte.json'
 
 type Technology = 'html' | 'scss' | 'js' | 'ts' | 'react' | 'vite'
 
@@ -13,6 +19,7 @@ export type ProjectContent = {
 	techStack: Array<Technology>
 	repository: string
 	url: string
+	animation?: any
 }
 
 export const projects: Array<ProjectContent> = [
@@ -28,6 +35,7 @@ export const projects: Array<ProjectContent> = [
 		techStack: ['html', 'scss', 'js', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/harBest',
 		url: 'https://harbest.mx/',
+		animation: harbestAnimation,
 	},
 	{
 		order: 2,
@@ -36,7 +44,8 @@ export const projects: Array<ProjectContent> = [
 			'Agencia de marketing político enfocado en el tratamiento integral del proceso electoral. Realiza actividades que comprenden desde el análisis estadístico hasta el desarrollo de la marca personal de sus clientes. Una landing page enfocada en demostrar seriedad, minimalismo y creatividad.',
 		techStack: ['html', 'scss', 'ts', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/intelligentia',
-		url: 'https://intelligentia.mx/',
+		url: 'https://intelligentia.onrender.com/',
+		animation: intelligentiaAnimation,
 	},
 	{
 		order: 3,
@@ -51,6 +60,7 @@ export const projects: Array<ProjectContent> = [
 		techStack: ['html', 'scss', 'ts', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/CampoFuerte',
 		url: 'https://campofuerte.com.mx/',
+		animation: campofuerteAnimation,
 	},
 	{
 		order: 4,
@@ -70,6 +80,7 @@ const ProjectInfo: FC<ProjectContent> = ({
 	techStack,
 	repository,
 	url,
+	animation,
 }) => {
 	const getTechnologyImage = (name: Technology) => {
 		switch (name) {
@@ -129,15 +140,49 @@ const ProjectInfo: FC<ProjectContent> = ({
 				)
 			default:
 				return (
-					<img key={name} className="project-tech-icon" src={'no image'} alt="no image" />
+					<img
+						key={name}
+						className="project-tech-icon"
+						src={'no image'}
+						alt="no image"
+					/>
 				)
 		}
 	}
 
+	const animContainerRef = useRef<HTMLDivElement>(null)
+	const animLottieRef = useRef<AnimationItem>(
+		Lottie.loadAnimation({
+			container: animContainerRef.current!,
+		})
+	)
+
+	useEffect(() => {
+		if (animation) {
+			animLottieRef.current = Lottie.loadAnimation({
+				container: animContainerRef.current!,
+				animationData: animation,
+				autoplay: true,
+				loop: false,
+			})
+		} else {
+			console.log('no animation provided')
+		}
+
+		return () => {
+			animLottieRef.current.destroy()
+		}
+	}, [])
+
 	return (
 		<article className="project-info">
-			<p className="project-number">💼 Proyecto #{order}</p>
-			{name}
+			<div className="project-header">
+				<div className="project-number-name">
+					<p className="project-number">💼 Proyecto #{order}</p>
+					{name}
+				</div>
+				<div ref={animContainerRef} className="project-animation"></div>
+			</div>
 			<p className="project-description">{description}</p>
 			<p className="project-techs">🔧 Tecnologías empleadas</p>
 			<div className="project-tech-icons-container">
@@ -147,12 +192,20 @@ const ProjectInfo: FC<ProjectContent> = ({
 			</div>
 
 			<div className="project-buttons-container">
-				<a className="project-button primary" href={url} target={'_blank'}>
+				<a
+					className="project-button primary"
+					href={url}
+					target={'_blank'}
+				>
 					<img src={webIcon} alt="button web icon" />
 					visitar
 				</a>
 
-				<a className="project-button secondary" href={repository} target={'_blank'}>
+				<a
+					className="project-button secondary"
+					href={repository}
+					target={'_blank'}
+				>
 					<img src={githubIcon} alt="button web icon" />
 					repositorio
 				</a>
