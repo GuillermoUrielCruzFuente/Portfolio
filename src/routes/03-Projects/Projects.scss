@@ -126,6 +126,29 @@ main#projects-main {
 		flex-basis: 0;
 		align-items: flex-start;
 
+		.project-header {
+			// background-color: crimson;
+			display: flex;
+			flex-flow: row-reverse nowrap;
+			align-items: center;
+
+			margin-bottom: 1rem;
+		}
+
+		.project-number-name {
+			display: flex;
+			flex-flow: column;
+		}
+
+		.project-animation {
+			width: 100px;
+			height: 100px;
+			padding: 0.25rem;
+			margin-right: 1rem;
+			background-color: #222;
+			border-radius: 0.5rem;
+		}
+
 		.project-number {
 			font-size: 1rem;
 			color: #7e1e95;
