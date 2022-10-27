@@ -9,6 +9,7 @@ import Lottie, { AnimationItem } from 'lottie-web'
 import harbestAnimation from '../../static/lottie/projects/harbest.json'
 import intelligentiaAnimation from '../../static/lottie/projects/intelligentia.json'
 import campofuerteAnimation from '../../static/lottie/projects/campofuerte.json'
+import guillermoAnimation from '../../static/lottie/logo.json'
 
 type Technology = 'html' | 'scss' | 'js' | 'ts' | 'react' | 'vite'
 
@@ -70,6 +71,7 @@ export const projects: Array<ProjectContent> = [
 		techStack: ['react', 'scss', 'ts', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/Portfolio',
 		url: 'https://guillermo.onrender.com/',
+		animation: guillermoAnimation,
 	},
 ]
 
@@ -163,7 +165,7 @@ const ProjectInfo: FC<ProjectContent> = ({
 				container: animContainerRef.current!,
 				animationData: animation,
 				autoplay: true,
-				loop: false,
+				loop: true,
 			})
 		} else {
 			console.log('no animation provided')
