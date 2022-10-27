@@ -141,11 +141,11 @@ main#projects-main {
 		}
 
 		.project-animation {
-			width: 100px;
-			height: 100px;
+			width: 80px;
+			height: 80px;
 			padding: 0.25rem;
 			margin-right: 1rem;
-			background-color: #222;
+			background-color: #555;
 			border-radius: 0.5rem;
 		}
 
@@ -347,6 +347,15 @@ main#projects-main {
 
 		.project-info {
 			align-items: flex-end;
+
+			.project-header {
+				flex-flow: row nowrap;
+			}
+
+			.project-animation {
+				margin-right: 0rem;
+				margin-left: 1rem;
+			}
 
 			.project-tech-icons-container {
 				flex-flow: row-reverse wrap;
