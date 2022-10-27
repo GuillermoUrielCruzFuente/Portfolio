@@ -59,7 +59,7 @@ export const projects: Array<ProjectContent> = [
 			'Empresa dedicada a la comercialización de agroinsumos y servicios de vanguardia. Realicé un rediseño de su presencia en la web, buscando expresar una identidad fresca y a la vez seria.',
 		techStack: ['html', 'scss', 'ts', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/CampoFuerte',
-		url: 'https://campofuerte.com.mx/',
+		url: 'https://campofuerte.onrender.com/',
 		animation: campofuerteAnimation,
 	},
 	{
