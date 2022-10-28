@@ -12,7 +12,7 @@ const sendEmail = async (
 	dev?: boolean
 ): Promise<boolean> => {
 	if (dev) {
-		//in order to simulate a request wait ceratin amount of time
+		//in order to simulate a request wait certain amount of time
 		await timer(1500)
 		console.log(
 			`name: 		${name}\nemail: 		${mail}\ntel:		${tel}\nmessage: 	${message}\n`
