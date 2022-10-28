@@ -1,17 +1,10 @@
-import { FC, useEffect, useRef } from 'react'
-import { techImages } from '../../helpers/exports/AboutExports'
+import { useEffect, useRef } from 'react'
+import getTechnologyIcon, { Technology } from './Technologies'
 
 import webIcon from '../../static/img/icons/social-media/web.svg'
 import githubIcon from '../../static/img/icons/social-media/github.svg'
 
 import Lottie, { AnimationItem } from 'lottie-web'
-
-import harbestAnimation from '../../static/lottie/projects/harbest.json'
-import intelligentiaAnimation from '../../static/lottie/projects/intelligentia.json'
-import campofuerteAnimation from '../../static/lottie/projects/campofuerte.json'
-import guillermoAnimation from '../../static/lottie/logo.json'
-
-type Technology = 'html' | 'scss' | 'js' | 'ts' | 'react' | 'vite'
 
 export type ProjectContent = {
 	order: number
@@ -36,7 +29,6 @@ export const projects: Array<ProjectContent> = [
 		techStack: ['html', 'scss', 'js', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/harBest',
 		url: 'https://harbest.mx/',
-		animation: harbestAnimation,
 	},
 	{
 		order: 2,
@@ -46,7 +38,6 @@ export const projects: Array<ProjectContent> = [
 		techStack: ['html', 'scss', 'ts', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/intelligentia',
 		url: 'https://intelligentia.onrender.com/',
-		animation: intelligentiaAnimation,
 	},
 	{
 		order: 3,
@@ -61,7 +52,6 @@ export const projects: Array<ProjectContent> = [
 		techStack: ['html', 'scss', 'ts', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/CampoFuerte',
 		url: 'https://campofuerte.onrender.com/',
-		animation: campofuerteAnimation,
 	},
 	{
 		order: 4,
@@ -71,11 +61,10 @@ export const projects: Array<ProjectContent> = [
 		techStack: ['react', 'scss', 'ts', 'vite'],
 		repository: 'https://github.com/GuillermoCruzFuente/Portfolio',
 		url: 'https://guillermo.onrender.com/',
-		animation: guillermoAnimation,
 	},
 ]
 
-const ProjectInfo: FC<ProjectContent> = ({
+const ProjectInfo = ({
 	order,
 	name,
 	description,
@@ -83,75 +72,7 @@ const ProjectInfo: FC<ProjectContent> = ({
 	repository,
 	url,
 	animation,
-}) => {
-	const getTechnologyImage = (name: Technology) => {
-		switch (name) {
-			case 'html':
-				return (
-					<img
-						key={name}
-						className="project-tech-icon"
-						src={techImages[0]}
-						alt="html icon"
-					/>
-				)
-			case 'scss':
-				return (
-					<img
-						key={name}
-						className="project-tech-icon"
-						src={techImages[2]}
-						alt="scss icon"
-					/>
-				)
-			case 'js':
-				return (
-					<img
-						key={name}
-						className="project-tech-icon"
-						src={techImages[3]}
-						alt="js icon"
-					/>
-				)
-			case 'ts':
-				return (
-					<img
-						key={name}
-						className="project-tech-icon"
-						src={techImages[4]}
-						alt="ts icon"
-					/>
-				)
-			case 'vite':
-				return (
-					<img
-						key={name}
-						className="project-tech-icon"
-						src={techImages[5]}
-						alt="vite icon"
-					/>
-				)
-			case 'react':
-				return (
-					<img
-						key={name}
-						className="project-tech-icon"
-						src={techImages[6]}
-						alt="react icon"
-					/>
-				)
-			default:
-				return (
-					<img
-						key={name}
-						className="project-tech-icon"
-						src={'no image'}
-						alt="no image"
-					/>
-				)
-		}
-	}
-
+}: ProjectContent) => {
 	const animContainerRef = useRef<HTMLDivElement>(null)
 	const animLottieRef = useRef<AnimationItem>(
 		Lottie.loadAnimation({
@@ -178,18 +99,14 @@ const ProjectInfo: FC<ProjectContent> = ({
 
 	return (
 		<article className="project-info">
-			<div className="project-header">
-				<div className="project-number-name">
-					<p className="project-number">💼 Proyecto #{order}</p>
-					{name}
-				</div>
-				<div ref={animContainerRef} className="project-animation"></div>
-			</div>
+			<p className="project-number">💼 Proyecto #{order}</p>
+			{name}
+
 			<p className="project-description">{description}</p>
 			<p className="project-techs">🔧 Tecnologías empleadas</p>
 			<div className="project-tech-icons-container">
 				{techStack.map((technology: Technology) => {
-					return getTechnologyImage(technology)
+					return getTechnologyIcon(technology)
 				})}
 			</div>
 
@@ -197,7 +114,7 @@ const ProjectInfo: FC<ProjectContent> = ({
 				<a
 					className="project-button primary"
 					href={url}
-					target={'_blank'}
+					target="_blank"
 				>
 					<img src={webIcon} alt="button web icon" />
 					visitar
@@ -206,7 +123,7 @@ const ProjectInfo: FC<ProjectContent> = ({
 				<a
 					className="project-button secondary"
 					href={repository}
-					target={'_blank'}
+					target="_blank"
 				>
 					<img src={githubIcon} alt="button web icon" />
 					repositorio
