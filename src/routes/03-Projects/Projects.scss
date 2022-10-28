@@ -126,31 +126,8 @@ main#projects-main {
 		flex-basis: 0;
 		align-items: flex-start;
 
-		.project-header {
-			// background-color: crimson;
-			display: flex;
-			flex-flow: row-reverse nowrap;
-			align-items: center;
-
-			margin-bottom: 1rem;
-		}
-
-		.project-number-name {
-			display: flex;
-			flex-flow: column;
-		}
-
-		.project-animation {
-			width: 80px;
-			height: 80px;
-			padding: 0.25rem;
-			margin-right: 1rem;
-			background-color: #555;
-			border-radius: 0.5rem;
-		}
-
 		.project-number {
-			font-size: 1rem;
+			font-size: 0.75rem;
 			color: #7e1e95;
 			font-weight: 900;
 		}
@@ -164,16 +141,19 @@ main#projects-main {
 
 		.project-description {
 			font-size: 0.85rem;
+			// font-size: 1rem;
 			color: #f2dbff;
 			min-width: 400px;
-			line-height: 1.6;
+			line-height: 1.8;
+
+			// font-weight: 900;
 		}
 
 		.project-techs {
-			font-size: 1rem;
+			font-size: 0.75rem;
 			color: #7e1e95;
 			font-weight: 900;
-			margin-top: 3rem;
+			margin-top: 1rem;
 		}
 
 		.project-tech-icon {
@@ -190,7 +170,7 @@ main#projects-main {
 		.project-tech-icons-container {
 			display: flex;
 			flex-flow: row wrap;
-			margin-top: 1rem;
+			margin-top: 0.5rem;
 			width: -webkit-fit-content;
 			width: -moz-fit-content;
 			width: fit-content;
@@ -226,16 +206,23 @@ main#projects-main {
 		height: -moz-fit-content;
 		height: fit-content;
 		border-radius: 0.5rem;
-		font-size: 0.8rem;
-		padding: 0.75rem 1.25rem;
+		font-size: 0.75rem;
+		padding: 0.65rem 1.3rem;
 		transition: background-color 300ms;
+		text-transform: uppercase;
 
 		img {
-			$button-icon-size: 18px;
+			$button-icon-size: 14px;
 			width: $button-icon-size;
 			height: $button-icon-size;
 
 			margin-right: 0.5rem;
+
+			transition: transform 300ms;
+		}
+
+		&:hover > img {
+			transform: rotate(20deg) scale(1.075);
 		}
 
 		&.primary {
@@ -254,7 +241,7 @@ main#projects-main {
 			color: #eeccf6;
 
 			&:hover {
-				background-color: #5e0874;
+				background-color: #19021f;
 			}
 		}
 	}
@@ -349,12 +336,12 @@ main#projects-main {
 			align-items: flex-end;
 
 			.project-header {
-				flex-flow: row nowrap;
+				flex-flow: row-reverse nowrap;
 			}
 
 			.project-animation {
-				margin-right: 0rem;
-				margin-left: 1rem;
+				margin-right: 1rem;
+				margin-left: 0rem;
 			}
 
 			.project-tech-icons-container {
