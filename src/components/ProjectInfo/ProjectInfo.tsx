@@ -14,11 +14,11 @@ const ProjectInfo = ({
 	url,
 }: ProjectContent) => (
 	<article className="project-info">
-		<p className="project-number">💼 Proyecto #{id}</p>
+		<p className="project-number">Proyecto #{id}</p>
 		{name}
 
 		<p className="project-description">{description}</p>
-		<p className="project-techs">🔧 Tecnologías empleadas</p>
+		<p className="project-techs">Tecnologías empleadas</p>
 		<div className="project-tech-icons-container">
 			{techStack.map((technology: Technology) => {
 				return getTechnologyIcon(technology)
