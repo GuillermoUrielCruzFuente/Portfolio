@@ -1,5 +1,11 @@
 //react imports
-import { useEffect, useRef, useState } from 'react'
+import {
+	CSSProperties,
+	SyntheticEvent,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
@@ -43,17 +49,8 @@ const Projects = () => {
 	const refContainer = useRef<HTMLDivElement>(null)
 	const [sectionState, setSectionState] = useState(false)
 
-	const projectsLogos = useRef<HTMLDivElement>(null)
-
 	useEffect(() => {
 		showContent()
-
-		//delay to await for the icons to load
-		setTimeout(() => {
-			projectsLogos.current
-				? (projectsLogos.current.style.opacity = '1')
-				: undefined
-		}, 500)
 	}, [])
 
 	useEffect(() => {
@@ -70,6 +67,19 @@ const Projects = () => {
 
 	const hideContent = () => {
 		setSectionState(false)
+	}
+
+	const revealProjectIconOnLoad = (event: SyntheticEvent) => {
+		const iconElement = event.target as HTMLImageElement
+		iconElement.style.opacity = '1'
+	}
+
+	const calcProjectIconDelayAnim = (index: number) => {
+		const delayProperty: CSSProperties = {
+			animationDelay: `${100 * index}ms`,
+		}
+
+		return delayProperty
 	}
 
 	return (
@@ -94,17 +104,16 @@ const Projects = () => {
 						te agradezco el tiempo que te tome revisarlos.
 					</p>
 
-					<div className="works" ref={projectsLogos}>
+					<div className="works">
 						{projectsData.map(
 							(project: ProjectContent, index: number) => (
 								<img
 									key={project.id}
 									className="project-logo"
 									src={project.logoImgPath}
-									alt={`${project.name} logo`}
-									style={{
-										animationDelay: `${100 * index}ms`,
-									}}
+									alt={`logo ${project.id}`}
+									style={calcProjectIconDelayAnim(index)}
+									onLoad={revealProjectIconOnLoad}
 								/>
 							)
 						)}
