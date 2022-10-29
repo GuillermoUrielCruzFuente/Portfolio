@@ -57,10 +57,6 @@ $guillermo-red: #a03535;
 	width: 100vw;
 	margin: 4rem 0;
 
-	opacity: 0;
-	transition-duration: 1500ms;
-	// transition-delay: 600ms;
-
 	.project-logo {
 		$logo-size: 90px;
 		width: $logo-size;
@@ -68,6 +64,9 @@ $guillermo-red: #a03535;
 		margin-inline: 3rem;
 		-webkit-animation: up-down ease-in-out 0.75s alternate infinite;
 		animation: up-down ease-in-out 0.75s alternate infinite;
+
+		opacity: 0;
+		transition: 1500ms opacity;
 
 		&:first-child {
 			margin-left: 0;
