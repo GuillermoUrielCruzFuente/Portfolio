@@ -7,11 +7,10 @@ import { CSSTransition } from 'react-transition-group'
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
 //components
+import ProjectInfo from '../../components/ProjectInfo/ProjectInfo'
+import projectsData, { ProjectContent } from './ProjectsData'
+
 import ScrollDown from '../../components/ScrollDown/ScrollDown'
-import ProjectInfo, {
-	ProjectContent,
-	projects,
-} from '../../components/ProjectInfo/ProjectInfo'
 import LazyImg, { LazyImgPath } from '../../components/LazyImg/LazyImg'
 
 //styles
@@ -22,18 +21,6 @@ import harbestImg from '../../static/img/web-images/collages/harbest-collage.png
 import intelligentiaImg from '../../static/img/web-images/collages/intelligentia-collage.png'
 import campoFuerteImg from '../../static/img/web-images/collages/campofuerte-collage.png'
 import guillermoImg from '../../static/img/web-images/collages/guillermo-collage.png'
-
-import harbestLogo from '../../static/img/icons/project-logos/harbest.svg'
-import intelligentiaLogo from '../../static/img/icons/project-logos/intelligentia.svg'
-import campoFuerteLogo from '../../static/img/icons/project-logos/campo-fuerte.svg'
-import guillermoLogo from '../../static/img/icons/project-logos/guillermo.svg'
-
-const projectLogos = [
-	harbestLogo,
-	intelligentiaLogo,
-	campoFuerteLogo,
-	guillermoLogo,
-]
 
 const projectCollages: Array<LazyImgPath> = [
 	{
@@ -108,19 +95,19 @@ const Projects = () => {
 					</p>
 
 					<div className="works" ref={projectsLogos}>
-						{projectLogos.map((logo: string, index: number) => {
-							return (
+						{projectsData.map(
+							(project: ProjectContent, index: number) => (
 								<img
-									key={logo}
+									key={project.id}
 									className="project-logo"
-									src={logo}
-									alt="harbest logo"
+									src={project.logoImgPath}
+									alt={`${project.name} logo`}
 									style={{
 										animationDelay: `${100 * index}ms`,
 									}}
 								/>
 							)
-						})}
+						)}
 					</div>
 
 					<ScrollDown />
@@ -128,38 +115,29 @@ const Projects = () => {
 
 				<main id="projects-main">
 					<section className="projects">
-						{projects.map(
-							(project: ProjectContent, index: number) => {
-								return (
-									<div
-										key={project.url}
-										className="project-box"
-									>
-										<div className="project-container">
-											<ProjectInfo
-												order={project.order}
-												name={project.name}
-												description={
-													project.description
-												}
-												techStack={project.techStack}
-												repository={project.repository}
-												url={project.url}
-												animation={project.animation}
-											/>
+						{projectsData.map(
+							(project: ProjectContent, index: number) => (
+								<div key={project.url} className="project-box">
+									<div className="project-container">
+										<ProjectInfo
+											id={project.id}
+											name={project.name}
+											description={project.description}
+											techStack={project.techStack}
+											repository={project.repository}
+											url={project.url}
+										/>
 
-											<LazyImg
-												imagePath={
-													projectCollages[index]
-														.imagePath
-												}
-											/>
-										</div>
-
-										<hr className="project-separator" />
+										<LazyImg
+											imagePath={
+												projectCollages[index].imagePath
+											}
+										/>
 									</div>
-								)
-							}
+
+									<hr className="project-separator" />
+								</div>
+							)
 						)}
 					</section>
 				</main>
