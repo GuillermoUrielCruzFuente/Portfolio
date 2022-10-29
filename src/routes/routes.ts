@@ -14,7 +14,7 @@ const getRoutesWithRef = () => {
 			ref: useRef<HTMLAnchorElement>(null),
 		},
 		{
-			text: 'sobre mi',
+			text: 'sobre mí',
 			path: '/sobre-mi',
 			ref: useRef<HTMLAnchorElement>(null),
 		},
