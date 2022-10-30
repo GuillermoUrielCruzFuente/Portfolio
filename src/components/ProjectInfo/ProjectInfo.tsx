@@ -4,6 +4,7 @@ import webIcon from '../../static/img/icons/social-media/web.svg'
 import githubIcon from '../../static/img/icons/social-media/github.svg'
 
 import { ProjectContent } from '../../routes/03-Projects/ProjectsData'
+import AnchorButton from '../AnchorButton/AnchorButton'
 
 const ProjectInfo = ({
 	id,
@@ -20,25 +21,19 @@ const ProjectInfo = ({
 		<p className="project-description">{description}</p>
 		<p className="project-techs">Tecnologías empleadas</p>
 		<div className="project-tech-icons-container">
-			{techStack.map((technology: Technology) => {
-				return getTechnologyIcon(technology)
-			})}
+			{techStack.map((technology: Technology) =>
+				getTechnologyIcon(technology)
+			)}
 		</div>
 
 		<div className="project-buttons-container">
-			<a className="project-button primary" href={url} target="_blank">
-				<img src={webIcon} alt="button web icon" />
+			<AnchorButton href={url} icon={webIcon} primary>
 				visitar
-			</a>
+			</AnchorButton>
 
-			<a
-				className="project-button secondary"
-				href={repository}
-				target="_blank"
-			>
-				<img src={githubIcon} alt="button web icon" />
+			<AnchorButton href={repository} icon={githubIcon}>
 				repositorio
-			</a>
+			</AnchorButton>
 		</div>
 	</article>
 )
