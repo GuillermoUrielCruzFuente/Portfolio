@@ -5,6 +5,20 @@ import githubIcon from '../../static/img/icons/social-media/github.svg'
 
 import { ProjectContent } from '../../routes/03-Projects/ProjectsData'
 import AnchorButton from '../AnchorButton/AnchorButton'
+import IntersectionContainer from '../IntersectionContainer/IntersectionContainer'
+import { CSSProperties } from 'react'
+
+const fromProperties: CSSProperties = {
+	transform: 'translateY(30px)',
+	opacity: 0,
+}
+
+const toProperties: CSSProperties = {
+	transform: 'translateY(0px)',
+	opacity: 1,
+}
+
+const transition = 1000
 
 const ProjectInfo = ({
 	id,
@@ -15,26 +29,64 @@ const ProjectInfo = ({
 	url,
 }: ProjectContent) => (
 	<article className="project-info">
-		<p className="project-number">Proyecto #{id}</p>
-		{name}
+		<IntersectionContainer
+			transitionTime={transition}
+			from={fromProperties}
+			to={toProperties}
+		>
+			<p className="project-number">Proyecto #{id}</p>
+		</IntersectionContainer>
+		<IntersectionContainer
+			transitionTime={transition}
+			from={fromProperties}
+			to={toProperties}
+		>
+			{name}
+		</IntersectionContainer>
 
-		<p className="project-description">{description}</p>
-		<p className="project-techs">Tecnologías empleadas</p>
-		<div className="project-tech-icons-container">
-			{techStack.map((technology: Technology) =>
-				getTechnologyIcon(technology)
-			)}
-		</div>
+		<IntersectionContainer
+			transitionTime={transition}
+			from={fromProperties}
+			to={toProperties}
+		>
+			<p className="project-description">{description}</p>
+		</IntersectionContainer>
 
-		<div className="project-buttons-container">
-			<AnchorButton href={url} icon={webIcon} primary>
-				visitar
-			</AnchorButton>
+		<IntersectionContainer
+			transitionTime={transition}
+			from={fromProperties}
+			to={toProperties}
+		>
+			<p className="project-techs">Tecnologías empleadas</p>
+		</IntersectionContainer>
 
-			<AnchorButton href={repository} icon={githubIcon}>
-				repositorio
-			</AnchorButton>
-		</div>
+		<IntersectionContainer
+			transitionTime={transition}
+			from={fromProperties}
+			to={toProperties}
+		>
+			<div className="project-tech-icons-container">
+				{techStack.map((technology: Technology) =>
+					getTechnologyIcon(technology)
+				)}
+			</div>
+		</IntersectionContainer>
+
+		<IntersectionContainer
+			transitionTime={transition}
+			from={fromProperties}
+			to={toProperties}
+		>
+			<div className="project-buttons-container">
+				<AnchorButton href={url} icon={webIcon} primary>
+					visitar
+				</AnchorButton>
+
+				<AnchorButton href={repository} icon={githubIcon}>
+					repositorio
+				</AnchorButton>
+			</div>
+		</IntersectionContainer>
 	</article>
 )
 
