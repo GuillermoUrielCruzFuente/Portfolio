@@ -1,4 +1,4 @@
-import { CSSProperties, FC, useLayoutEffect, useRef } from 'react'
+import { CSSProperties, useLayoutEffect, useRef } from 'react'
 
 type ToAppear = {
 	children: JSX.Element
@@ -7,7 +7,7 @@ type ToAppear = {
 	to: CSSProperties
 }
 
-const IntersectionContainer: FC<ToAppear> = ({
+const IntersectionContainer = ({
 	children,
 	from,
 	to,
@@ -15,7 +15,10 @@ const IntersectionContainer: FC<ToAppear> = ({
 }: ToAppear) => {
 	const containerRef = useRef<HTMLDivElement>(null)
 
-	const computeEntries = (entries: Array<IntersectionObserverEntry>) => {
+	const computeEntries = (
+		entries: Array<IntersectionObserverEntry>,
+		observer: IntersectionObserver
+	) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				for (let key in to) {
@@ -23,6 +26,8 @@ const IntersectionContainer: FC<ToAppear> = ({
 					const property = key as any
 					containerRef.current!.style[property] = value
 				}
+
+				observer.disconnect()
 			}
 		})
 	}
@@ -33,16 +38,24 @@ const IntersectionContainer: FC<ToAppear> = ({
 		threshold: 0.5,
 	}
 
+	const setContainerTransition = () => {
+		if (containerRef.current) {
+			containerRef.current.style.transitionProperty =
+				Object.keys(to).join()
+
+			containerRef.current.style.transitionDuration = `${transitionTime}ms`
+		}
+	}
+
 	useLayoutEffect(() => {
-		containerRef.current
-			? (containerRef.current.style.transition = `all ${transitionTime}ms`)
-			: undefined
+		setContainerTransition()
 
 		const observer = new IntersectionObserver(
 			computeEntries,
 			intersectionOptions
 		)
-		observer.observe(containerRef.current as Element)
+
+		observer.observe(containerRef.current!)
 	}, [])
 
 	return (
