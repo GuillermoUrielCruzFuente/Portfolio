@@ -1,0 +1,54 @@
+@media screen and (max-width: 1400px) {
+	#contact {
+		width: 85%;
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	#contact {
+		.page-main-title {
+			font-size: clamp(1.5rem, 11vw, 6rem);
+		}
+	}
+
+	.split-container {
+		flex-flow: column;
+
+		.split {
+			flex-basis: unset;
+			flex-grow: unset;
+
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+
+			text-align: center;
+
+			&:last-child {
+				margin-top: 5rem;
+			}
+
+			&:first-child {
+				padding-right: 0rem;
+			}
+		}
+	}
+
+	form#contact-form {
+		padding: 1rem;
+
+		.form-title {
+			font-size: 1.25rem;
+		}
+
+		.form-text {
+			width: 100%;
+		}
+
+		button.send {
+			padding: 0.85rem 0;
+			width: 100%;
+		}
+	}
+}
