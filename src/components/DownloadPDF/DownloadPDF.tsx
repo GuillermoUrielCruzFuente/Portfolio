@@ -1,5 +1,4 @@
-import CVThumb from '../../static/img/photos/cv-thumb.jpg'
-import cv from '../../static/cv.pdf'
+import cv from '/GuillermoCruz-Resume.pdf'
 import './DownloadPDF.scss'
 import downloadIcon from '../../static/img/icons/contact/download.svg'
 
