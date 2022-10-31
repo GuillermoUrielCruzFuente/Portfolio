@@ -207,29 +207,30 @@ export default function Contact() {
 				<div className="split-container">
 					<div className="split">
 						<h1 className="page-main-title">Contáctame!</h1>
-						<p className="contact-text">
+
+						<p>
 							Puedes encontrarme en distintas redes sociales, usa
 							aquella con la que te sientas más cómodo, te
 							regresaré el mensaje tan pronto como me sea posible.
 							Apreciaré cualquier sugerencia o propuesta de
 							trabajo, siéntete libre de compartirla conmigo.
 						</p>
+
 						<SocialMedia
 							containerClass="contact-social-media"
 							state={socialState}
 						/>
 
-						<div className="phone-number-container">
-							<p>
-								Una llamada también será bien recibida, he aqui
-								mi número personal
-							</p>
-							<a className="tel-tag" href="tel:+52-5551588911">
-								555 158 8911
-							</a>
-						</div>
+						<p>
+							Una llamada también será bien recibida, he aqui mi
+							número personal
+						</p>
 
-						<p className="contact-text">
+						<a className="tel-tag" href="tel:+52-5551588911">
+							555 158 8911
+						</a>
+
+						<p >
 							Y por último, puedes darle un vistazo a mi CV, esta
 							es la versión más reciente, con toda mi información
 							en él.
