@@ -172,10 +172,7 @@ export default function Contact() {
 			const message = messageTextArea.getValue()
 			const tel = phoneInput.getValue()
 
-			const isSuccessful = await sendEmail(
-				{ name, mail, message, tel },
-				true
-			)
+			const isSuccessful = await sendEmail({ name, mail, message, tel })
 
 			if (isSuccessful) {
 				//change the confirmation state
@@ -230,7 +227,7 @@ export default function Contact() {
 							555 158 8911
 						</a>
 
-						<p >
+						<p>
 							Y por último, puedes darle un vistazo a mi CV, esta
 							es la versión más reciente, con toda mi información
 							en él.
