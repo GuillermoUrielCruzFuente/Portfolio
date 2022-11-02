@@ -1,31 +1,35 @@
 .about-card {
 	background-color: rgba($color: #290432, $alpha: 0.25);
 	-webkit-backdrop-filter: blur(4px);
-	        backdrop-filter: blur(4px);
+	backdrop-filter: blur(4px);
 	border-radius: 1rem;
-	padding-top: 0rem;
-	padding-inline: 1rem;
-	padding-bottom: 1rem;
-	min-width: 200px;
-	margin-inline: 2rem;
 	box-shadow: 5px 3px 16px rgba($color: #000, $alpha: 0.5);
-	transition: background-color 500ms;
+	transition: background-color 200ms;
 	position: relative;
 	overflow: hidden;
+
+	min-width: 180px;
+	margin-inline: 2rem;
+
+	padding: 1rem;
 
 	p {
 		color: #fff;
 		-webkit-user-select: none;
-		   -moz-user-select: none;
-		    -ms-user-select: none;
-		        user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+
+		text-align: right;
 	}
 
 	.main {
-		font-size: 4rem;
+		font-size: 3rem;
 		font-weight: 900;
 		line-height: 1;
-		margin-top: 1rem;
+		transform-origin: right;
+
+		transition: transform 200ms;
 	}
 
 	.middle,
@@ -35,13 +39,13 @@
 	}
 
 	.middle {
-		font-size: 0.95rem;
+		font-size: 0.85rem;
 	}
 
 	.bottom {
 		font-weight: 900;
-		font-size: 1.35rem;
-		margin-bottom: 0.5rem;
+		font-size: 1rem;
+		// margin-bottom: 0.5rem;
 	}
 
 	.bottom-line {
@@ -53,16 +57,19 @@
 		transition: height 200ms;
 		background-color: #b174bf;
 		transition-timing-function: ease-out;
-		// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 		z-index: -1;
 	}
 
 	&:hover {
-		background-color: rgba($color: #520c63, $alpha: 0.5);
+		background-color: rgba($color: #6d1384, $alpha: 0.25);
+	}
+
+	&:hover > .main {
+		transform: scale(1.1);
 	}
 
 	&:hover > .bottom-line {
-		height: 16px;
+		height: 0px;
 	}
 }
 
@@ -70,11 +77,11 @@
 	.about-card {
 		min-width: 150px;
 		margin-inline: 1.25rem;
-		box-shadow: 0px 0px 32px rgba($color: #000, $alpha: 0.8);
-		margin-bottom: 3rem;
+		border-radius: 0.75rem;
+		margin-bottom: 2rem;
 
 		.main {
-			font-size: 3rem;
+			font-size: 2.5rem;
 			font-weight: 900;
 			line-height: 1;
 		}
@@ -91,7 +98,7 @@
 
 		.bottom {
 			font-weight: 900;
-			font-size: 1rem;
+			font-size: 0.9rem;
 		}
 	}
 }
@@ -99,6 +106,10 @@
 @media screen and (max-width: 500px) {
 	.about-card {
 		margin-inline: 0;
-		width: 100%;
+		width: min(100%, 200px);
+
+		p {
+			text-align: center;
+		}
 	}
 }
