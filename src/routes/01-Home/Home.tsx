@@ -107,7 +107,7 @@ const Home = () => {
 					></div>
 					<p className="description appear">
 						<span className="accent">Desarrollador Frontend</span>{' '}
-						de tiempo completo, con más de 4 años de experiencia.
+						de tiempo completo, con más de 3 años de experiencia.
 						Mexicano, con intervención en distintos proyectos
 						profesionales, una gran creatividad y atención a los
 						detalles.

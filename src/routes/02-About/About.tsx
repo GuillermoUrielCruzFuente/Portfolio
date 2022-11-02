@@ -45,7 +45,7 @@ const About = () => {
 
 	const cards: Array<AboutCardContent> = [
 		{
-			main: '+4',
+			main: '+3',
 			middle: 'años de',
 			bottom: 'EXPERIENCIA',
 		},
@@ -81,7 +81,7 @@ const About = () => {
 					<p className="about-description">
 						Mi nombre es{' '}
 						<span className="accent">Guillermo Cruz</span>,
-						desarrollador FRONTEND desde hace más de 4 años, he
+						desarrollador FRONTEND desde hace más de 3 años, he
 						desarrollado distintas habilidades que me permiten
 						construir sitios web atractivos, siempre con la ayuda de
 						tecnologías modernas, generando un flujo de trabajo
@@ -134,7 +134,7 @@ const About = () => {
 									<p className="right">
 										Aproximadamente{' '}
 										<span className="accent">
-											hace 4 años
+											hace 3 años
 										</span>{' '}
 										comencé con el desarrollo web, impulsado
 										principalmente por resolver las
