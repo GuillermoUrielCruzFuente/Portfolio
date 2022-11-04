@@ -1,4 +1,4 @@
-import cv from '/GuillermoCruz-Resume.pdf'
+import cv from '/GuillermoUrielCruzFuente-Resume.pdf'
 import './DownloadPDF.scss'
 import downloadIcon from '../../static/img/icons/contact/download.svg'
 
