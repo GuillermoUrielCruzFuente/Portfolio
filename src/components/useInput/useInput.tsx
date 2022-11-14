@@ -1,11 +1,13 @@
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { CSSProperties, useRef, useState } from 'react'
 
-type UseInput = {
+export type UseInput = {
 	render: JSX.Element
 	getValue: () => string
 	isValid: boolean
 	shakeLabel: () => void
 }
+
+export type InputValidation = Pick<UseInput, "getValue" | "isValid">
 
 export type InputConfig = {
 	name: string
