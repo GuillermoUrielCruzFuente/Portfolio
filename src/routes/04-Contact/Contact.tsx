@@ -6,10 +6,10 @@ import { CSSTransition } from 'react-transition-group'
 import './Contact.scss'
 
 //custom components and hooks
-import useInput from '../../components/useInput/useInput'
-import sendEmail from '../../helpers/SendMail'
-import FormModal from '../../components/FormModal/FormModal'
+import useInput, { InputValidation } from '../../components/useInput/useInput'
 import useTextarea from '../../components/useTextarea/useTextarea'
+import sendEmail, { UserInfo } from '../../helpers/SendMail'
+import FormModal from '../../components/FormModal/FormModal'
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
 import DownloadPDF from '../../components/DownloadPDF/DownloadPDF'
@@ -77,42 +77,21 @@ export default function Contact() {
 	}, [nameInput, messageTextArea, emailInput, phoneInput])
 
 	const thereIsAtLeastAWayOfContact = (): boolean => {
-		//if the email and phone inputs are valid but empty -> false
-		if (
-			emailInput.isValid &&
-			emailInput.getValue() === '' &&
-			phoneInput.isValid &&
-			phoneInput.getValue() === ''
-		) {
-			return false
-		}
-		//if both inputs are invalid -> false
-		else if (!emailInput.isValid && !phoneInput.isValid) {
-			return false
-		}
-		//if one is invalid -> false
-		else if (!emailInput.isValid || !phoneInput.isValid) {
-			return false
-		}
-		//if both are valid and just one is empty -> true
-		else if (
-			(emailInput.isValid && emailInput.getValue() != '') ||
-			(phoneInput.isValid && phoneInput.getValue() != '')
-		) {
-			return true
-		}
-		//if both are valid and filled -> true
-		else if (
-			emailInput.isValid &&
-			emailInput.getValue() != '' &&
-			phoneInput.isValid &&
-			phoneInput.getValue() != ''
-		) {
-			return true
-		} else {
-			return false
-		}
+		const isEmailValidNFilled = isValidAndFilled(emailInput)
+		const isPhoneValidNFilled = isValidAndFilled(phoneInput)
+
+		const isEmailInvalid = !emailInput.isValid
+		const isPhoneInvalid = !phoneInput.isValid
+
+		if (isEmailInvalid || isPhoneInvalid) return false
+
+		if (isEmailValidNFilled || isPhoneValidNFilled) return true
+
+		return false
 	}
+
+	const isValidAndFilled = (input: InputValidation): boolean =>
+		input.isValid && input.getValue() != ''
 
 	const showContent = () => {
 		setSectionState(true)
@@ -154,6 +133,13 @@ export default function Contact() {
 		else if (!thereIsAtLeastAWayOfContact()) emailInput.shakeLabel()
 	}
 
+	const getDataFromInputs = (): UserInfo => ({
+		name: nameInput.getValue(),
+		message: messageTextArea.getValue(),
+		mail: emailInput.getValue(),
+		tel: phoneInput.getValue(),
+	})
+
 	const handleSubmit = async (event: SyntheticEvent) => {
 		//prevent page reload
 		event.preventDefault()
@@ -166,13 +152,7 @@ export default function Contact() {
 			setWaiting(true)
 			setSuccess(false)
 
-			//get all the information from inputs
-			const name = nameInput.getValue()
-			const mail = emailInput.getValue()
-			const message = messageTextArea.getValue()
-			const tel = phoneInput.getValue()
-
-			const isSuccessful = await sendEmail({ name, mail, message, tel })
+			const isSuccessful = await sendEmail(getDataFromInputs())
 
 			if (isSuccessful) {
 				//change the confirmation state
