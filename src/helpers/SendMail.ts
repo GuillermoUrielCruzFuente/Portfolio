@@ -1,11 +1,14 @@
 import timer from './Timer'
 
-type UserInfo = {
+export type UserInfo = {
 	name: string
 	mail: string
-	message: string
-	tel: string
+	message?: string
+	tel?: string
 }
+
+const userId = '27ef0d32aeaebbc2c310fb46c09ca772'
+const mailEndpoint = `https://formsubmit.co/ajax/${userId}`
 
 const sendEmail = async (
 	{ name, mail, message, tel }: UserInfo,
@@ -19,12 +22,9 @@ const sendEmail = async (
 		)
 		return true
 	} else {
-		const FORM_SUBMIT_ENDPOINT =
-			'https://formsubmit.co/ajax/27ef0d32aeaebbc2c310fb46c09ca772'
-
 		try {
 			//send request to the FORMSUBMIT endpoint
-			const mailRequest = await fetch(FORM_SUBMIT_ENDPOINT, {
+			const mailRequest = await fetch(mailEndpoint, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -33,11 +33,12 @@ const sendEmail = async (
 				body: JSON.stringify({
 					name: name,
 					mail: mail,
+					tel: tel,
 					message: message,
 				}),
 			})
 
-			//transform the response to JSON in order to read it
+			//transform the response to JSON in order to read its status
 			const confirmation = await mailRequest.json()
 
 			return confirmation.success
