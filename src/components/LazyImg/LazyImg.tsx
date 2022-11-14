@@ -10,7 +10,7 @@ export type LazyImgPath = {
 // fire the image downloading before it enters the viewport
 const observerDownloaderOptions: IntersectionObserverInit = {
 	root: null,
-	rootMargin: '300px',
+	rootMargin: '400px',
 	threshold: 0,
 }
 
