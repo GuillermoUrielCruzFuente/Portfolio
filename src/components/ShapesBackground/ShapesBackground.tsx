@@ -10,7 +10,7 @@ const ShapesBackground: FC = () => {
 	const circleRef = useRef<SVGSVGElement>(null)
 
 	const shapes = [triangleRef, squareRef, pentagonRef, hexagonRef, circleRef]
-	const navType = useNavigationType()
+	// const navType = useNavigationType()
 
 	const location = useLocation()
 	const routes = ['/', '/sobre-mi', '/proyectos', '/contacto']
