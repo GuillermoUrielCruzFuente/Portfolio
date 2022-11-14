@@ -1,24 +1,19 @@
+@use '../../scss/layout/z-index.scss' as Z;
+
 nav {
 	width: 100vw;
 	height: var(--navbar-size);
-	// position: sticky;
-
-	//
 	position: fixed;
 	left: 0px;
 	top: 0px;
-
-	z-index: 100;
+	text-transform: uppercase;
+	z-index: Z.$navbar;
 
 	transition: 300ms background-color, 300ms box-shadow,
 		300ms -webkit-backdrop-filter;
-
 	transition: 300ms background-color, 300ms backdrop-filter, 300ms box-shadow;
-
 	transition: 300ms background-color, 300ms backdrop-filter, 300ms box-shadow,
 		300ms -webkit-backdrop-filter;
-
-		text-transform: uppercase;
 }
 
 #nav-container {
