@@ -62,9 +62,6 @@ $guillermo-red: #a03535;
 		width: $logo-size;
 		height: $logo-size;
 		margin-inline: 3rem;
-		-webkit-animation: up-down ease-in-out 0.75s alternate infinite;
-		animation: up-down ease-in-out 0.75s alternate infinite;
-
 		opacity: 0;
 		transition: 1500ms opacity;
 
@@ -75,26 +72,6 @@ $guillermo-red: #a03535;
 		&:last-child {
 			margin-right: 0;
 		}
-	}
-}
-
-@-webkit-keyframes up-down {
-	$y-movement: 8px;
-	from {
-		transform: translateY($y-movement);
-	}
-	to {
-		transform: translateY(-$y-movement);
-	}
-}
-
-@keyframes up-down {
-	$y-movement: 8px;
-	from {
-		transform: translateY($y-movement);
-	}
-	to {
-		transform: translateY(-$y-movement);
 	}
 }
 
@@ -109,7 +86,6 @@ main#projects-main {
 
 .project-container {
 	display: flex;
-	min-height: max(900px, 100vh);
 	padding-top: 20vh;
 	flex-flow: row wrap;
 	text-align: left;
@@ -315,9 +291,7 @@ main#projects-main {
 
 		.project-collage {
 			width: 90%;
-			// background-color: crimson;
 			aspect-ratio: 1.2;
-
 			$transition-time: 1s;
 			transition: opacity $transition-time, transform $transition-time;
 			transition-delay: 400ms;

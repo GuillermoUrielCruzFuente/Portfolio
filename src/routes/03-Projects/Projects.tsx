@@ -1,11 +1,5 @@
 //react imports
-import {
-	CSSProperties,
-	SyntheticEvent,
-	useEffect,
-	useRef,
-	useState,
-} from 'react'
+import { SyntheticEvent, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
@@ -74,14 +68,6 @@ const Projects = () => {
 		iconElement.style.opacity = '1'
 	}
 
-	const calcProjectIconDelayAnim = (index: number) => {
-		const delayProperty: CSSProperties = {
-			animationDelay: `${100 * index}ms`,
-		}
-
-		return delayProperty
-	}
-
 	return (
 		<CSSTransition
 			in={sectionState}
@@ -105,18 +91,15 @@ const Projects = () => {
 					</p>
 
 					<div className="works">
-						{projectsData.map(
-							(project: ProjectContent, index: number) => (
-								<img
-									key={project.id}
-									className="project-logo"
-									src={project.logoImgPath}
-									alt={`logo ${project.id}`}
-									style={calcProjectIconDelayAnim(index)}
-									onLoad={revealProjectIconOnLoad}
-								/>
-							)
-						)}
+						{projectsData.map((project: ProjectContent) => (
+							<img
+								key={project.id}
+								className="project-logo"
+								src={project.logoImgPath}
+								alt={`logo ${project.id}`}
+								onLoad={revealProjectIconOnLoad}
+							/>
+						))}
 					</div>
 
 					<ScrollDown />
@@ -143,8 +126,6 @@ const Projects = () => {
 											}
 										/>
 									</div>
-
-									<hr className="project-separator" />
 								</div>
 							)
 						)}
