@@ -15,7 +15,7 @@ const ScrollDown = () => {
 	}
 
 	useEffect(() => {
-		setTimeout(() => setScrollState(true), 300)
+		hideOnScroll()
 
 		window.addEventListener('scroll', hideOnScroll)
 
