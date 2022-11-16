@@ -15,14 +15,41 @@ import Videogames from '../../static/img/photos/hobbies/mine.jpg'
 import Music from '../../static/img/photos/hobbies/music.jpg'
 
 export const techImages = [
-    HTMLImg,
-    CSSImg,
-    SCSSImg,
-    JSImg,
-    TSImg,
-    ViteImg,
-    ReactImg,
-    VueImg
+	HTMLImg,
+	CSSImg,
+	SCSSImg,
+	JSImg,
+	TSImg,
+	ViteImg,
+	ReactImg,
+	VueImg,
 ]
 
-export const hobbiesImages = [Aquarium, Videogames, Origami, Music]
+export type ImageProps = {
+	src: string
+	alt: string
+	title: string
+}
+
+export const hobbiesImages: Array<ImageProps> = [
+	{
+		src: Aquarium,
+		alt: 'foto acuario',
+		title: 'Foto de Pugga (mi gatita) frente a mi Acuario (2018).',
+	},
+	{
+		src: Videogames,
+		alt: 'minecraft screenshot',
+		title: 'Captura de mi survival en Minecraft (1.18 Técnico), mi juego favorito.',
+	},
+	{
+		src: Origami,
+		alt: 'algunos modelos de origami',
+		title: 'Algunos modelos de origami doblados por mi. Arriba: variación con escamas del pez creado por Davor Vinko, abajo: Tortuga marina de Satoshi Kamiya.',
+	},
+	{
+		src: Music,
+		alt: 'Audífonos viejos',
+		title: 'Crusher Wireless 2, los mejores audífonos que he tenido, hasta ahora.',
+	},
+]
