@@ -1,4 +1,4 @@
-import { techImages } from '../../helpers/exports/AboutExports'
+import { techImages } from '../../helpers/imports/AboutImports'
 
 export type Technology =
 	| 'html'
