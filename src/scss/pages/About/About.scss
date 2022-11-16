@@ -5,7 +5,7 @@
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	min-height: calc(95vh - var(--navbar-size));
+	min-height: calc(100vh - var(--navbar-size));
 	text-align: center;
 
 	.upper-title {
@@ -16,19 +16,21 @@
 	}
 
 	.main-title {
-		font-size: clamp(1.25rem, 10vw, 9rem);
+		font-size: clamp(1.25rem, 10vw, 7.5rem);
 		text-transform: uppercase;
 		color: #fff;
 		font-weight: 900;
 		line-height: 0.85;
+		line-height: 1;
 		position: relative;
 	}
 
 	.bottom-title {
-		font-size: 0.85rem;
-		color: #fff;
-		font-weight: 400;
+		color: #7e1e95;
+		font-weight: 900;
 		line-height: 1;
+		margin-top: 0.5rem;
+		z-index: 10;
 	}
 
 	.about-description {
@@ -36,6 +38,7 @@
 		margin-top: 3rem;
 		width: 50%;
 		font-size: 1rem;
+		font-size: 0.85rem;
 	}
 
 	.cards-container {
@@ -97,11 +100,8 @@
 	color: #fff;
 }
 
-
-
 main#about-main {
-	background-color: rgba($color: #000000, $alpha: 0.65);
-	backdrop-filter: blur(5px);
+	background-color: #000;
 }
 
 .reverse-row {
@@ -111,8 +111,8 @@ main#about-main {
 .split-big-title {
 	display: flex;
 	align-items: center;
-	padding: 12rem 0px;
-	width: 85%;
+	padding: 10rem 0px;
+	width: 70%;
 
 	.big-title {
 		flex-grow: 1;
@@ -120,8 +120,7 @@ main#about-main {
 
 		.titles {
 			color: #fff;
-			// font-size: 8rem;
-			font-size: clamp(5rem, 12vw, 10rem);
+			font-size: clamp(5rem, 12vw, 7rem);
 
 			line-height: 0.85;
 		}
@@ -138,6 +137,7 @@ main#about-main {
 		flex-basis: 0;
 
 		p {
+			font-size: 0.85rem;
 			color: #f2dbff;
 		}
 	}
@@ -155,7 +155,7 @@ main#about-main {
 
 .years {
 	background-color: #141414;
-	width: 100%;
+	width: 100% !important;
 	padding: 1rem 0px;
 
 	.tech-images {
@@ -165,8 +165,8 @@ main#about-main {
 		justify-content: center;
 
 		img {
-			width: 110px;
-			margin: 2rem;
+			width: 60px;
+			margin: 1.5rem;
 		}
 	}
 
@@ -185,7 +185,7 @@ main#about-main {
 		justify-content: center;
 
 		.hobbies-img {
-			width: 110px;
+			width: 130px;
 			margin: 2rem;
 		}
 	}
@@ -199,13 +199,9 @@ main#about-main {
 
 @media screen and (max-width: 1200px) {
 	.split-big-title {
-		width: 85%;
+		width: 80%;
 
 		.big-title {
-			// .titles {
-			//     font-size: 7rem;
-			// }
-
 			.desc-title {
 				font-size: 1rem;
 			}
@@ -214,13 +210,9 @@ main#about-main {
 }
 
 @media screen and (max-width: 1000px) {
-	// .split-big-title {
-	//     .big-title {
-	//         .titles {
-	//             font-size: 5rem;
-	//         }
-	//     }
-	// }
+	.split-big-title {
+		width: 90%;
+	}
 
 	.years {
 		.tech-images {
@@ -253,7 +245,6 @@ main#about-main {
 			flex-basis: unset;
 
 			.titles {
-				// font-size: 7rem;
 				margin: 0 auto;
 			}
 
@@ -281,16 +272,6 @@ main#about-main {
 		}
 	}
 }
-
-// @media screen and (max-width: 600px) {
-//     .split-big-title {
-//         .big-title {
-//             .titles {
-//                 font-size: 5rem;
-//             }
-//         }
-//     }
-// }
 
 @media screen and (max-width: 400px) {
 	.years {
