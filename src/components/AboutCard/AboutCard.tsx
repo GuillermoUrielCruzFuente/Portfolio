@@ -1,5 +1,3 @@
-import Lottie from 'lottie-web'
-import { useLayoutEffect, useRef } from 'react'
 import './AboutCard.scss'
 
 export type AboutCardContent = {
@@ -9,8 +7,6 @@ export type AboutCardContent = {
 }
 
 const AboutCard = (Content: AboutCardContent) => {
-	let buttonRef = useRef<HTMLDivElement>(null)
-
 	return (
 		<div className="about-card">
 			<p className="main">{Content.main}</p>
