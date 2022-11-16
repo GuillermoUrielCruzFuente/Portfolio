@@ -1,5 +1,14 @@
 @use '../../scss/layout/z-index.scss' as Z;
 
+.svg-noise {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -10;
+	opacity: 0.95;
+	mix-blend-mode: soft-light;
+}
+
 nav {
 	width: 100vw;
 	height: var(--navbar-size);

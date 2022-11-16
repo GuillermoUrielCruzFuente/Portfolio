@@ -7,7 +7,6 @@ import {
 	Outlet,
 } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
-// import ShapesBackground from '../ShapesBackground/ShapesBackground'
 
 //routes
 import getRoutesWithRef, { RouteWithRef } from '../../routes/routes'
@@ -273,7 +272,18 @@ const Nav = () => {
 			</nav>
 
 			<Outlet context={signal} />
-			{/* <ShapesBackground /> */}
+
+			<svg className="svg-noise" width="100%" height="100%">
+				<filter id="filter">
+					<feTurbulence
+						type="fractalNoise"
+						baseFrequency="0.65"
+						stitchTiles="stitch"
+						numOctaves="1"
+					></feTurbulence>
+				</filter>
+				<rect width="100%" height="100%" filter="url(#filter)"></rect>
+			</svg>
 		</>
 	)
 }
