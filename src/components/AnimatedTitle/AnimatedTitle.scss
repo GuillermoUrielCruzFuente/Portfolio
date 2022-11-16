@@ -1,13 +1,17 @@
 .animated-title {
-    
-    .animated-segment {
-        height: fit-content;
-        width: fit-content;
-        transition: 1000ms;
-        display: inline-block;
-        opacity: 0;
-        transform: translateY(-50%);
-        transform-origin: "center center";
-        transition-timing-function: ease;
-    }
+	display: flex;
+	flex-flow: column;
+	overflow: hidden;
+	justify-content: flex-start;
+
+	.animated-segment {
+		height: fit-content;
+		width: fit-content;
+		transition: 1000ms;
+		display: block;
+		opacity: 0;
+		transform: translateY(-50%);
+		transform-origin: 'center center';
+		transition-timing-function: ease;
+	}
 }
