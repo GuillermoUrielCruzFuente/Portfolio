@@ -12,7 +12,13 @@ import IntersectionContainer from '../../components/IntersectionContainer/Inters
 import ScrollDown from '../../components/ScrollDown/ScrollDown'
 
 //images and styles imports
-import { techImages, hobbiesImages } from '../../helpers/exports/AboutExports'
+import { cards } from '../../data/AboutCardsData'
+
+import {
+	techImages,
+	hobbiesImages,
+	ImageProps,
+} from '../../helpers/imports/AboutImports'
 
 //outlet custom hook
 import useNavContext, { ContextType } from '../../hooks/useNavContext'
@@ -43,24 +49,6 @@ const About = () => {
 		setSectionState(false)
 	}
 
-	const cards: Array<AboutCardContent> = [
-		{
-			main: '+3',
-			middle: 'años de',
-			bottom: 'EXPERIENCIA',
-		},
-		{
-			main: '3',
-			middle: 'proyectos con',
-			bottom: 'EMPRESAS',
-		},
-		{
-			main: 'Y',
-			middle: 'muchas',
-			bottom: 'PRUEBAS',
-		},
-	]
-
 	return (
 		<CSSTransition
 			in={sectionState}
@@ -90,16 +78,14 @@ const About = () => {
 					</p>
 
 					<div className="cards-container">
-						{cards.map((cardContent: AboutCardContent) => {
-							return (
-								<AboutCard
-									main={cardContent.main}
-									middle={cardContent.middle}
-									bottom={cardContent.bottom}
-									key={cardContent.main}
-								/>
-							)
-						})}
+						{cards.map((cardContent: AboutCardContent) => (
+							<AboutCard
+								main={cardContent.main}
+								middle={cardContent.middle}
+								bottom={cardContent.bottom}
+								key={cardContent.main}
+							/>
+						))}
 					</div>
 
 					<ScrollDown />
@@ -236,7 +222,7 @@ const About = () => {
 										<span className="accent">Java</span>,
 										las clases de métodos numéricos pasaban
 										como agua entre mis manos y mis
-										compañeros y yo creábamos mancuernas de
+										compañeros y yo creábamos equipos de
 										excelencia.
 										<br />
 										<br />
@@ -248,8 +234,8 @@ const About = () => {
 										aspiraciones y deseos tuvieron que verse
 										truncados, pues la nueva realidad no
 										contribuía ni un poco a su realización,
-										así decidí embarcarme en lo que sería un
-										nuevo yo, enfocado en el{' '}
+										así es como decidí embarcarme en lo que
+										sería un nuevo yo, enfocado en el{' '}
 										<span className="accent">
 											desarrollo web
 										</span>
@@ -331,11 +317,12 @@ const About = () => {
 
 					<section className="years">
 						<div className="hobbies">
-							{hobbiesImages.map((img) => (
+							{hobbiesImages.map((img: ImageProps) => (
 								<img
-									src={img}
-									alt=""
-									key={img}
+									src={img.src}
+									alt={img.alt}
+									title={img.title}
+									key={img.alt}
 									className="hobbies-img"
 								/>
 							))}
