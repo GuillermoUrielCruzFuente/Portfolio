@@ -2,16 +2,16 @@
 	background-color: rgba($color: #290432, $alpha: 0.25);
 	-webkit-backdrop-filter: blur(4px);
 	backdrop-filter: blur(4px);
-	border-radius: 1rem;
+	border-radius: 0.75rem;
 	box-shadow: 5px 3px 16px rgba($color: #000, $alpha: 0.5);
-	transition: background-color 200ms;
 	position: relative;
 	overflow: hidden;
-
+	border: dashed 2px #4f105f;
 	min-width: 180px;
 	margin-inline: 2rem;
-
 	padding: 1rem;
+
+	transition: background-color 200ms, border 200ms;
 
 	p {
 		color: #fff;
@@ -62,6 +62,7 @@
 
 	&:hover {
 		background-color: rgba($color: #6d1384, $alpha: 0.25);
+		border: dashed 2px #871ea1;
 	}
 
 	&:hover > .main {
