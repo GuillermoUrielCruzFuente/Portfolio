@@ -15,10 +15,11 @@ import getRoutesWithRef, { RouteWithRef } from '../../routes/routes'
 import './Nav.scss'
 
 //third party libraries
-import Lottie from 'lottie-web'
+import Lottie, { AnimationItem } from 'lottie-web'
 
 //data
 import logoAnimationData from '../../static/lottie/logo.json'
+import hamburgerAnimationData from '../../static/lottie/hamburger-menu.json'
 
 //hooks
 import useNavigateTo from '../../hooks/useNavigateTo'
@@ -30,8 +31,11 @@ const Nav = () => {
 	const navigate = useNavigate()
 	const [clickedLink, setClickedLink] = useState<Navigation | null>(null)
 	const [readyToNavigate, setReadyToNavigate] = useState<boolean>(false)
+	// let responsiveMenuCounter = 0
 
 	const showNavLogo = () => {
+		logoAnimationContainerRef.current!.style.opacity = '1'
+
 		logoAnimationRef.current.setDirection(1)
 		logoAnimationRef.current.setSpeed(1)
 		logoAnimationRef.current.play()
@@ -40,9 +44,16 @@ const Nav = () => {
 	}
 
 	const hideNavLogo = () => {
-		logoAnimationRef.current.setDirection(-1)
-		logoAnimationRef.current.setSpeed(2)
-		logoAnimationRef.current.playSegments([180, 0], true)
+		logoAnimationContainerRef.current!.style.opacity = '0'
+
+		logoAnimationContainerRef.current!.addEventListener(
+			'transitionend',
+			() => {
+				if (logoAnimationContainerRef.current?.style.opacity === '0') {
+					logoAnimationRef.current.goToAndStop(0, true)
+				}
+			}
+		)
 
 		document.getElementById('nav-logo-link')!.style.pointerEvents = 'none'
 	}
@@ -85,18 +96,25 @@ const Nav = () => {
 	// #endregion
 
 	// #region responsive menu logic
-	const [menuDeviceState, setMenuDeviceState] = useState(false)
+	const [responsiveMenuState, setResponsiveMenuState] = useState(false)
 	const [mobItems, setMobItems] = useState(false)
 	// #endregion
 
 	// #region lottie logo in navbar
 	const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
-	const logoAnimationRef = useRef(
+	const logoAnimationRef = useRef<AnimationItem>(
 		Lottie.loadAnimation({
 			container: logoAnimationContainerRef.current!,
 		})
 	)
 	// #endregion
+
+	const buttonAnimationContainerRef = useRef<HTMLDivElement>(null)
+	const buttonLottieAnimationRef = useRef<AnimationItem>(
+		Lottie.loadAnimation({
+			container: buttonAnimationContainerRef.current!,
+		})
+	)
 
 	// #region reference for CSSTransition NodeRef Attribute in responsive menu
 	const menuMobileRef = useRef<HTMLDivElement>(null)
@@ -115,14 +133,14 @@ const Nav = () => {
 	const hideMenuOnResize = () => {
 		//if the menu is active and the window width is less than 700px
 		//then the menu need to be invisible
-		if (window.innerWidth > 700 && !menuDeviceState) {
-			setMenuDeviceState(false)
+		if (window.innerWidth > 700) {
+			toggleMenu()
 		}
 	}
 
 	const hideMenuOnEsc = (event: KeyboardEvent) => {
 		if (event.key === 'Escape') {
-			setMenuDeviceState(false)
+			toggleMenu()
 		}
 	}
 
@@ -134,18 +152,30 @@ const Nav = () => {
 			loop: false,
 		})
 
+		buttonLottieAnimationRef.current = Lottie.loadAnimation({
+			container: buttonAnimationContainerRef.current!,
+			animationData: hamburgerAnimationData,
+			loop: false,
+			autoplay: false,
+		})
+
+		buttonLottieAnimationRef.current.setSpeed(1.35)
+
 		if (location.pathname != '/') {
-			// logoAnimationRef.current.playSegments([0, 180], true)
 			showNavLogo()
 		} else {
 			document.getElementById('nav-logo-link')!.style.pointerEvents =
 				'none'
 		}
 
+		// window.addEventListener('resize', hideMenuOnResize)
+		// window.addEventListener('keydown', hideMenuOnEsc)
 		window.addEventListener('scroll', changeStyleOnScroll)
 
 		return () => {
 			logoAnimationRef.current.destroy()
+			buttonLottieAnimationRef.current.destroy()
+
 			window.removeEventListener('resize', hideMenuOnResize)
 			window.removeEventListener('keydown', hideMenuOnEsc)
 			window.removeEventListener('scroll', changeStyleOnScroll)
@@ -165,16 +195,33 @@ const Nav = () => {
 		}
 	}, [readyToNavigate])
 
-	const toggleMenu = () => {
-		setMenuDeviceState(!menuDeviceState)
+	const showBackArrow = () =>
+		buttonLottieAnimationRef.current.playSegments([20, 70], true)
 
+	const showHamburger = () =>
+		buttonLottieAnimationRef.current.playSegments([120, 140], true)
+
+	const hideVerticalScroll = (state: boolean) => {
 		const a = document.getElementsByTagName('html')[0]
-		a.style.overflow = !menuDeviceState ? 'hidden hidden' : 'hidden auto'
+		a.style.overflow = state ? 'hidden hidden' : 'hidden auto'
+	}
 
-		if (!menuDeviceState) {
-			window.addEventListener('resize', hideMenuOnResize)
-			window.addEventListener('keydown', hideMenuOnEsc)
-		}
+	const toggleMenu = () => {
+		setResponsiveMenuState((previousState: boolean) => {
+			previousState ? showHamburger() : showBackArrow()
+
+			hideVerticalScroll(!previousState)
+
+			if (previousState) {
+				window.removeEventListener('resize', hideMenuOnResize)
+				window.removeEventListener('keydown', hideMenuOnEsc)
+			} else {
+				window.addEventListener('resize', hideMenuOnResize)
+				window.addEventListener('keydown', hideMenuOnEsc)
+			}
+
+			return !previousState
+		})
 	}
 
 	return (
@@ -217,7 +264,7 @@ const Nav = () => {
 						</div>
 
 						<CSSTransition
-							in={menuDeviceState}
+							in={responsiveMenuState}
 							classNames="appear"
 							timeout={{ enter: 500, exit: 500 }}
 							mountOnEnter
@@ -266,7 +313,13 @@ const Nav = () => {
 							</div>
 						</CSSTransition>
 
-						<div id="menu-button" onClick={toggleMenu}></div>
+						<div className="button-container">
+							<div
+								ref={buttonAnimationContainerRef}
+								id="menu-button"
+								onClick={toggleMenu}
+							></div>
+						</div>
 					</div>
 				</div>
 			</nav>
