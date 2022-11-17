@@ -76,16 +76,10 @@ span {
 }
 
 #navigator {
+	height: 100%;
 	display: flex;
 	align-items: center;
-
-	#menu-button {
-		background-color: #420850;
-		width: calc(100% - 3.25rem);
-		aspect-ratio: 1;
-		border-radius: 1rem;
-		display: none;
-	}
+	position: relative;
 
 	.links-container-desk {
 		display: block;
@@ -149,12 +143,32 @@ span {
 	}
 }
 
+.button-container {
+	height: 80%;
+	aspect-ratio: 1;
+	overflow: hidden;
+
+	display: none;
+	align-items: center;
+	justify-content: center;
+
+	#menu-button {
+		height: calc(100% - 0.5rem);
+		border-radius: 100%;
+		aspect-ratio: 1;
+		transform: scale(4);
+		cursor: pointer;
+	}
+}
+
 @media screen and (max-width: 700px) {
 	#nav-container {
 		padding-inline: 1rem;
 	}
 
 	#navigator {
+		// background-color: chocolate;
+
 		.links-container {
 			position: fixed;
 			top: 0;
@@ -170,16 +184,10 @@ span {
 		.links-container-desk {
 			display: none;
 		}
+	}
 
-		#menu-button {
-			width: 30px;
-			height: 30px;
-			border-radius: 1rem;
-			cursor: pointer;
-			z-index: 100;
-
-			display: block;
-		}
+	.button-container {
+		display: flex;
 	}
 }
 
