@@ -130,20 +130,6 @@ const Nav = () => {
 		}
 	}
 
-	const hideMenuOnResize = () => {
-		//if the menu is active and the window width is less than 700px
-		//then the menu need to be invisible
-		if (window.innerWidth > 700) {
-			toggleMenu()
-		}
-	}
-
-	const hideMenuOnEsc = (event: KeyboardEvent) => {
-		if (event.key === 'Escape') {
-			toggleMenu()
-		}
-	}
-
 	useEffect(() => {
 		logoAnimationRef.current = Lottie.loadAnimation({
 			container: logoAnimationContainerRef.current!,
@@ -201,27 +187,66 @@ const Nav = () => {
 	const showHamburger = () =>
 		buttonLottieAnimationRef.current.playSegments([120, 140], true)
 
-	const hideVerticalScroll = (state: boolean) => {
-		const a = document.getElementsByTagName('html')[0]
-		a.style.overflow = state ? 'hidden hidden' : 'hidden auto'
+	const disableVerticalScroll = () => {
+		const html = document.getElementsByTagName('html')[0]
+		html.style.overflow = 'hidden hidden'
+	}
+
+	const enableVerticalScroll = () => {
+		const html = document.getElementsByTagName('html')[0]
+		html.style.overflow = 'hidden auto'
+	}
+
+	//we need to handle the state reading by encapsulating it inside a ref
+	// https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
+	const menuStateRef = useRef(false)
+
+	const hideMenuOnResize = () => {
+		//if the menu is active and the window width is less than 700px
+		//then the menu need to be invisible
+		if (window.innerWidth > 700 && menuStateRef.current) {
+			console.log('hideMenuOnResize true')
+			hideMenu()
+
+			window.removeEventListener('resize', hideMenuOnResize)
+			window.removeEventListener('keydown', hideMenuOnEsc)
+		}
+	}
+
+	const hideMenuOnEsc = (event: KeyboardEvent) => {
+		if (event.key === 'Escape' && menuStateRef.current) {
+			console.log('hide menu on Esc true')
+			hideMenu()
+
+			window.removeEventListener('resize', hideMenuOnResize)
+			window.removeEventListener('keydown', hideMenuOnEsc)
+		}
 	}
 
 	const toggleMenu = () => {
-		setResponsiveMenuState((previousState: boolean) => {
-			previousState ? showHamburger() : showBackArrow()
+		menuStateRef.current ? hideMenu() : showMenu()
+	}
 
-			hideVerticalScroll(!previousState)
+	const hideMenu = () => {
+		setResponsiveMenuState(false)
+		enableVerticalScroll()
+		showHamburger()
 
-			if (previousState) {
-				window.removeEventListener('resize', hideMenuOnResize)
-				window.removeEventListener('keydown', hideMenuOnEsc)
-			} else {
-				window.addEventListener('resize', hideMenuOnResize)
-				window.addEventListener('keydown', hideMenuOnEsc)
-			}
+		menuStateRef.current = false
 
-			return !previousState
-		})
+		window.removeEventListener('resize', hideMenuOnResize)
+		window.removeEventListener('keydown', hideMenuOnEsc)
+	}
+
+	const showMenu = () => {
+		setResponsiveMenuState(true)
+		disableVerticalScroll()
+		showBackArrow()
+
+		menuStateRef.current = true
+
+		window.addEventListener('resize', hideMenuOnResize)
+		window.addEventListener('keydown', hideMenuOnEsc)
 	}
 
 	return (
