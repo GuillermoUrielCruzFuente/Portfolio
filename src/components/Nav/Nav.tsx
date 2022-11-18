@@ -154,16 +154,12 @@ const Nav = () => {
 				'none'
 		}
 
-		// window.addEventListener('resize', hideMenuOnResize)
-		// window.addEventListener('keydown', hideMenuOnEsc)
 		window.addEventListener('scroll', changeStyleOnScroll)
 
 		return () => {
 			logoAnimationRef.current.destroy()
 			buttonLottieAnimationRef.current.destroy()
 
-			window.removeEventListener('resize', hideMenuOnResize)
-			window.removeEventListener('keydown', hideMenuOnEsc)
 			window.removeEventListener('scroll', changeStyleOnScroll)
 		}
 	}, [])
@@ -205,7 +201,6 @@ const Nav = () => {
 		//if the menu is active and the window width is less than 700px
 		//then the menu need to be invisible
 		if (window.innerWidth > 700 && menuStateRef.current) {
-			console.log('hideMenuOnResize true')
 			hideMenu()
 
 			window.removeEventListener('resize', hideMenuOnResize)
@@ -215,7 +210,6 @@ const Nav = () => {
 
 	const hideMenuOnEsc = (event: KeyboardEvent) => {
 		if (event.key === 'Escape' && menuStateRef.current) {
-			console.log('hide menu on Esc true')
 			hideMenu()
 
 			window.removeEventListener('resize', hideMenuOnResize)
@@ -343,7 +337,7 @@ const Nav = () => {
 								ref={buttonAnimationContainerRef}
 								id="menu-button"
 								onClick={toggleMenu}
-							></div>
+							/>
 						</div>
 					</div>
 				</div>
@@ -351,7 +345,7 @@ const Nav = () => {
 
 			<Outlet context={signal} />
 
-			<svg className="svg-noise" width="100%" height="100%">
+			{/* <svg className="svg-noise" width="100%" height="100%">
 				<filter id="filter">
 					<feTurbulence
 						type="fractalNoise"
@@ -361,7 +355,7 @@ const Nav = () => {
 					></feTurbulence>
 				</filter>
 				<rect width="100%" height="100%" filter="url(#filter)"></rect>
-			</svg>
+			</svg> */}
 		</>
 	)
 }
