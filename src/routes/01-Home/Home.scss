@@ -30,7 +30,7 @@
 	.description {
 		font-weight: 400;
 		margin: 0;
-		width: calc($logo-width + 5%);
+		width: calc($logo-width);
 		text-align: left;
 		color: #fff;
 		font-size: 1rem;
@@ -105,15 +105,30 @@
 	position: fixed;
 	right: 0;
 	bottom: 0;
-	width: 70vw;
-	height: 70vh;
+	width: 100vw;
+	height: 100vh;
 	z-index: -1;
 	overflow: hidden;
 
 	.collage {
+		width: 70%;
 		position: absolute;
-		bottom: -14%;
-		right: -22%;
+		bottom: 0%;
+		right: 0%;
+
+		$collage-trans-time: 1000ms;
+		transition: opacity $collage-trans-time, transform $collage-trans-time;
+		transition-timing-function: ease;
+	}
+
+	.collage-init {
+		opacity: 0;
+		transform: translate(25%, 20%);
+	}
+
+	.collage-final {
+		opacity: 1;
+		transform: translate(20%, 15%);
 	}
 }
 

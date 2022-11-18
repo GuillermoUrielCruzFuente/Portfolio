@@ -19,6 +19,7 @@ import contactIcon from '../../static/img/icons/home-buttons/plane.svg'
 //components
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
 import Button from '../../components/Button/Button'
+import IntersectionContainer from '../../components/IntersectionContainer/IntersectionContainer'
 
 const Home = () => {
 	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
@@ -62,6 +63,16 @@ const Home = () => {
 		}
 	}
 
+	const collageRef = useRef<HTMLImageElement>(null)
+	
+	let collageDownloadState = false
+
+	const showCollage = () => {
+		collageRef.current!.classList.replace('collage-init', 'collage-final')
+	}
+
+	const collageImageReady = () => (collageDownloadState = true)
+
 	const playLogoAnimation = () => {
 		logoAnimation.current = Lottie.loadAnimation({
 			container: logoAnimationHomeContainerRef.current!,
@@ -76,16 +87,20 @@ const Home = () => {
 		logoAnimation.current.addEventListener('complete', () => {
 			setSocialState(true)
 			showElements()
+
+			if (collageDownloadState) {
+				showCollage()
+			} else {
+				collageRef.current?.addEventListener('load', () =>
+					showCollage()
+				)
+			}
 		})
 	}
 
-	const showContent = () => {
-		setSectionState(true)
-	}
+	const showContent = () => setSectionState(true)
 
-	const hideContent = () => {
-		setSectionState(false)
-	}
+	const hideContent = () => setSectionState(false)
 
 	return (
 		<CSSTransition
@@ -100,11 +115,12 @@ const Home = () => {
 		>
 			<header id="home-main-container" ref={refContainer}>
 				<div className="home-content">
-					<p className="big-text appear">Hola!👋🏾soy</p>
+					<p className="big-text appear">Hola! 👋🏾 soy</p>
 					<div
 						ref={logoAnimationHomeContainerRef}
 						id="lottie-animation"
-					></div>
+					/>
+
 					<p className="description appear">
 						<span className="accent">Desarrollador Frontend</span>{' '}
 						de tiempo completo, con más de 3 años de experiencia.
@@ -112,6 +128,7 @@ const Home = () => {
 						profesionales, una gran creatividad y atención a los
 						detalles.
 					</p>
+
 					<div className="buttons-container">
 						<Button
 							img={contactIcon}
@@ -136,22 +153,21 @@ const Home = () => {
 							proyectos
 						</Button>
 					</div>
-
 					<SocialMedia
 						state={socialState}
-						containerClass={'social-media-container'}
+						containerClass="social-media-container"
 					/>
-
 					<div className="available appear">
 						<span id="circle"></span>
 						<p className="able-to-work">Disponible</p>
 					</div>
-
-					<div className="collage-container appear">
+					<div className="collage-container">
 						<img
 							src={collage}
 							alt="projects images"
-							className="collage"
+							className="collage collage-init"
+							ref={collageRef}
+							onLoad={collageImageReady}
 						/>
 					</div>
 				</div>
