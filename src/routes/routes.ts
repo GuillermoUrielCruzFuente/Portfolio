@@ -3,7 +3,7 @@ import { MutableRefObject, useRef } from 'react'
 export type RouteWithRef = {
 	text: string
 	path: string
-	ref: MutableRefObject<HTMLAnchorElement | null>
+	ref: MutableRefObject<null>
 }
 
 const getRoutesWithRef = () => {
@@ -11,22 +11,22 @@ const getRoutesWithRef = () => {
 		{
 			text: 'inicio',
 			path: '/',
-			ref: useRef<HTMLAnchorElement>(null),
+			ref: useRef(null),
 		},
 		{
 			text: 'sobre mí',
 			path: '/sobre-mi',
-			ref: useRef<HTMLAnchorElement>(null),
+			ref: useRef(null),
 		},
 		{
 			text: 'proyectos',
 			path: '/proyectos',
-			ref: useRef<HTMLAnchorElement>(null),
+			ref: useRef(null),
 		},
 		{
 			text: 'contacto',
 			path: '/contacto',
-			ref: useRef<HTMLAnchorElement>(null),
+			ref: useRef(null),
 		},
 	]
 }
