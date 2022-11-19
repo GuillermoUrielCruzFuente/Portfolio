@@ -32,6 +32,7 @@ const Nav = () => {
 	const [clickedLink, setClickedLink] = useState<Navigation | null>(null)
 	const [readyToNavigate, setReadyToNavigate] = useState<boolean>(false)
 	// let responsiveMenuCounter = 0
+	const [navLinksState, setNavLinksState] = useState(false)
 
 	const showNavLogo = () => {
 		logoAnimationContainerRef.current!.style.opacity = '1'
@@ -149,7 +150,9 @@ const Nav = () => {
 
 		if (location.pathname != '/') {
 			showNavLogo()
+			setNavLinksState(true)
 		} else {
+			setTimeout(() => setNavLinksState(true), 3000)
 			document.getElementById('nav-logo-link')!.style.pointerEvents =
 				'none'
 		}
@@ -265,21 +268,36 @@ const Nav = () => {
 
 					<div id="navigator">
 						<div className="links-container-desk">
-							{routesWithRef.map((route) => {
-								return (
-									<NavLink
-										onClick={(event) => {
-											event.preventDefault()
-											navigator(route.path)
+							{routesWithRef.map((route, i: number) => (
+								<CSSTransition
+									in={navLinksState}
+									classNames="link-item"
+									timeout={1000 + i * 100}
+									nodeRef={route.ref}
+									mountOnEnter
+									unmountOnExit
+									key={route.text}
+								>
+									<div
+										className="link-container"
+										ref={route.ref}
+										style={{
+											transitionDelay: `${i * 100}ms`,
 										}}
-										to={route.path}
-										key={route.text}
-										className="nav-link-item-desk | nav-link"
 									>
-										{route.text}
-									</NavLink>
-								)
-							})}
+										<NavLink
+											onClick={(event) => {
+												event.preventDefault()
+												navigator(route.path)
+											}}
+											to={route.path}
+											className="nav-link-item-desk"
+										>
+											{route.text}
+										</NavLink>
+									</div>
+								</CSSTransition>
+							))}
 						</div>
 
 						<CSSTransition
@@ -295,40 +313,38 @@ const Nav = () => {
 								className="links-container-mobile"
 								ref={menuMobileRef}
 							>
-								{routesWithRef.map(
-									(route: RouteWithRef, i: number) => (
-										<CSSTransition
-											in={mobItems}
-											classNames="link-item-app"
-											timeout={{
-												enter: 500 + i * 100,
-												exit: 500 + i * 80,
+								{routesWithRef.map((route, i: number) => (
+									<CSSTransition
+										in={mobItems}
+										classNames="link-item-app"
+										timeout={{
+											enter: 500 + i * 100,
+											exit: 500 + i * 80,
+										}}
+										nodeRef={route.ref}
+										mountOnEnter
+										unmountOnExit
+										key={route.text}
+									>
+										<NavLink
+											onClick={(event) => {
+												event.preventDefault()
+												toggleMenu()
+												navigator(route.path)
 											}}
-											nodeRef={route.ref}
-											mountOnEnter
-											unmountOnExit
-											key={route.text}
+											to={route.path}
+											className="nav-link-item-mob"
+											ref={route.ref}
+											style={{
+												transitionDelay: mobItems
+													? `${i * 100}ms`
+													: `${i * 80}ms`,
+											}}
 										>
-											<NavLink
-												onClick={(event) => {
-													event.preventDefault()
-													toggleMenu()
-													navigator(route.path)
-												}}
-												to={route.path}
-												className="nav-link-item-mob | nav-link"
-												ref={route.ref}
-												style={{
-													transitionDelay: mobItems
-														? `${i * 100}ms`
-														: `${i * 80}ms`,
-												}}
-											>
-												{route.text}
-											</NavLink>
-										</CSSTransition>
-									)
-								)}
+											{route.text}
+										</NavLink>
+									</CSSTransition>
+								))}
 							</div>
 						</CSSTransition>
 
@@ -344,18 +360,6 @@ const Nav = () => {
 			</nav>
 
 			<Outlet context={signal} />
-
-			{/* <svg className="svg-noise" width="100%" height="100%">
-				<filter id="filter">
-					<feTurbulence
-						type="fractalNoise"
-						baseFrequency="0.65"
-						stitchTiles="stitch"
-						numOctaves="1"
-					></feTurbulence>
-				</filter>
-				<rect width="100%" height="100%" filter="url(#filter)"></rect>
-			</svg> */}
 		</>
 	)
 }

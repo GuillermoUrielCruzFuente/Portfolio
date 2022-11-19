@@ -84,31 +84,31 @@ span {
 	.links-container-desk {
 		display: block;
 
-		.nav-link-item-desk {
+		.link-container {
+			display: inline-block;
 			margin-left: 2rem;
-			transition: color 200ms;
+		}
+
+		.nav-link-item-desk {
 			font-size: 1rem;
 			font-weight: 900;
 			color: #fff;
 			text-decoration: none;
+			transition: color 200ms, text-shadow 200ms;
 
 			&:hover:not(.active) {
-				color: #7e1e95;
+				color: #c6a4ee;
 				text-shadow: 0px 0px 10px rgba($color: #fff, $alpha: 0.25);
 			}
 
 			&:focus:not(.active) {
-				color: #7e1e95;
+				color: #a67ed4;
 				text-shadow: 0px 0px 10px rgba($color: #fff, $alpha: 0.25);
 			}
 		}
 
 		.active {
 			color: #b06bd4;
-		}
-
-		.inactive {
-			color: #fff;
 		}
 	}
 
@@ -253,4 +253,33 @@ span {
 	transform: translateY(0px) translateX(20px);
 
 	transition: opacity 300ms, transform 300ms;
+}
+
+/*******************************************************************************/
+$links-enter-trans: 800ms;
+
+.link-item-enter {
+	opacity: 0;
+	transform: translateY(-20px);
+}
+
+.link-item-enter-active {
+	opacity: 1;
+	transform: translateY(0px);
+
+	transition: opacity $links-enter-trans, transform $links-enter-trans;
+	transition-timing-function: ease;
+}
+
+.link-item-exit {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.link-item-exit-active {
+	opacity: 0;
+	transform: translateY(-20px);
+
+	transition: opacity $links-enter-trans, transform $links-enter-trans;
+	transition-timing-function: ease;
 }
