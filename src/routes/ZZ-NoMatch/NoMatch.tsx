@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
-import AnimatedTitle from '../../components/AnimatedTitle/AnimatedTitle'
 import './NoMatch.scss'
 
 //outlet custom hook
@@ -23,11 +22,7 @@ export default function NoMatch() {
 		showContent()
 		setTimeout(() => {
 			setSerialState(true)
-		}, 1500)
-
-		return () => {
-			// monsterAnimationLottie.destroy()
-		}
+		}, 500)
 	}, [])
 
 	useEffect(() => {
@@ -43,7 +38,7 @@ export default function NoMatch() {
 	}
 
 	const loadMonsterAnimation = () => {
-		const monsterAnimationLottie = Lottie.loadAnimation({
+		Lottie.loadAnimation({
 			container: document.getElementById('monster-animation')!,
 			animationData: monsterAnimationData,
 			loop: true,
@@ -57,39 +52,34 @@ export default function NoMatch() {
 	}
 
 	return (
-		<>
-			<CSSTransition
-				in={sectionState}
-				nodeRef={refContainer}
-				timeout={350}
-				classNames="page"
-				mountOnEnter
-				unmountOnExit
-				onExited={() => setReadyToNavigate(true)}
-				onEntered={loadMonsterAnimation}
-			>
-				<header id="no-match">
-					<AnimatedTitle
-						alignment="left"
-						items={['Error', '404']}
-						textClass="error-text"
-					/>
+		<CSSTransition
+			in={sectionState}
+			nodeRef={refContainer}
+			timeout={350}
+			classNames="page"
+			mountOnEnter
+			unmountOnExit
+			onExited={() => setReadyToNavigate(true)}
+			onEntered={loadMonsterAnimation}
+		>
+			<header id="no-match">
+				<div id="monster-animation"></div>
 
-					<p>La página a la que intentas acceder no existe</p>
-
-					<div id="monster-animation"></div>
-				</header>
-			</CSSTransition>
-
-			<SerializedEntering
-				classNames="serial"
-				enter={serialState}
-				timeout={1000}
-				delay={100}
-			>
-				<h1 key={'text'}>Hola</h1>
-				<p key={'desc'}>Soy una prueba</p>
-			</SerializedEntering>
-		</>
+				<SerializedEntering
+					classNames="serial"
+					enter={serialState}
+					timeout={1500}
+					delay={100}
+				>
+					<h1 className="error-text" key="error-text">
+						Error 404
+					</h1>
+					<p key="error-desc">
+						La página a la que intentas acceder nunca existió, o
+						quizás sí...
+					</p>
+				</SerializedEntering>
+			</header>
+		</CSSTransition>
 	)
 }

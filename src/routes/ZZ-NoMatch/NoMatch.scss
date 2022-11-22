@@ -1,40 +1,45 @@
 #no-match {
-	// background-color: chocolate;
 	display: flex;
 	flex-flow: column;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: center;
-	// min-height: calc(100vh - var(--navbar-size));
+	// min-height: calc(90vh - var(--navbar-size));
+
+	.error-text {
+		font-weight: 900;
+		font-size: 5rem;
+		font-size: clamp(1.5rem, 10vw, 7rem);
+		color: #fff;
+		line-height: 1;
+		text-align: center;
+		// margin-top: 3rem;
+	}
 
 	p {
 		font-size: 1rem;
-		font-size: clamp(0.7rem, 1vw, 1rem);
+		font-size: clamp(0.85rem, 1vw, 1rem);
 		color: #fff;
-		text-align: left;
+		text-align: center;
 	}
-}
-.error-text {
-	font-weight: 900;
-	font-size: 5rem;
-	font-size: clamp(1rem, 10vw, 10rem);
-	color: #fff;
-	line-height: 1;
-
-	// background-color: aquamarine;
 }
 
 #monster-animation {
-	position: fixed;
-	bottom: -50px;
-	right: 0px;
-	width: 200px;
-	height: 200px;
+	width: min(100%, 400px);
+}
+
+@media screen and (max-width: 900px) {
+	#no-match {
+		p {
+			max-width: 70%;
+			margin-inline: auto;
+		}
+	}
 }
 
 $transition-time: 1000ms;
 .serial-enter {
 	opacity: 0;
-	transform: translateY(-20px);
+	transform: translateY(50%);
 }
 
 .serial-enter-active {
@@ -52,7 +57,7 @@ $transition-time: 1000ms;
 
 .serial-exit-active {
 	opacity: 0;
-	transform: translateY(20px);
+	transform: translateY(50%);
 
 	transition: opacity $transition-time, transform $transition-time;
 	transition-timing-function: ease;
