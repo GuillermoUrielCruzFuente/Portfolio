@@ -22,24 +22,26 @@ const SerializedEntering = ({
 				const containerRef = useRef<HTMLDivElement>(null)
 
 				return (
-					<CSSTransition
-						in={enter}
-						classNames={classNames}
-						timeout={timeout + index * delay}
-						mountOnEnter
-						unmountOnExit
-						nodeRef={containerRef}
-						key={child.key}
-					>
-						<div
-							ref={containerRef}
-							style={{
-								transitionDelay: `${index * delay}ms`,
-							}}
+					<div style={{ overflow: 'hidden', color: "#fff" }}>
+						<CSSTransition
+							in={enter}
+							classNames={classNames}
+							timeout={timeout + index * delay}
+							mountOnEnter
+							unmountOnExit
+							nodeRef={containerRef}
+							key={child.key}
 						>
-							{child}
-						</div>
-					</CSSTransition>
+							<div
+								ref={containerRef}
+								style={{
+									transitionDelay: `${index * delay}ms`,
+								}}
+							>
+								{child}
+							</div>
+						</CSSTransition>
+					</div>
 				)
 			})}
 		</div>
