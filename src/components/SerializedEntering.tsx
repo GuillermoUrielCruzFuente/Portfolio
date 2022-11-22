@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 export type SerializedEnteringProps = {
@@ -14,19 +15,35 @@ const SerializedEntering = ({
 	classNames,
 	timeout,
 	delay,
-}: SerializedEnteringProps) => { 
+}: SerializedEnteringProps) => {
+	return (
+		<div>
+			{children.map((child: JSX.Element, index: number) => {
+				const containerRef = useRef<HTMLDivElement>(null)
 
-	return children.map((child: JSX.Element, index: number) => (
-		<CSSTransition
-			in={enter}
-			classNames={classNames}
-			timeout={timeout + index * delay}
-			mountOnEnter
-			unmountOnExit
-		>
-			{child}
-		</CSSTransition>
-	))
+				return (
+					<CSSTransition
+						in={enter}
+						classNames={classNames}
+						timeout={timeout + index * delay}
+						mountOnEnter
+						unmountOnExit
+						nodeRef={containerRef}
+						key={child.key}
+					>
+						<div
+							ref={containerRef}
+							style={{
+								transitionDelay: `${index * delay}ms`,
+							}}
+						>
+							{child}
+						</div>
+					</CSSTransition>
+				)
+			})}
+		</div>
+	)
 }
 
 export default SerializedEntering
