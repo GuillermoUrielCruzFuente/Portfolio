@@ -11,7 +11,7 @@ import './Button.scss'
 type ButtonType = {
 	children: string
 	img: string
-	className: string
+	className?: string
 	secondary?: true
 	navigator?: {
 		to: string
