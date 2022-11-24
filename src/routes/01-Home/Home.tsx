@@ -129,10 +129,9 @@ const Home = () => {
 						detalles.
 					</p>
 
-					<div className="buttons-container">
+					<div className="buttons-container appear">
 						<Button
 							img={contactIcon}
-							className="appear"
 							secondary
 							navigator={{
 								to: '/contacto',
@@ -144,7 +143,6 @@ const Home = () => {
 
 						<Button
 							img={projectsIcon}
-							className="appear"
 							navigator={{
 								to: '/proyectos',
 								navigator: navigateTo,
