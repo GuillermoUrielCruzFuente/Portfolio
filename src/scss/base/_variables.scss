@@ -1,10 +1,12 @@
+@use 'color';
+
 :root {
-	--navbar-height: 70px;
+	--navbar-height: 60px;
 
 	//color schema
-	--dark-purple-500: #1b0221;
-	--deep-purple-400: #450854;
-	--purple-300: #6f1185;
-	--light-purple-200: #ba63cf;
-	--lightest-purple-100: #e8bef2;
+	--dark-purple-500: #{color.$dark-purple-500};
+	--deep-purple-400: #{color.$deep-purple-400};
+	--purple-300: #{color.$purple-300};
+	--light-purple-200: #{color.$light-purple-200};
+	--lightest-purple-100: #{color.$lightest-purple-100};
 }
