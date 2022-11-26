@@ -1,6 +1,6 @@
 header#projects {
 	position: relative;
-	min-height: calc(100vh - var(--navbar-size));
+	min-height: calc(100vh - var(--navbar-height));
 	display: flex;
 	flex-flow: column;
 	align-items: center;

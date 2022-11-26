@@ -14,7 +14,7 @@ header {
 
 	// in order to avoid the superposition with the navbar,
 	// this margin is necessary for all the header elements
-	margin-top: calc(var(--navbar-size));
+	margin-top: calc(var(--navbar-height));
 }
 
 $page-anim-time: 500ms;

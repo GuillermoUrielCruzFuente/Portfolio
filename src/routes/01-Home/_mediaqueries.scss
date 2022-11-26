@@ -103,7 +103,7 @@
 	.available {
 		padding: 1rem 0.5rem;
 		top: unset;
-		bottom: calc(var(--navbar-size) * 2);
+		bottom: calc(var(--navbar-height) * 2);
 
 		#circle {
 			width: 0.35rem;

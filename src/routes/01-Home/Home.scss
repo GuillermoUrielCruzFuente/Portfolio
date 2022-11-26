@@ -1,6 +1,6 @@
 #home-main-container {
-	height: calc(100vh - var(--navbar-size));
-	padding-bottom: var(--navbar-size);
+	height: calc(100vh - var(--navbar-height));
+	padding-bottom: var(--navbar-height);
 	display: flex;
 	flex-flow: column;
 	overflow: hidden;
@@ -17,7 +17,7 @@
 		font-size: 1.5rem;
 		font-weight: 900;
 		color: #fff;
-		padding-top: calc(var(--navbar-size) * 1);
+		padding-top: calc(var(--navbar-height) * 1);
 	}
 
 	$logo-width: 40%;
@@ -76,7 +76,7 @@
 	border-radius: 8px 0px 0px 8px;
 
 	position: fixed;
-	top: calc(var(--navbar-size) * 2);
+	top: calc(var(--navbar-height) * 2);
 	right: 0;
 
 	#circle {
