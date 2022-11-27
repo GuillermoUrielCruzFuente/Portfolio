@@ -24,6 +24,7 @@ import hamburgerAnimationData from '../../static/lottie/hamburger-menu.json'
 //hooks
 import useNavigateTo from '../../hooks/useNavigateTo'
 import { ContextType, Navigation } from '../../hooks/useNavContext'
+import SerializedEntering from '../SerializedEntering'
 
 const Nav = () => {
 	// #region basic logic for page navigation
@@ -267,43 +268,32 @@ const Nav = () => {
 					</div>
 
 					<div id="navigator">
-						<div className="links-container-desk">
-							{routesWithRef.map((route, i: number) => (
-								<CSSTransition
-									in={navLinksState}
-									classNames="link-item"
-									timeout={1000 + i * 100}
-									nodeRef={route.ref}
-									mountOnEnter
-									unmountOnExit
+						<SerializedEntering
+							enter={navLinksState}
+							classNames="link-item"
+							delay={100}
+							timeout={1000}
+							containerClassName="links-container-desk"
+						>
+							{routesWithRef.map((route) => (
+								<NavLink
+									onClick={(event) => {
+										event.preventDefault()
+										navigator(route.path)
+									}}
+									to={route.path}
+									className="nav-link-item-desk"
 									key={route.text}
 								>
-									<div
-										className="link-container"
-										ref={route.ref}
-										style={{
-											transitionDelay: `${i * 100}ms`,
-										}}
-									>
-										<NavLink
-											onClick={(event) => {
-												event.preventDefault()
-												navigator(route.path)
-											}}
-											to={route.path}
-											className="nav-link-item-desk"
-										>
-											{route.text}
-										</NavLink>
-									</div>
-								</CSSTransition>
+									{route.text}
+								</NavLink>
 							))}
-						</div>
+						</SerializedEntering>
 
 						<CSSTransition
 							in={responsiveMenuState}
 							classNames="appear"
-							timeout={{ enter: 500, exit: 500 }}
+							timeout={500}
 							mountOnEnter
 							unmountOnExit
 							nodeRef={menuMobileRef}
@@ -313,38 +303,41 @@ const Nav = () => {
 								className="links-container-mobile"
 								ref={menuMobileRef}
 							>
-								{routesWithRef.map((route, i: number) => (
-									<CSSTransition
-										in={mobItems}
-										classNames="link-item-app"
-										timeout={{
-											enter: 500 + i * 100,
-											exit: 500 + i * 80,
-										}}
-										nodeRef={route.ref}
-										mountOnEnter
-										unmountOnExit
-										key={route.text}
-									>
-										<NavLink
-											onClick={(event) => {
-												event.preventDefault()
-												toggleMenu()
-												navigator(route.path)
-											}}
-											to={route.path}
-											className="nav-link-item-mob"
-											ref={route.ref}
-											style={{
-												transitionDelay: mobItems
-													? `${i * 100}ms`
-													: `${i * 80}ms`,
-											}}
+								<div className="mob-items-container">
+									{routesWithRef.map((route, i: number) => (
+										<div
+											className="link-mob-container"
+											key={route.text}
 										>
-											{route.text}
-										</NavLink>
-									</CSSTransition>
-								))}
+											<CSSTransition
+												in={mobItems}
+												classNames="link-item-mob"
+												timeout={500 + i * 100}
+												nodeRef={route.ref}
+												mountOnEnter
+												unmountOnExit
+											>
+												<NavLink
+													onClick={(event) => {
+														event.preventDefault()
+														toggleMenu()
+														navigator(route.path)
+													}}
+													to={route.path}
+													className="nav-link-item-mob"
+													ref={route.ref}
+													style={{
+														transitionDelay: `${
+															i * 100
+														}ms`,
+													}}
+												>
+													{route.text}
+												</NavLink>
+											</CSSTransition>
+										</div>
+									))}
+								</div>
 							</div>
 						</CSSTransition>
 

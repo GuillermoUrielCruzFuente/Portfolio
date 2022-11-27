@@ -1,13 +1,5 @@
 @use '../../scss/layout/z-index.scss' as Z;
-
-.svg-noise {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: -10;
-	opacity: 0.95;
-	mix-blend-mode: soft-light;
-}
+@use '../../scss/base/color';
 
 nav {
 	width: 100vw;
@@ -18,11 +10,10 @@ nav {
 	text-transform: uppercase;
 	z-index: Z.$navbar;
 
-	transition: 300ms background-color, 300ms box-shadow,
-		300ms -webkit-backdrop-filter;
-	transition: 300ms background-color, 300ms backdrop-filter, 300ms box-shadow;
-	transition: 300ms background-color, 300ms backdrop-filter, 300ms box-shadow,
-		300ms -webkit-backdrop-filter;
+	$state-transition: 1000ms;
+
+	transition: $state-transition background-color,
+		$state-transition backdrop-filter, $state-transition box-shadow;
 }
 
 #nav-container {
@@ -33,11 +24,6 @@ nav {
 	align-items: center;
 	justify-content: space-between;
 	padding-inline: 3rem;
-}
-
-span {
-	width: 1px;
-	height: 1px;
 }
 
 #nav-logo-container {
@@ -61,7 +47,8 @@ span {
 
 //style applied on Scroll event
 .blur-bg {
-	background-color: rgba($color: rgb(42, 5, 51), $alpha: 0.65);
+	background-color: rgba($color: color.$deep-purple-400, $alpha: 0.55);
+
 	-webkit-backdrop-filter: blur(8px);
 	backdrop-filter: blur(8px);
 	box-shadow: 0px 0px 16px rgba($color: #000, $alpha: 0.85);
@@ -82,12 +69,8 @@ span {
 	position: relative;
 
 	.links-container-desk {
-		display: block;
-
-		.link-container {
-			display: inline-block;
-			margin-left: 2rem;
-		}
+		display: flex;
+		gap: 2rem;
 
 		.nav-link-item-desk {
 			font-size: 1rem;
@@ -96,19 +79,20 @@ span {
 			text-decoration: none;
 			transition: color 200ms, text-shadow 200ms;
 
+			//change color and add shadow on hover
 			&:hover:not(.active) {
-				color: #c6a4ee;
-				text-shadow: 0px 0px 10px rgba($color: #fff, $alpha: 0.25);
+				color: var(--lightest-purple-100);
+				text-shadow: 0px 0px 10px rgba($color: #fff, $alpha: 0.85);
 			}
 
+			//change color and remove shadow on click
 			&:focus:not(.active) {
-				color: #a67ed4;
-				text-shadow: 0px 0px 10px rgba($color: #fff, $alpha: 0.25);
+				color: var(--light-purple-200);
 			}
 		}
 
 		.active {
-			color: #b06bd4;
+			color: var(--light-purple-200);
 		}
 	}
 
@@ -119,11 +103,22 @@ span {
 		width: 100vw;
 		height: 100vh;
 		background-color: #000;
-		overflow: hidden auto;
+		overflow: hidden;
+
 		display: flex;
 		flex-flow: column;
 		align-items: center;
 		justify-content: center;
+
+		.mob-items-container {
+			display: flex;
+			flex-flow: column;
+			align-items: flex-end;
+		}
+
+		.link-mob-container {
+			overflow: hidden;
+		}
 
 		.nav-link-item-mob {
 			margin-block: 0.5rem;
@@ -131,14 +126,11 @@ span {
 			font-weight: 900;
 			text-decoration: none;
 			color: #fff;
+			display: block;
 		}
 
 		.active {
-			color: #b06bd4;
-		}
-
-		.inactive {
-			color: #fff;
+			color: var(--light-purple-200);
 		}
 	}
 }
@@ -167,8 +159,6 @@ span {
 	}
 
 	#navigator {
-		// background-color: chocolate;
-
 		.links-container {
 			position: fixed;
 			top: 0;
@@ -199,6 +189,7 @@ span {
 	}
 }
 
+//mobile menu classes
 .appear-enter {
 	opacity: 0;
 }
@@ -225,39 +216,36 @@ span {
 .appear-done-active {
 	opacity: 0;
 }
-//------------------------------------------------------------------------------//
-//------------------------------------------------------------------------------//
-.link-item-app-enter {
-	opacity: 0;
-	transform: translateY(-32px);
+
+//mobile menu items classes
+.link-item-mob-enter {
+	opacity: 1;
+	transform: translateY(-100%);
 }
 
-.link-item-app-enter-active {
+.link-item-mob-enter-active {
 	opacity: 1;
 	transform: translateY(0px);
 
 	transition: opacity 500ms, transform 500ms;
-
-	// transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-	// transition-timing-function: cubic-bezier(.41,-0.98,0,1.82);
-	transition-timing-function: cubic-bezier(0.35, -0.71, 0, 1.89);
+	// transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 }
 
-.link-item-app-exit {
+.link-item-mob-exit {
 	opacity: 1;
-	transform: translateY(0px) translateX(0px);
+	transform: translateY(0px);
 }
 
-.link-item-app-exit-active {
+.link-item-mob-exit-active {
 	opacity: 0;
-	transform: translateY(0px) translateX(20px);
+	transform: translateY(0px);
 
-	transition: opacity 300ms, transform 300ms;
+	transition: opacity 500ms, transform 500ms;
+	// transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 }
 
-/*******************************************************************************/
-$links-enter-trans: 800ms;
-
+//classes for desktop navbar items
+$links-enter-trans: 1000ms;
 .link-item-enter {
 	opacity: 0;
 	transform: translateY(-20px);
