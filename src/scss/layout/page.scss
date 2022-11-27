@@ -17,6 +17,7 @@ header {
 	margin-top: calc(var(--navbar-height));
 }
 
+//classes for page transition animations
 $page-anim-time: 500ms;
 .page-anim-enter {
 	opacity: 0;
