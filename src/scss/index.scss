@@ -12,29 +12,3 @@ body {
 	height: 100%;
 	background-color: #1b0221;
 }
-
-.page-a-enter {
-	opacity: 0;
-	transform: translateY(-50px);
-}
-
-.page-a-enter-active {
-	opacity: 1;
-	transform: translateY(0px);
-
-	transition: opacity 300ms, transform 300ms;
-	transition-timing-function: ease;
-}
-
-.page-a-exit {
-	opacity: 1;
-	transform: translateY(0px);
-}
-
-.page-a-exit-active {
-	opacity: 0;
-	transform: translateY(50px);
-
-	transition: opacity 300ms, transform 300ms;
-	transition-timing-function: ease;
-}
