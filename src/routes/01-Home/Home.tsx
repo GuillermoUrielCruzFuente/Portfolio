@@ -106,8 +106,8 @@ const Home = () => {
 		<CSSTransition
 			in={sectionState}
 			nodeRef={refContainer}
-			timeout={350}
-			classNames="page"
+			timeout={500}
+			classNames="page-anim"
 			mountOnEnter
 			unmountOnExit
 			onEnter={playLogoAnimation}

@@ -174,7 +174,7 @@ export default function Contact() {
 		<CSSTransition
 			in={sectionState}
 			nodeRef={refContainer}
-			timeout={350}
+			timeout={500}
 			classNames="page-anim"
 			mountOnEnter
 			unmountOnExit

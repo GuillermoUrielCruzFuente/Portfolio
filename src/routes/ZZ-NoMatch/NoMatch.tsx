@@ -55,14 +55,14 @@ export default function NoMatch() {
 		<CSSTransition
 			in={sectionState}
 			nodeRef={refContainer}
-			timeout={350}
-			classNames="page"
+			timeout={500}
+			classNames="page-anim"
 			mountOnEnter
 			unmountOnExit
 			onExited={() => setReadyToNavigate(true)}
-			onEntered={loadMonsterAnimation}
+			onEnter={loadMonsterAnimation}
 		>
-			<header id="no-match">
+			<header id="no-match" ref={refContainer}>
 				<div id="monster-animation"></div>
 
 				<SerializedEntering

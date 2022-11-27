@@ -138,21 +138,3 @@
 }
 
 @import './mediaqueries';
-
-.page-enter {
-	opacity: 1;
-}
-
-.page-enter-active {
-	opacity: 1;
-}
-
-.page-exit {
-	opacity: 1;
-}
-
-.page-exit-active {
-	opacity: 0;
-
-	transition: opacity 300ms, transform 300ms;
-}
