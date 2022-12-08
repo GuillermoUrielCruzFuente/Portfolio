@@ -6,6 +6,36 @@ export type RouteWithRef = {
 	ref: MutableRefObject<null>
 }
 
+export type Pages = 'home' | 'about' | 'projects' | 'contact'
+
+export type PagesDictionary<T> = {
+	[page in Pages]: T
+}
+
+export type Route = {
+	text: string
+	path: string
+}
+
+export const appRoutes: PagesDictionary<Route> = {
+	home: {
+		text: 'inicio',
+		path: '/',
+	},
+	about: {
+		text: 'sobre mí',
+		path: '/acerca',
+	},
+	projects: {
+		text: 'proyectos',
+		path: '/proyectos',
+	},
+	contact: {
+		text: 'contacto',
+		path: '/contacto',
+	},
+}
+
 const getRoutesWithRef = () => {
 	return [
 		{

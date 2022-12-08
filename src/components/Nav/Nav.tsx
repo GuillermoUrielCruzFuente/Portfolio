@@ -9,7 +9,7 @@ import {
 import { CSSTransition } from 'react-transition-group'
 
 //routes
-import getRoutesWithRef, { RouteWithRef } from '../../routes/routes'
+import getRoutesWithRef from '../../routes/routes'
 
 //styles
 import './Nav.scss'
@@ -25,6 +25,7 @@ import hamburgerAnimationData from '../../static/lottie/hamburger-menu.json'
 import useNavigateTo from '../../hooks/useNavigateTo'
 import { ContextType, Navigation } from '../../hooks/useNavContext'
 import SerializedEntering from '../SerializedEntering'
+import ResponsiveMenu from '../ResponsiveMenu/ResponsiveMenu'
 
 const Nav = () => {
 	// #region basic logic for page navigation
@@ -303,8 +304,32 @@ const Nav = () => {
 								className="links-container-mobile"
 								ref={menuMobileRef}
 							>
-								<div className="mob-items-container">
-									{routesWithRef.map((route, i: number) => (
+								<ResponsiveMenu isOpen={mobItems} />
+								{/* <div className="mob-items-container"> */}
+								{/* <SerializedEntering
+										enter={mobItems}
+										classNames="link-item-mob"
+										delay={100}
+										timeout={1000}
+										containerClassName="link-mob-container"
+									>
+										{routesWithRef.map((route) => (
+											<NavLink
+												onClick={(event) => {
+													event.preventDefault()
+													toggleMenu()
+													navigator(route.path)
+												}}
+												to={route.path}
+												className="nav-link-item-mob"
+												key={route.path}
+											>
+												{route.text}
+											</NavLink>
+										))}
+									</SerializedEntering> */}
+
+								{/* {routesWithRef.map((route, i: number) => (
 										<div
 											className="link-mob-container"
 											key={route.text}
@@ -312,7 +337,7 @@ const Nav = () => {
 											<CSSTransition
 												in={mobItems}
 												classNames="link-item-mob"
-												timeout={500 + i * 100}
+												timeout={600 + i * 100}
 												nodeRef={route.ref}
 												mountOnEnter
 												unmountOnExit
@@ -336,8 +361,8 @@ const Nav = () => {
 												</NavLink>
 											</CSSTransition>
 										</div>
-									))}
-								</div>
+									))} */}
+								{/* </div> */}
 							</div>
 						</CSSTransition>
 

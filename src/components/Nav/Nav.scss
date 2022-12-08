@@ -218,16 +218,19 @@ nav {
 }
 
 //mobile menu items classes
+$link-mob-transition: 600ms;
+
 .link-item-mob-enter {
-	opacity: 1;
-	transform: translateY(-100%);
+	opacity: 0;
+	transform: translateY(-50%);
 }
 
 .link-item-mob-enter-active {
 	opacity: 1;
 	transform: translateY(0px);
 
-	transition: opacity 500ms, transform 500ms;
+	transition: opacity $link-mob-transition, transform $link-mob-transition;
+	transition-timing-function: ease;
 	// transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 }
 
@@ -238,9 +241,11 @@ nav {
 
 .link-item-mob-exit-active {
 	opacity: 0;
-	transform: translateY(0px);
+	transform: translateY(50%);
 
-	transition: opacity 500ms, transform 500ms;
+	transition: opacity ($link-mob-transition - 200ms),
+		transform ($link-mob-transition - 200ms);
+	transition-timing-function: ease;
 	// transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 }
 

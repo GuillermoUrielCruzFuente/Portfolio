@@ -1,4 +1,4 @@
-import '../../scss/pages/About/About.scss'
+import '../../routes/02-About/About.scss'
 
 import HTMLImg from '../../static/img/icons/about-experience/html.svg'
 import CSSImg from '../../static/img/icons/about-experience/css.svg'
