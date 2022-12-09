@@ -1,0 +1,26 @@
+@use '../base/color';
+
+.nav-logo {
+	height: calc(100% - 1.5rem);
+	aspect-ratio: 3.95;
+	overflow: hidden;
+
+	outline: none;
+	border: dashed transparent 2px;
+	border-radius: 0.5rem;
+	padding: 0.25rem 0;
+
+	opacity: 0;
+
+	$transition-time: 500ms;
+	transition: opacity $transition-time, border 200ms;
+
+	&:focus {
+		border: dashed color.$purple-300 2px;
+	}
+
+	.logo {
+		width: 100%;
+		height: 100%;
+	}
+}
