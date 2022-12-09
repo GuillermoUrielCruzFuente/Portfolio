@@ -1,5 +1,5 @@
 #home-main-container {
-	height: calc(100vh - var(--navbar-height));
+	min-height: calc(100vh - var(--navbar-height));
 	padding-bottom: var(--navbar-height);
 	display: flex;
 	flex-flow: column;
@@ -132,9 +132,9 @@
 	}
 }
 
-.appear {
-	opacity: 0;
-	transition: opacity 1s;
-}
+// .appear {
+// 	opacity: 0;
+// 	transition: opacity 1s;
+// }
 
 @import './mediaqueries';
