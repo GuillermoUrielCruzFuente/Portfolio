@@ -22,10 +22,10 @@ import Button from '../../components/Button/Button'
 import IntersectionContainer from '../../components/IntersectionContainer/IntersectionContainer'
 
 const Home = () => {
-	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
-	const location = useLocation()
-	const refContainer = useRef<HTMLHeadElement>(null)
-	const [sectionState, setSectionState] = useState(false)
+	// const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
+	// const location = useLocation()
+	// const refContainer = useRef<HTMLHeadElement>(null)
+	// const [sectionState, setSectionState] = useState(false)
 
 	const [socialState, setSocialState] = useState(false)
 	const logoAnimationHomeContainerRef = useRef<HTMLDivElement>(null)
@@ -36,42 +36,47 @@ const Home = () => {
 	)
 
 	useEffect(() => {
-		showContent()
+		// showContent()
+		setSocialState(true)
+
+		playLogoAnimation()
 
 		Lottie.setQuality('low')
+
+		collageRef.current?.addEventListener('load', () => showCollage())
 
 		return () => {
 			logoAnimation.current.destroy()
 		}
 	}, [])
 
-	useEffect(() => {
-		if (nav) {
-			if (nav.to != location.pathname) {
-				hideContent()
-			}
-		}
-	}, [nav])
+	// useEffect(() => {
+	// 	if (nav) {
+	// 		if (nav.to != location.pathname) {
+	// 			hideContent()
+	// 		}
+	// 	}
+	// }, [nav])
 
-	const showElements = () => {
-		const elements = document.getElementsByClassName(
-			'appear'
-		) as HTMLCollectionOf<HTMLElement>
+	// const showElements = () => {
+	// 	const elements = document.getElementsByClassName(
+	// 		'appear'
+	// 	) as HTMLCollectionOf<HTMLElement>
 
-		for (const element of elements) {
-			element.style.opacity = '1'
-		}
-	}
+	// 	for (const element of elements) {
+	// 		element.style.opacity = '1'
+	// 	}
+	// }
 
 	const collageRef = useRef<HTMLImageElement>(null)
-	
-	let collageDownloadState = false
+
+	// let collageDownloadState = false
 
 	const showCollage = () => {
 		collageRef.current!.classList.replace('collage-init', 'collage-final')
 	}
 
-	const collageImageReady = () => (collageDownloadState = true)
+	// const collageImageReady = () => (collageDownloadState = true)
 
 	const playLogoAnimation = () => {
 		logoAnimation.current = Lottie.loadAnimation({
@@ -84,93 +89,77 @@ const Home = () => {
 
 		logoAnimation.current.playSegments([0, 180], true)
 
-		logoAnimation.current.addEventListener('complete', () => {
-			setSocialState(true)
-			showElements()
+		// logoAnimation.current.addEventListener('complete', () => {
+		// 	// showElements()
 
-			if (collageDownloadState) {
-				showCollage()
-			} else {
-				collageRef.current?.addEventListener('load', () =>
-					showCollage()
-				)
-			}
-		})
+		// 	if (collageDownloadState) {
+		// 		showCollage()
+		// 	} else {
+
+		// 	}
+		// })
 	}
 
-	const showContent = () => setSectionState(true)
+	// const showContent = () => setSectionState(true)
 
-	const hideContent = () => setSectionState(false)
+	// const hideContent = () => setSectionState(false)
 
 	return (
-		<CSSTransition
-			in={sectionState}
-			nodeRef={refContainer}
-			timeout={500}
-			classNames="page-anim"
-			mountOnEnter
-			unmountOnExit
-			onEnter={playLogoAnimation}
-			onExited={() => setReadyToNavigate(true)}
-		>
-			<header id="home-main-container" ref={refContainer}>
-				<div className="home-content">
-					<p className="big-text appear">Hola! 👋🏾 soy</p>
-					<div
-						ref={logoAnimationHomeContainerRef}
-						id="lottie-animation"
-					/>
+		// <CSSTransition
+		// 	in={sectionState}
+		// 	nodeRef={refContainer}
+		// 	timeout={500}
+		// 	classNames="page-anim"
+		// 	mountOnEnter
+		// 	unmountOnExit
+		// 	onEnter={playLogoAnimation}
+		// 	onExited={() => setReadyToNavigate(true)}
+		// >
+		// <header id="home-main-container" ref={refContainer}>
+		<header id="home-main-container">
+			<div className="home-content">
+				<p className="big-text">Hola! 👋🏾 soy</p>
+				<div
+					ref={logoAnimationHomeContainerRef}
+					id="lottie-animation"
+				/>
 
-					<p className="description appear">
-						<span className="accent">Desarrollador Frontend</span>{' '}
-						de tiempo completo, con más de 3 años de experiencia.
-						Mexicano, con intervención en distintos proyectos
-						profesionales, una gran creatividad y atención a los
-						detalles.
-					</p>
+				<p className="description">
+					<span className="accent">Desarrollador Frontend</span> de
+					tiempo completo, con más de 3 años de experiencia. Mexicano,
+					con intervención en distintos proyectos profesionales, una
+					gran creatividad y atención a los detalles.
+				</p>
 
-					<div className="buttons-container appear">
-						<Button
-							img={contactIcon}
-							secondary
-							navigator={{
-								to: '/contacto',
-								navigator: navigateTo,
-							}}
-						>
-							contacto
-						</Button>
+				<div className="buttons-container">
+					<Button icon={contactIcon} secondary navigateTo="/contacto">
+						contacto
+					</Button>
 
-						<Button
-							img={projectsIcon}
-							navigator={{
-								to: '/proyectos',
-								navigator: navigateTo,
-							}}
-						>
-							proyectos
-						</Button>
-					</div>
-					<SocialMedia
-						state={socialState}
-						containerClass="social-media-container"
-					/>
-					<div className="available appear">
-						<span id="circle"></span>
-						<p className="able-to-work">Disponible</p>
-					</div>
-					<div className="collage-container">
-						<img
-							src={collage}
-							alt="projects images"
-							className="collage collage-init"
-							ref={collageRef}
-							onLoad={collageImageReady}
-						/>
-					</div>
+					<Button icon={projectsIcon} navigateTo="/proyectos">
+						proyectos
+					</Button>
 				</div>
-			</header>
-		</CSSTransition>
+				<SocialMedia
+					state={socialState}
+					containerClass="social-media-container"
+				/>
+				<div className="available">
+					<span id="circle"></span>
+					<p className="able-to-work">Disponible</p>
+				</div>
+				<div className="collage-container">
+					<img
+						src={collage}
+						alt="projects images"
+						className="collage collage-init"
+						ref={collageRef}
+						// onLoad={collageImageReady}
+					/>
+				</div>
+			</div>
+		</header>
+		// </CSSTransition>
 	)
 }
 
