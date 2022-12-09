@@ -1,51 +1,43 @@
-import { Dispatch, FC, SetStateAction } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-
+import { ButtonHTMLAttributes, MouseEventHandler } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Button.scss'
 
-/**
- * this contain the main structure to navigate between pages
- * needs a Navigation object and a reactive function to change
- * the value of the new NavigationAction
- */
-type ButtonType = {
-	children: string
-	img: string
-	className?: string
+interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+	icon: string
 	secondary?: true
-	navigator?: {
-		to: string
-		navigator: (to: string) => void
-	}
+	navigateTo: string
 }
 
-export type Navigation = {
-	to: string | null
-	from: string | null
-}
+const Button = (props: ButtonType) => {
+	const {
+		icon,
+		secondary,
+		children,
+		className,
+		navigateTo,
+		onClick,
+		...otherProps
+	} = props
 
-const Button: FC<ButtonType> = ({
-	children,
-	img,
-	className,
-	secondary,
-	navigator,
-}) => {
+	const navigate = useNavigate()
+
 	const buttonClasses = secondary
 		? `base-button secondary-button ${className}`
 		: `base-button primary-button ${className}`
 
-	const clickHandler = () => {
-		if (navigator) {
-			navigator.navigator(navigator.to)
-		} else {
-			console.log(children)
-		}
+	const clickHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
+		navigateTo && navigate(navigateTo)
+
+		onClick && onClick(event)
 	}
 
 	return (
-		<button className={buttonClasses} onClick={clickHandler}>
-			<img src={img} alt="" className="button-icon" />
+		<button
+			className={buttonClasses}
+			onClick={clickHandler}
+			{...otherProps}
+		>
+			<img src={icon} alt="" className="button-icon" />
 			{children}
 		</button>
 	)
