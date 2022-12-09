@@ -10,10 +10,10 @@ nav {
 	text-transform: uppercase;
 	z-index: Z.$navbar;
 
-	$state-transition: 1000ms;
-
-	transition: $state-transition background-color,
-		$state-transition backdrop-filter, $state-transition box-shadow;
+	$state-transition: 700ms;
+	transition: background-color $state-transition,
+		border-bottom $state-transition, $state-transition backdrop-filter,
+		$state-transition box-shadow;
 }
 
 #nav-container {
@@ -26,32 +26,15 @@ nav {
 	padding-inline: 3rem;
 }
 
-#nav-logo-container {
-	position: relative;
-	height: 100%;
-	display: flex;
-	align-items: center;
-
-	#nav-logo-link {
-		height: calc(100% - 2.2rem);
-		display: inline-block;
-		text-decoration: none;
-
-		#nav-logo {
-			height: 100%;
-			aspect-ratio: 4.85;
-			transition: 800ms opacity;
-		}
-	}
-}
-
 //style applied on Scroll event
 .blur-bg {
-	background-color: rgba($color: color.$deep-purple-400, $alpha: 0.55);
+	background-color: rgba($color: color.$dark-purple-500, $alpha: 0.75);
 
 	-webkit-backdrop-filter: blur(8px);
 	backdrop-filter: blur(8px);
-	box-shadow: 0px 0px 16px rgba($color: #000, $alpha: 0.85);
+	box-shadow: 0px 0px 50px 20px
+		rgba($color: color.$deep-purple-400, $alpha: 0.75);
+	border-bottom: dashed color.$purple-300 2px;
 }
 
 //style applied on top of pages
@@ -60,6 +43,7 @@ nav {
 	-webkit-backdrop-filter: unset;
 	backdrop-filter: unset;
 	box-shadow: unset;
+	border-bottom: dashed transparent 2px;
 }
 
 #navigator {
