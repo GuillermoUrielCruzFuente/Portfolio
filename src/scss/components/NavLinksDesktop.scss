@@ -1,0 +1,31 @@
+.links-desk-container {
+	display: flex;
+	gap: 1.5rem;
+	
+	li {
+		list-style: none;
+	}
+
+	.nav-link-desk {
+		font-size: 1rem;
+		font-weight: 900;
+		color: #fff;
+		text-decoration: none;
+		transition: color 200ms, text-shadow 200ms;
+
+		//change color and add shadow on hover
+		&:hover:not(.active) {
+			color: var(--lightest-purple-100);
+			text-shadow: 0px 0px 10px rgba($color: #fff, $alpha: 0.85);
+		}
+
+		//change color and remove shadow on click
+		&:focus:not(.active) {
+			color: var(--light-purple-200);
+		}
+	}
+
+	.active {
+		color: var(--light-purple-200);
+	}
+}
