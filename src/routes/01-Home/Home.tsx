@@ -1,128 +1,42 @@
-import { useRef, useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
-import Lottie, { AnimationItem } from 'lottie-web'
-
-//outlet custom hook
-import useNavContext, { ContextType } from '../../hooks/useNavContext'
+import { useRef, useEffect } from 'react'
 
 //styles imports
 import './Home.scss'
 
-import collage from '../../static/img/web-images/collage.png'
+import collage from '@images/web-images/collage.png'
 
 //data imports
-import logoAnimationData from '../../static/lottie/logo.json'
-import projectsIcon from '../../static/img/icons/home-buttons/portfolio.svg'
-import contactIcon from '../../static/img/icons/home-buttons/plane.svg'
+import logoAnimationData from '@lottie/logo.json'
+import projectsIcon from '@images/icons/home-buttons/portfolio.svg'
+import contactIcon from '@images/icons/home-buttons/plane.svg'
 
 //components
-import SocialMedia from '../../components/SocialMedia/SocialMedia'
-import Button from '../../components/Button/Button'
-import IntersectionContainer from '../../components/IntersectionContainer/IntersectionContainer'
+import SocialMedia from '@components/SocialMedia/SocialMedia'
+import Button from '@components/Button/Button'
+import useLottie from '@/hooks/useLottie'
 
 const Home = () => {
-	// const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
-	// const location = useLocation()
-	// const refContainer = useRef<HTMLHeadElement>(null)
-	// const [sectionState, setSectionState] = useState(false)
-
-	const [socialState, setSocialState] = useState(false)
-	const logoAnimationHomeContainerRef = useRef<HTMLDivElement>(null)
-	const logoAnimation = useRef<AnimationItem>(
-		Lottie.loadAnimation({
-			container: logoAnimationHomeContainerRef.current!,
-		})
-	)
+	const [Logo, LogoLottie] = useLottie({
+		classContainer: 'lottie-animation',
+		data: logoAnimationData,
+	})
 
 	useEffect(() => {
-		// showContent()
-		setSocialState(true)
-
-		playLogoAnimation()
-
-		Lottie.setQuality('low')
-
-		collageRef.current?.addEventListener('load', () => showCollage())
-
-		return () => {
-			logoAnimation.current.destroy()
-		}
+		LogoLottie.current.play()
 	}, [])
 
-	// useEffect(() => {
-	// 	if (nav) {
-	// 		if (nav.to != location.pathname) {
-	// 			hideContent()
-	// 		}
-	// 	}
-	// }, [nav])
-
-	// const showElements = () => {
-	// 	const elements = document.getElementsByClassName(
-	// 		'appear'
-	// 	) as HTMLCollectionOf<HTMLElement>
-
-	// 	for (const element of elements) {
-	// 		element.style.opacity = '1'
-	// 	}
-	// }
-
 	const collageRef = useRef<HTMLImageElement>(null)
-
-	// let collageDownloadState = false
 
 	const showCollage = () => {
 		collageRef.current!.classList.replace('collage-init', 'collage-final')
 	}
 
-	// const collageImageReady = () => (collageDownloadState = true)
-
-	const playLogoAnimation = () => {
-		logoAnimation.current = Lottie.loadAnimation({
-			container: logoAnimationHomeContainerRef.current!,
-			animationData: logoAnimationData,
-			renderer: 'svg',
-			autoplay: false,
-			loop: false,
-		})
-
-		logoAnimation.current.playSegments([0, 180], true)
-
-		// logoAnimation.current.addEventListener('complete', () => {
-		// 	// showElements()
-
-		// 	if (collageDownloadState) {
-		// 		showCollage()
-		// 	} else {
-
-		// 	}
-		// })
-	}
-
-	// const showContent = () => setSectionState(true)
-
-	// const hideContent = () => setSectionState(false)
-
 	return (
-		// <CSSTransition
-		// 	in={sectionState}
-		// 	nodeRef={refContainer}
-		// 	timeout={500}
-		// 	classNames="page-anim"
-		// 	mountOnEnter
-		// 	unmountOnExit
-		// 	onEnter={playLogoAnimation}
-		// 	onExited={() => setReadyToNavigate(true)}
-		// >
-		// <header id="home-main-container" ref={refContainer}>
 		<header id="home-main-container">
 			<div className="home-content">
 				<p className="big-text">Hola! 👋🏾 soy</p>
-				<div
-					ref={logoAnimationHomeContainerRef}
-					id="lottie-animation"
-				/>
+
+				<Logo />
 
 				<p className="description">
 					<span className="accent">Desarrollador Frontend</span> de
@@ -140,26 +54,28 @@ const Home = () => {
 						proyectos
 					</Button>
 				</div>
+
 				<SocialMedia
-					state={socialState}
+					state={true}
 					containerClass="social-media-container"
 				/>
+
 				<div className="available">
 					<span id="circle"></span>
 					<p className="able-to-work">Disponible</p>
 				</div>
+
 				<div className="collage-container">
 					<img
 						src={collage}
 						alt="projects images"
 						className="collage collage-init"
 						ref={collageRef}
-						// onLoad={collageImageReady}
+						onLoad={showCollage}
 					/>
 				</div>
 			</div>
 		</header>
-		// </CSSTransition>
 	)
 }
 
