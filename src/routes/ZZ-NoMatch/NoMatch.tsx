@@ -1,85 +1,30 @@
-import { useRef, useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
+import { useLayoutEffect } from 'react'
+import monsterAnimationData from '@lottie/404-pet.json'
+import useLottie from '@/hooks/useLottie'
 import './NoMatch.scss'
 
-//outlet custom hook
-import useNavContext, { ContextType } from '../../hooks/useNavContext'
-
-import monsterAnimationData from '../../static/lottie/404-pet.json'
-import Lottie from 'lottie-web'
-import SerializedEntering from '../../components/SerializedEntering'
-
 export default function NoMatch() {
-	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
-	const location = useLocation()
-	const refContainer = useRef<HTMLDivElement>(null)
-	const [sectionState, setSectionState] = useState(false)
+	const [Monster, MonsterLottie] = useLottie({
+		classContainer: 'monster-animation',
+		data: monsterAnimationData,
+	})
 
-	const [serialState, setSerialState] = useState(false)
-
-	useEffect(() => {
-		showContent()
-		setTimeout(() => {
-			setSerialState(true)
-		}, 500)
+	useLayoutEffect(() => {
+		MonsterLottie.current.autoplay = true
+		MonsterLottie.current.loop = true
+		MonsterLottie.current.play()
 	}, [])
 
-	useEffect(() => {
-		if (nav) {
-			if (nav.to != location.pathname) {
-				hideContent()
-			}
-		}
-	}, [nav])
-
-	const showContent = () => {
-		setSectionState(true)
-	}
-
-	const loadMonsterAnimation = () => {
-		Lottie.loadAnimation({
-			container: document.getElementById('monster-animation')!,
-			animationData: monsterAnimationData,
-			loop: true,
-			autoplay: true,
-			renderer: 'svg',
-		})
-	}
-
-	const hideContent = () => {
-		setSectionState(false)
-	}
-
 	return (
-		<CSSTransition
-			in={sectionState}
-			nodeRef={refContainer}
-			timeout={500}
-			classNames="page-anim"
-			mountOnEnter
-			unmountOnExit
-			onExited={() => setReadyToNavigate(true)}
-			onEnter={loadMonsterAnimation}
-		>
-			<header id="no-match" ref={refContainer}>
-				<div id="monster-animation"></div>
+		<header id="no-match">
+			<Monster />
 
-				<SerializedEntering
-					classNames="serial"
-					enter={serialState}
-					timeout={1500}
-					delay={100}
-				>
-					<h1 className="error-text" key="error-text">
-						Error 404
-					</h1>
-					<p key="error-desc">
-						La página a la que intentas acceder nunca existió, o
-						quizás sí...
-					</p>
-				</SerializedEntering>
-			</header>
-		</CSSTransition>
+			<h1 className="error-text">Error 404</h1>
+
+			<p>
+				La página a la que intentas acceder nunca existió, o quizás
+				sí...
+			</p>
+		</header>
 	)
 }
