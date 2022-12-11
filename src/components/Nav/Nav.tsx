@@ -16,13 +16,13 @@ import hamburgerAnimationData from '@lottie/hamburger-menu.json'
 
 import SerializedEntering from '../SerializedEntering'
 import NavLogo from '../NavLogo'
+import NavLinksDesktop from '../NavLinksDesktop'
 
 const Nav = () => {
 	const [navLinksState, setNavLinksState] = useState(false)
 
 	const [responsiveMenuState, setResponsiveMenuState] = useState(false)
 	const [mobItems, setMobItems] = useState(false)
-
 
 	const buttonAnimationContainerRef = useRef<HTMLDivElement>(null)
 	const buttonLottieAnimationRef = useRef<AnimationItem>(
@@ -138,23 +138,7 @@ const Nav = () => {
 					<NavLogo />
 
 					<div id="navigator">
-						<SerializedEntering
-							enter={navLinksState}
-							classNames="link-item"
-							delay={100}
-							timeout={1000}
-							containerClassName="links-container-desk"
-						>
-							{routesWithRef.map((route) => (
-								<NavLink
-									to={route.path}
-									className="nav-link-item-desk"
-									key={route.text}
-								>
-									{route.text}
-								</NavLink>
-							))}
-						</SerializedEntering>
+						<NavLinksDesktop />
 
 						<CSSTransition
 							in={responsiveMenuState}
