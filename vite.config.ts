@@ -18,7 +18,7 @@ export default defineConfig({
 			'@lottie': path.resolve(__dirname, './src/static/lottie'),
 			'@components': path.resolve(__dirname, './src/components'),
 			'@styles': path.resolve(__dirname, './src/scss'),
+			'@images': path.resolve(__dirname, './src/static/img'),
 		},
 	},
 })
-

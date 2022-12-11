@@ -20,7 +20,8 @@
 			"@/*": ["src/*"],
 			"@lottie/*": ["src/static/lottie/*"],
 			"@components/*": ["src/components/*"],
-			"@styles/*": ["src/scss/*"]
+			"@styles/*": ["src/scss/*"],
+			"@images/*": ["src/static/img/*"]
 		}
 	},
 	"include": ["src"],
