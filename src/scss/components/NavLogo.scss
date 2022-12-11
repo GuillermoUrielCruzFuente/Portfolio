@@ -10,12 +10,14 @@
 	border-radius: 0.5rem;
 	padding: 0.25rem 0;
 
+	$transition-time: 500ms;
+	transition: opacity $transition-time, border $transition-time;
+
+	//initial state
 	opacity: 0;
 
-	$transition-time: 500ms;
-	transition: opacity $transition-time, border 200ms;
-
-	&:focus {
+	//apply border if is hovered or focused
+	&:is(:hover, :focus) {
 		border: dashed color.$purple-300 2px;
 	}
 
