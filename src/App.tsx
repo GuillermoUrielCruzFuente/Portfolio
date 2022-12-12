@@ -5,11 +5,12 @@ import { AppRoutes } from '@/routes'
 import PageTransition from '@components/PageTransition'
 
 import Nav from '@components/Nav/Nav'
-import Home from './routes/01-Home/Home'
-import About from './routes/02-About/About'
-import Projects from './routes/03-Projects/Projects'
-import Contact from './routes/04-Contact/Contact'
-import NoMatch from './routes/ZZ-NoMatch/NoMatch'
+
+import { Home } from '@routes/Home'
+import { About } from '@routes/About'
+import { Projects } from '@routes/Projects'
+import { Contact } from '@routes/Contact'
+import { NoMatch } from '@routes/NoMatch'
 
 const App = () => {
 	const location = useLocation()
