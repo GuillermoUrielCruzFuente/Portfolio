@@ -24,12 +24,6 @@
 		border: 2px dashed var(--purple-300);
 	}
 
-	//if he link is hovered
-	//then move up all the span elements a 100%
-	&:hover > span {
-		transform: translateY(-100%);
-	}
-
 	//in order to run smooth transition set that property for the spans
 	//and also make sure to change the display to block
 	span {
@@ -82,7 +76,7 @@
 			transition-timing-function: ease;
 
 			//it takes some time until all the hover span is up to top
-			transition-delay: 100ms;
+			transition-delay: 350ms;
 		}
 	}
 }
