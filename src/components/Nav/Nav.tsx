@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
@@ -14,7 +14,6 @@ import Lottie, { AnimationItem } from 'lottie-web'
 //data
 import hamburgerAnimationData from '@lottie/hamburger-menu.json'
 
-import SerializedEntering from '../SerializedEntering'
 import NavLogo from '../NavLogo'
 import NavLinksDesktop from '../NavLinksDesktop'
 
@@ -140,7 +139,7 @@ const Nav = () => {
 					<div id="navigator">
 						<NavLinksDesktop />
 
-						<CSSTransition
+						{/* <CSSTransition
 							in={responsiveMenuState}
 							classNames="appear"
 							timeout={500}
@@ -195,11 +194,11 @@ const Nav = () => {
 								id="menu-button"
 								onClick={toggleMenu}
 							/>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</nav>
-			
+
 			<Outlet />
 		</>
 	)
