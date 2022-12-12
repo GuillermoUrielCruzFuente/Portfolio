@@ -8,7 +8,7 @@ import useNavContext, { ContextType } from '../../hooks/useNavContext'
 
 //components
 import ProjectInfo from '../../components/ProjectInfo/ProjectInfo'
-import projectsData, { ProjectContent } from './ProjectsData'
+import projectsData, { ProjectContent } from '../../data/ProjectsData'
 
 import ScrollDown from '../../components/ScrollDown/ScrollDown'
 import LazyImg, { LazyImgPath } from '../../components/LazyImg/LazyImg'

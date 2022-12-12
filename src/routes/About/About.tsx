@@ -1,8 +1,3 @@
-// react imports
-import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
-
 //components
 import AboutCard, {
 	AboutCardContent,
@@ -20,46 +15,10 @@ import {
 	ImageProps,
 } from '../../helpers/imports/AboutImports'
 
-//outlet custom hook
-import useNavContext, { ContextType } from '../../hooks/useNavContext'
+import './About.scss'
 
 const About = () => {
-	// const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
-	// const location = useLocation()
-	// const refContainer = useRef<HTMLDivElement>(null)
-	// const [sectionState, setSectionState] = useState(false)
-
-	// useEffect(() => {
-	// 	showContent()
-	// }, [])
-
-	// useEffect(() => {
-	// 	if (nav) {
-	// 		if (nav.to != location.pathname) {
-	// 			hideContent()
-	// 		}
-	// 	}
-	// }, [nav])
-
-	// const showContent = () => {
-	// 	setSectionState(true)
-	// }
-
-	// const hideContent = () => {
-	// 	setSectionState(false)
-	// }
-
 	return (
-		// <CSSTransition
-		// 	in={sectionState}
-		// 	nodeRef={refContainer}
-		// 	timeout={500}
-		// 	classNames="page-anim"
-		// 	mountOnEnter
-		// 	unmountOnExit
-		// 	onExited={() => setReadyToNavigate(true)}
-		// >
-		// <div ref={refContainer} className="a">
 		<div className="a">
 			<header id="about">
 				<h1 className="main-title">Sobre mí</h1>
@@ -315,7 +274,6 @@ const About = () => {
 				</section>
 			</main>
 		</div>
-		// </CSSTransition>
 	)
 }
 

@@ -300,8 +300,6 @@ form#contact-form {
 	}
 }
 
-@import './page_transition';
-
 $modal-transition-time: 400ms;
 .modal-enter {
 	opacity: 0;
