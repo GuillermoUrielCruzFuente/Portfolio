@@ -19,6 +19,7 @@ export default defineConfig({
 			'@components': path.resolve(__dirname, './src/components'),
 			'@styles': path.resolve(__dirname, './src/scss'),
 			'@images': path.resolve(__dirname, './src/static/img'),
+			'@routes': path.resolve(__dirname, './src/routes'),
 		},
 	},
 })

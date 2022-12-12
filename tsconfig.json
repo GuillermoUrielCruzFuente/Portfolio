@@ -21,10 +21,10 @@
 			"@lottie/*": ["src/static/lottie/*"],
 			"@components/*": ["src/components/*"],
 			"@styles/*": ["src/scss/*"],
-			"@images/*": ["src/static/img/*"]
+			"@images/*": ["src/static/img/*"],
+			"@routes/*": ["src/routes/*"]
 		}
 	},
 	"include": ["src"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
-
