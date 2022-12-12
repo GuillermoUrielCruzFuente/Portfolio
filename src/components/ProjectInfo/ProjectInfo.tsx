@@ -1,11 +1,11 @@
 import getTechnologyIcon, { Technology } from './Technologies'
 
-import webIcon from '../../static/img/icons/social-media/web.svg'
-import githubIcon from '../../static/img/icons/social-media/github.svg'
+import webIcon from '@images/icons/social-media/web.svg'
+import githubIcon from '@images/icons/social-media/github.svg'
 
-import { ProjectContent } from '../../routes/03-Projects/ProjectsData'
-import AnchorButton from '../AnchorButton/AnchorButton'
-import IntersectionContainer from '../IntersectionContainer/IntersectionContainer'
+import { ProjectContent } from '@/data/ProjectsData'
+import AnchorButton from '@components/AnchorButton/AnchorButton'
+import IntersectionContainer from '@components/IntersectionContainer/IntersectionContainer'
 import { CSSProperties } from 'react'
 
 const fromProperties: CSSProperties = {
