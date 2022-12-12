@@ -1,9 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
-
-//routes
-import getRoutesWithRef from '../../routes/routes'
+import { useEffect, useRef, useState } from 'react'
 
 //styles
 import './Nav.scss'
@@ -14,8 +9,8 @@ import Lottie, { AnimationItem } from 'lottie-web'
 //data
 import hamburgerAnimationData from '@lottie/hamburger-menu.json'
 
-import NavLogo from '../NavLogo'
-import NavLinksDesktop from '../NavLinksDesktop'
+import NavLogo from '@components/NavLogo'
+import NavLinksDesktop from '@components/NavLinksDesktop'
 
 const Nav = () => {
 	const [navLinksState, setNavLinksState] = useState(false)
@@ -32,7 +27,6 @@ const Nav = () => {
 
 	// #region reference for CSSTransition NodeRef Attribute in responsive menu
 	const menuMobileRef = useRef<HTMLDivElement>(null)
-	let routesWithRef = getRoutesWithRef()
 	//#endregion
 
 	const changeStyleOnScroll = () => {
@@ -131,15 +125,14 @@ const Nav = () => {
 	}
 
 	return (
-		<>
-			<nav className="no-blur-bg">
-				<div id="nav-container">
-					<NavLogo />
+		<nav className="no-blur-bg">
+			<div id="nav-container">
+				<NavLogo />
 
-					<div id="navigator">
-						<NavLinksDesktop />
+				<div id="navigator">
+					<NavLinksDesktop />
 
-						{/* <CSSTransition
+					{/* <CSSTransition
 							in={responsiveMenuState}
 							classNames="appear"
 							timeout={500}
@@ -195,12 +188,9 @@ const Nav = () => {
 								onClick={toggleMenu}
 							/>
 						</div> */}
-					</div>
 				</div>
-			</nav>
-
-			<Outlet />
-		</>
+			</div>
+		</nav>
 	)
 }
 
