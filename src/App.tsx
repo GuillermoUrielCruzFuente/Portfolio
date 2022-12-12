@@ -1,36 +1,67 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 
-//routes
+import { AppRoutes } from '@/routes'
+import PageTransition from '@components/PageTransition'
+
+import Nav from '@components/Nav/Nav'
 import Home from './routes/01-Home/Home'
 import About from './routes/02-About/About'
 import Projects from './routes/03-Projects/Projects'
 import Contact from './routes/04-Contact/Contact'
 import NoMatch from './routes/ZZ-NoMatch/NoMatch'
 
-//navbar component
-import Nav from './components/Nav/Nav'
-
-import { AppRoutes } from '@/routes'
-
 const App = () => {
+	const location = useLocation()
+
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route element={<Nav />}>
-					<Route index element={<Home />} />
-					<Route path={AppRoutes.About.path} element={<About />} />
+		<>
+			<Nav />
+			<AnimatePresence mode="wait">
+				<Routes key={location.pathname} location={location}>
+					<Route
+						index
+						element={
+							<PageTransition>
+								<Home />
+							</PageTransition>
+						}
+					/>
+					<Route
+						path={AppRoutes.About.path}
+						element={
+							<PageTransition>
+								<About />
+							</PageTransition>
+						}
+					/>
 					<Route
 						path={AppRoutes.Projects.path}
-						element={<Projects />}
+						element={
+							<PageTransition>
+								<Projects />
+							</PageTransition>
+						}
 					/>
 					<Route
 						path={AppRoutes.Contact.path}
-						element={<Contact />}
+						element={
+							<PageTransition>
+								<Contact />
+							</PageTransition>
+						}
 					/>
-					<Route path="*" element={<NoMatch />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+					<Route
+						path="*"
+						element={
+							<PageTransition>
+								<NoMatch />
+							</PageTransition>
+						}
+					/>
+				</Routes>
+			</AnimatePresence>
+		</>
 	)
 }
 
