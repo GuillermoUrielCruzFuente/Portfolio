@@ -1,0 +1,29 @@
+.hamburger-menu-container {
+	height: 100%;
+	aspect-ratio: 1;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	overflow: hidden;
+	cursor: pointer;
+	z-index: 1000;
+
+	.hamburger-animation {
+		//safari bugfix
+		//use height or width property to make zoom
+		//instead of using transform: scale()
+		height: 300%;
+		aspect-ratio: 1;
+	}
+}
+
+.menu-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: chocolate;
+}
