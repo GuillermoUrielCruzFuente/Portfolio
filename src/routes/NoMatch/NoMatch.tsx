@@ -5,7 +5,6 @@ import './NoMatch.scss'
 
 export default function NoMatch() {
 	const [Monster, MonsterLottie] = useLottie({
-		classContainer: 'monster-animation',
 		data: monsterAnimationData,
 	})
 
@@ -17,7 +16,7 @@ export default function NoMatch() {
 
 	return (
 		<header id="no-match">
-			<Monster />
+			<Monster className="monster-animation" />
 
 			<h1 className="error-text">Error 404</h1>
 
