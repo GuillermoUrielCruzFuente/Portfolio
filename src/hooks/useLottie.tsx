@@ -4,19 +4,17 @@ import {
 	useCallback,
 	useLayoutEffect,
 	useRef,
+	HTMLAttributes,
 } from 'react'
 
-type LottieProps = {
-	classContainer: string
-	data: AnimationConfigWithData['animationData']
-}
-
 type useLottieReturns = [
-	lottieElement: () => JSX.Element,
+	lottieElement: (props: HTMLAttributes<HTMLDivElement>) => JSX.Element,
 	lottieInstanceRef: MutableRefObject<AnimationItem>
 ]
 
-const useLottie = ({ classContainer, data }: LottieProps): useLottieReturns => {
+type LottieData = AnimationConfigWithData['animationData']
+
+const useLottie = ({ data }: LottieData): useLottieReturns => {
 	const animationContainerRef = useRef<HTMLDivElement>(null)
 	const lottieInstanceRef = useRef<AnimationItem>(
 		Lottie.loadAnimation({
@@ -39,8 +37,8 @@ const useLottie = ({ classContainer, data }: LottieProps): useLottieReturns => {
 	}, [])
 
 	const lottieElement = useCallback(
-		() => (
-			<div className={classContainer} ref={animationContainerRef}></div>
+		(props: HTMLAttributes<HTMLDivElement>) => (
+			<div {...props} ref={animationContainerRef} />
 		),
 		[]
 	)
