@@ -17,7 +17,6 @@ import useLottie from '@/hooks/useLottie'
 
 const Home = () => {
 	const [Logo, LogoLottie] = useLottie({
-		classContainer: 'lottie-animation',
 		data: logoAnimationData,
 	})
 
@@ -36,7 +35,7 @@ const Home = () => {
 			<div className="home-content">
 				<p className="big-text">Hola! 👋🏾 soy</p>
 
-				<Logo />
+				<Logo className="lottie-animation" />
 
 				<p className="description">
 					<span className="accent">Desarrollador Frontend</span> de
