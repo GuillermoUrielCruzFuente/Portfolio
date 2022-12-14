@@ -2,6 +2,7 @@ import { useState } from 'react'
 import useLottie from '@/hooks/useLottie'
 import hamMenu from '@lottie/hamburger-menu.json'
 import '@styles/components/ResponsiveMenu.scss'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const ResponsiveMenu = () => {
 	const [HamMenu, HamMenuLottie] = useLottie({ data: hamMenu })
@@ -28,11 +29,24 @@ const ResponsiveMenu = () => {
 				<HamMenu className="hamburger-animation" onClick={toggle} />
 			</div>
 
-			{isOpen && (
-				<div className="menu-container">
-					<h1>Elements</h1>
-				</div>
-			)}
+			<AnimatePresence>
+				{isOpen && (
+					<motion.div
+						key="menu"
+						className="bubble"
+						initial={{
+							scale: 0,
+							top: 0,
+							right: 0,
+							y: '-50%',
+							x: '50%',
+						}}
+						animate={{ scale: 1 }}
+						exit={{ scale: 0 }}
+						transition={{ duration: 0.65, type: 'tween' }}
+					></motion.div>
+				)}
+			</AnimatePresence>
 		</>
 	)
 }
