@@ -43,7 +43,7 @@ const ResponsiveMenu = () => {
 						}}
 						animate={{ scale: 1 }}
 						exit={{ scale: 0 }}
-						transition={{ duration: 0.65, type: 'tween' }}
+						transition={{ duration: 0.45, type: 'tween' }}
 					></motion.div>
 				)}
 			</AnimatePresence>
