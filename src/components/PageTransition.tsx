@@ -1,4 +1,5 @@
 import { motion, Variants } from 'framer-motion'
+import { useEffect } from 'react'
 
 const variants: Variants = {
 	initial: {
@@ -13,6 +14,10 @@ const variants: Variants = {
 }
 
 const PageTransition = ({ children }: { children: JSX.Element }) => {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
+
 	return (
 		<motion.div {...variants} transition={{ duration: 0.35 }}>
 			{children}
