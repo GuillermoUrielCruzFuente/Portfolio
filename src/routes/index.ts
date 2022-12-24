@@ -31,3 +31,5 @@ export const AppRoutes: PagesDictionary<AppRoute> = {
 		text: 'Contacto 👋',
 	},
 }
+
+export const getRoutes = Object.values(AppRoutes)
