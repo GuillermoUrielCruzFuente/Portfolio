@@ -21,7 +21,7 @@
 	}
 }
 
-#monster-animation {
+.monster-animation {
 	width: min(100%, 400px);
 	aspect-ratio: 1;
 }
@@ -33,31 +33,4 @@
 			margin-inline: auto;
 		}
 	}
-}
-
-$transition-time: 1000ms;
-.serial-enter {
-	opacity: 0;
-	transform: translateY(50%);
-}
-
-.serial-enter-active {
-	opacity: 1;
-	transform: translateY(0px);
-
-	transition: opacity $transition-time, transform $transition-time;
-	transition-timing-function: ease;
-}
-
-.serial-exit {
-	opacity: 1;
-	transform: translateY(0px);
-}
-
-.serial-exit-active {
-	opacity: 0;
-	transform: translateY(50%);
-
-	transition: opacity $transition-time, transform $transition-time;
-	transition-timing-function: ease;
 }

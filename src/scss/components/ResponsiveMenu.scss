@@ -1,0 +1,47 @@
+@use '/src/scss/layout/z-index.scss' as Z;
+
+.hamburger-menu-container {
+	height: 100%;
+	aspect-ratio: 1;
+
+	display: none;
+	align-items: center;
+	justify-content: center;
+
+	overflow: hidden;
+	cursor: pointer;
+	z-index: Z.$navbar-top;
+
+	.hamburger-animation {
+		//safari bugfix
+		//use height or width property to make zoom
+		//instead of using transform: scale()
+		height: 300%;
+		aspect-ratio: 1;
+
+		//change the animation direction, this way the back arrow points to the right
+		transform: scale(-1);
+	}
+}
+
+.responsive-menu-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+
+	gap: 1rem;
+
+	width: 100vw;
+	height: 100vh;
+}
+
+@media screen and (width < 860px) {
+	.hamburger-menu-container {
+		display: flex;
+	}
+}

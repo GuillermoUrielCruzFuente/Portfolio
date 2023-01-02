@@ -1,384 +1,50 @@
 import { useEffect, useRef, useState } from 'react'
-import {
-	NavLink,
-	Link,
-	useLocation,
-	useNavigate,
-	Outlet,
-} from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
-
-//routes
-import getRoutesWithRef from '../../routes/routes'
-
-//styles
+import NavLogo from '@components/NavLogo'
+import NavLinksDesktop from '@components/NavLinksDesktop'
+import ResponsiveMenu from '../ResponsiveMenu'
 import './Nav.scss'
 
-//third party libraries
-import Lottie, { AnimationItem } from 'lottie-web'
-
-//data
-import logoAnimationData from '../../static/lottie/logo.json'
-import hamburgerAnimationData from '../../static/lottie/hamburger-menu.json'
-
-//hooks
-import useNavigateTo from '../../hooks/useNavigateTo'
-import { ContextType, Navigation } from '../../hooks/useNavContext'
-import SerializedEntering from '../SerializedEntering'
-import ResponsiveMenu from '../ResponsiveMenu/ResponsiveMenu'
-
 const Nav = () => {
-	// #region basic logic for page navigation
-	const location = useLocation()
-	const navigate = useNavigate()
-	const [clickedLink, setClickedLink] = useState<Navigation | null>(null)
-	const [readyToNavigate, setReadyToNavigate] = useState<boolean>(false)
-	// let responsiveMenuCounter = 0
-	const [navLinksState, setNavLinksState] = useState(false)
-
-	const showNavLogo = () => {
-		logoAnimationContainerRef.current!.style.opacity = '1'
-
-		logoAnimationRef.current.setDirection(1)
-		logoAnimationRef.current.setSpeed(1)
-		logoAnimationRef.current.play()
-
-		document.getElementById('nav-logo-link')!.style.pointerEvents = 'auto'
-	}
-
-	const hideNavLogo = () => {
-		logoAnimationContainerRef.current!.style.opacity = '0'
-
-		logoAnimationContainerRef.current!.addEventListener(
-			'transitionend',
-			() => {
-				if (logoAnimationContainerRef.current?.style.opacity === '0') {
-					logoAnimationRef.current.goToAndStop(0, true)
-				}
-			}
-		)
-
-		document.getElementById('nav-logo-link')!.style.pointerEvents = 'none'
-	}
-
-	const disableLinks = () => {
-		const links = document.getElementsByClassName(
-			'nav-link'
-		) as HTMLCollectionOf<HTMLAnchorElement>
-
-		for (const link of links) {
-			link.style.pointerEvents = 'none'
-		}
-	}
-
-	const navigator = useNavigateTo({
-		setClickedLink: setClickedLink,
-		animationHandler: {
-			show: showNavLogo,
-			hide: hideNavLogo,
-		},
-		disableLinks: disableLinks,
-		noReadyToNavigate: setReadyToNavigate,
-	})
-
-	const signal: ContextType = {
-		nav: clickedLink,
-		setReadyToNavigate: setReadyToNavigate,
-		navigateTo: navigator,
-	}
-
-	const enableLinks = () => {
-		const links = document.getElementsByClassName(
-			'nav-link'
-		) as HTMLCollectionOf<HTMLAnchorElement>
-
-		for (const link of links) {
-			link.style.pointerEvents = 'all'
-		}
-	}
-	// #endregion
-
-	// #region responsive menu logic
-	const [responsiveMenuState, setResponsiveMenuState] = useState(false)
-	const [mobItems, setMobItems] = useState(false)
-	// #endregion
-
-	// #region lottie logo in navbar
-	const logoAnimationContainerRef = useRef<HTMLDivElement>(null)
-	const logoAnimationRef = useRef<AnimationItem>(
-		Lottie.loadAnimation({
-			container: logoAnimationContainerRef.current!,
-		})
-	)
-	// #endregion
-
-	const buttonAnimationContainerRef = useRef<HTMLDivElement>(null)
-	const buttonLottieAnimationRef = useRef<AnimationItem>(
-		Lottie.loadAnimation({
-			container: buttonAnimationContainerRef.current!,
-		})
-	)
-
-	// #region reference for CSSTransition NodeRef Attribute in responsive menu
-	const menuMobileRef = useRef<HTMLDivElement>(null)
-	let routesWithRef = getRoutesWithRef()
-	//#endregion
+	const navRef = useRef<HTMLElement>(null)
+	const [isLargeScreen, setIsLargeScreen] = useState(false)
 
 	const changeStyleOnScroll = () => {
-		const nav = document.getElementsByTagName('nav')[0]
 		if (window.scrollY >= 100) {
-			nav.classList.replace('no-blur-bg', 'blur-bg')
+			navRef.current?.classList.replace('no-blur-bg', 'blur-bg')
 		} else {
-			nav.classList.replace('blur-bg', 'no-blur-bg')
+			navRef.current?.classList.replace('blur-bg', 'no-blur-bg')
 		}
+	}
+
+	const screenResizeHandler = () => {
+		window.innerWidth > 860
+			? setIsLargeScreen(true)
+			: setIsLargeScreen(false)
 	}
 
 	useEffect(() => {
-		logoAnimationRef.current = Lottie.loadAnimation({
-			container: logoAnimationContainerRef.current!,
-			animationData: logoAnimationData,
-			autoplay: false,
-			loop: false,
-		})
-
-		buttonLottieAnimationRef.current = Lottie.loadAnimation({
-			container: buttonAnimationContainerRef.current!,
-			animationData: hamburgerAnimationData,
-			loop: false,
-			autoplay: false,
-		})
-
-		buttonLottieAnimationRef.current.setSpeed(1.35)
-
-		if (location.pathname != '/') {
-			showNavLogo()
-			setNavLinksState(true)
-		} else {
-			setTimeout(() => setNavLinksState(true), 3000)
-			document.getElementById('nav-logo-link')!.style.pointerEvents =
-				'none'
-		}
+		screenResizeHandler()
+		changeStyleOnScroll()
 
 		window.addEventListener('scroll', changeStyleOnScroll)
+		window.addEventListener('resize', screenResizeHandler)
 
 		return () => {
-			logoAnimationRef.current.destroy()
-			buttonLottieAnimationRef.current.destroy()
-
 			window.removeEventListener('scroll', changeStyleOnScroll)
+			window.removeEventListener('resize', screenResizeHandler)
 		}
 	}, [])
 
-	// in order to navigate on CSSTransition unmounted
-	// listen for a flag that can be fired with a function
-	// provided to the OutletContext
-	useEffect(() => {
-		if (readyToNavigate) {
-			if (clickedLink) {
-				navigate(clickedLink.to!)
-				enableLinks()
-				window.scrollTo(0, 0)
-			}
-		}
-	}, [readyToNavigate])
-
-	const showBackArrow = () =>
-		buttonLottieAnimationRef.current.playSegments([20, 70], true)
-
-	const showHamburger = () =>
-		buttonLottieAnimationRef.current.playSegments([120, 140], true)
-
-	const disableVerticalScroll = () => {
-		const html = document.getElementsByTagName('html')[0]
-		html.style.overflow = 'hidden hidden'
-	}
-
-	const enableVerticalScroll = () => {
-		const html = document.getElementsByTagName('html')[0]
-		html.style.overflow = 'hidden auto'
-	}
-
-	//we need to handle the state reading by encapsulating it inside a ref
-	// https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function
-	const menuStateRef = useRef(false)
-
-	const hideMenuOnResize = () => {
-		//if the menu is active and the window width is less than 700px
-		//then the menu need to be invisible
-		if (window.innerWidth > 700 && menuStateRef.current) {
-			hideMenu()
-
-			window.removeEventListener('resize', hideMenuOnResize)
-			window.removeEventListener('keydown', hideMenuOnEsc)
-		}
-	}
-
-	const hideMenuOnEsc = (event: KeyboardEvent) => {
-		if (event.key === 'Escape' && menuStateRef.current) {
-			hideMenu()
-
-			window.removeEventListener('resize', hideMenuOnResize)
-			window.removeEventListener('keydown', hideMenuOnEsc)
-		}
-	}
-
-	const toggleMenu = () => {
-		menuStateRef.current ? hideMenu() : showMenu()
-	}
-
-	const hideMenu = () => {
-		setResponsiveMenuState(false)
-		enableVerticalScroll()
-		showHamburger()
-
-		menuStateRef.current = false
-
-		window.removeEventListener('resize', hideMenuOnResize)
-		window.removeEventListener('keydown', hideMenuOnEsc)
-	}
-
-	const showMenu = () => {
-		setResponsiveMenuState(true)
-		disableVerticalScroll()
-		showBackArrow()
-
-		menuStateRef.current = true
-
-		window.addEventListener('resize', hideMenuOnResize)
-		window.addEventListener('keydown', hideMenuOnEsc)
-	}
-
 	return (
-		<>
-			<nav className="no-blur-bg">
-				<div id="nav-container">
-					<div id="nav-logo-container">
-						<Link
-							to="/"
-							id="nav-logo-link"
-							onClick={(event) => {
-								event.preventDefault()
-								navigator(routesWithRef[0].path)
-							}}
-						>
-							<div
-								id="nav-logo"
-								ref={logoAnimationContainerRef}
-							/>
-						</Link>
-					</div>
+		<nav ref={navRef} className="no-blur-bg">
+			<div id="nav-container">
+				<NavLogo />
 
-					<div id="navigator">
-						<SerializedEntering
-							enter={navLinksState}
-							classNames="link-item"
-							delay={100}
-							timeout={1000}
-							containerClassName="links-container-desk"
-						>
-							{routesWithRef.map((route) => (
-								<NavLink
-									onClick={(event) => {
-										event.preventDefault()
-										navigator(route.path)
-									}}
-									to={route.path}
-									className="nav-link-item-desk"
-									key={route.text}
-								>
-									{route.text}
-								</NavLink>
-							))}
-						</SerializedEntering>
-
-						<CSSTransition
-							in={responsiveMenuState}
-							classNames="appear"
-							timeout={500}
-							mountOnEnter
-							unmountOnExit
-							nodeRef={menuMobileRef}
-							addEndListener={() => setMobItems(!mobItems)}
-						>
-							<div
-								className="links-container-mobile"
-								ref={menuMobileRef}
-							>
-								<ResponsiveMenu isOpen={mobItems} />
-								{/* <div className="mob-items-container"> */}
-								{/* <SerializedEntering
-										enter={mobItems}
-										classNames="link-item-mob"
-										delay={100}
-										timeout={1000}
-										containerClassName="link-mob-container"
-									>
-										{routesWithRef.map((route) => (
-											<NavLink
-												onClick={(event) => {
-													event.preventDefault()
-													toggleMenu()
-													navigator(route.path)
-												}}
-												to={route.path}
-												className="nav-link-item-mob"
-												key={route.path}
-											>
-												{route.text}
-											</NavLink>
-										))}
-									</SerializedEntering> */}
-
-								{/* {routesWithRef.map((route, i: number) => (
-										<div
-											className="link-mob-container"
-											key={route.text}
-										>
-											<CSSTransition
-												in={mobItems}
-												classNames="link-item-mob"
-												timeout={600 + i * 100}
-												nodeRef={route.ref}
-												mountOnEnter
-												unmountOnExit
-											>
-												<NavLink
-													onClick={(event) => {
-														event.preventDefault()
-														toggleMenu()
-														navigator(route.path)
-													}}
-													to={route.path}
-													className="nav-link-item-mob"
-													ref={route.ref}
-													style={{
-														transitionDelay: `${
-															i * 100
-														}ms`,
-													}}
-												>
-													{route.text}
-												</NavLink>
-											</CSSTransition>
-										</div>
-									))} */}
-								{/* </div> */}
-							</div>
-						</CSSTransition>
-
-						<div className="button-container">
-							<div
-								ref={buttonAnimationContainerRef}
-								id="menu-button"
-								onClick={toggleMenu}
-							/>
-						</div>
-					</div>
+				<div id="navigator">
+					{isLargeScreen ? <NavLinksDesktop /> : <ResponsiveMenu />}
 				</div>
-			</nav>
-
-			<Outlet context={signal} />
-		</>
+			</div>
+		</nav>
 	)
 }
 

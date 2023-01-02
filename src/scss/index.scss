@@ -1,9 +1,7 @@
-@use "base/variables";
-
-@import './base/reset.scss';
-@import './layout/page.scss';
-@import './base/scrollbar.scss';
-
+@use './base/variables';
+@use './base/reset';
+@use './layout/page';
+@use './base/scrollbar';
 
 body {
 	font-family: 'Poppins', sans-serif;

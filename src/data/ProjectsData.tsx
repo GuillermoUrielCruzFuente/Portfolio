@@ -1,9 +1,9 @@
-import { Technology } from '../../components/ProjectInfo/Technologies'
+import { Technology } from '@components/ProjectInfo/Technologies'
 
-import harbestLogo from '../../static/img/icons/project-logos/harbest.svg'
-import intelligentiaLogo from '../../static/img/icons/project-logos/intelligentia.svg'
-import campoFuerteLogo from '../../static/img/icons/project-logos/campo-fuerte.svg'
-import guillermoLogo from '../../static/img/icons/project-logos/guillermo.svg'
+import harbestLogo from '@images/icons/project-logos/harbest.svg'
+import intelligentiaLogo from '@images/icons/project-logos/intelligentia.svg'
+import campoFuerteLogo from '@images/icons/project-logos/campo-fuerte.svg'
+import guillermoLogo from '@images/icons/project-logos/guillermo.svg'
 
 export type ProjectContent = {
 	id: number

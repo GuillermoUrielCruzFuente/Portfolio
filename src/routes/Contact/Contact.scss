@@ -21,6 +21,7 @@
 		display: flex;
 		flex-flow: row;
 		margin-block: 1rem;
+		overflow: hidden;
 	}
 
 	.tel-tag {
@@ -298,8 +299,6 @@ form#contact-form {
 		}
 	}
 }
-
-@import './page_transition';
 
 $modal-transition-time: 400ms;
 .modal-enter {

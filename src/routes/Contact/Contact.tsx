@@ -22,23 +22,25 @@ import telIcon from '../../static/img/icons/contact/tel.svg'
 import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
 
 export default function Contact() {
-	const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
-	const location = useLocation()
-	const refContainer = useRef<HTMLDivElement>(null)
-	const [sectionState, setSectionState] = useState(false)
+	// const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
+	// const location = useLocation()
+	// const refContainer = useRef<HTMLDivElement>(null)
+	// const [sectionState, setSectionState] = useState(false)
+
 	const [socialState, setSocialState] = useState(false)
 
 	useEffect(() => {
-		showContent()
+		setSocialState(true)
+		// showContent()
 	}, [])
 
-	useEffect(() => {
-		if (nav) {
-			if (nav.to != location.pathname) {
-				hideContent()
-			}
-		}
-	}, [nav])
+	// useEffect(() => {
+	// 	if (nav) {
+	// 		if (nav.to != location.pathname) {
+	// 			hideContent()
+	// 		}
+	// 	}
+	// }, [nav])
 
 	const nameInput = useInput({
 		name: 'nombre',
@@ -93,18 +95,18 @@ export default function Contact() {
 	const isValidAndFilled = (input: InputValidation): boolean =>
 		input.isValid && input.getValue() != ''
 
-	const showContent = () => {
-		setSectionState(true)
+	// const showContent = () => {
+	// 	setSectionState(true)
 
-		setTimeout(() => {
-			setSocialState(true)
-		}, 200)
-	}
+	// 	setTimeout(() => {
+	// 		setSocialState(true)
+	// 	}, 200)
+	// }
 
-	const hideContent = () => {
-		setSectionState(false)
-		setSocialState(false)
-	}
+	// const hideContent = () => {
+	// 	setSectionState(false)
+	// 	setSocialState(false)
+	// }
 
 	//form submit modal state
 	// const [modalState, setModalState] = useState(false)
@@ -171,86 +173,82 @@ export default function Contact() {
 	}
 
 	return (
-		<CSSTransition
-			in={sectionState}
-			nodeRef={refContainer}
-			timeout={500}
-			classNames="page-anim"
-			mountOnEnter
-			unmountOnExit
-			onExited={() => setReadyToNavigate(true)}
-		>
-			<header id="contact" ref={refContainer}>
-				<div className="split-container">
-					<div className="split">
-						<h1 className="page-main-title">Contáctame!</h1>
+		// <CSSTransition
+		// 	in={sectionState}
+		// 	nodeRef={refContainer}
+		// 	timeout={500}
+		// 	classNames="page-anim"
+		// 	mountOnEnter
+		// 	unmountOnExit
+		// 	onExited={() => setReadyToNavigate(true)}
+		// >
+		// <header id="contact" ref={refContainer}>
+		<header id="contact">
+			<div className="split-container">
+				<div className="split">
+					<h1 className="page-main-title">Contáctame!</h1>
 
-						<p>
-							Puedes encontrarme en distintas redes sociales, usa
-							aquella con la que te sientas más cómodo, te
-							regresaré el mensaje tan pronto como me sea posible.
-							Apreciaré cualquier sugerencia o propuesta de
-							trabajo, siéntete libre de compartirla conmigo.
-						</p>
+					<p>
+						Puedes encontrarme en distintas redes sociales, usa
+						aquella con la que te sientas más cómodo, te regresaré
+						el mensaje tan pronto como me sea posible. Apreciaré
+						cualquier sugerencia o propuesta de trabajo, siéntete
+						libre de compartirla conmigo.
+					</p>
 
-						<SocialMedia
-							containerClass="contact-social-media"
-							state={socialState}
-						/>
-
-						<p>
-							Una llamada también será bien recibida, he aqui mi
-							número personal
-						</p>
-
-						<a className="tel-tag" href="tel:+52-5551588911">
-							555 158 8911
-						</a>
-
-						<p>
-							Y por último, puedes darle un vistazo a mi CV, esta
-							es la versión más reciente, con toda mi información
-							en él.
-						</p>
-
-						<DownloadPDF />
-					</div>
-
-					<div className="split">
-						<form
-							id="contact-form"
-							onSubmit={handleSubmit}
-							noValidate
-						>
-							<h1 className="form-title">Envíame un mensaje</h1>
-
-							{nameInput.render}
-							{messageTextArea.render}
-
-							<p className="form-text">
-								Permíteme devolverte el mensaje. Por favor,
-								rellena al menos uno de los siguientes campos,
-								si lo deseas pueden ser ambos.
-							</p>
-
-							{emailInput.render}
-							{phoneInput.render}
-
-							<button className="send" type="submit">
-								<img src={sendIcon} alt="send icon" />
-								enviar
-							</button>
-						</form>
-					</div>
-
-					<FormModal
-						modalControl={modalControl}
-						wainting={waiting}
-						success={success}
-						onExit={() => setSuccess(false)}
+					<SocialMedia
+						containerClass="contact-social-media"
+						state={socialState}
 					/>
+
+					<p>
+						Una llamada también será bien recibida, he aqui mi
+						número personal
+					</p>
+
+					<a className="tel-tag" href="tel:+52-5551588911">
+						555 158 8911
+					</a>
+
+					<p>
+						Y por último, puedes darle un vistazo a mi CV, esta es
+						la versión más reciente, con toda mi información en él.
+					</p>
+
+					<DownloadPDF />
 				</div>
-			</header>
-		</CSSTransition>
+
+				<div className="split">
+					<form id="contact-form" onSubmit={handleSubmit} noValidate>
+						<h1 className="form-title">Envíame un mensaje</h1>
+
+						{nameInput.render}
+						{messageTextArea.render}
+
+						<p className="form-text">
+							Permíteme devolverte el mensaje. Por favor, rellena
+							al menos uno de los siguientes campos, si lo deseas
+							pueden ser ambos.
+						</p>
+
+						{emailInput.render}
+						{phoneInput.render}
+
+						<button className="send" type="submit">
+							<img src={sendIcon} alt="send icon" />
+							enviar
+						</button>
+					</form>
+				</div>
+
+				<FormModal
+					modalControl={modalControl}
+					wainting={waiting}
+					success={success}
+					onExit={() => setSuccess(false)}
+				/>
+			</div>
+		</header>
+		// </CSSTransition>
 	)
 }
