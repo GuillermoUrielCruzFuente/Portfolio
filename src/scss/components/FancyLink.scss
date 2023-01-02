@@ -4,6 +4,13 @@
 	position: relative;
 	overflow: hidden;
 
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+
+	width: fit-content;
+
 	color: #fff;
 	font-size: 1rem;
 	font-weight: 900;
@@ -25,18 +32,23 @@
 	}
 
 	//in order to run smooth transition set that property for the spans
-	//and also make sure to change the display to block
+	//and also make sure to change the display to inline-block
 	span {
 		transition: transform 500ms;
 		transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
-		display: block;
+		display: inline-block;
 	}
 
 	//if the link is active
 	&:is(.fancy-link-active) {
-		//move up all span elements
-		& > span {
+		//move up the text span element
+		& > .text {
 			transform: translateY(-100%);
+		}
+
+		//move the text hover up in order to replace the initial text
+		& > .text-hover {
+			transform: translateY(0);
 		}
 
 		//expand the pseudoelement (a line) to fill all container width
@@ -47,8 +59,12 @@
 
 	.text-hover {
 		//this is important since we want to keep this element
-		//hidden until user interaction (hover or focus)
+		//hidden until user interaction -> focus
 		position: absolute;
+
+		//since this element is positioned in an absolute way
+		//set an inactive state where the element is hidden out of its container
+		transform: translateY(100%);
 
 		//make a line to indicate an active link
 		// with the pseudoelement after
