@@ -32,4 +32,4 @@ export const AppRoutes: PagesDictionary<AppRoute> = {
 	},
 }
 
-export const getRoutes = Object.values(AppRoutes)
+export const routes = Object.values(AppRoutes)
