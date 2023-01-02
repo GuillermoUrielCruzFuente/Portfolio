@@ -15,14 +15,14 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"baseUrl": "./",
+		"baseUrl": "src",
 		"paths": {
-			"@/*": ["src/*"],
-			"@lottie/*": ["src/static/lottie/*"],
-			"@components/*": ["src/components/*"],
-			"@styles/*": ["src/scss/*"],
-			"@images/*": ["src/static/img/*"],
-			"@routes/*": ["src/routes/*"]
+			"@/*": ["./*"],
+			"@lottie/*": ["./static/lottie/*"],
+			"@components/*": ["./components/*"],
+			"@styles/*": ["./scss/*"],
+			"@images/*": ["./static/img/*"],
+			"@routes/*": ["./routes/*"]
 		}
 	},
 	"include": ["src"],
