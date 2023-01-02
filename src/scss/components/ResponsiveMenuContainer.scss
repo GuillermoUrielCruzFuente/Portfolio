@@ -1,0 +1,33 @@
+.side-menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100vw;
+	height: 100vh;
+	background-color: #000;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	overflow-y: auto;
+}
+
+.responsive-links {
+	display: flex;
+	flex-flow: column;
+	align-items: flex-end;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+	padding-top: calc(var(--navbar-height) + 10vh);
+
+	li {
+		list-style: none;
+	}
+
+	.fancy-link-base {
+		font-size: clamp(1.5rem, 4vw, 3rem);
+	}
+}
