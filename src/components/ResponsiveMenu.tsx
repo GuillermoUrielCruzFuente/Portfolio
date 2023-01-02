@@ -3,7 +3,7 @@ import useLottie from '@/hooks/useLottie'
 import hamMenu from '@lottie/hamburger-menu.json'
 import '@styles/components/ResponsiveMenu.scss'
 import changeScrollbarState from '@/helpers/ChangeScrollbarState'
-import SideMenu from './SideMenu'
+import ResponsiveMenuContainer from './ResponsiveMenuContainer'
 
 const ResponsiveMenu = () => {
 	const [HamMenu, HamMenuLottie] = useLottie({ data: hamMenu })
@@ -35,7 +35,7 @@ const ResponsiveMenu = () => {
 				<HamMenu className="hamburger-animation" onClick={toggle} />
 			</div>
 
-			<SideMenu isOpen={isOpen} itemCallback={hideMenu} />
+			<ResponsiveMenuContainer isOpen={isOpen} itemCallback={hideMenu} />
 		</>
 	)
 }
