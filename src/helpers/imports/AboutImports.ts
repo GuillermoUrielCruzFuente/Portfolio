@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import '../../routes/02-About/About.scss'
-=======
 import HTMLImg from '@images/icons/about-experience/html.svg'
 import CSSImg from '@images/icons/about-experience/css.svg'
 import SCSSImg from '@images/icons/about-experience/sass.svg'
@@ -9,7 +6,6 @@ import TSImg from '@images/icons/about-experience/ts.svg'
 import ViteImg from '@images/icons/about-experience/vite.svg'
 import ReactImg from '@images/icons/about-experience/react.svg'
 import VueImg from '@images/icons/about-experience/vue.svg'
->>>>>>> develop
 
 import Aquarium from '@images/photos/hobbies/aquarium.jpg'
 import Origami from '@images/photos/hobbies/origami.jpg'
