@@ -1,6 +1,4 @@
-import { useRef, useState, useEffect, SyntheticEvent } from 'react'
-import { useLocation } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
+import { useState, useEffect, SyntheticEvent } from 'react'
 
 //styles
 import './Contact.scss'
@@ -10,7 +8,6 @@ import useInput, { InputValidation } from '../../components/useInput/useInput'
 import useTextarea from '../../components/useTextarea/useTextarea'
 import sendEmail, { UserInfo } from '../../helpers/SendMail'
 import FormModal from '../../components/FormModal/FormModal'
-import useNavContext, { ContextType } from '../../hooks/useNavContext'
 import SocialMedia from '../../components/SocialMedia/SocialMedia'
 import DownloadPDF from '../../components/DownloadPDF/DownloadPDF'
 
@@ -22,26 +19,6 @@ import telIcon from '../../static/img/icons/contact/tel.svg'
 import sendIcon from '../../static/img/icons/home-buttons/plane.svg'
 
 export default function Contact() {
-	// const { nav, setReadyToNavigate, navigateTo }: ContextType = useNavContext()
-	// const location = useLocation()
-	// const refContainer = useRef<HTMLDivElement>(null)
-	// const [sectionState, setSectionState] = useState(false)
-
-	const [socialState, setSocialState] = useState(false)
-
-	useEffect(() => {
-		setSocialState(true)
-		// showContent()
-	}, [])
-
-	// useEffect(() => {
-	// 	if (nav) {
-	// 		if (nav.to != location.pathname) {
-	// 			hideContent()
-	// 		}
-	// 	}
-	// }, [nav])
-
 	const nameInput = useInput({
 		name: 'nombre',
 		img: userIcon,
@@ -95,21 +72,6 @@ export default function Contact() {
 	const isValidAndFilled = (input: InputValidation): boolean =>
 		input.isValid && input.getValue() != ''
 
-	// const showContent = () => {
-	// 	setSectionState(true)
-
-	// 	setTimeout(() => {
-	// 		setSocialState(true)
-	// 	}, 200)
-	// }
-
-	// const hideContent = () => {
-	// 	setSectionState(false)
-	// 	setSocialState(false)
-	// }
-
-	//form submit modal state
-	// const [modalState, setModalState] = useState(false)
 	const modalControl = useState(false)
 
 	const [success, setSuccess] = useState(false)
@@ -173,16 +135,6 @@ export default function Contact() {
 	}
 
 	return (
-		// <CSSTransition
-		// 	in={sectionState}
-		// 	nodeRef={refContainer}
-		// 	timeout={500}
-		// 	classNames="page-anim"
-		// 	mountOnEnter
-		// 	unmountOnExit
-		// 	onExited={() => setReadyToNavigate(true)}
-		// >
-		// <header id="contact" ref={refContainer}>
 		<header id="contact">
 			<div className="split-container">
 				<div className="split">
@@ -196,10 +148,7 @@ export default function Contact() {
 						libre de compartirla conmigo.
 					</p>
 
-					<SocialMedia
-						containerClass="contact-social-media"
-						state={socialState}
-					/>
+					<SocialMedia containerClass="contact-social-media" />
 
 					<p>
 						Una llamada también será bien recibida, he aqui mi
@@ -249,6 +198,5 @@ export default function Contact() {
 				/>
 			</div>
 		</header>
-		// </CSSTransition>
 	)
 }
