@@ -3,7 +3,6 @@
 	padding-bottom: var(--navbar-height);
 	display: flex;
 	flex-flow: column;
-	overflow: hidden;
 
 	.home-content {
 		flex-grow: 1;
@@ -55,8 +54,6 @@
 		display: flex;
 		flex-flow: row nowrap;
 		align-items: center;
-		overflow: hidden;
-
 		margin-top: auto;
 	}
 }
@@ -131,10 +128,5 @@
 		transform: translate(20%, 15%);
 	}
 }
-
-// .appear {
-// 	opacity: 0;
-// 	transition: opacity 1s;
-// }
 
 @import './mediaqueries';
