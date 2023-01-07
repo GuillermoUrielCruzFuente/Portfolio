@@ -56,10 +56,7 @@ const Home = () => {
 					</Button>
 				</div>
 
-				<SocialMedia
-					state={true}
-					containerClass="social-media-container"
-				/>
+				<SocialMedia containerClass="social-media-container" />
 
 				<div className="available">
 					<span id="circle"></span>
