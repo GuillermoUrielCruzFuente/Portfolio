@@ -12,7 +12,7 @@ export type SocialMediaSite = {
 const socialMediaSites: SocialMediaSite[] = [
 	{
 		name: 'GitHub',
-		url: 'https://github.com/GuillermoCruzFuente',
+		url: 'https://github.com/GuillermoUrielCruzFuente',
 		iconSrc: githubIcon,
 	},
 	{
