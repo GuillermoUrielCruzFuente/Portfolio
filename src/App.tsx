@@ -1,25 +1,28 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
-import { AppRoutes } from '@/routes'
-import PageTransition from '@components/PageTransition'
+import { AppRoutes } from "@/routes";
+import PageTransition from "@components/PageTransition";
 
-import Nav from '@components/Nav/Nav'
+import Nav from "@components/Nav/Nav";
 
-import { Home } from '@routes/Home'
-import { About } from '@routes/About'
-import { Projects } from '@routes/Projects'
-import { Contact } from '@routes/Contact'
-import { NoMatch } from '@routes/NoMatch'
+import { Home } from "@routes/Home";
+import { About } from "@routes/About";
+import { Projects } from "@routes/Projects";
+import { Contact } from "@routes/Contact";
+import { NoMatch } from "@routes/NoMatch";
 
 const App = () => {
-	const location = useLocation()
+	const location = useLocation();
 
 	return (
 		<>
 			<Nav />
 			<AnimatePresence mode="wait">
-				<Routes key={location.pathname} location={location}>
+				<Routes
+					key={location.pathname}
+					location={location}
+				>
 					<Route
 						index
 						element={
@@ -63,7 +66,7 @@ const App = () => {
 				</Routes>
 			</AnimatePresence>
 		</>
-	)
-}
+	);
+};
 
-export default App
+export default App;
