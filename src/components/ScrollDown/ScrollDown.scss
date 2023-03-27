@@ -1,4 +1,4 @@
-@use '../../scss/layout/z-index.scss' as Z;
+@use "/src/styles/layout/z-index.scss" as Z;
 
 .scroll {
 	position: fixed;
@@ -51,31 +51,4 @@
 	100% {
 		transform: translateY(100%);
 	}
-}
-
-$transition-time: 800ms;
-.scroll-enter {
-	opacity: 0;
-	transform: translateY(-50px);
-}
-
-.scroll-enter-active {
-	opacity: 1;
-	transform: translateY(0px);
-
-	transition: opacity $transition-time, transform $transition-time;
-	transition-timing-function: ease;
-}
-
-.scroll-exit {
-	opacity: 1;
-	transform: translateY(0px);
-}
-
-.scroll-exit-active {
-	opacity: 0;
-	transform: translateY(50px);
-
-	transition: opacity $transition-time, transform $transition-time;
-	transition-timing-function: ease;
 }
