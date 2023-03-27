@@ -1,5 +1,5 @@
-@use '../base/color';
-@use '/src/scss/layout/z-index.scss' as Z;
+@use "../base/color";
+@use "/src/styles/layout/z-index.scss" as Z;
 
 .nav-logo {
 	height: calc(100% - 1.5rem);
