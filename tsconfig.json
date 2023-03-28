@@ -20,7 +20,7 @@
 			"@/*": ["./*"],
 			"@lottie/*": ["./static/lottie/*"],
 			"@components/*": ["./components/*"],
-			"@styles/*": ["./scss/*"],
+			"@styles/*": ["./styles/*"],
 			"@images/*": ["./static/img/*"],
 			"@routes/*": ["./routes/*"]
 		}
