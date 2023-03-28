@@ -51,9 +51,7 @@ const LazyImg = ({ imagePath }: LazyImgPath) => {
 		imageRef.current && imageRef.current.classList.replace("no-loaded", "loaded");
 	};
 
-	const enterAnimationObserverCallback: IntersectionObserverCallback = (
-		entries: Array<IntersectionObserverEntry>
-	) => {
+	const enterAnimationObserverCallback: IntersectionObserverCallback = (entries) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				runEnterAnimation();
