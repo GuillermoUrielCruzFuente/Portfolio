@@ -23,7 +23,7 @@ const ScrollDown = () => {
 		};
 	}, []);
 
-	const transitionConfig: Transition = { type: "tween", duration: 1.75, ease: "anticipate" };
+	const transitionConfig: Transition = { type: "tween", duration: 1, ease: "anticipate" };
 
 	return (
 		<AnimatePresence>
