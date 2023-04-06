@@ -217,7 +217,11 @@ export default function Contact() {
 				</div>
 			</div>
 
-			<AnimatePresence>{isMounted && <ModalConfirmation message="hola" />}</AnimatePresence>
+			<AnimatePresence>
+				{isMounted && (
+					<ModalConfirmation message="Tu mensaje ha sido enviado exitosamente" />
+				)}
+			</AnimatePresence>
 		</header>
 	);
 }
