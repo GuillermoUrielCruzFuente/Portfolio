@@ -1,19 +1,14 @@
-import { useState } from 'react'
-import LogoAnimationContext, {
-	LogoStateType,
-	logoInitialState,
-} from './context'
+import { useState } from "react";
+import LogoAnimationContext, { LogoStateType, logoInitialState } from "./context";
 
 type LogoProviderProps = {
-	children: JSX.Element
-}
+	children: JSX.Element;
+};
 
 const LogoAnimationStateProvider = ({ children }: LogoProviderProps) => (
-	<LogoAnimationContext.Provider
-		value={useState<LogoStateType>(logoInitialState)}
-	>
+	<LogoAnimationContext.Provider value={useState<LogoStateType>(logoInitialState)}>
 		{children}
 	</LogoAnimationContext.Provider>
-)
+);
 
-export default LogoAnimationStateProvider
+export default LogoAnimationStateProvider;
