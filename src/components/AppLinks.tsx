@@ -1,10 +1,10 @@
-import { routes } from '@routes/index'
-import { motion } from 'framer-motion'
-import FancyLink from './FancyLink'
+import { routes } from "@routes/index";
+import { motion } from "framer-motion";
+import FancyLink from "./FancyLink";
 
 type AppLinksProps = {
-	direction: 'vertical' | 'horizontal'
-}
+	direction: "vertical" | "horizontal";
+};
 
 /**
  *
@@ -12,14 +12,14 @@ type AppLinksProps = {
  */
 const AppLinks = ({ direction }: AppLinksProps) => {
 	return (
-		<motion.ol >
+		<motion.ol>
 			{routes.map((route) => (
 				<motion.li>
 					<FancyLink to={route.path}>{route.text}</FancyLink>
 				</motion.li>
 			))}
 		</motion.ol>
-	)
-}
+	);
+};
 
-export default AppLinks
+export default AppLinks;
