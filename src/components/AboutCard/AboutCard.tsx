@@ -1,10 +1,10 @@
-import './AboutCard.scss'
+import "./AboutCard.scss";
 
 export type AboutCardContent = {
-	main: string
-	middle: string
-	bottom: string
-}
+	main: string;
+	middle: string;
+	bottom: string;
+};
 
 const AboutCard = (Content: AboutCardContent) => {
 	return (
@@ -14,7 +14,7 @@ const AboutCard = (Content: AboutCardContent) => {
 			<p className="bottom">{Content.bottom}</p>
 			<span className="bottom-line"></span>
 		</div>
-	)
-}
+	);
+};
 
-export default AboutCard
+export default AboutCard;
