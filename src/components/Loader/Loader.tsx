@@ -1,12 +1,12 @@
-import './Loader.scss'
+import "./Loader.scss";
 
 type LoaderProps = {
-	className?: string
-}
+	className?: string;
+};
 
 const Loader = ({ className }: LoaderProps) => {
 	return (
-		<div className={`sk-cube-grid ${className}`}>
+		<div className={`sk-cube-grid${className ? " " + className : ""}`}>
 			<div className="sk-cube sk-cube1"></div>
 			<div className="sk-cube sk-cube2"></div>
 			<div className="sk-cube sk-cube3"></div>
@@ -17,7 +17,7 @@ const Loader = ({ className }: LoaderProps) => {
 			<div className="sk-cube sk-cube8"></div>
 			<div className="sk-cube sk-cube9"></div>
 		</div>
-	)
-}
+	);
+};
 
-export default Loader
+export default Loader;
