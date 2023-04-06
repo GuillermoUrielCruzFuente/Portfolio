@@ -1,4 +1,4 @@
-@use 'color';
+@use "color";
 
 :root {
 	--navbar-height: 70px;
@@ -9,4 +9,9 @@
 	--purple-300: #{color.$purple-300};
 	--light-purple-200: #{color.$light-purple-200};
 	--lightest-purple-100: #{color.$lightest-purple-100};
+
+	//details
+	--global-border-radius: 0.75rem;
+	--deep-shadow: 0px 0px 100px 10px #000;
+	--purple-shadow: 0px 0px 100px 10px var(--purple-300);
 }
