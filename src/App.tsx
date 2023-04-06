@@ -18,6 +18,7 @@ const App = () => {
 	return (
 		<>
 			<Nav />
+
 			<AnimatePresence mode="wait">
 				<Routes
 					key={location.pathname}
@@ -31,6 +32,7 @@ const App = () => {
 							</PageTransition>
 						}
 					/>
+
 					<Route
 						path={AppRoutes.About.path}
 						element={
@@ -39,6 +41,7 @@ const App = () => {
 							</PageTransition>
 						}
 					/>
+
 					<Route
 						path={AppRoutes.Projects.path}
 						element={
@@ -47,6 +50,7 @@ const App = () => {
 							</PageTransition>
 						}
 					/>
+
 					<Route
 						path={AppRoutes.Contact.path}
 						element={
@@ -55,6 +59,7 @@ const App = () => {
 							</PageTransition>
 						}
 					/>
+
 					<Route
 						path="*"
 						element={
