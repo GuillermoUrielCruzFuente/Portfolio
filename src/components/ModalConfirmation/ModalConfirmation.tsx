@@ -10,6 +10,10 @@ export type ModalConfirmationProps = {
 const ModalConfirmation = ({ message }: ModalConfirmationProps) => {
 	const transitionConfig: Transition = { type: "keyframes", duration: 0.35 };
 
+	const emitCloseModalEvent = () => {
+		dispatchEvent(new CustomEvent("close-modal"));
+	};
+
 	return (
 		<motion.div
 			initial={{ opacity: 0 }}
@@ -20,14 +24,11 @@ const ModalConfirmation = ({ message }: ModalConfirmationProps) => {
 		>
 			<div className={styles.modalContainer}>
 				<p>{message}</p>
-				
+
 				<Button
 					icon={okIcon}
-					onClick={() => {
-						const closeModalEvent = new CustomEvent("close-modal");
-
-						dispatchEvent(closeModalEvent);
-					}}
+					onClick={emitCloseModalEvent}
+					className={styles.button}
 				>
 					Entendido
 				</Button>
