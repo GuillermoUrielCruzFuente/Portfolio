@@ -1,5 +1,5 @@
-@use '../../scss/layout/z-index.scss' as Z;
-@use '../../scss/base/color';
+@use "/src/styles/layout/z-index.scss" as Z;
+@use "/src/styles/base/color";
 
 nav {
 	width: 100vw;
@@ -11,9 +11,8 @@ nav {
 	z-index: Z.$navbar;
 
 	$state-transition: 700ms;
-	transition: background-color $state-transition,
-		border-bottom $state-transition, $state-transition backdrop-filter,
-		$state-transition box-shadow;
+	transition: background-color $state-transition, border-bottom $state-transition,
+		$state-transition backdrop-filter, $state-transition box-shadow;
 }
 
 #nav-container {
@@ -32,8 +31,7 @@ nav {
 
 	-webkit-backdrop-filter: blur(8px);
 	backdrop-filter: blur(8px);
-	box-shadow: 0px 0px 50px 20px
-		rgba($color: color.$deep-purple-400, $alpha: 0.75);
+	box-shadow: 0px 0px 50px 20px rgba($color: color.$deep-purple-400, $alpha: 0.75);
 	border-bottom: dashed color.$purple-300 2px;
 }
 
