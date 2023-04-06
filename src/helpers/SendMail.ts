@@ -1,14 +1,14 @@
-import timer from './Timer'
+import timer from "./Timer";
 
 export type UserInfo = {
-	name: string
-	mail: string
-	message?: string
-	tel?: string
-}
+	name: string;
+	mail: string;
+	message?: string;
+	tel?: string;
+};
 
-const userId = '27ef0d32aeaebbc2c310fb46c09ca772'
-const mailEndpoint = `https://formsubmit.co/ajax/${userId}`
+const userId = "27ef0d32aeaebbc2c310fb46c09ca772";
+const mailEndpoint = `https://formsubmit.co/ajax/${userId}`;
 
 const sendEmail = async (
 	{ name, mail, message, tel }: UserInfo,
@@ -16,19 +16,17 @@ const sendEmail = async (
 ): Promise<boolean> => {
 	if (dev) {
 		//in order to simulate a request wait certain amount of time
-		await timer(1500)
-		console.log(
-			`name: 		${name}\nemail: 		${mail}\ntel:		${tel}\nmessage: 	${message}\n`
-		)
-		return true
+		await timer(1500);
+		console.log(`name: 		${name}\nemail: 		${mail}\ntel:		${tel}\nmessage: 	${message}\n`);
+		return true;
 	} else {
 		try {
 			//send request to the FORMSUBMIT endpoint
 			const mailRequest = await fetch(mailEndpoint, {
-				method: 'POST',
+				method: "POST",
 				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
+					"Content-Type": "application/json",
+					"Accept": "application/json",
 				},
 				body: JSON.stringify({
 					name: name,
@@ -36,17 +34,17 @@ const sendEmail = async (
 					tel: tel,
 					message: message,
 				}),
-			})
+			});
 
 			//transform the response to JSON in order to read its status
-			const confirmation = await mailRequest.json()
+			const confirmation = await mailRequest.json();
 
-			return confirmation.success
+			return confirmation.success;
 		} catch (error) {
-			console.error(error)
-			return false
+			console.error(error);
+			return false;
 		}
 	}
-}
+};
 
-export default sendEmail
+export default sendEmail;
