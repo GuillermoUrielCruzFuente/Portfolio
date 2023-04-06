@@ -1,13 +1,13 @@
-import type { SocialMediaSite } from '@/data/SocialMediaData'
-import { useRef } from 'react'
-import '@styles/components/SocialMediaLink.scss'
+import type { SocialMediaSite } from "@/data/SocialMediaData";
+import { useRef } from "react";
+import "@styles/components/SocialMediaLink.scss";
 
 const SocialMediaLink = ({ name, url, iconSrc }: SocialMediaSite) => {
-	const linkRef = useRef<HTMLAnchorElement>(null)
+	const linkRef = useRef<HTMLAnchorElement>(null);
 
 	const handleLoad = () => {
-		linkRef.current!.style.opacity = '1'
-	}
+		linkRef.current!.style.opacity = "1";
+	};
 
 	return (
 		<a
@@ -25,7 +25,7 @@ const SocialMediaLink = ({ name, url, iconSrc }: SocialMediaSite) => {
 				onLoad={handleLoad}
 			/>
 		</a>
-	)
-}
+	);
+};
 
-export default SocialMediaLink
+export default SocialMediaLink;
