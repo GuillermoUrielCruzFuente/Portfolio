@@ -3,11 +3,47 @@
 .veil {
 	width: 100vw;
 	height: 100vh;
-	background-color: chartreuse;
 	position: fixed;
 	top: 0;
 	left: 0;
 
+	background-color: #000;
+
+	// es probable que el problema en los zindex
+	// se deba a la creaci{on de un nuevo stacking context
+	// en cada una de las animaciones realizadas
+
+	// github issue ->
+	// https://github.com/framer/motion/issues/1837
+
 	z-index: Z.$veil;
+
 	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.modalContainer {
+	width: min(500px, 100%);
+	display: flex;
+	flex-flow: column nowrap;
+
+	background-color: var(--dark-purple-500);
+	padding: 2rem;
+	border-radius: var(--global-border-radius);
+	box-shadow: var(--purple-shadow);
+
+	p {
+		color: chartreuse;
+		font-weight: 900;
+		width: 100%;
+		text-align: center;
+		margin-block: 2rem;
+	}
+
+	.button {
+		align-self: flex-end;
+		width: fit-content;
+	}
 }
