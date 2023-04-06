@@ -192,9 +192,8 @@ form#contact-form {
 		pointer-events: none;
 
 		$label-animation-duration: 400ms;
-		transition: top $label-animation-duration,
-			left $label-animation-duration, transform $label-animation-duration,
-			opacity $label-animation-duration;
+		transition: top $label-animation-duration, left $label-animation-duration,
+			transform $label-animation-duration, opacity $label-animation-duration;
 		transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 	}
 
@@ -297,33 +296,6 @@ form#contact-form {
 			padding-right: 5rem;
 		}
 	}
-}
-
-$modal-transition-time: 400ms;
-.modal-enter {
-	opacity: 0;
-	// transform: scale(1.25);
-}
-
-.modal-enter-active {
-	opacity: 1;
-	// transform: scale(1);
-
-	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: ease;
-}
-
-.modal-exit {
-	opacity: 1;
-	// transform: scale(1);
-}
-
-.modal-exit-active {
-	opacity: 0;
-	// transform: scale(1.25);
-
-	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: ease;
 }
 
 .modal {
@@ -442,31 +414,4 @@ $modal-transition-time: 400ms;
 	}
 }
 
-$success-transition-time: 800ms;
-.success-enter {
-	opacity: 0;
-	transform: scale(0.5) rotate(8deg) translate(0px, 20px);
-}
-
-.success-enter-active {
-	opacity: 1;
-	transform: scale(1) rotate(0deg) translate(0px, 0px);
-
-	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
-}
-
-.success-exit {
-	opacity: 1;
-	transform: scale(1) rotate(0deg) translate(0px, 0px);
-}
-
-.success-exit-active {
-	opacity: 0;
-	transform: scale(0.5) rotate(8deg) translate(0px, 20px);
-
-	transition: opacity $modal-transition-time, transform $modal-transition-time;
-	transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
-}
-
-@import 'mediaqueries';
+@import "mediaqueries";
