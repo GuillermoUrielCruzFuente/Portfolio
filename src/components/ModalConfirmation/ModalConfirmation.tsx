@@ -22,16 +22,19 @@ const ModalConfirmation = ({ message }: ModalConfirmationProps) => {
 			transition={transitionConfig}
 			className={styles.veil}
 		>
-			<div className={styles.modalContainer}>
-				<p>{message}</p>
+			<div className={styles["modal-container"]}>
+				<div className={styles["animation-container"]}></div>
 
-				<Button
-					icon={okIcon}
-					onClick={emitCloseModalEvent}
-					className={styles.button}
-				>
-					Entendido
-				</Button>
+				<div className={styles["description-container"]}>
+					<p>{message}</p>
+
+					<Button
+						icon={okIcon}
+						onClick={emitCloseModalEvent}
+					>
+						Entendido
+					</Button>
+				</div>
 			</div>
 		</motion.div>
 	);
