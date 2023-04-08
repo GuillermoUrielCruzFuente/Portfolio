@@ -7,7 +7,7 @@
 	top: 0;
 	left: 0;
 
-	background-color: #000;
+	background-color: #000e;
 
 	// es probable que el problema en los zindex
 	// se deba a la creaci{on de un nuevo stacking context
@@ -24,26 +24,33 @@
 	justify-content: center;
 }
 
-.modalContainer {
-	width: min(500px, 100%);
+.modal-container {
+	width: min(320px, 100%);
 	display: flex;
 	flex-flow: column nowrap;
 
 	background-color: var(--dark-purple-500);
-	padding: 2rem;
 	border-radius: var(--global-border-radius);
 	box-shadow: var(--purple-shadow);
+}
+
+.animation-container {
+	width: 100%;
+	height: 280px;
+	background-color: black;
+	border-radius: var(--global-border-radius) var(--global-border-radius) 0 0;
+}
+
+.description-container {
+	padding: 1.25rem;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
 
 	p {
-		color: chartreuse;
-		font-weight: 900;
 		width: 100%;
+		font-size: 0.7rem !important;
+		margin-block: 1rem;
 		text-align: center;
-		margin-block: 2rem;
-	}
-
-	.button {
-		align-self: flex-end;
-		width: fit-content;
 	}
 }
