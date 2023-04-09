@@ -32,8 +32,8 @@ export default function Contact() {
 	}, []);
 
 	const closeModalHandler = () => {
-		console.log("closing modal...");
 		setIsMounted(false);
+		changeScrollbarState({ isVisible: true });
 	};
 
 	const nameInput = useInput({
@@ -219,7 +219,7 @@ export default function Contact() {
 
 			<AnimatePresence>
 				{isMounted && (
-					<ModalConfirmation message="Tu mensaje ha sido enviado exitosamente" />
+					<ModalConfirmation message="Tu mensaje ha sido enviado de manera exitosa, pronto me pondré en contacto contigo 🙂" />
 				)}
 			</AnimatePresence>
 		</header>
