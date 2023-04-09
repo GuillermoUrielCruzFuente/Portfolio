@@ -4,14 +4,13 @@
 	--navbar-height: 70px;
 
 	//color schema
-	--dark-purple-500: #{color.$dark-purple-500};
-	--deep-purple-400: #{color.$deep-purple-400};
+	--purple-100: #{color.$purple-100};
+	--purple-200: #{color.$purple-200};
 	--purple-300: #{color.$purple-300};
-	--light-purple-200: #{color.$light-purple-200};
-	--lightest-purple-100: #{color.$lightest-purple-100};
+	--purple-400: #{color.$purple-400};
+	--purple-500: #{color.$purple-500};
+	--purple-600: #{color.$purple-600};
 
 	//details
 	--global-border-radius: 0.75rem;
-	--deep-shadow: 0px 0px 100px 10px #000;
-	--purple-shadow: 0px 0px 100px 10px var(--purple-300);
 }
