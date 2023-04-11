@@ -27,11 +27,11 @@ nav {
 
 //style applied on Scroll event
 .blur-bg {
-	background-color: rgba($color: color.$dark-purple-500, $alpha: 0.75);
+	background-color: rgba($color: color.$purple-500, $alpha: 0.75);
 
 	-webkit-backdrop-filter: blur(8px);
 	backdrop-filter: blur(8px);
-	box-shadow: 0px 0px 50px 20px rgba($color: color.$deep-purple-400, $alpha: 0.75);
+	box-shadow: 0px 0px 50px 20px rgba($color: color.$purple-400, $alpha: 0.75);
 	border-bottom: dashed color.$purple-300 2px;
 }
 
