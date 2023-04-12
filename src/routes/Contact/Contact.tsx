@@ -20,22 +20,12 @@ import sendIcon from "../../static/img/icons/home-buttons/plane.svg";
 import { FormModal } from "@/components/FormModal";
 import { ModalConfirmation } from "@/components/ModalConfirmation";
 import changeScrollbarState from "@/helpers/ChangeScrollbarState";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, Target, Transition, motion } from "framer-motion";
+import { LoadingNotification } from "@/components/LoadingNotification";
+import { Veil } from "@/components/Veil";
+import { Button } from "@/components/Button";
 
-export default function Contact() {
-	useEffect(() => {
-		window.addEventListener("close-modal", closeModalHandler);
-
-		return () => {
-			window.removeEventListener("close-modal", closeModalHandler);
-		};
-	}, []);
-
-	const closeModalHandler = () => {
-		setIsMounted(false);
-		changeScrollbarState({ isVisible: true });
-	};
-
+const Contact = () => {
 	const nameInput = useInput({
 		name: "nombre",
 		img: userIcon,
@@ -87,22 +77,29 @@ export default function Contact() {
 	const isValidAndFilled = (input: InputValidation): boolean =>
 		input.isValid && input.getValue() != "";
 
-	const modalControl = useState(false);
+	const [isSendingMessage, setIsSendingMessage] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const [success, setSuccess] = useState(false);
-	const [waiting, setWaiting] = useState(false);
-	const [isMounted, setIsMounted] = useState(false);
-
-	//form send mail confirmation
-
-	const openModal = () => {
-		// setModalState(true)
-		modalControl[1](true);
+	const getComponentBasedOnMessageResolution = () => {
+		return <h1>Hola</h1>;
 	};
 
-	const closeModal = () => {
-		// setModalState(false)
-		modalControl[1](false);
+	const removeCurrentFocus = () => {
+		const currentFocusedComponent = document.activeElement as HTMLElement;
+		currentFocusedComponent.blur();
+	};
+
+	/**
+	 * todo: intercept the tab key event and make a preventDefault
+	 */
+	const disableTabNavigation = () => {};
+
+	const initModalSequence = () => {
+		setIsModalOpen(true);
+
+		removeCurrentFocus();
+		disableTabNavigation();
+		changeScrollbarState({ isVisible: false });
 	};
 
 	const showWrongInput = () => {
@@ -126,22 +123,15 @@ export default function Contact() {
 
 		//check the inputs validity
 		if (inputsAreValid) {
-			openModal();
+			initModalSequence();
 
-			// await timer(200)
-			setWaiting(true);
-			setSuccess(false);
+			setIsSendingMessage(true);
 
-			const isSuccessful = await sendEmail(getDataFromInputs(), true);
+			const isSuccessfullySentMessage = await sendEmail(getDataFromInputs(), true);
 
-			if (isSuccessful) {
-				//change the confirmation state
-				setWaiting(false);
-				setSuccess(true);
+			if (isSuccessfullySentMessage) {
 			} else {
 				alert("hubo un error al enviar el mensaje, intente más tarde, por favor.");
-
-				closeModal();
 			}
 		} else {
 			showWrongInput();
@@ -199,29 +189,34 @@ export default function Contact() {
 						{emailInput.render}
 						{phoneInput.render}
 
-						<button
+						<Button
 							className="send"
-							type="submit"
-							onClick={() => {
-								setIsMounted(!isMounted);
-								changeScrollbarState({ isVisible: false });
-							}}
+							icon={sendIcon}
 						>
-							<img
-								src={sendIcon}
-								alt="send icon"
-							/>
 							enviar
-						</button>
+						</Button>
 					</form>
 				</div>
 			</div>
 
 			<AnimatePresence>
-				{isMounted && (
-					<ModalConfirmation message="Tu mensaje ha sido enviado de manera exitosa, pronto me pondré en contacto contigo 🙂" />
+				{isModalOpen && (
+					<Veil>
+						<AnimatePresence mode="wait">
+							{isSendingMessage ? (
+								<LoadingNotification
+									message="Tu mensaje se está enviando"
+									key="loading-notification"
+								/>
+							) : (
+								getComponentBasedOnMessageResolution()
+							)}
+						</AnimatePresence>
+					</Veil>
 				)}
 			</AnimatePresence>
 		</header>
 	);
-}
+};
+
+export default Contact;
