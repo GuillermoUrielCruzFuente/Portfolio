@@ -27,7 +27,7 @@
 	//if the link is hovered or focused and is not active
 	//then apply color and border properties
 	&:is(:hover, :focus):not(.fancy-link-active) {
-		color: var(--lightest-purple-100);
+		color: var(--purple-100);
 		border: 2px dashed var(--purple-300);
 	}
 
@@ -86,7 +86,7 @@
 			width: 0%;
 
 			height: 0.15rem;
-			background-color: var(--light-purple-200);
+			background-color: var(--purple-200);
 
 			transition: width 500ms;
 			transition-timing-function: ease;
@@ -98,7 +98,7 @@
 }
 
 .fancy-link-active {
-	color: var(--light-purple-200);
+	color: var(--purple-200);
 }
 
 .fancy-link-pending {
