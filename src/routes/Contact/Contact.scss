@@ -65,38 +65,9 @@ form#contact-form {
 		margin-top: 1rem;
 	}
 
-	button.send {
-		background-color: #65067a;
-		border: none;
-		display: flex;
-		flex-flow: row;
-		align-items: center;
-		justify-content: center;
-		color: #f5c8ff;
-		font-weight: 900;
+	.send {
 		margin-top: 1.5rem;
-		border-radius: 0.5rem;
-		font-size: 0.8rem;
-		cursor: pointer;
-		transition: background-color 300ms, box-shadow 300ms;
-		box-shadow: 2px 2px 8px rgba($color: #000, $alpha: 0.5);
 		margin-left: auto;
-		width: -webkit-fit-content;
-		width: -moz-fit-content;
-		width: fit-content;
-		padding: 0.75rem 1.5rem;
-
-		&:hover {
-			background-color: #9507b4;
-			box-shadow: 2px 2px 8px rgba($color: #5e0874, $alpha: 1);
-		}
-
-		img {
-			$icon-size: 20px;
-			width: $icon-size;
-			height: $icon-size;
-			margin-right: 0.35rem;
-		}
 	}
 }
 
