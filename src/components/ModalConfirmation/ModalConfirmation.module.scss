@@ -1,4 +1,5 @@
 @use "@styles/layout/z-index" as Z;
+@use "@styles/utilities/mixins";
 
 .veil {
 	width: 100vw;
@@ -7,7 +8,7 @@
 	top: 0;
 	left: 0;
 
-	background-color: #000e;
+	background-color: rgba($color: #000000, $alpha: 0.9);
 
 	// es probable que el problema en los zindex
 	// se deba a la creaci{on de un nuevo stacking context
@@ -29,15 +30,15 @@
 	display: flex;
 	flex-flow: column nowrap;
 
-	background-color: var(--dark-purple-500);
+	background-color: var(--purple-500);
 	border-radius: var(--global-border-radius);
-	box-shadow: var(--purple-shadow);
+	@include mixins.shadow(rgba($color: #e8bef2, $alpha: 0.25));
 }
 
 .animation-container {
 	width: 100%;
 	height: 280px;
-	background-color: black;
+	background-color: var(--purple-600);
 	border-radius: var(--global-border-radius) var(--global-border-radius) 0 0;
 }
 
