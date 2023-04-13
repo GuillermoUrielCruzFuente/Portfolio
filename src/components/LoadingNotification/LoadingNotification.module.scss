@@ -1,23 +1,25 @@
-@use "sass:math";
+@use "@styles/utilities/mixins";
+@use "@styles/base/color";
 
-$item-separation: 1.75rem;
+$item-separation: 1.5rem;
 
 .container {
-	width: min(80%, 250px);
+	max-width: 80%;
 	height: fit-content;
 
 	display: flex;
 	align-items: center;
-	gap: math.div($item-separation, 2);
-	background-color: var(--dark-purple-500);
+	gap: $item-separation;
+	background-color: var(--purple-600);
 	padding: $item-separation;
 	border-radius: var(--global-border-radius);
-	box-shadow: var(--deep-shadow);
+
+	@include mixins.shadow(rgba($color: color.$purple-300, $alpha: 0.75));
 }
 
 .message {
 	font-weight: 900;
-	font-size: 0.7rem !important;
+	font-size: 0.75rem !important;
 }
 
 .loader {
