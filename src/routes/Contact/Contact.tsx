@@ -4,26 +4,26 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import "./Contact.scss";
 
 //custom components and hooks
-import useInput, { InputValidation } from "../../components/useInput/useInput";
-import useTextarea from "../../components/useTextarea/useTextarea";
-import sendEmail, { UserInfo } from "../../helpers/SendMail";
-// import FormModal from "../../components/FormModal/FormModal";
-import SocialMedia from "../../components/SocialMedia/SocialMedia";
-import DownloadPDF from "../../components/DownloadPDF/DownloadPDF";
+import useInput, { InputValidation } from "@components/useInput/useInput";
+import useTextarea from "@components/useTextarea/useTextarea";
+
+import sendEmail, { UserInfo } from "@/helpers/SendMail";
+import SocialMedia from "@components/SocialMedia/SocialMedia";
+import DownloadPDF from "@components/DownloadPDF/DownloadPDF";
 
 //iconst for UI
-import emailIcon from "../../static/img/icons/social-media/email.svg";
-import userIcon from "../../static/img/icons/contact/user.svg";
-import messageIcon from "../../static/img/icons/contact/message.svg";
-import telIcon from "../../static/img/icons/contact/tel.svg";
-import sendIcon from "../../static/img/icons/home-buttons/plane.svg";
-import { FormModal } from "@/components/FormModal";
-import { ModalConfirmation } from "@/components/ModalConfirmation";
+import emailIcon from "@images/icons/social-media/email.svg";
+import userIcon from "@images/icons/contact/user.svg";
+import messageIcon from "@images/icons/contact/message.svg";
+import telIcon from "@images/icons/contact/tel.svg";
+import sendIcon from "@images/icons/home-buttons/plane.svg";
+
+import { ModalConfirmation } from "@components/ModalConfirmation";
 import changeScrollbarState from "@/helpers/ChangeScrollbarState";
-import { AnimatePresence, Target, Transition, motion } from "framer-motion";
-import { LoadingNotification } from "@/components/LoadingNotification";
-import { Veil } from "@/components/Veil";
-import { Button } from "@/components/Button";
+import { AnimatePresence } from "framer-motion";
+import { LoadingNotification } from "@components/LoadingNotification";
+import { Veil } from "@components/Veil";
+import { Button } from "@components/Button";
 
 const Contact = () => {
 	const nameInput = useInput({
