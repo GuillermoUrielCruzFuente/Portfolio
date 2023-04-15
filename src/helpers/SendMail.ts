@@ -7,33 +7,33 @@ export type UserInfo = {
 	tel?: string;
 };
 
-const userId = "27ef0d32aeaebbc2c310fb46c09ca772";
-const mailEndpoint = `https://formsubmit.co/ajax/${userId}`;
+type SendMailArgs = {
+	userInfo: UserInfo;
+	devMode?: {
+		fakeRequestDelay: number;
+	};
+};
 
-const sendEmail = async (
-	{ name, mail, message, tel }: UserInfo,
-	dev?: boolean
-): Promise<boolean> => {
-	if (dev) {
-		//in order to simulate a request wait certain amount of time
-		await timer(1500);
-		console.log(`name: 		${name}\nemail: 		${mail}\ntel:		${tel}\nmessage: 	${message}\n`);
+const USER_ID = "27ef0d32aeaebbc2c310fb46c09ca772";
+const MAIL_ENDPOINT = `https://formsubmit.co/ajax/${USER_ID}`;
+
+const sendEmail = async ({ userInfo, devMode }: SendMailArgs): Promise<boolean> => {
+	if (devMode) {
+		await timer(devMode.fakeRequestDelay);
+
+		console.log(userInfo);
+
 		return true;
 	} else {
 		try {
 			//send request to the FORMSUBMIT endpoint
-			const mailRequest = await fetch(mailEndpoint, {
+			const mailRequest = await fetch(MAIL_ENDPOINT, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 					"Accept": "application/json",
 				},
-				body: JSON.stringify({
-					name: name,
-					mail: mail,
-					tel: tel,
-					message: message,
-				}),
+				body: JSON.stringify(userInfo),
 			});
 
 			//transform the response to JSON in order to read its status
