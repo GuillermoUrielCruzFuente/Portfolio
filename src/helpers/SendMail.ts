@@ -1,4 +1,4 @@
-import timer from "./Timer";
+import timer from "@/helpers/Timer";
 
 export type UserInfo = {
 	name: string;
