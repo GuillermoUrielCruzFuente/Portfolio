@@ -8,7 +8,9 @@
 
 	background-color: var(--purple-500);
 	border-radius: var(--global-border-radius);
+	box-sizing: border-box;
 	@include mixins.shadow(rgba($color: color.$purple-400, $alpha: 0.5));
+	@include mixins.border();
 }
 
 .animation-container {
@@ -19,15 +21,14 @@
 }
 
 .description-container {
-	padding: 1.25rem;
+	$spacing: 1.25rem;
+
+	padding: $spacing;
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 1rem;
+	gap: $spacing;
 
 	p {
-		width: 100%;
 		font-size: 0.7rem !important;
-		margin-block: 1rem;
-		text-align: center;
 	}
 }
