@@ -13,7 +13,11 @@ const loadingNotificationVariants: Variants = {
 		opacity: 0,
 		scale: 0.35,
 		rotate: 20,
-		transition: ANTICIPATE_TRANSITION,
+		transition: {
+			...ANTICIPATE_TRANSITION,
+			duration: 0.5,
+			delay: 0.5,
+		},
 	},
 	mounted: {
 		opacity: 1,
