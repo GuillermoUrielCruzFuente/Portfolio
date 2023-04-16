@@ -15,10 +15,10 @@ $item-separation: 1.5rem;
 	border-radius: var(--global-border-radius);
 
 	@include mixins.shadow(rgba($color: color.$purple-300, $alpha: 0.75));
+	@include mixins.border();
 }
 
 .message {
-	font-weight: 900;
 	font-size: 0.75rem !important;
 }
 
