@@ -11,6 +11,7 @@ type SendMailArgs = {
 	userInfo: UserInfo;
 	devMode?: {
 		fakeRequestDelay: number;
+		fakeStatus: boolean;
 	};
 };
 
@@ -23,7 +24,7 @@ const sendEmail = async ({ userInfo, devMode }: SendMailArgs): Promise<boolean> 
 
 		console.log(userInfo);
 
-		return true;
+		return devMode.fakeStatus;
 	} else {
 		try {
 			//send request to the FORMSUBMIT endpoint
