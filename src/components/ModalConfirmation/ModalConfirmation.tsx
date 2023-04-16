@@ -5,7 +5,11 @@ import okIcon from "@images/icons/ok.svg";
 import { ANTICIPATE_TRANSITION } from "@/data/TransitionConfigurations";
 
 export type ModalConfirmationProps = {
-	message: string;
+	success: boolean;
+	messages: {
+		success: string;
+		error: string;
+	};
 };
 
 const modalConfirmationVariants: Variants = {
@@ -23,7 +27,7 @@ const modalConfirmationVariants: Variants = {
 	},
 };
 
-const ModalConfirmation = ({ message }: ModalConfirmationProps) => {
+const ModalConfirmation = ({ messages, success }: ModalConfirmationProps) => {
 	const emitCloseModalEvent = () => {
 		dispatchEvent(new CustomEvent("close-modal"));
 	};
@@ -39,7 +43,7 @@ const ModalConfirmation = ({ message }: ModalConfirmationProps) => {
 			<div className={styles["animation-container"]}></div>
 
 			<div className={styles["description-container"]}>
-				<p>{message}</p>
+				<p>{success ? messages.success : messages.error}</p>
 
 				<Button
 					icon={okIcon}
