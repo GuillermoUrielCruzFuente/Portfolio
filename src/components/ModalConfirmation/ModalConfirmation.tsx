@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import { Button } from "@components/Button";
 import styles from "./ModalConfirmation.module.scss";
 import { Variants, motion } from "framer-motion";
 import okIcon from "@images/icons/ok.svg";
