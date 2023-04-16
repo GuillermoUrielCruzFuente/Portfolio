@@ -1,3 +1,5 @@
+@use "@styles/base/color";
+
 @mixin absolute-center {
 	position: absolute;
 	top: 50%;
@@ -7,4 +9,8 @@
 
 @mixin shadow($color: #000) {
 	box-shadow: 0px 0px 150px 24px $color;
+}
+
+@mixin border($color: color.$purple-350) {
+	border: dashed $color 2px;
 }
