@@ -1,5 +1,5 @@
 import styles from "./LoadingNotification.module.scss";
-import Loader from "../Loader/Loader";
+import { Loader } from "@components/Loader";
 import { motion, Variants } from "framer-motion";
 import { ANTICIPATE_TRANSITION } from "@/data/TransitionConfigurations";
 
