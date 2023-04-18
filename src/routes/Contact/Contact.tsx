@@ -26,6 +26,21 @@ import { Veil } from "@components/Veil";
 import { Button } from "@components/Button";
 
 const Contact = () => {
+	useEffect(() => {
+		window.addEventListener("close-modal", handleCloseModal);
+
+		return () => {
+			window.removeEventListener("close-modal", handleCloseModal);
+		};
+	}, []);
+
+	const handleCloseModal = () => changeModalState({ isOpen: false });
+
+	const changeModalState = ({ isOpen }: { isOpen: boolean }) => {
+		setIsModalOpen(isOpen);
+		changeScrollbarState({ isVisible: !isOpen });
+	};
+
 	const nameInput = useInput({
 		name: "nombre",
 		img: userIcon,
