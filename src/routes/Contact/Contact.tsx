@@ -94,10 +94,7 @@ const Contact = () => {
 
 	const [isSendingMessage, setIsSendingMessage] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const getComponentBasedOnMessageResolution = () => {
-		return <h1>Hola</h1>;
-	};
+	const [successMessage, setSuccessMessage] = useState(false);
 
 	const removeCurrentFocus = () => {
 		const currentFocusedComponent = document.activeElement as HTMLElement;
@@ -110,14 +107,13 @@ const Contact = () => {
 	const disableTabNavigation = () => {};
 
 	const initModalSequence = () => {
-		setIsModalOpen(true);
+		changeModalState({ isOpen: true });
 
 		removeCurrentFocus();
 		disableTabNavigation();
-		changeScrollbarState({ isVisible: false });
 	};
 
-	const showWrongInput = () => {
+	const shakeInvalidInput = () => {
 		if (!nameInput.isValid) nameInput.shakeLabel();
 		else if (!messageTextArea.isValid) messageTextArea.shakeLabel();
 		else if (!emailInput.isValid) emailInput.shakeLabel();
@@ -142,14 +138,18 @@ const Contact = () => {
 
 			setIsSendingMessage(true);
 
-			const isSuccessfullySentMessage = await sendEmail(getDataFromInputs(), true);
+			const messageStatus = await sendEmail({
+				userInfo: getDataFromInputs(),
+				devMode: import.meta.env.DEV
+					? { fakeRequestDelay: 1000, fakeStatus: false }
+					: undefined,
+			});
 
-			if (isSuccessfullySentMessage) {
-			} else {
-				alert("hubo un error al enviar el mensaje, intente más tarde, por favor.");
-			}
+			setIsSendingMessage(false);
+
+			setSuccessMessage(messageStatus);
 		} else {
-			showWrongInput();
+			shakeInvalidInput();
 		}
 	};
 
@@ -194,6 +194,7 @@ const Contact = () => {
 						<h1 className="form-title">Envíame un mensaje</h1>
 
 						{nameInput.render}
+
 						{messageTextArea.render}
 
 						<p className="form-text">
@@ -202,6 +203,7 @@ const Contact = () => {
 						</p>
 
 						{emailInput.render}
+
 						{phoneInput.render}
 
 						<Button
@@ -220,11 +222,19 @@ const Contact = () => {
 						<AnimatePresence mode="wait">
 							{isSendingMessage ? (
 								<LoadingNotification
-									message="Tu mensaje se está enviando"
 									key="loading-notification"
+									message="Tu mensaje se está enviando..."
 								/>
 							) : (
-								getComponentBasedOnMessageResolution()
+								<ModalConfirmation
+									key="modal-confirmation"
+									messages={{
+										success:
+											"Tu mensaje ha sido enviado con exito! Pronto me comunicaré contigo.",
+										error: "Hubo un error al enviar el mensaje, inténtalo más tarde, por favor.",
+									}}
+									success={successMessage}
+								/>
 							)}
 						</AnimatePresence>
 					</Veil>
