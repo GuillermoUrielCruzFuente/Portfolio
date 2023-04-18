@@ -22,7 +22,7 @@ const sendEmail = async ({ userInfo, devMode }: SendMailArgs): Promise<boolean> 
 	if (devMode) {
 		await timer(devMode.fakeRequestDelay);
 
-		console.log(userInfo);
+		devMode.fakeStatus && console.log(userInfo);
 
 		return devMode.fakeStatus;
 	} else {
