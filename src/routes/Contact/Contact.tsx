@@ -26,6 +26,8 @@ import { Veil } from "@components/Veil";
 import { Button } from "@components/Button";
 
 const Contact = () => {
+	const isDevMode = import.meta.env.DEV;
+
 	useEffect(() => {
 		window.addEventListener("close-modal", handleCloseModal);
 
@@ -132,17 +134,14 @@ const Contact = () => {
 		//prevent page reload
 		event.preventDefault();
 
-		//check the inputs validity
-		if (inputsAreValid) {
+		if (inputsAreValid || isDevMode) {
 			initModalSequence();
 
 			setIsSendingMessage(true);
 
 			const messageStatus = await sendEmail({
 				userInfo: getDataFromInputs(),
-				devMode: import.meta.env.DEV
-					? { fakeRequestDelay: 1000, fakeStatus: false }
-					: undefined,
+				devMode: isDevMode ? { fakeRequestDelay: 1000, fakeStatus: false } : undefined,
 			});
 
 			setIsSendingMessage(false);
