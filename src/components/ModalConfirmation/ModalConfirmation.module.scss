@@ -9,8 +9,6 @@
 	background-color: var(--purple-500);
 	border-radius: var(--global-border-radius);
 	box-sizing: border-box;
-	@include mixins.shadow(rgba($color: color.$purple-400, $alpha: 0.5));
-	@include mixins.border();
 }
 
 .animation-container {
@@ -31,4 +29,22 @@
 	p {
 		font-size: 0.7rem !important;
 	}
+}
+
+.success-state {
+	@include mixins.shadow(rgba($color: color.$purple-400, $alpha: 0.5));
+	@include mixins.border();
+}
+
+.error-state {
+	@include mixins.shadow(rgba($color: color.$red-300, $alpha: 0.25));
+	@include mixins.border(color.$red-400);
+}
+
+.success-description {
+	color: color.$purple-100 !important;
+}
+
+.error-description {
+	color: color.$red-100 !important;
 }
