@@ -12,7 +12,7 @@ import SocialMedia from "@components/SocialMedia/SocialMedia";
 import DownloadPDF from "@components/DownloadPDF/DownloadPDF";
 
 //iconst for UI
-import emailIcon from "@images/icons/social-media/email.svg";
+import emailIcon from "@images/icons/contact/email.svg";
 import userIcon from "@images/icons/contact/user.svg";
 import messageIcon from "@images/icons/contact/message.svg";
 import telIcon from "@images/icons/contact/tel.svg";
