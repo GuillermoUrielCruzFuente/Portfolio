@@ -41,15 +41,23 @@ const ModalConfirmation = ({ messages, success }: ModalConfirmationProps) => {
 			animate="mounted"
 			exit="unmounted"
 			variants={modalConfirmationVariants}
-			className={styles["modal-container"]}
+			className={`${styles["modal-container"]} ${
+				success ? styles["success-state"] : styles["error-state"]
+			}`}
 		>
 			<div className={styles["animation-container"]}></div>
 
 			<div className={styles["description-container"]}>
-				<p>{success ? messages.success : messages.error}</p>
+				<p
+					className={
+						success ? styles["success-description"] : styles["error-description"]
+					}
+				>
+					{success ? messages.success : messages.error}
+				</p>
 
 				<Button
-					icon={okIcon}
+					icon={success ? successIcon : errorIcon}
 					onClick={emitCloseModalEvent}
 				>
 					Entendido
