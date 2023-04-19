@@ -1,7 +1,10 @@
 import { Button } from "@components/Button";
 import styles from "./ModalConfirmation.module.scss";
 import { Variants, motion } from "framer-motion";
-import okIcon from "@images/icons/ok.svg";
+
+import successIcon from "@images/icons/ok.svg";
+import errorIcon from "@images/icons/error.svg";
+
 import { ANTICIPATE_TRANSITION } from "@/data/TransitionConfigurations";
 
 export type ModalConfirmationProps = {
