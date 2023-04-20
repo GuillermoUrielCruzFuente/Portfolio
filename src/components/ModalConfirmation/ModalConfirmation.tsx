@@ -6,12 +6,19 @@ import successIcon from "@images/icons/ok.svg";
 import errorIcon from "@images/icons/error.svg";
 
 import { ANTICIPATE_TRANSITION } from "@/data/TransitionConfigurations";
+import { AnimationConfigWithData } from "lottie-web";
+import useLottie from "@/hooks/useLottie";
 
 export type ModalConfirmationProps = {
 	success: boolean;
 	messages: {
 		success: string;
 		error: string;
+	};
+	animationData: {
+		data:
+			| Pick<AnimationConfigWithData, "animationData">
+			| Pick<AnimationConfigWithData, "animationData">[];
 	};
 };
 
@@ -30,10 +37,12 @@ const modalConfirmationVariants: Variants = {
 	},
 };
 
-const ModalConfirmation = ({ messages, success }: ModalConfirmationProps) => {
+const ModalConfirmation = ({ messages, success, animationData }: ModalConfirmationProps) => {
 	const emitCloseModalEvent = () => {
 		dispatchEvent(new CustomEvent("close-modal"));
 	};
+
+	const generateAnimations = () => {};
 
 	return (
 		<motion.div
