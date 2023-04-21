@@ -41,6 +41,7 @@ const Contact = () => {
 	const changeModalState = ({ isOpen }: { isOpen: boolean }) => {
 		setIsModalOpen(isOpen);
 		changeScrollbarState({ isVisible: !isOpen });
+		isOpen ? disableTabNavigation() : enableTabNavigation();
 	};
 
 	const nameInput = useInput({
@@ -108,11 +109,12 @@ const Contact = () => {
 	 */
 	const disableTabNavigation = () => {};
 
+	const enableTabNavigation = () => {};
+
 	const initModalSequence = () => {
 		changeModalState({ isOpen: true });
 
 		removeCurrentFocus();
-		disableTabNavigation();
 	};
 
 	const shakeInvalidInput = () => {
