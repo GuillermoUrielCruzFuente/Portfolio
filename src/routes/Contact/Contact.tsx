@@ -24,10 +24,11 @@ import { AnimatePresence } from "framer-motion";
 import { LoadingNotification } from "@components/LoadingNotification";
 import { Veil } from "@components/Veil";
 import { Button } from "@components/Button";
+import { disableTabNavigation, enableTabNavigation } from "@/helpers/PreventTabNavigation";
+import { removeCurrentFocus } from "@/helpers/RemoveCurrentFocus";
+import { isDevMode } from "@/helpers/IsDevMode";
 
 const Contact = () => {
-	const isDevMode = import.meta.env.DEV;
-
 	useEffect(() => {
 		window.addEventListener("close-modal", handleCloseModal);
 
