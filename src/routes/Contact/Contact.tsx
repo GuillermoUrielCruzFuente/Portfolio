@@ -93,8 +93,7 @@ const Contact = () => {
 		return false;
 	};
 
-	const isValidAndFilled = (input: InputValidation): boolean =>
-		input.isValid && input.getValue() != "";
+	const isValidAndFilled = (input: InputValidation) => input.isValid && input.getValue() != "";
 
 	const [isSendingMessage, setIsSendingMessage] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
