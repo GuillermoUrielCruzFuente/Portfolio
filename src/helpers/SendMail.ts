@@ -7,12 +7,14 @@ export type UserInfo = {
 	tel?: string;
 };
 
-type SendMailArgs = {
+export type DevModeConfig = {
+	fakeRequestDelay: number;
+	fakeStatus: boolean;
+};
+
+export type SendMailArgs = {
 	userInfo: UserInfo;
-	devMode?: {
-		fakeRequestDelay: number;
-		fakeStatus: boolean;
-	};
+	devMode?: DevModeConfig;
 };
 
 const USER_ID = "27ef0d32aeaebbc2c310fb46c09ca772";
