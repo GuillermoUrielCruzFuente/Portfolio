@@ -99,18 +99,6 @@ const Contact = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [successMessage, setSuccessMessage] = useState(false);
 
-	const removeCurrentFocus = () => {
-		const currentFocusedComponent = document.activeElement as HTMLElement;
-		currentFocusedComponent.blur();
-	};
-
-	/**
-	 * todo: intercept the tab key event and make a preventDefault
-	 */
-	const disableTabNavigation = () => {};
-
-	const enableTabNavigation = () => {};
-
 	const initModalSequence = () => {
 		changeModalState({ isOpen: true });
 
