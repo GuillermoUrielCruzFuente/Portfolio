@@ -131,7 +131,7 @@ const Contact = () => {
 
 			const messageStatus = await sendEmail({
 				userInfo: getDataFromInputs(),
-				devMode: isDevMode ? { fakeRequestDelay: 1000, fakeStatus: false } : undefined,
+				devMode: isDevMode ? { fakeRequestDelay: 1000, fakeStatus: true } : undefined,
 			});
 
 			setIsSendingMessage(false);
@@ -223,6 +223,7 @@ const Contact = () => {
 										error: "Hubo un error al enviar el mensaje, inténtalo más tarde, por favor.",
 									}}
 									success={successMessage}
+									animationData={{ data: {} }}
 								/>
 							)}
 						</AnimatePresence>
