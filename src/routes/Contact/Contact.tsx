@@ -7,7 +7,7 @@ import "./Contact.scss";
 import useInput, { InputValidation } from "@components/useInput/useInput";
 import useTextarea from "@components/useTextarea/useTextarea";
 
-import sendEmail, { UserInfo } from "@/helpers/SendMail";
+import sendEmail, { DevModeConfig, UserInfo } from "@/helpers/SendMail";
 import SocialMedia from "@components/SocialMedia/SocialMedia";
 import DownloadPDF from "@components/DownloadPDF/DownloadPDF";
 
@@ -120,6 +120,15 @@ const Contact = () => {
 		tel: phoneInput.getValue(),
 	});
 
+	const getDevModeEmailConfig = () => {
+		const config: DevModeConfig = {
+			fakeRequestDelay: 1500,
+			fakeStatus: true,
+		};
+
+		return isDevMode ? config : undefined;
+	};
+
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		//prevent page reload
 		event.preventDefault();
@@ -131,7 +140,7 @@ const Contact = () => {
 
 			const messageStatus = await sendEmail({
 				userInfo: getDataFromInputs(),
-				devMode: isDevMode ? { fakeRequestDelay: 1000, fakeStatus: true } : undefined,
+				devMode: getDevModeEmailConfig(),
 			});
 
 			setIsSendingMessage(false);
