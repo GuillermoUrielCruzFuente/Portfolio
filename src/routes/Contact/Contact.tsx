@@ -1,4 +1,4 @@
-import { useState, useEffect, SyntheticEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 
 //styles
 import "./Contact.scss";
@@ -132,7 +132,7 @@ const Contact = () => {
 		tel: phoneInput.getValue(),
 	});
 
-	const handleSubmit = async (event: SyntheticEvent) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		//prevent page reload
 		event.preventDefault();
 
