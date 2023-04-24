@@ -6,8 +6,9 @@ import successIcon from "@images/icons/ok.svg";
 import errorIcon from "@images/icons/error.svg";
 
 import { ANTICIPATE_TRANSITION } from "@/data/TransitionConfigurations";
-import { AnimationConfigWithData } from "lottie-web";
 import useLottie from "@/hooks/useLottie";
+import LottieAnimationSequence from "@components/LottieSequence";
+import type { LottieData } from "@typing/LottieTypes";
 
 export type ModalConfirmationProps = {
 	success: boolean;
@@ -15,11 +16,7 @@ export type ModalConfirmationProps = {
 		success: string;
 		error: string;
 	};
-	animationData: {
-		data:
-			| Pick<AnimationConfigWithData, "animationData">
-			| Pick<AnimationConfigWithData, "animationData">[];
-	};
+	animationData?: LottieData | LottieData[];
 };
 
 const modalConfirmationVariants: Variants = {
@@ -42,8 +39,6 @@ const ModalConfirmation = ({ messages, success, animationData }: ModalConfirmati
 		dispatchEvent(new CustomEvent("close-modal"));
 	};
 
-	const generateAnimations = () => {};
-
 	return (
 		<motion.div
 			initial="unmounted"
@@ -54,7 +49,17 @@ const ModalConfirmation = ({ messages, success, animationData }: ModalConfirmati
 				success ? styles["success-state"] : styles["error-state"]
 			}`}
 		>
-			<div className={styles["animation-container"]}></div>
+			<div className={styles["animation-container"]}>
+				{animationData instanceof Array ? (
+					<LottieAnimationSequence
+						containerClass={styles["lottie-container"]}
+						animationFiles={animationData}
+						keepLastAnimationFrame
+					/>
+				) : (
+					<h1>Exito!</h1>
+				)}
+			</div>
 
 			<div className={styles["description-container"]}>
 				<p
