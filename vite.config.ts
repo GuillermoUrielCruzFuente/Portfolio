@@ -20,6 +20,7 @@ export default defineConfig({
 			"@styles": path.resolve(__dirname, "./src/styles"),
 			"@images": path.resolve(__dirname, "./src/static/img"),
 			"@routes": path.resolve(__dirname, "./src/routes"),
+			"@typing": path.resolve(__dirname, "./src/types"),
 		},
 	},
 });

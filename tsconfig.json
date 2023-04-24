@@ -22,7 +22,8 @@
 			"@components/*": ["./components/*"],
 			"@styles/*": ["./styles/*"],
 			"@images/*": ["./static/img/*"],
-			"@routes/*": ["./routes/*"]
+			"@routes/*": ["./routes/*"],
+			"@typing/*": ["./typing/*"]
 		}
 	},
 	"include": ["src"],
