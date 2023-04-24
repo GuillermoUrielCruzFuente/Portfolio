@@ -28,6 +28,9 @@ import { disableTabNavigation, enableTabNavigation } from "@/helpers/PreventTabN
 import { removeCurrentFocus } from "@/helpers/RemoveCurrentFocus";
 import { isDevMode } from "@/helpers/IsDevMode";
 
+import animationData1 from "@lottie/ok.json";
+import animationData2 from "@lottie/message-success.json";
+
 const Contact = () => {
 	useEffect(() => {
 		window.addEventListener("close-modal", handleCloseModal);
@@ -232,7 +235,7 @@ const Contact = () => {
 										error: "Hubo un error al enviar el mensaje, inténtalo más tarde, por favor.",
 									}}
 									success={successMessage}
-									animationData={{ data: {} }}
+									animationData={[animationData2, animationData1]}
 								/>
 							)}
 						</AnimatePresence>
