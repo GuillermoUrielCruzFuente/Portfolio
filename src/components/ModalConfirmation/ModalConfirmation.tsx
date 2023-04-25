@@ -6,7 +6,6 @@ import successIcon from "@images/icons/ok.svg";
 import errorIcon from "@images/icons/error.svg";
 
 import { ANTICIPATE_TRANSITION } from "@/data/TransitionConfigurations";
-import useLottie from "@/hooks/useLottie";
 import LottieAnimationSequence from "@components/LottieSequence";
 import type { LottieData } from "@typing/LottieTypes";
 
@@ -16,7 +15,7 @@ export type ModalConfirmationProps = {
 		success: string;
 		error: string;
 	};
-	animationData?: LottieData | LottieData[];
+	animationData?: LottieData[];
 };
 
 const modalConfirmationVariants: Variants = {
@@ -50,14 +49,13 @@ const ModalConfirmation = ({ messages, success, animationData }: ModalConfirmati
 			}`}
 		>
 			<div className={styles["animation-container"]}>
-				{animationData instanceof Array ? (
+				{animationData && (
 					<LottieAnimationSequence
 						containerClass={styles["lottie-container"]}
 						animationFiles={animationData}
 						keepLastAnimationFrame
+						animationDelay={1000}
 					/>
-				) : (
-					<h1>Exito!</h1>
 				)}
 			</div>
 
