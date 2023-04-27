@@ -1,12 +1,11 @@
-import Lottie, { AnimationConfigWithData, AnimationItem } from "lottie-web";
+import { LottieData } from "@/typing/LottieTypes";
+import Lottie, { AnimationItem } from "lottie-web";
 import { MutableRefObject, useCallback, useLayoutEffect, useRef, HTMLAttributes } from "react";
 
 type useLottieReturns = [
 	lottieElement: (props: HTMLAttributes<HTMLDivElement>) => JSX.Element,
 	lottieInstanceRef: MutableRefObject<AnimationItem>
 ];
-
-type LottieData = AnimationConfigWithData["animationData"];
 
 const useLottie = ({ data }: LottieData): useLottieReturns => {
 	const animationContainerRef = useRef<HTMLDivElement>(null);
