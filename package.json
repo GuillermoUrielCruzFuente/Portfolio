@@ -6,7 +6,8 @@
 		"dev": "vite",
 		"dev:host": "vite --host",
 		"build": "tsc && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"kill-dev-server": "lsof -t -i tcp:5500 | xargs kill -9"
 	},
 	"dependencies": {
 		"framer-motion": "^10.11.2",
