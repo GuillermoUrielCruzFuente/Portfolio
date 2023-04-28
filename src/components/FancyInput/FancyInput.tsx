@@ -1,15 +1,22 @@
-import { forwardRef, ForwardedRef, useImperativeHandle } from "react";
+import { forwardRef, ForwardedRef, InputHTMLAttributes } from "react";
 
-export type FancyInputExtension = HTMLInputElement & {
-	errorAnimation: () => void;
+export type FancyInputElement = HTMLInputElement & {
+	shakeLabel: () => void;
 };
 
-type FancyInputProps = {
-	ref: ForwardedRef<FancyInputExtension>;
-};
+export interface FancyInputProps extends InputHTMLAttributes<HTMLInputElement> {
+	rotateIcon: number;
+}
 
-const FancyInput = forwardRef(({ ref }: FancyInputProps) => {
-	return <input ref={ref} />;
+const FancyInput = forwardRef((props: FancyInputProps, ref: ForwardedRef<FancyInputElement>) => {
+	const { rotateIcon, ...otherProps } = props;
+
+	return (
+		<input
+			ref={ref}
+			{...otherProps}
+		/>
+	);
 });
 
 export default FancyInput;
