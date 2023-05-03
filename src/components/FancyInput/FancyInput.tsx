@@ -6,6 +6,7 @@ import {
 	useRef,
 	useState,
 	ChangeEventHandler,
+	useEffect,
 } from "react";
 import styles from "./FancyInput.module.scss";
 
@@ -14,8 +15,11 @@ export type FancyInputElement = HTMLInputElement & {
 	shakeInfoLabel: () => void;
 };
 
-export interface FancyInputProps extends InputHTMLAttributes<HTMLInputElement> {
-	rotateIcon: number;
+export interface FancyInputProps
+	extends Omit<InputHTMLAttributes<HTMLInputElement>, "placeholder"> {
+	labelText: string;
+	rotateIcon?: number;
+	iconSrc?: string;
 }
 
 const FancyInput = forwardRef((props: FancyInputProps, ref: ForwardedRef<FancyInputElement>) => {
@@ -23,7 +27,14 @@ const FancyInput = forwardRef((props: FancyInputProps, ref: ForwardedRef<FancyIn
 	const labelInfoRef = useRef<HTMLParagraphElement>(null);
 	const [isValid, setIsValid] = useState(false);
 
-	const { rotateIcon, ...otherProps } = props;
+	useEffect(() => {
+		document.documentElement.style.setProperty(
+			"--input-height",
+			`${fancyInputRef.current?.offsetHeight}px`
+		);
+	}, []);
+
+	const { labelText, rotateIcon, iconSrc, ...otherProps } = props;
 
 	useImperativeHandle(
 		ref,
@@ -53,23 +64,23 @@ const FancyInput = forwardRef((props: FancyInputProps, ref: ForwardedRef<FancyIn
 		}
 	};
 
-	const calcHeight = () => {
-		console.log(fancyInputRef.current?.offsetHeight);
-	};
-
 	return (
 		<>
 			<div className={styles["container"]}>
-				<label>tu información</label>
-
 				<input
 					ref={fancyInputRef}
 					onChange={handleOnChange}
+					placeholder={labelText}
 					{...otherProps}
 				/>
-			</div>
 
-			<button onClick={calcHeight}>height</button>
+				<label>{labelText}</label>
+
+				<img
+					src={iconSrc}
+					alt=""
+				/>
+			</div>
 
 			<p ref={labelInfoRef}>this is the default label</p>
 		</>
