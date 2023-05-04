@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect, FormEvent, useRef } from "react";
 
 //styles
 import "./Contact.scss";
@@ -30,6 +30,9 @@ import { isDevMode } from "@/helpers/IsDevMode";
 
 import animationData1 from "@lottie/ok.json";
 import animationData2 from "@lottie/message-success.json";
+
+import { FancyInput } from "@components/FancyInput";
+import type { FancyInputElement } from "@components/FancyInput";
 
 const Contact = () => {
 	useEffect(() => {
@@ -154,6 +157,8 @@ const Contact = () => {
 		}
 	};
 
+	const fancyRef = useRef<FancyInputElement>(null);
+
 	return (
 		<header id="contact">
 			<div className="split-container">
@@ -184,6 +189,30 @@ const Contact = () => {
 					</p>
 
 					<DownloadPDF />
+
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+						}}
+					>
+						<FancyInput
+							ref={fancyRef}
+							labelText="nombre"
+							type="text"
+							rotateIcon={30}
+							iconSrc={userIcon}
+						></FancyInput>
+
+						<button
+							type="submit"
+							onClick={() => {
+								fancyRef.current?.shakeInfoLabel();
+								console.log(fancyRef.current?.isValid);
+							}}
+						>
+							get button value
+						</button>
+					</form>
 				</div>
 
 				<div className="split">
