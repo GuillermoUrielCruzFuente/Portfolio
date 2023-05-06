@@ -28,6 +28,7 @@ type InputInheritedAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, Inpu
 
 export interface FancyInputAttributes extends InputInheritedAttributes {
 	labelText: string;
+	feedbackText: string;
 	rotateIcon?: number;
 	iconSrc?: string;
 }
@@ -93,8 +94,13 @@ const FancyInput = forwardRef(
 					/>
 				</div>
 
-				<p ref={labelInfoRef}>this is the default label</p>
-			</>
+				<p
+					className={styles["feedback-paragraph"]}
+					ref={labelInfoRef}
+				>
+					{feedbackText}
+				</p>
+			</div>
 		);
 	}
 );
