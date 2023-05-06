@@ -46,27 +46,22 @@ const FancyInput = forwardRef(
 			);
 		}, []);
 
-		const { labelText, rotateIcon, iconSrc, ...otherProps } = props;
+		const { labelText, feedbackText, rotateIcon, iconSrc, ...otherProps } = props;
 
-		useImperativeHandle(
-			ref,
-			() =>
-				({
-					shakeInfoLabel: () => {
-						fancyInputRef.current?.focus();
+		const shakeInfoLabel = () => {
+			const handleAnimationEnd = (event: AnimationEvent) => {
+				if (event.animationName === styles["shake"]) {
+					labelInfoRef.current!.classList.remove(styles["shake"]);
+					labelInfoRef.current!.removeEventListener("animationend", handleAnimationEnd);
+				}
+			};
 
-						if (labelInfoRef.current) {
-							labelInfoRef.current.style.color = "crimson";
-							labelInfoRef.current.style.transition = "color 300ms";
+			if (labelInfoRef.current) {
+				labelInfoRef.current.classList.add(styles["shake"]);
 
-							setTimeout(() => {
-								labelInfoRef.current!.style.color = "white";
-							}, 300);
-						}
-					},
-					isValid,
-				} as FancyInputElement)
-		);
+				labelInfoRef.current.addEventListener("animationend", handleAnimationEnd);
+			}
+		};
 
 		const handleOnChange: ChangeEventHandler<HTMLInputElement> = (keyEvent) => {
 			if (fancyInputRef.current?.value === "") {
@@ -76,8 +71,15 @@ const FancyInput = forwardRef(
 			}
 		};
 
+		useImperativeHandle(ref, () => {
+			return {
+				shakeInfoLabel,
+				isValid,
+			} as FancyInputElement;
+		});
+
 		return (
-			<>
+			<div className={styles["fancy-input"]}>
 				<div className={styles["container"]}>
 					<input
 						ref={fancyInputRef}
