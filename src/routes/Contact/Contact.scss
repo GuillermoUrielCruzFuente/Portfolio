@@ -12,7 +12,7 @@
 		text-transform: uppercase;
 	}
 
-	p {
+	.description-text {
 		font-size: 0.85rem;
 		color: #f5c8ff;
 	}
@@ -58,9 +58,10 @@ form#contact-form {
 	}
 
 	.form-text {
-		width: 90%;
 		margin: 0 auto;
-		text-align: center;
+		text-align: left;
+		font-size: 0.85rem;
+		color: #f5c8ff;
 		//spacing between inputs
 		margin-top: 1rem;
 	}
@@ -83,26 +84,6 @@ form#contact-form {
 	margin-top: 0.25rem;
 	margin-left: auto;
 	text-align: right;
-}
-
-@-webkit-keyframes shake {
-	$shake-step: 4px;
-
-	@for $step from 1 to 4 {
-		#{$step * 20%} {
-			@if ($step % 2 == 0) {
-				transform: translateX($shake-step);
-				color: #fb9999;
-			} @else {
-				transform: translateX(-$shake-step);
-				color: #fff;
-			}
-		}
-		100% {
-			transform: translateX(0px);
-			color: #fb9999;
-		}
-	}
 }
 
 @keyframes shake {
