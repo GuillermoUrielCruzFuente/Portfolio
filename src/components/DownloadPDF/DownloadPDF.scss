@@ -66,8 +66,8 @@
 		.icon {
 			font-weight: 900;
 			line-height: 1;
-			font-size: 1.2rem !important;
-			color: #fff !important;
+			font-size: 1.2rem;
+			color: #fff;
 			transition: transform 300ms;
 		}
 	}
@@ -92,6 +92,8 @@
 		.button-label {
 			margin-right: 1rem;
 			font-weight: 900;
+			font-size: 0.85rem;
+			color: #f5c8ff;
 		}
 	}
 }
