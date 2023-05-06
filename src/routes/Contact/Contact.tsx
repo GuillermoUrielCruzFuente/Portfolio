@@ -165,7 +165,7 @@ const Contact = () => {
 				<div className="split">
 					<h1 className="page-main-title">Contáctame!</h1>
 
-					<p>
+					<p className="description-text">
 						Puedes encontrarme en distintas redes sociales, usa aquella con la que te
 						sientas más cómodo, te regresaré el mensaje tan pronto como me sea posible.
 						Apreciaré cualquier sugerencia o propuesta de trabajo, siéntete libre de
@@ -174,7 +174,9 @@ const Contact = () => {
 
 					<SocialMedia containerClass="contact-social-media" />
 
-					<p>Una llamada también será bien recibida, he aqui mi número personal</p>
+					<p className="description-text">
+						Una llamada también será bien recibida, he aqui mi número personal
+					</p>
 
 					<a
 						className="tel-tag"
@@ -183,7 +185,7 @@ const Contact = () => {
 						555 158 8911
 					</a>
 
-					<p>
+					<p className="description-text">
 						Y por último, puedes darle un vistazo a mi CV, esta es la versión más
 						reciente, con toda mi información en él.
 					</p>
@@ -198,6 +200,7 @@ const Contact = () => {
 						<FancyInput
 							ref={fancyRef}
 							labelText="nombre"
+							feedbackText="Ingresa tu nombre en este campo."
 							type="text"
 							rotateIcon={30}
 							iconSrc={userIcon}
@@ -207,7 +210,6 @@ const Contact = () => {
 							type="submit"
 							onClick={() => {
 								fancyRef.current?.shakeInfoLabel();
-								console.log(fancyRef.current?.isValid);
 							}}
 						>
 							get button value
