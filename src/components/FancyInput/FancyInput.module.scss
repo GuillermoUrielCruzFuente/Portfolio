@@ -58,12 +58,14 @@ $input-height-compensation: 0.375rem;
 			top: $container-padding-top - $font-size - 0.25rem;
 			left: 0rem;
 			transform: scale(0.85);
+			color: color.$purple-100;
 		}
 
 		&:is(:placeholder-shown:not(:focus)) + label {
 			top: $container-padding-top + $font-size + $input-height-compensation;
 			left: calc($input-padding-left + 1.75rem + 0.65rem);
 			transform: scale(1);
+			color: color.$purple-200;
 		}
 	}
 
@@ -86,7 +88,8 @@ $input-height-compensation: 0.375rem;
 
 		$label-animation-duration: 500ms;
 		transition: top $label-animation-duration, left $label-animation-duration,
-			transform $label-animation-duration, opacity $label-animation-duration;
+			transform $label-animation-duration, opacity $label-animation-duration,
+			color $label-animation-duration;
 		transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 	}
 
