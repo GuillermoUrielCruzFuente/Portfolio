@@ -1,17 +1,10 @@
-import {
-	forwardRef,
-	ForwardedRef,
-	InputHTMLAttributes,
-	useImperativeHandle,
-	useRef,
-	useState,
-	ChangeEventHandler,
-	useEffect,
-} from "react";
+import { forwardRef, ForwardedRef, InputHTMLAttributes, useImperativeHandle, useRef } from "react";
 import styles from "./FancyInput.module.scss";
 
+/**
+ *
+ */
 export type FancyInputElement = HTMLInputElement & {
-	isValid: boolean;
 	shakeInfoLabel: () => void;
 };
 
@@ -26,27 +19,23 @@ type InputExclusion = "placeholder";
  */
 type InputInheritedAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, InputExclusion>;
 
+/**
+ *
+ */
 export interface FancyInputAttributes extends InputInheritedAttributes {
 	labelText: string;
 	feedbackText: string;
-	rotateIcon?: number;
 	iconSrc?: string;
 }
 
+/**
+ *
+ */
 const FancyInput = forwardRef(
 	(props: FancyInputAttributes, ref: ForwardedRef<FancyInputElement>) => {
+		const { labelText, feedbackText, iconSrc, ...otherProps } = props;
 		const fancyInputRef = useRef<FancyInputElement>(null);
 		const labelInfoRef = useRef<HTMLParagraphElement>(null);
-		const [isValid, setIsValid] = useState(false);
-
-		useEffect(() => {
-			document.documentElement.style.setProperty(
-				"--input-height",
-				`${fancyInputRef.current?.offsetHeight}px`
-			);
-		}, []);
-
-		const { labelText, feedbackText, rotateIcon, iconSrc, ...otherProps } = props;
 
 		const shakeInfoLabel = () => {
 			const handleAnimationEnd = (event: AnimationEvent) => {
@@ -63,27 +52,15 @@ const FancyInput = forwardRef(
 			}
 		};
 
-		const handleOnChange: ChangeEventHandler<HTMLInputElement> = (keyEvent) => {
-			if (fancyInputRef.current?.value === "") {
-				setIsValid(false);
-			} else {
-				setIsValid(true);
-			}
-		};
-
 		useImperativeHandle(ref, () => {
-			return {
-				shakeInfoLabel,
-				isValid,
-			} as FancyInputElement;
+			return { shakeInfoLabel } as FancyInputElement;
 		});
 
 		return (
-			<div className={styles["fancy-input"]}>
-				<div className={styles["container"]}>
+			<div>
+				<div className={styles["input-container"]}>
 					<input
 						ref={fancyInputRef}
-						onChange={handleOnChange}
 						placeholder={labelText}
 						{...otherProps}
 					/>
