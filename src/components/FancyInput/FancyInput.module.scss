@@ -17,24 +17,16 @@ $icon-size: $input-padding-top + $input-padding-bottom + $font-size;
 $input-height: 1.75rem;
 $input-height-compensation: 0.375rem;
 
-.fancy-input {
-	background-color: black;
-}
-
-.container {
+.input-container {
 	display: flex;
 	flex-flow: column;
 	align-items: flex-start;
 	padding-top: $container-padding-top;
-
 	position: relative;
-
 	width: 100%;
 
-	background-color: color.$purple-600;
-
 	input {
-		padding: $input-padding; //-18px === 1.5rem
+		padding: $input-padding;
 		padding-left: calc($input-padding-left + 1.75rem + 0.5rem);
 		font-size: $font-size;
 		line-height: 1;
