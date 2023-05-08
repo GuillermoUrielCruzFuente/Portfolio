@@ -1,32 +1,6 @@
-import { forwardRef, ForwardedRef, InputHTMLAttributes, useImperativeHandle, useRef } from "react";
+import { forwardRef, ForwardedRef, useImperativeHandle, useRef } from "react";
+import { FancyInputAttributes, FancyInputElement } from "@typing/FancyInputTypes";
 import styles from "./FancyInput.module.scss";
-
-/**
- *
- */
-export type FancyInputElement = HTMLInputElement & {
-	shakeInfoLabel: () => void;
-};
-
-/**
- * An union type that include the input attributes
- * that will be omitted in the final FancyInputAttributes type
- */
-type InputExclusion = "placeholder";
-
-/**
- *
- */
-type InputInheritedAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, InputExclusion>;
-
-/**
- *
- */
-export interface FancyInputAttributes extends InputInheritedAttributes {
-	labelText: string;
-	feedbackText: string;
-	iconSrc?: string;
-}
 
 /**
  *
