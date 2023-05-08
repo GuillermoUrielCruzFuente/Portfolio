@@ -32,7 +32,7 @@ import animationData1 from "@lottie/ok.json";
 import animationData2 from "@lottie/message-success.json";
 
 import { FancyInput } from "@components/FancyInput";
-import type { FancyInputElement } from "@components/FancyInput";
+import type { FancyInputElement } from "@typing/FancyInputTypes";
 
 const Contact = () => {
 	useEffect(() => {
@@ -202,7 +202,6 @@ const Contact = () => {
 							labelText="nombre"
 							feedbackText="Ingresa tu nombre en este campo."
 							type="text"
-							rotateIcon={30}
 							iconSrc={userIcon}
 						></FancyInput>
 
