@@ -112,17 +112,17 @@ $input-height-compensation: 0.375rem;
 }
 
 .shake {
-	animation: shake 500ms linear;
+	animation: shake 600ms ease-in-out;
 }
 
 @keyframes shake {
-	$shake-step: 4px;
+	$shake-step: 5px;
 
 	0% {
 		transform: translateX(0);
 	}
-	@for $step from 1 to 4 {
-		#{$step * 20%} {
+	@for $step from 1 to 6 {
+		#{$step * 16.6%} {
 			@if ($step % 2 == 0) {
 				transform: translateX(-$shake-step);
 				color: #fff;
@@ -134,5 +134,6 @@ $input-height-compensation: 0.375rem;
 	}
 	100% {
 		transform: translateX(0px);
+		color: #fb9999;
 	}
 }
