@@ -33,6 +33,7 @@ import animationData2 from "@lottie/message-success.json";
 
 import { FancyInput } from "@components/FancyInput";
 import type { FancyInputElement } from "@typing/FancyInputTypes";
+import { FancyForm } from "@components/FancyForm";
 
 const Contact = () => {
 	useEffect(() => {
@@ -244,6 +245,8 @@ const Contact = () => {
 							enviar
 						</Button>
 					</form>
+
+					<FancyForm />
 				</div>
 			</div>
 
