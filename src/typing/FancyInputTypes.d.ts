@@ -5,6 +5,7 @@ import type { InputHTMLAttributes } from "react";
  */
 export type FancyInputElement = HTMLInputElement & {
 	shakeInfoLabel: () => void;
+	iconComputedSize: number;
 };
 
 /**
