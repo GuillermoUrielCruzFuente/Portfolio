@@ -50,15 +50,15 @@ const FancyForm = () => {
 			</p>
 
 			<FancyInput
-				feedbackText="ingresa tu teléfono"
-				iconSrc={telIcon}
-				labelText="Teléfono"
-			/>
-
-			<FancyInput
 				feedbackText="ingresa tu correo"
 				iconSrc={mailIcon}
 				labelText="Correo"
+			/>
+
+			<FancyInput
+				feedbackText="ingresa tu teléfono"
+				iconSrc={telIcon}
+				labelText="Teléfono"
 			/>
 
 			<Button

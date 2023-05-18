@@ -3,9 +3,7 @@
 
 .fancy-form {
 	@include mixins.border(color.$purple-300);
-	min-height: 50vh;
 	border-radius: var(--global-border-radius);
-	margin-block: 2rem;
 	padding: 1rem;
 
 	display: flex;
