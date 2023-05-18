@@ -21,13 +21,15 @@ const FancyInput = forwardRef(
 
 			if (labelInfoRef.current) {
 				labelInfoRef.current.classList.add(styles["shake"]);
-
 				labelInfoRef.current.addEventListener("animationend", handleAnimationEnd);
 			}
 		};
 
 		useImperativeHandle(ref, () => {
-			return { shakeInfoLabel } as FancyInputElement;
+			return {
+				shakeInfoLabel,
+				iconComputedSize: fancyInputRef.current!.offsetHeight - 24,
+			} as FancyInputElement;
 		});
 
 		return (
