@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useRef, useState } from "react";
+import { FormEventHandler, FormHTMLAttributes, useEffect, useRef, useState } from "react";
 import styles from "./FancyForm.module.scss";
 import { FancyInput } from "@components/FancyInput";
 import { FancyTextArea } from "@components/FancyTextArea";
@@ -7,26 +7,47 @@ import telIcon from "@images/icons/contact/tel.svg";
 import mailIcon from "@images/icons/contact/email.svg";
 import messageIcon from "@images/icons/contact/message.svg";
 import sendIcon from "@images/icons/home-buttons/plane.svg";
-import { FancyInputElement } from "@/typing/FancyInputTypes";
 import { Button } from "@components/Button";
+import type { FancyInputElement } from "@/typing/FancyInputTypes";
+import type { FancyTextAreaElement } from "@/typing/FancyTextArea";
 
-const FancyForm = () => {
-	const [inputIconSize, setInputIconSize] = useState(0);
+const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
+	const { className, onSubmit, ...otherProps } = props;
+
 	const nameInputRef = useRef<FancyInputElement>(null);
+	const messageTextAreaRef = useRef<FancyTextAreaElement>(null);
+	const emailInputRef = useRef<FancyInputElement>(null);
+	const phoneInputRef = useRef<FancyInputElement>(null);
 
-	const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-		event.preventDefault();
-		console.log(event);
+	const handleSubmit: FormEventHandler<HTMLFormElement> = (submitEvent) => {
+		submitEvent.preventDefault();
+
+		onSubmit && onSubmit(submitEvent);
+
+		console.log(isInputInfoValid());
 	};
 
-	useEffect(() => {
-		nameInputRef.current && setInputIconSize(nameInputRef.current?.iconComputedSize);
-	}, []);
+	const isInputInfoValid = () => {
+		const inputStates = [nameInputRef, emailInputRef, phoneInputRef].map((infoInput) => {
+			if (!infoInput.current?.validity.valid) {
+				infoInput.current?.shakeInfoLabel();
+				return false;
+			}
+
+			return true;
+		});
+
+		return !inputStates.some((isValid) => isValid === false);
+	};
+
+	const parseClassName = () => styles["fancy-form"] + " " + (className ?? "");
 
 	return (
 		<form
-			className={styles["fancy-form"]}
+			className={parseClassName()}
 			onSubmit={handleSubmit}
+			noValidate
+			{...otherProps}
 		>
 			<h1>Envíame un mensaje!</h1>
 
@@ -35,13 +56,17 @@ const FancyForm = () => {
 				iconSrc={userIcon}
 				labelText="Nombre"
 				ref={nameInputRef}
+				required
 			/>
 
 			<FancyTextArea
 				feedbackText="ingresa tu mensaje"
 				iconSrc={messageIcon}
 				labelText="Mensaje"
-				iconSize={inputIconSize}
+				ref={messageTextAreaRef}
+				required
+				iconSize={28}
+				rows={7}
 			/>
 
 			<p className={styles["form-description"]}>
@@ -53,17 +78,22 @@ const FancyForm = () => {
 				feedbackText="ingresa tu correo"
 				iconSrc={mailIcon}
 				labelText="Correo"
+				ref={emailInputRef}
+				type="email"
 			/>
 
 			<FancyInput
 				feedbackText="ingresa tu teléfono"
 				iconSrc={telIcon}
 				labelText="Teléfono"
+				ref={phoneInputRef}
+				pattern="[0-9]{10}"
 			/>
 
 			<Button
 				type="submit"
 				icon={sendIcon}
+				className={styles["send-button"]}
 			>
 				Enviar
 			</Button>
