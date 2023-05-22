@@ -1,4 +1,4 @@
-import { FormEventHandler, FormHTMLAttributes, useEffect, useRef, useState } from "react";
+import { FormEventHandler, FormHTMLAttributes, useRef } from "react";
 import styles from "./FancyForm.module.scss";
 import { FancyInput } from "@components/FancyInput";
 import { FancyTextArea } from "@components/FancyTextArea";
