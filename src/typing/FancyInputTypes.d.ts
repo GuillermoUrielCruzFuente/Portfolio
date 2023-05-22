@@ -22,8 +22,8 @@ export type InputInheritedAttributes = Omit<InputHTMLAttributes<HTMLInputElement
 /**
  *
  */
-export interface FancyInputAttributes extends InputInheritedAttributes {
+export type FancyInputAttributes = InputInheritedAttributes & {
 	labelText: string;
 	feedbackText: string;
 	iconSrc: string;
-}
+};
