@@ -28,14 +28,16 @@ const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
 	};
 
 	const isInputInfoValid = () => {
-		const inputStates = [nameInputRef, emailInputRef, phoneInputRef].map((infoInput) => {
-			if (!infoInput.current?.validity.valid) {
-				infoInput.current?.shakeInfoLabel();
-				return false;
-			}
+		const inputStates = [nameInputRef, messageTextAreaRef, emailInputRef, phoneInputRef].map(
+			(infoInput) => {
+				if (!infoInput.current?.validity.valid) {
+					infoInput.current?.shakeInfoLabel();
+					return false;
+				}
 
-			return true;
-		});
+				return true;
+			}
+		);
 
 		return !inputStates.some((isValid) => isValid === false);
 	};
