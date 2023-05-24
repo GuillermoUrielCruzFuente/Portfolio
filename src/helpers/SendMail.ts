@@ -2,8 +2,8 @@ import timer from "@/helpers/Timer";
 
 export type UserInfo = {
 	name: string;
-	mail: string;
-	message?: string;
+	message: string;
+	email?: string;
 	tel?: string;
 };
 
