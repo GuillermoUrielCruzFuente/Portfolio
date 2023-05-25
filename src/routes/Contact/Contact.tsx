@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent, useRef } from "react";
+import { useState, useEffect, FormEvent } from "react";
 
 //styles
 import "./Contact.scss";
@@ -23,17 +23,14 @@ import changeScrollbarState from "@/helpers/ChangeScrollbarState";
 import { AnimatePresence } from "framer-motion";
 import { LoadingNotification } from "@components/LoadingNotification";
 import { Veil } from "@components/Veil";
-import { Button } from "@components/Button";
 import { disableTabNavigation, enableTabNavigation } from "@/helpers/PreventTabNavigation";
 import { removeCurrentFocus } from "@/helpers/RemoveCurrentFocus";
 import { isDevMode } from "@/helpers/IsDevMode";
 
-import animationData1 from "@lottie/ok.json";
-import animationData2 from "@lottie/message-success.json";
-
-import { FancyInput } from "@components/FancyInput";
-import type { FancyInputElement } from "@typing/FancyInputTypes";
+import okAnimationData from "@lottie/ok.json";
+import messageAnimationData from "@lottie/message-success.json";
 import { FancyForm } from "@components/FancyForm";
+import { SubmitHandler } from "@/components/FancyForm/FancyForm";
 
 const Contact = () => {
 	useEffect(() => {
@@ -120,13 +117,6 @@ const Contact = () => {
 		else if (!thereIsAtLeastAWayOfContact()) emailInput.shakeLabel();
 	};
 
-	const getDataFromInputs = (): UserInfo => ({
-		name: nameInput.getValue(),
-		message: messageTextArea.getValue(),
-		mail: emailInput.getValue(),
-		tel: phoneInput.getValue(),
-	});
-
 	const getDevModeEmailConfig = () => {
 		const config: DevModeConfig = {
 			fakeRequestDelay: 1500,
@@ -136,29 +126,20 @@ const Contact = () => {
 		return isDevMode ? config : undefined;
 	};
 
-	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-		//prevent page reload
-		event.preventDefault();
+	const handleFormSubmit: SubmitHandler = async (messageData) => {
+		initModalSequence();
 
-		if (inputsAreValid || isDevMode) {
-			initModalSequence();
+		setIsSendingMessage(true);
 
-			setIsSendingMessage(true);
+		const messageStatus = await sendEmail({
+			userInfo: messageData,
+			devMode: getDevModeEmailConfig(),
+		});
 
-			const messageStatus = await sendEmail({
-				userInfo: getDataFromInputs(),
-				devMode: getDevModeEmailConfig(),
-			});
+		setIsSendingMessage(false);
 
-			setIsSendingMessage(false);
-
-			setSuccessMessage(messageStatus);
-		} else {
-			shakeInvalidInput();
-		}
+		setSuccessMessage(messageStatus);
 	};
-
-	const fancyRef = useRef<FancyInputElement>(null);
 
 	return (
 		<header id="contact">
@@ -192,61 +173,13 @@ const Contact = () => {
 					</p>
 
 					<DownloadPDF />
-
-					<form
-						onSubmit={(e) => {
-							e.preventDefault();
-						}}
-					>
-						<FancyInput
-							ref={fancyRef}
-							labelText="nombre"
-							feedbackText="Ingresa tu nombre en este campo."
-							type="text"
-							iconSrc={userIcon}
-						></FancyInput>
-
-						<button
-							type="submit"
-							onClick={() => {
-								fancyRef.current?.shakeInfoLabel();
-							}}
-						>
-							get button value
-						</button>
-					</form>
 				</div>
 
 				<div className="split">
-					<form
-						id="contact-form"
-						onSubmit={handleSubmit}
-						noValidate
-					>
-						<h1 className="form-title">Envíame un mensaje</h1>
-
-						{nameInput.render}
-
-						{messageTextArea.render}
-
-						<p className="form-text">
-							Permíteme devolverte el mensaje. Por favor, rellena al menos uno de los
-							siguientes campos, si lo deseas pueden ser ambos.
-						</p>
-
-						{emailInput.render}
-
-						{phoneInput.render}
-
-						<Button
-							className="send"
-							icon={sendIcon}
-						>
-							enviar
-						</Button>
-					</form>
-
-					<FancyForm />
+					<FancyForm
+						className="contact-form"
+						submitHandler={handleFormSubmit}
+					/>
 				</div>
 			</div>
 
@@ -268,7 +201,7 @@ const Contact = () => {
 										error: "Hubo un error al enviar el mensaje, inténtalo más tarde, por favor.",
 									}}
 									success={successMessage}
-									animationData={[animationData2, animationData1]}
+									animationData={[messageAnimationData, okAnimationData]}
 								/>
 							)}
 						</AnimatePresence>
