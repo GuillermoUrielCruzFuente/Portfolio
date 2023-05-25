@@ -1,4 +1,11 @@
-import { forwardRef, ForwardedRef, useImperativeHandle, useRef } from "react";
+import {
+	forwardRef,
+	ForwardedRef,
+	useImperativeHandle,
+	useRef,
+	useState,
+	ChangeEventHandler,
+} from "react";
 import { FancyTextAreaAttributes, FancyTextAreaElement } from "@typing/FancyTextArea";
 import styles from "./FancyTextArea.module.scss";
 
@@ -10,6 +17,8 @@ const FancyTextArea = (props: FancyTextAreaAttributes, ref: ForwardedRef<FancyTe
 
 	const fancyTextAreaRef = useRef<FancyTextAreaElement>(null);
 	const labelInfoRef = useRef<HTMLParagraphElement>(null);
+
+	const [textAreaValue, setTextAreaValue] = useState("");
 
 	const handleFeedbackParagraphAnimationEnd = (event: AnimationEvent) => {
 		if (event.animationName === styles["shake"]) {
@@ -37,10 +46,15 @@ const FancyTextArea = (props: FancyTextAreaAttributes, ref: ForwardedRef<FancyTe
 			return {
 				shakeInfoLabel,
 				validity: fancyTextAreaRef.current?.validity,
+				value: textAreaValue,
 			} as FancyTextAreaElement;
 		},
-		[fancyTextAreaRef.current?.validity]
+		[fancyTextAreaRef.current?.validity, textAreaValue]
 	);
+
+	const handleTextAreaChange: ChangeEventHandler<HTMLTextAreaElement> = (changeEvent) => {
+		setTextAreaValue(changeEvent.target.value);
+	};
 
 	return (
 		<div>
@@ -49,6 +63,7 @@ const FancyTextArea = (props: FancyTextAreaAttributes, ref: ForwardedRef<FancyTe
 					ref={fancyTextAreaRef}
 					placeholder={labelText}
 					rows={5}
+					onChange={handleTextAreaChange}
 					{...otherProps}
 				/>
 
