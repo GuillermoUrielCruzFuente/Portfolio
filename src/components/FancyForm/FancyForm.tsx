@@ -10,24 +10,36 @@ import sendIcon from "@images/icons/home-buttons/plane.svg";
 import { Button } from "@components/Button";
 import type { FancyInputElement } from "@/typing/FancyInputTypes";
 import type { FancyTextAreaElement } from "@/typing/FancyTextArea";
+import type { UserInfo } from "@/helpers/SendMail";
 
-const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
-	const { className, onSubmit, ...otherProps } = props;
+export type SubmitHandler = (messageData: UserInfo) => Promise<void>;
 
+type FancyFormProps = Omit<FormHTMLAttributes<HTMLFormElement>, "onSubmit"> & {
+	submitHandler?: SubmitHandler;
+};
+
+const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) => {
 	const nameInputRef = useRef<FancyInputElement>(null);
 	const messageTextAreaRef = useRef<FancyTextAreaElement>(null);
 	const emailInputRef = useRef<FancyInputElement>(null);
 	const phoneInputRef = useRef<FancyInputElement>(null);
 
+	const getDataFromInputs = (): UserInfo => ({
+		name: nameInputRef.current!.value,
+		message: messageTextAreaRef.current!.value,
+		email: emailInputRef.current?.value,
+		tel: phoneInputRef.current?.value,
+	});
+
 	const handleSubmit: FormEventHandler<HTMLFormElement> = (submitEvent) => {
 		submitEvent.preventDefault();
 
-		onSubmit && onSubmit(submitEvent);
-
-		console.log(isInputInfoValid());
+		if (areInputsInfoValid()) {
+			submitHandler && submitHandler(getDataFromInputs());
+		}
 	};
 
-	const isInputInfoValid = () => {
+	const areInputsInfoValid = () => {
 		const inputStates = [nameInputRef, messageTextAreaRef, emailInputRef, phoneInputRef].map(
 			(infoInput) => {
 				if (!infoInput.current?.validity.valid) {
@@ -39,7 +51,7 @@ const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
 			}
 		);
 
-		return !inputStates.some((isValid) => isValid === false);
+		return !inputStates.some((state) => state === false);
 	};
 
 	const parseClassName = () => styles["fancy-form"] + " " + (className ?? "");
@@ -59,6 +71,7 @@ const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
 				labelText="Nombre"
 				ref={nameInputRef}
 				required
+				name="name"
 			/>
 
 			<FancyTextArea
@@ -69,6 +82,7 @@ const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
 				required
 				iconSize={28}
 				rows={7}
+				name="message"
 			/>
 
 			<p className={styles["form-description"]}>
@@ -82,6 +96,7 @@ const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
 				labelText="Correo"
 				ref={emailInputRef}
 				type="email"
+				name="email"
 			/>
 
 			<FancyInput
@@ -90,6 +105,7 @@ const FancyForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
 				labelText="Teléfono"
 				ref={phoneInputRef}
 				pattern="[0-9]{10}"
+				name="phone"
 			/>
 
 			<Button
