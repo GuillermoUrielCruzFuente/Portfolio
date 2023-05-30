@@ -34,16 +34,17 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 	const handleSubmit: FormEventHandler<HTMLFormElement> = (submitEvent) => {
 		submitEvent.preventDefault();
 
-		if (areInputsInfoValid()) {
+		if (areInputsValid()) {
 			submitHandler && submitHandler(getDataFromInputs());
 		}
 	};
 
-	const areInputsInfoValid = () => {
+	const areInputsValid = () => {
 		const inputStates = [nameInputRef, messageTextAreaRef, emailInputRef, phoneInputRef].map(
 			(infoInput) => {
 				if (!infoInput.current?.validity.valid) {
 					infoInput.current?.shakeInfoLabel();
+
 					return false;
 				}
 
@@ -53,6 +54,8 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 
 		return !inputStates.some((state) => state === false);
 	};
+
+	const thereIsAtLeastAWayOfContact = () => {};
 
 	const parseClassName = () => styles["fancy-form"] + " " + (className ?? "");
 
