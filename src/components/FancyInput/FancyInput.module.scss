@@ -1,5 +1,6 @@
 @use "@styles/base/color";
 @use "@styles/utilities/mixins";
+@use "sass:math";
 
 $input-padding-top: 0.75rem;
 $input-padding-right: 0.75rem;
@@ -126,7 +127,7 @@ $input-height-compensation: 0.375rem;
 		color: color.$purple-200;
 	}
 	@for $step from 1 to $shake-cycles - 1 {
-		#{$step * (100% / $shake-cycles)} {
+		#{$step * math.div(100%, $shake-cycles)} {
 			@if ($step % 2 == 0) {
 				transform: translateX(-$shake-step);
 				color: #fff;
@@ -141,95 +142,3 @@ $input-height-compensation: 0.375rem;
 		color: color.$purple-200;
 	}
 }
-
-// 0% {
-//     transform: translateX(0px);
-//     color: #ba63cf;
-// }
-
-// 16.6667% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-
-// 33.3333% {
-//     transform: translateX(-5px);
-//     color: #fff;
-// }
-
-// 50% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-
-// 66.6667% {
-//     transform: translateX(-5px);
-//     color: #fff;
-// }
-
-// 100% {
-//     transform: translateX(0px);
-//     color: #ba63cf;
-// }
-
-// 0% {
-//     transform: translateX(0px);
-//     color: #ba63cf;
-// }
-// 14.2857% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-// 28.5714% {
-//     transform: translateX(-5px);
-//     color: #fff;
-// }
-// 42.8571% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-// 57.1429% {
-//     transform: translateX(-5px);
-//     color: #fff;
-// }
-// 71.4286% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-// 100% {
-//     transform: translateX(0px);
-//     color: #ba63cf;
-// }
-
-// 0% {
-//     transform: translateX(0px);
-//     color: #ba63cf;
-// }
-// 14.2857% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-// 28.5714% {
-//     transform: translateX(-5px);
-//     color: #fff;
-// }
-// 42.8571% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-// 57.1429% {
-//     transform: translateX(-5px);
-//     color: #fff;
-// }
-// 71.4286% {
-//     transform: translateX(5px);
-//     color: #fb9999;
-// }
-// 85.7143% {
-//     transform: translateX(-5px);
-//     color: #fff;
-// }
-// 100% {
-//     transform: translateX(0px);
-//     color: #ba63cf;
-// }
