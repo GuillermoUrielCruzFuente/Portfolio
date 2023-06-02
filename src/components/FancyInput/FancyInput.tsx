@@ -1,13 +1,23 @@
-import { forwardRef, ForwardedRef, useImperativeHandle, useRef } from "react";
+import {
+	forwardRef,
+	ForwardedRef,
+	useImperativeHandle,
+	useRef,
+	useEffect,
+	useState,
+	ChangeEventHandler,
+} from "react";
 import { FancyInputAttributes, FancyInputElement } from "@typing/FancyInputTypes";
 import styles from "./FancyInput.module.scss";
 
 const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputElement>) => {
 	const { labelText, feedbackText, iconSrc, ...otherProps } = props;
 
-	const fancyInputRef = useRef<FancyInputElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 	const iconRef = useRef<HTMLImageElement>(null);
 	const labelInfoRef = useRef<HTMLParagraphElement>(null);
+
+	const [inputValue, setInputValue] = useState("");
 
 	useImperativeHandle(
 		ref,
@@ -15,10 +25,11 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 			return {
 				shakeInfoLabel,
 				iconComputedSize: iconRef.current?.offsetHeight,
-				validity: fancyInputRef.current?.validity,
+				validity: inputRef.current?.validity,
+				value: inputValue,
 			} as FancyInputElement;
 		},
-		[fancyInputRef.current?.validity, iconRef.current?.offsetHeight]
+		[inputRef.current?.validity, inputValue, iconRef.current?.offsetHeight]
 	);
 
 	const handleFeedbackParagraphAnimationEnd = (event: AnimationEvent) => {
@@ -36,12 +47,17 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 		labelInfoRef.current?.addEventListener("animationend", handleFeedbackParagraphAnimationEnd);
 	};
 
+	const handleInputChange: ChangeEventHandler<HTMLInputElement> = (changeEvent) => {
+		setInputValue(changeEvent.target.value);
+	};
+
 	return (
 		<div>
 			<div className={styles["input-container"]}>
 				<input
-					ref={fancyInputRef}
+					ref={inputRef}
 					placeholder={labelText}
+					onChange={handleInputChange}
 					{...otherProps}
 				/>
 
