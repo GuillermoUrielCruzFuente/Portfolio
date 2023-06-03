@@ -1,5 +1,6 @@
 @use "@styles/base/color";
 @use "@styles/utilities/mixins";
+@use "sass:math";
 
 $input-padding-top: 0.75rem;
 $input-padding-right: 0.75rem;
@@ -128,17 +129,19 @@ $input-height-compensation: 0.375rem;
 }
 
 .shake {
-	animation: shake 600ms ease-in-out;
+	animation: shake 900ms linear;
 }
 
 @keyframes shake {
 	$shake-step: 5px;
+	$shake-cycles: 7;
 
 	0% {
-		transform: translateX(0);
+		transform: translateX(0px);
+		color: color.$purple-200;
 	}
-	@for $step from 1 to 6 {
-		#{$step * 16.6%} {
+	@for $step from 1 to $shake-cycles - 1 {
+		#{$step * math.div(100%, $shake-cycles)} {
 			@if ($step % 2 == 0) {
 				transform: translateX(-$shake-step);
 				color: #fff;
@@ -150,6 +153,6 @@ $input-height-compensation: 0.375rem;
 	}
 	100% {
 		transform: translateX(0px);
-		color: #fb9999;
+		color: color.$purple-200;
 	}
 }
