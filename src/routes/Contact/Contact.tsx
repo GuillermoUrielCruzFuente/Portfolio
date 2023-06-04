@@ -1,22 +1,11 @@
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect } from "react";
 
 //styles
 import "./Contact.scss";
 
-//custom components and hooks
-import useInput, { InputValidation } from "@components/useInput/useInput";
-import useTextarea from "@components/useTextarea/useTextarea";
-
-import sendEmail, { DevModeConfig, UserInfo } from "@/helpers/SendMail";
+import sendEmail, { DevModeConfig } from "@/helpers/SendMail";
 import SocialMedia from "@components/SocialMedia/SocialMedia";
 import DownloadPDF from "@components/DownloadPDF/DownloadPDF";
-
-//iconst for UI
-import emailIcon from "@images/icons/contact/email.svg";
-import userIcon from "@images/icons/contact/user.svg";
-import messageIcon from "@images/icons/contact/message.svg";
-import telIcon from "@images/icons/contact/tel.svg";
-import sendIcon from "@images/icons/home-buttons/plane.svg";
 
 import { ModalConfirmation } from "@components/ModalConfirmation";
 import changeScrollbarState from "@/helpers/ChangeScrollbarState";
@@ -49,72 +38,13 @@ const Contact = () => {
 		isOpen ? disableTabNavigation() : enableTabNavigation();
 	};
 
-	const nameInput = useInput({
-		name: "nombre",
-		img: userIcon,
-		inputType: "text",
-		required: true,
-	});
-
-	const messageTextArea = useTextarea({
-		name: "mensaje",
-		img: messageIcon,
-		required: true,
-	});
-
-	const emailInput = useInput({
-		name: "correo",
-		img: emailIcon,
-		inputType: "email",
-		required: false,
-	});
-
-	const phoneInput = useInput({
-		name: "teléfono",
-		img: telIcon,
-		inputType: "tel",
-		required: false,
-	});
-
-	let inputsAreValid = false;
-
-	useEffect(() => {
-		inputsAreValid =
-			nameInput.isValid && messageTextArea.isValid && thereIsAtLeastAWayOfContact();
-	}, [nameInput, messageTextArea, emailInput, phoneInput]);
-
-	const thereIsAtLeastAWayOfContact = (): boolean => {
-		const isEmailValidNFilled = isValidAndFilled(emailInput);
-		const isPhoneValidNFilled = isValidAndFilled(phoneInput);
-
-		const isEmailInvalid = !emailInput.isValid;
-		const isPhoneInvalid = !phoneInput.isValid;
-
-		if (isEmailInvalid || isPhoneInvalid) return false;
-
-		if (isEmailValidNFilled || isPhoneValidNFilled) return true;
-
-		return false;
-	};
-
-	const isValidAndFilled = (input: InputValidation) => input.isValid && input.getValue() != "";
-
 	const [isSendingMessage, setIsSendingMessage] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [successMessage, setSuccessMessage] = useState(false);
 
 	const initModalSequence = () => {
 		changeModalState({ isOpen: true });
-
 		removeCurrentFocus();
-	};
-
-	const shakeInvalidInput = () => {
-		if (!nameInput.isValid) nameInput.shakeLabel();
-		else if (!messageTextArea.isValid) messageTextArea.shakeLabel();
-		else if (!emailInput.isValid) emailInput.shakeLabel();
-		else if (!phoneInput.isValid) phoneInput.shakeLabel();
-		else if (!thereIsAtLeastAWayOfContact()) emailInput.shakeLabel();
 	};
 
 	const getDevModeEmailConfig = () => {
