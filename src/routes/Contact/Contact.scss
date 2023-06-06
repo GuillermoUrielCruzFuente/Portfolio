@@ -1,7 +1,7 @@
 #contact {
 	display: flex;
 	flex-flow: column;
-	width: 70%;
+	width: 75%;
 	padding-bottom: 3rem;
 
 	.page-main-title {
@@ -70,6 +70,10 @@ form#contact-form {
 		margin-top: 1.5rem;
 		margin-left: auto;
 	}
+}
+
+.contact-form {
+	margin-top: 2rem;
 }
 
 .error-label {
@@ -237,7 +241,7 @@ form#contact-form {
 .split-container {
 	display: flex;
 	flex-flow: row;
-	margin-top: 2rem;
+	// margin-top: 2rem;
 
 	.split {
 		flex-basis: 0;
