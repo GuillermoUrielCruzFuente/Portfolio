@@ -40,22 +40,31 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 	};
 
 	const areInputsValid = () => {
-		const inputStates = [nameInputRef, messageTextAreaRef, emailInputRef, phoneInputRef].map(
-			(infoInput) => {
-				if (!infoInput.current?.validity.valid) {
-					infoInput.current?.shakeInfoLabel();
+		// check that all inputs in this array are valid
+		const requiredInputStates = [nameInputRef, messageTextAreaRef].map((infoInput) => {
+			if (!infoInput.current?.validity.valid) {
+				infoInput.current?.shakeInfoLabel();
 
-					return false;
-				}
-
-				return true;
+				return false;
 			}
-		);
 
-		return !inputStates.some((state) => state === false);
+			return true;
+		});
+
+		// check that at leat 1 of the inputs in this array is valid
+		// and also check for the validity in case the input has a user input value
+		const semiRequiredInputStates = [emailInputRef, phoneInputRef].map((infoInput) => {
+			if (!infoInput.current?.validity.valid) {
+				infoInput.current?.shakeInfoLabel();
+
+				return false;
+			}
+
+			return true;
+		});
+
+		return !requiredInputStates.some((state) => state === false);
 	};
-
-	const thereIsAtLeastAWayOfContact = () => {};
 
 	const parseClassName = () => styles["fancy-form"] + " " + (className ?? "");
 
