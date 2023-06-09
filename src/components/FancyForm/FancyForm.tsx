@@ -54,9 +54,12 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 		// check that at leat 1 of the inputs in this array is valid
 		// and also check for the validity in case the input has a user input value
 		const semiRequiredInputStates = [emailInputRef, phoneInputRef].map((infoInput) => {
-			if (!infoInput.current?.validity.valid && infoInput.current?.value !== "") {
-				infoInput.current?.shakeInfoLabel();
+			const isInputValid = infoInput.current?.validity.valid;
+			const isInputEmpty = infoInput.current?.value === "";
 
+			console.log({ isInputEmpty, isInputValid, infoInput: infoInput.current?.name });
+
+			if (!isInputValid || isInputEmpty) {
 				return false;
 			}
 
@@ -65,7 +68,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 
 		return (
 			!requiredInputStates.some((state) => state === false) &&
-			!semiRequiredInputStates.some((state) => state === false)
+			semiRequiredInputStates.some((state) => state === true)
 		);
 	};
 
