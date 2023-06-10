@@ -27,6 +27,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 				iconComputedSize: iconRef.current?.offsetHeight,
 				validity: inputRef.current?.validity,
 				value: inputValue,
+				name: inputRef.current?.name,
 			} as FancyInputElement;
 		},
 		[inputRef.current?.validity, inputValue, iconRef.current?.offsetHeight]
