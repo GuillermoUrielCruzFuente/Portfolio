@@ -60,6 +60,11 @@ $input-height-compensation: 0.375rem;
 			transform: scale(1);
 			color: color.$purple-200;
 		}
+
+		&:is(:autofill) {
+			-webkit-text-fill-color: color.$purple-200;
+			box-shadow: 0 0 0 30px color.$purple-500 inset;
+		}
 	}
 
 	label {
