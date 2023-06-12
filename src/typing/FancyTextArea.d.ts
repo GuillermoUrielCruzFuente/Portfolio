@@ -3,7 +3,7 @@ import type { TextareaHTMLAttributes } from "react";
 /**
  *
  */
-export type FancyTextAreaElement = HTMLTextAreaElement & {
+export type FancyTextareaElement = HTMLTextAreaElement & {
 	shakeInfoLabel: () => void;
 };
 
@@ -11,22 +11,22 @@ export type FancyTextAreaElement = HTMLTextAreaElement & {
  * An union type that include the input attributes
  * that will be omitted in the final FancyInputAttributes type
  */
-export type TextAreaExclusion = "placeholder";
+export type TextareaExclusion = "placeholder";
 
 /**
  *
  */
-export type TextAreaInheritedAttributes = Omit<
+export type TextareaInheritedAttributes = Omit<
 	TextareaHTMLAttributes<HTMLTextAreaElement>,
-	TextAreaExclusion
+	TextareaExclusion
 >;
 
 /**
  *
  */
-export interface FancyTextAreaAttributes extends TextAreaInheritedAttributes {
+export type FancyTextareaAttributes = TextareaInheritedAttributes & {
 	labelText: string;
 	feedbackText: string;
 	iconSrc: string;
 	iconSize: number;
-}
+};
