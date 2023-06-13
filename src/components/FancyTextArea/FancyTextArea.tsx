@@ -6,16 +6,16 @@ import {
 	useState,
 	ChangeEventHandler,
 } from "react";
-import { FancyTextAreaAttributes, FancyTextAreaElement } from "@typing/FancyTextArea";
+import { FancyTextareaAttributes, FancyTextareaElement } from "@typing/FancyTextArea";
 import styles from "./FancyTextArea.module.scss";
 
 /**
  *
  */
-const FancyTextArea = (props: FancyTextAreaAttributes, ref: ForwardedRef<FancyTextAreaElement>) => {
+const FancyTextArea = (props: FancyTextareaAttributes, ref: ForwardedRef<FancyTextareaElement>) => {
 	const { labelText, feedbackText, iconSrc, iconSize, ...otherProps } = props;
 
-	const fancyTextAreaRef = useRef<FancyTextAreaElement>(null);
+	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const labelInfoRef = useRef<HTMLParagraphElement>(null);
 
 	const [textAreaValue, setTextAreaValue] = useState("");
@@ -45,11 +45,12 @@ const FancyTextArea = (props: FancyTextAreaAttributes, ref: ForwardedRef<FancyTe
 		() => {
 			return {
 				shakeInfoLabel,
-				validity: fancyTextAreaRef.current?.validity,
+				validity: textareaRef.current?.validity,
 				value: textAreaValue,
-			} as FancyTextAreaElement;
+				name: textareaRef.current?.name,
+			} as FancyTextareaElement;
 		},
-		[fancyTextAreaRef.current?.validity, textAreaValue]
+		[textareaRef.current?.validity, textareaRef.current?.name, textAreaValue]
 	);
 
 	const handleTextAreaChange: ChangeEventHandler<HTMLTextAreaElement> = (changeEvent) => {
@@ -60,7 +61,7 @@ const FancyTextArea = (props: FancyTextAreaAttributes, ref: ForwardedRef<FancyTe
 		<div>
 			<div className={styles["textarea-container"]}>
 				<textarea
-					ref={fancyTextAreaRef}
+					ref={textareaRef}
 					placeholder={labelText}
 					rows={5}
 					onChange={handleTextAreaChange}
