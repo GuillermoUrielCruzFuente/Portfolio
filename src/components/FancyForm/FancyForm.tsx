@@ -9,7 +9,7 @@ import messageIcon from "@images/icons/contact/message.svg";
 import sendIcon from "@images/icons/home-buttons/plane.svg";
 import { Button } from "@components/Button";
 import type { FancyInputElement } from "@/typing/FancyInputTypes";
-import type { FancyTextAreaElement } from "@/typing/FancyTextArea";
+import type { FancyTextareaElement } from "@/typing/FancyTextArea";
 import type { UserInfo } from "@/helpers/SendMail";
 
 export type SubmitHandler = (messageData: UserInfo) => Promise<void>;
@@ -20,7 +20,7 @@ type FancyFormProps = Omit<FormHTMLAttributes<HTMLFormElement>, "onSubmit"> & {
 
 const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) => {
 	const nameInputRef = useRef<FancyInputElement>(null);
-	const messageTextAreaRef = useRef<FancyTextAreaElement>(null);
+	const messageTextAreaRef = useRef<FancyTextareaElement>(null);
 	const emailInputRef = useRef<FancyInputElement>(null);
 	const phoneInputRef = useRef<FancyInputElement>(null);
 
