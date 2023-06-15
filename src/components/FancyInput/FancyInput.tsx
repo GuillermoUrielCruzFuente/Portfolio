@@ -30,7 +30,12 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 				name: inputRef.current?.name,
 			} as FancyInputElement;
 		},
-		[inputRef.current?.validity, inputValue, iconRef.current?.offsetHeight]
+		[
+			inputRef.current?.validity,
+			inputRef.current?.name,
+			inputValue,
+			iconRef.current?.offsetHeight,
+		]
 	);
 
 	const handleFeedbackParagraphAnimationEnd = (event: AnimationEvent) => {
