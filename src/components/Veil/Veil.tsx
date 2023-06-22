@@ -3,7 +3,7 @@ import styles from "./Veil.module.scss";
 import { Transition, motion } from "framer-motion";
 
 const Veil = ({ children }: PropsWithChildren) => {
-	const transitionConfig: Transition = { type: "keyframes", duration: 0.35 };
+	const transitionConfig: Transition = { type: "keyframes", duration: 0.5 };
 
 	return (
 		<motion.div
