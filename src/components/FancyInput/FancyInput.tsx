@@ -55,6 +55,10 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 
 	const handleInputChange: ChangeEventHandler<HTMLInputElement> = (changeEvent) => {
 		setInputValue(changeEvent.target.value);
+
+		const isValid = inputRef.current?.validity.valid;
+
+		labelInfoRef.current!.style.color = isValid ? "chartreuse" : "crimson";
 	};
 
 	return (
