@@ -55,10 +55,14 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 
 	const handleInputChange: ChangeEventHandler<HTMLInputElement> = (changeEvent) => {
 		setInputValue(changeEvent.target.value);
+	};
 
+	const parseFeedbackParagraphClasses = () => {
 		const isValid = inputRef.current?.validity.valid;
 
-		labelInfoRef.current!.style.color = isValid ? "chartreuse" : "crimson";
+		const stateColor = isValid ? styles["success-color"] : styles["error-color"];
+
+		return `${styles["feedback-paragraph"]} ${stateColor}`;
 	};
 
 	return (
@@ -81,7 +85,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 			</div>
 
 			<p
-				className={styles["feedback-paragraph"]}
+				className={parseFeedbackParagraphClasses()}
 				ref={labelInfoRef}
 			>
 				{feedbackText}
