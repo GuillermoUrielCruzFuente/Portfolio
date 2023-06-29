@@ -3,7 +3,6 @@ import {
 	ForwardedRef,
 	useImperativeHandle,
 	useRef,
-	useEffect,
 	useState,
 	ChangeEventHandler,
 } from "react";
@@ -62,7 +61,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 
 		const stateColor = isValid ? styles["success-color"] : styles["error-color"];
 
-		return `${styles["feedback-paragraph"]} ${stateColor}`;
+		return `${styles["feedback-paragraph"]} ${isValid === undefined ? "" : stateColor}`;
 	};
 
 	return (
