@@ -40,6 +40,8 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 	};
 
 	const areInputsValid = () => {
+		const semiRequiredInputs = [emailInputRef, phoneInputRef];
+
 		// check that all inputs in this array are valid
 		const requiredInputStates = [nameInputRef, messageTextAreaRef].map((infoInput) => {
 			if (!infoInput.current?.validity.valid) {
@@ -53,7 +55,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 
 		// check that at leat 1 of the inputs in this array is valid
 		// and also check for the validity in case the input has a user input value
-		const semiRequiredInputStates = [emailInputRef, phoneInputRef].map((infoInput) => {
+		const semiRequiredInputStates = semiRequiredInputs.map((infoInput) => {
 			const isInputInvalid = !infoInput.current?.validity.valid;
 			const isInputPopulated = infoInput.current?.value !== "";
 			const isPopulatedButInvalid = isInputPopulated && isInputInvalid;
@@ -66,9 +68,23 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 			return true;
 		});
 
+		const thereIsAtLeastAWayOfContact = () => {
+			const validityStates = semiRequiredInputs.map((input) => input.current?.value !== "");
+			const thereIs = validityStates.some((state) => state === true);
+
+			if (!thereIs) {
+				semiRequiredInputs[0].current?.shakeInfoLabel();
+
+				alert("hmmmmmm");
+			}
+
+			return thereIs;
+		};
+
 		return (
 			!requiredInputStates.some((state) => state === false) &&
-			!semiRequiredInputStates.some((state) => state === false)
+			!semiRequiredInputStates.some((state) => state === false) &&
+			thereIsAtLeastAWayOfContact()
 		);
 	};
 
