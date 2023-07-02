@@ -57,6 +57,14 @@ const FancyTextArea = (props: FancyTextareaAttributes, ref: ForwardedRef<FancyTe
 		setTextAreaValue(changeEvent.target.value);
 	};
 
+	const parseFeedbackParagraphClasses = () => {
+		const isValid = textareaRef.current?.validity.valid;
+
+		const stateColor = isValid ? styles["success-color"] : styles["error-color"];
+
+		return `${styles["feedback-paragraph"]} ${isValid === undefined ? "" : stateColor}`;
+	};
+
 	return (
 		<div>
 			<div className={styles["textarea-container"]}>
@@ -78,7 +86,7 @@ const FancyTextArea = (props: FancyTextareaAttributes, ref: ForwardedRef<FancyTe
 			</div>
 
 			<p
-				className={styles["feedback-paragraph"]}
+				className={parseFeedbackParagraphClasses()}
 				ref={labelInfoRef}
 			>
 				{feedbackText}
