@@ -106,6 +106,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 				ref={nameInputRef}
 				required
 				name="name"
+				type="text"
 			/>
 
 			<FancyTextArea
@@ -138,6 +139,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 				iconSrc={telIcon}
 				labelText="Teléfono"
 				ref={phoneInputRef}
+				type="tel"
 				pattern="[0-9]{10}"
 				name="phone"
 			/>
