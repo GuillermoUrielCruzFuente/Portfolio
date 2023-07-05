@@ -5,12 +5,13 @@ import {
 	useRef,
 	useState,
 	ChangeEventHandler,
+	KeyboardEventHandler,
 } from "react";
 import { FancyInputAttributes, FancyInputElement } from "@typing/FancyInputTypes";
 import styles from "./FancyInput.module.scss";
 
 const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputElement>) => {
-	const { labelText, feedbackText, iconSrc, ...otherProps } = props;
+	const { labelText, feedbackText, iconSrc, type, ...otherProps } = props;
 
 	const inputRef = useRef<HTMLInputElement>(null);
 	const iconRef = useRef<HTMLImageElement>(null);
@@ -64,6 +65,41 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 		return `${styles["feedback-paragraph"]} ${isValid === undefined ? "" : stateColor}`;
 	};
 
+	const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (keyDownEvent) => {
+		const validSpecialKeys = [
+			"Control",
+			"Backspace",
+			"Shift",
+			"Alt",
+			"Enter",
+			"Tab",
+			"ArrowLeft",
+			"ArrowUp",
+			"ArrowRight",
+			"ArrowDown",
+			"Delete",
+		];
+
+		const validCharsForPhoneNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+
+		if (type === "tel") {
+			const isValidKey =
+				validCharsForPhoneNumber.includes(keyDownEvent.key) ||
+				validSpecialKeys.includes(keyDownEvent.key);
+
+			// todo: verify selection and the valid insertion into that selection
+			const selection = document?.getSelection()?.toString() ?? "";
+
+			if (isValidKey) {
+				if (inputValue.length === 10 && !validSpecialKeys.includes(keyDownEvent.key)) {
+					keyDownEvent.preventDefault();
+				}
+			} else {
+				keyDownEvent.preventDefault();
+			}
+		}
+	};
+
 	return (
 		<div>
 			<div className={styles["input-container"]}>
@@ -71,6 +107,8 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 					ref={inputRef}
 					placeholder={labelText}
 					onChange={handleInputChange}
+					type={type}
+					onKeyDown={handleKeyDown}
 					{...otherProps}
 				/>
 
