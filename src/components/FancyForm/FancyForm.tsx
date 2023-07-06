@@ -100,7 +100,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 			<h1>Envíame un mensaje!</h1>
 
 			<FancyInput
-				feedbackText="ingresa tu nombre"
+				feedbackText="Ingresa el nombre con el que te sientas más cómodo."
 				iconSrc={userIcon}
 				labelText="Nombre"
 				ref={nameInputRef}
@@ -110,7 +110,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 			/>
 
 			<FancyTextArea
-				feedbackText="ingresa tu mensaje"
+				feedbackText="Ingresa tu mensaje."
 				iconSrc={messageIcon}
 				labelText="Mensaje"
 				ref={messageTextAreaRef}
@@ -126,7 +126,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 			</p>
 
 			<FancyInput
-				feedbackText="ingresa tu correo"
+				feedbackText="Ingresa tu correo. Ejem. guillermo@gmail.com"
 				iconSrc={mailIcon}
 				labelText="Correo"
 				ref={emailInputRef}
@@ -135,7 +135,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 			/>
 
 			<FancyInput
-				feedbackText="ingresa tu teléfono"
+				feedbackText="Ingresa tu número telefónico a 10 dígitos. Ejem. 5551588911"
 				iconSrc={telIcon}
 				labelText="Teléfono"
 				ref={phoneInputRef}
