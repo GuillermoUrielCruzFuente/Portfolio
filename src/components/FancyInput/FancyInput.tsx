@@ -66,7 +66,13 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 	};
 
 	const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (keyDownEvent) => {
-		const validSpecialKeys = [
+		const { key } = keyDownEvent;
+
+		//todo: let the user copy and paste the input value
+		//todo: intercept the autocomplete input
+		//todo: insert separators automatically ( "-" or " ")
+
+		const validModifierKeys = [
 			"Control",
 			"Backspace",
 			"Shift",
@@ -74,10 +80,9 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 			"Enter",
 			"Tab",
 			"ArrowLeft",
-			"ArrowUp",
 			"ArrowRight",
-			"ArrowDown",
 			"Delete",
+			"Meta",
 		];
 
 		const validCharsForPhoneNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
