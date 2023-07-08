@@ -85,18 +85,24 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 			"Meta",
 		];
 
-		const validCharsForPhoneNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+		const validKeysForPhoneNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 		if (type === "tel") {
 			const isValidKey =
-				validCharsForPhoneNumber.includes(keyDownEvent.key) ||
-				validSpecialKeys.includes(keyDownEvent.key);
+				validKeysForPhoneNumber.includes(key) || validModifierKeys.includes(key);
 
-			// todo: verify selection and the valid insertion into that selection
-			const selection = document?.getSelection()?.toString() ?? "";
+			const selection = document?.getSelection()?.toString();
+			const { selectionStart, selectionEnd } = keyDownEvent.currentTarget;
+
+			const thereIsASelectionInsideInput =
+				selectionStart !== selectionEnd && selection !== "";
 
 			if (isValidKey) {
-				if (inputValue.length === 10 && !validSpecialKeys.includes(keyDownEvent.key)) {
+				if (
+					inputValue.length === 10 &&
+					!validModifierKeys.includes(key) &&
+					!thereIsASelectionInsideInput
+				) {
 					keyDownEvent.preventDefault();
 				}
 			} else {
