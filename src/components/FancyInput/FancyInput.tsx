@@ -88,8 +88,13 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 		const validKeysForPhoneNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 		if (type === "tel") {
+			const isCopyingOrPasting =
+				(keyDownEvent.ctrlKey && key.toLowerCase() === "c") || key.toLowerCase() === "v";
+
 			const isValidKey =
-				validKeysForPhoneNumber.includes(key) || validModifierKeys.includes(key);
+				validKeysForPhoneNumber.includes(key) ||
+				validModifierKeys.includes(key) ||
+				isCopyingOrPasting;
 
 			const selection = document?.getSelection()?.toString();
 			const { selectionStart, selectionEnd } = keyDownEvent.currentTarget;
@@ -99,11 +104,15 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 
 			if (isValidKey) {
 				if (
-					inputValue.length === 10 &&
+					inputValue.length < 10 &&
 					!validModifierKeys.includes(key) &&
-					!thereIsASelectionInsideInput
+					!thereIsASelectionInsideInput &&
+					!isCopyingOrPasting
 				) {
 					keyDownEvent.preventDefault();
+				}
+
+				if (isCopyingOrPasting) {
 				}
 			} else {
 				keyDownEvent.preventDefault();
