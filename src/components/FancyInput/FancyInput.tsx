@@ -104,7 +104,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 
 			if (isValidKey) {
 				if (
-					inputValue.length < 10 &&
+					inputValue.length >= 10 &&
 					!validModifierKeys.includes(key) &&
 					!thereIsASelectionInsideInput &&
 					!isCopyingOrPasting
