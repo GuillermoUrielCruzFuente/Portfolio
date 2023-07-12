@@ -104,6 +104,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 				(keyDownEvent.ctrlKey || keyDownEvent.metaKey) &&
 				(key.toLowerCase() === "c" ||
 					key.toLowerCase() === "v" ||
+					key.toLowerCase() === "a" ||
 					key.toLowerCase() === "x");
 
 			const isValidKey =
@@ -125,9 +126,11 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 					!isExecutingSpecialCommands
 				) {
 					keyDownEvent.preventDefault();
+					shakeInfoLabel();
 				}
 			} else {
 				keyDownEvent.preventDefault();
+				shakeInfoLabel();
 			}
 		}
 	};
