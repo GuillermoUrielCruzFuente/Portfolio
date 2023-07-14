@@ -68,7 +68,6 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 	const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (keyDownEvent) => {
 		const { key } = keyDownEvent;
 
-		//todo: let the user copy and paste the input value
 		//todo: intercept the autocomplete input
 		//todo: insert separators automatically ( "-" or " ")
 
