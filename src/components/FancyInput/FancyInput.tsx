@@ -119,7 +119,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 
 			if (isValidKey) {
 				if (
-					inputValue.length >= 10 &&
+					inputValue.length >= 12 &&
 					!validModifierKeys.includes(key) &&
 					!thereIsASelectionInsideInput &&
 					!isExecutingSpecialCommands
@@ -134,6 +134,19 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 		}
 	};
 
+	const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (keyUpEvent) => {
+		if (type === "tel") {
+			const { length: inputContentLength } = keyUpEvent.currentTarget.value;
+
+			if (
+				(inputContentLength === 3 || inputContentLength === 7) &&
+				keyUpEvent.key !== "Backspace"
+			) {
+				keyUpEvent.currentTarget.value += " ";
+			}
+		}
+	};
+
 	return (
 		<div>
 			<div className={styles["input-container"]}>
@@ -143,6 +156,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 					onChange={handleInputChange}
 					type={type}
 					onKeyDown={handleKeyDown}
+					onKeyUp={handleKeyUp}
 					{...otherProps}
 				/>
 
