@@ -140,7 +140,7 @@ const FancyForm = ({ className, submitHandler, ...otherProps }: FancyFormProps) 
 				labelText="Teléfono"
 				ref={phoneInputRef}
 				type="tel"
-				pattern="[0-9]{10}"
+				pattern="[0-9, ]{12}"
 				name="phone"
 			/>
 
