@@ -69,7 +69,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 		const { key } = keyDownEvent;
 
 		//todo: intercept the autocomplete input
-		//todo: insert separators automatically ( "-" or " ")
+		//todo: insert separator after delete
 
 		const validModifierKeys = [
 			"Control",
