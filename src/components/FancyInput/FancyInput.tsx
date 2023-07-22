@@ -99,12 +99,8 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 
 		const validKeysForPhoneNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-		const validCommands = ["a", "c", "v", "x"];
-
 		if (type === "tel") {
-			const isExecutingSpecialCommands =
-				(keyDownEvent.ctrlKey || keyDownEvent.metaKey) &&
-				validCommands.includes(key.toLowerCase());
+			const isExecutingSpecialCommands = keyDownEvent.ctrlKey || keyDownEvent.metaKey;
 
 			const isValidKey =
 				validKeysForPhoneNumber.includes(key) ||
