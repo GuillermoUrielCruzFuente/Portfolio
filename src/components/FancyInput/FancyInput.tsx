@@ -6,6 +6,7 @@ import {
 	useState,
 	ChangeEventHandler,
 	KeyboardEventHandler,
+	ClipboardEventHandler,
 } from "react";
 import { FancyInputAttributes, FancyInputElement } from "@typing/FancyInputTypes";
 import styles from "./FancyInput.module.scss";
