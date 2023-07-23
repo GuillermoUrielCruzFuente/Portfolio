@@ -143,6 +143,23 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 		}
 	};
 
+	const formatPhoneNumber = (phoneNumber: string) => {
+		const numberRegexp = new RegExp(/^\d+$/);
+
+		const isOnlyNumbers = numberRegexp.test(phoneNumber);
+
+		return isOnlyNumbers;
+	};
+
+	const handlePaste: ClipboardEventHandler<HTMLInputElement> = (clipboardEvent) => {
+		if (type === "tel") {
+			clipboardEvent.preventDefault();
+
+			const pastedString = clipboardEvent.clipboardData.getData("text");
+			console.log(formatPhoneNumber(pastedString));
+		}
+	};
+
 	return (
 		<div>
 			<div className={styles["input-container"]}>
