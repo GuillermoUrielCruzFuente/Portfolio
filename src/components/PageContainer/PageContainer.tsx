@@ -1,16 +1,23 @@
+import { HTMLAttributes } from "react";
 import styles from "./PageContainer.module.scss";
 
-const PageContainer = ({
-	children,
-	marginTop = 0,
-}: {
-	children: JSX.Element;
-	marginTop?: number;
-}) => {
+type PageContainerAttributes = HTMLAttributes<HTMLDivElement> & {};
+
+const PageContainer = ({ children, className, ...otherAttributes }: PageContainerAttributes) => {
+	const getClassNames = () => {
+		const thereIsClassNameAttr = !!className || false;
+
+		if (thereIsClassNameAttr) {
+			return " " + className;
+		}
+
+		return "";
+	};
+
 	return (
 		<div
-			style={{ marginTop }}
-			className={styles["page-container"]}
+			className={styles["page-container"] + getClassNames()}
+			{...otherAttributes}
 		>
 			{children}
 		</div>
