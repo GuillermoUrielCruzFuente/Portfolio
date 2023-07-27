@@ -1,0 +1,25 @@
+.page-container {
+	margin-inline: auto;
+}
+
+@media screen and (min-width: 1200px) {
+	.page-container {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.page-container {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.page-container {
+		width: calc(100% - 2rem);
+	}
+}
+
+.navbar-margin-top {
+	margin-top: var(--navbar-height);
+}
