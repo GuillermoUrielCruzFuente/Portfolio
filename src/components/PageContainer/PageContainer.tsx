@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
 import styles from "./PageContainer.module.scss";
 
 type PageContainerAttributes = HTMLAttributes<HTMLDivElement> & {};
