@@ -1,22 +1,29 @@
 import type { HTMLAttributes } from "react";
 import styles from "./PageContainer.module.scss";
 
-type PageContainerAttributes = HTMLAttributes<HTMLDivElement> & {};
+type PageContainerAttributes = HTMLAttributes<HTMLDivElement> & {
+	addNavbarMarginTop?: boolean;
+};
 
-const PageContainer = ({ children, className, ...otherAttributes }: PageContainerAttributes) => {
+const PageContainer = ({
+	children,
+	className,
+	addNavbarMarginTop,
+	...otherAttributes
+}: PageContainerAttributes) => {
 	const getClassNames = () => {
-		const thereIsClassNameAttr = !!className || false;
+		const classes: Array<string> = [];
 
-		if (thereIsClassNameAttr) {
-			return " " + className;
-		}
+		className && classes.push(className);
+		addNavbarMarginTop && classes.push(styles["navbar-margin-top"]);
+		classes.push(styles["page-container"]);
 
-		return "";
+		return classes.join(" ");
 	};
 
 	return (
 		<div
-			className={styles["page-container"] + getClassNames()}
+			className={getClassNames()}
 			{...otherAttributes}
 		>
 			{children}
