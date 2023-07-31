@@ -143,10 +143,29 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 		}
 	};
 
+	/**
+	 * probably you receive the phone number in a weird format
+	 * with letters or other symbols.
+	 * this function handle that and returns a valid phone number to put
+	 * inside the input
+	 *
+	 * 9511131780 -> 951 113 1780
+	 * 951-113-1780 -> 951 113 1780
+	 * +52 9511131780 -> 951 113 1780
+	 * 951 113 1780 -> 951 113 1780
+	 *
+	 *
+	 * @param phoneNumber
+	 * @returns formatted phone string
+	 */
 	const formatPhoneNumber = (phoneNumber: string) => {
 		const numberRegexp = new RegExp(/^\d+$/);
 
 		const isOnlyNumbers = numberRegexp.test(phoneNumber);
+
+		if (isOnlyNumbers && phoneNumber.length === 10) {
+			return insertSpaces(phoneNumber);
+		}
 
 		return isOnlyNumbers;
 	};
