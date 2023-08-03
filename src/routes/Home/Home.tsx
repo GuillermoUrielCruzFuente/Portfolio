@@ -1,36 +1,32 @@
-import { useRef, useEffect } from 'react'
-import SocialMedia from '@components/SocialMedia/SocialMedia'
-import Button from '@components/Button/Button'
-import useLottie from '@/hooks/useLottie'
-import { useLogoAnimationState } from '@/context/LogoAnimationState'
-import logoAnimationData from '@lottie/logo.json'
-import projectsIcon from '@images/icons/home-buttons/portfolio.svg'
-import contactIcon from '@images/icons/home-buttons/plane.svg'
-import collage from '@images/web-images/collage.png'
-import './Home.scss'
+import { useRef, useEffect } from "react";
+import SocialMedia from "@components/SocialMedia/SocialMedia";
+import Button from "@components/Button/Button";
+import useLottie from "@/hooks/useLottie";
+import { useLogoAnimationState } from "@/context/LogoAnimationState";
+import logoAnimationData from "@lottie/logo.json";
+import projectsIcon from "@images/icons/home-buttons/portfolio.svg";
+import contactIcon from "@images/icons/home-buttons/plane.svg";
+import collage from "@images/web-images/collage.png";
+import "./Home.scss";
 
 const Home = () => {
-	const collageRef = useRef<HTMLImageElement>(null)
-	const [_, setLogoAnimationState] = useLogoAnimationState()
+	const collageRef = useRef<HTMLImageElement>(null);
+	const [_, setLogoAnimationState] = useLogoAnimationState();
 	const [LogoAnimation, LogoLottie] = useLottie({
 		data: logoAnimationData,
-	})
+	});
 
 	useEffect(() => {
-		LogoLottie.current.play()
+		LogoLottie.current.play();
 
-		LogoLottie.current.addEventListener(
-			'complete',
-			dispatchCompleteLogoState
-		)
-	}, [])
+		LogoLottie.current.addEventListener("complete", dispatchCompleteLogoState);
+	}, []);
 
-	const dispatchCompleteLogoState = () =>
-		setLogoAnimationState({ isComplete: true })
+	const dispatchCompleteLogoState = () => setLogoAnimationState({ isComplete: true });
 
 	const showCollage = () => {
-		collageRef.current!.classList.replace('collage-init', 'collage-final')
-	}
+		collageRef.current!.classList.replace("collage-init", "collage-final");
+	};
 
 	return (
 		<header id="home-main-container">
@@ -40,18 +36,24 @@ const Home = () => {
 				<LogoAnimation className="lottie-animation" />
 
 				<p className="description">
-					<span className="accent">Desarrollador Frontend</span> de
-					tiempo completo, con más de 3 años de experiencia. Mexicano,
-					con intervención en distintos proyectos profesionales, una
-					gran creatividad y atención a los detalles.
+					<span className="accent">Desarrollador Frontend</span> de tiempo completo, con
+					más de 3 años de experiencia. Mexicano, con intervención en distintos proyectos
+					profesionales, una gran creatividad y atención a los detalles.
 				</p>
 
 				<div className="buttons-container">
-					<Button icon={contactIcon} secondary navigateTo="/contacto">
+					<Button
+						icon={contactIcon}
+						secondary
+						navigateTo="/contacto"
+					>
 						contacto
 					</Button>
 
-					<Button icon={projectsIcon} navigateTo="/proyectos">
+					<Button
+						icon={projectsIcon}
+						navigateTo="/proyectos"
+					>
 						proyectos
 					</Button>
 				</div>
@@ -74,7 +76,7 @@ const Home = () => {
 				</div>
 			</div>
 		</header>
-	)
-}
+	);
+};
 
-export default Home
+export default Home;
