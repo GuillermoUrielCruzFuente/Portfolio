@@ -158,7 +158,7 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 	 * @param phoneNumber
 	 * @returns formatted phone string
 	 */
-	const formatPhoneNumber = (phoneNumber: string) => {
+	const formatPhoneNumber = (phoneNumber: string): string => {
 		const numberRegexp = new RegExp(/^\d+$/);
 
 		const isOnlyNumbers = numberRegexp.test(phoneNumber);
@@ -167,7 +167,21 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 			return insertSpaces(phoneNumber);
 		}
 
-		return isOnlyNumbers;
+		return "";
+	};
+
+	const insertSpaces = (tenDigitPhone: string) => {
+		const FIRST_SPACE = 3;
+		const firstSpaceInsertion = insertSpaceIntoIndex(FIRST_SPACE, tenDigitPhone);
+
+		const SECOND_SPACE = 7;
+		const secondSpaceInsertion = insertSpaceIntoIndex(SECOND_SPACE, firstSpaceInsertion);
+
+		return secondSpaceInsertion;
+	};
+
+	const insertSpaceIntoIndex = (index: number, string: string) => {
+		return [string.slice(0, index), " ", string.slice(index)].join("");
 	};
 
 	const handlePaste: ClipboardEventHandler<HTMLInputElement> = (clipboardEvent) => {
@@ -175,7 +189,8 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 			clipboardEvent.preventDefault();
 
 			const pastedString = clipboardEvent.clipboardData.getData("text");
-			console.log(formatPhoneNumber(pastedString));
+			const formattedPhone = formatPhoneNumber(pastedString);
+			setInputValue(formattedPhone);
 		}
 	};
 
