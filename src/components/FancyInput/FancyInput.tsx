@@ -205,8 +205,8 @@ const FancyInput = (props: FancyInputAttributes, ref: ForwardedRef<FancyInputEle
 					onKeyDown={handleKeyDown}
 					onKeyUp={handleKeyUp}
 					onPaste={handlePaste}
-					{...otherProps}
 					value={inputValue}
+					{...otherProps}
 				/>
 
 				<label>{labelText}</label>
