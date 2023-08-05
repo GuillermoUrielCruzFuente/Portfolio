@@ -7,6 +7,7 @@ import logoAnimationData from "@lottie/logo.json";
 import projectsIcon from "@images/icons/home-buttons/portfolio.svg";
 import contactIcon from "@images/icons/home-buttons/plane.svg";
 import collage from "@images/web-images/collage.png";
+import { PageContainer } from "@components/PageContainer";
 import "./Home.scss";
 
 const Home = () => {
@@ -29,7 +30,7 @@ const Home = () => {
 	};
 
 	return (
-		<header id="home-main-container">
+		<PageContainer addNavbarMarginTop>
 			<div className="home-content">
 				<p className="big-text">Hola! 👋🏾 soy</p>
 
@@ -75,7 +76,7 @@ const Home = () => {
 					/>
 				</div>
 			</div>
-		</header>
+		</PageContainer>
 	);
 };
 
