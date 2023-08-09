@@ -27,14 +27,14 @@ const NavLinksDesktop = () => {
 	const { pathname } = useLocation();
 	const isHome = pathname === "/";
 	const [logoAnimationState] = useLogoAnimationState();
-	const hasLogoAnimationPlayed = logoAnimationState.isComplete;
+	const hasLogoAnimationBeenPlayed = logoAnimationState.isComplete;
 
 	//manage the delay value based on 2 conditions
 	//if it's home page or not
 	//and if the logo animation has been completed (home or nav)
 	const calculateDelay = (): number => {
-		const delay = isHome ? 2.8 : 1.5;
-		return hasLogoAnimationPlayed ? 0 : delay;
+		const delay = isHome ? 3.3 : 1.5;
+		return hasLogoAnimationBeenPlayed ? 0 : delay;
 	};
 
 	return (
