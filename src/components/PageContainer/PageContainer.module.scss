@@ -23,3 +23,11 @@
 .navbar-margin-top {
 	margin-top: var(--navbar-height);
 }
+
+.fill-vertical-viewport {
+	min-height: 100vh;
+
+	&[add-navbar-margin-top] {
+		min-height: calc(100vh - var(--navbar-height));
+	}
+}
