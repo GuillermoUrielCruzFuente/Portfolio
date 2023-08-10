@@ -10,14 +10,37 @@
 	font-size: 1.5rem;
 	font-weight: 900;
 	color: #fff;
-	padding-top: calc(var(--navbar-height) * 1);
 }
 
-$logo-width: 40%;
+.home-page-container {
+	padding-bottom: var(--navbar-height);
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.layout-composer {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+
+	flex-grow: 1;
+}
+
+$logo-width: 100%;
 .lottie-animation {
 	width: $logo-width;
 	aspect-ratio: 4.85;
 	overflow: hidden;
+	margin-inline: auto;
+}
+
+.logo-animation-container {
+	width: 100%;
+	transition: width 500ms;
+	transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
 }
 
 .description {
