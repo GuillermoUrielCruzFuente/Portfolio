@@ -1,10 +1,18 @@
 import { LottieData } from "@/typing/LottieTypes";
 import Lottie, { AnimationItem } from "lottie-web";
-import { MutableRefObject, useCallback, useLayoutEffect, useRef, HTMLAttributes } from "react";
+import {
+	MutableRefObject,
+	useCallback,
+	useLayoutEffect,
+	useRef,
+	HTMLAttributes,
+	RefObject,
+} from "react";
 
 type useLottieReturns = [
 	lottieElement: (props: HTMLAttributes<HTMLDivElement>) => JSX.Element,
-	lottieInstanceRef: MutableRefObject<AnimationItem>
+	lottieInstanceRef: MutableRefObject<AnimationItem>,
+	lottieContainerRef: RefObject<HTMLDivElement>
 ];
 
 const useLottie = ({ data }: LottieData): useLottieReturns => {
@@ -39,7 +47,7 @@ const useLottie = ({ data }: LottieData): useLottieReturns => {
 		[]
 	);
 
-	return [lottieElement, lottieInstanceRef];
+	return [lottieElement, lottieInstanceRef, animationContainerRef];
 };
 
 export default useLottie;
