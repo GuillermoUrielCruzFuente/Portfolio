@@ -1,20 +1,10 @@
 @media screen and (max-width: 1300px) {
-	$logo-width: 50%;
-	.lottie-animation {
-		width: $logo-width;
-	}
-
 	.description {
 		width: $logo-width;
 	}
 }
 
 @media screen and (max-width: 1000px) {
-	$logo-width: 55%;
-	.lottie-animation {
-		width: $logo-width;
-	}
-
 	.description {
 		width: $logo-width;
 	}
@@ -23,13 +13,6 @@
 @media screen and (max-width: 840px) {
 	.home-content {
 		align-items: center;
-	}
-
-	$logo-width: 70%;
-	.lottie-animation {
-		width: $logo-width;
-		aspect-ratio: 4.85;
-		overflow: hidden;
 	}
 
 	.description {
@@ -66,11 +49,6 @@
 	.big-text {
 		font-size: 1rem;
 		padding-top: 0.25rem;
-	}
-
-	$logo-width: 90%;
-	.lottie-animation {
-		width: $logo-width;
 	}
 
 	.description {
