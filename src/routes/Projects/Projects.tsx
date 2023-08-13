@@ -7,6 +7,7 @@ import projectsData, { ProjectContent } from "@/data/ProjectsData";
 import ProjectInfo from "@components/ProjectInfo/ProjectInfo";
 import ScrollDown from "@components/ScrollDown/ScrollDown";
 import LazyImg from "@components/LazyImg/LazyImg";
+import { PageContainer } from "@components/PageContainer";
 
 //styles
 import "./Projects.scss";
@@ -19,7 +20,11 @@ const Projects = () => {
 
 	return (
 		<>
-			<header id="projects">
+			<PageContainer
+				addNavbarMarginTop
+				fillVerticalViewport
+				id="projects"
+			>
 				<h1 className="page-title">Proyectos</h1>
 				<p className="page-description">
 					Comencé hace ya un tiempo en el <span className="accent">desarrollo web</span>,
@@ -41,9 +46,9 @@ const Projects = () => {
 				</div>
 
 				<ScrollDown />
-			</header>
+			</PageContainer>
 
-			<main id="projects-main">
+			<PageContainer id="projects-main">
 				<section className="projects">
 					{projectsData.map((project: ProjectContent) => (
 						<div
@@ -58,7 +63,7 @@ const Projects = () => {
 						</div>
 					))}
 				</section>
-			</main>
+			</PageContainer>
 		</>
 	);
 };
