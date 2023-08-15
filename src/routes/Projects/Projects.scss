@@ -1,12 +1,3 @@
-header#projects {
-	position: relative;
-	min-height: calc(100vh - var(--navbar-height));
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	justify-content: center;
-}
-
 $harbest-blue: #1a4d8a;
 $campofuerte-brown: #7a5125;
 $campofuerte-green: #90b527;
@@ -54,7 +45,6 @@ $guillermo-red: #a03535;
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
-	width: 100vw;
 	margin: 4rem 0;
 
 	.project-logo {
