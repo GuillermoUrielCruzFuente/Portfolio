@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Home = () => {
 	const collageRef = useRef<HTMLImageElement>(null);
 	const [_, setLogoAnimationState] = useLogoAnimationState();
-	const [LogoAnimationComponent, logoLottieRef] = useLottie({
+	const [LogoAnimationComponent, logoLottieRef, componentRef] = useLottie({
 		data: logoAnimationData,
 	});
 
