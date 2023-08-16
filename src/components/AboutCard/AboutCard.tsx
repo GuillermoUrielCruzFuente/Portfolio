@@ -1,18 +1,18 @@
-import "./AboutCard.scss";
+import styles from "./AboutCard.module.scss";
 
-export type AboutCardContent = {
+export type AboutCardAttributes = {
 	main: string;
 	middle: string;
 	bottom: string;
 };
 
-const AboutCard = (Content: AboutCardContent) => {
+const AboutCard = ({ main, middle, bottom }: AboutCardAttributes) => {
 	return (
-		<div className="about-card">
-			<p className="main">{Content.main}</p>
-			<p className="middle">{Content.middle}</p>
-			<p className="bottom">{Content.bottom}</p>
-			<span className="bottom-line"></span>
+		<div className={styles["about-card"]}>
+			<p className={styles["main"]}>{main}</p>
+			<p className={styles["middle"]}>{middle}</p>
+			<p className={styles["bottom"]}>{bottom}</p>
+			<span className={styles["bottom-line"]}></span>
 		</div>
 	);
 };
