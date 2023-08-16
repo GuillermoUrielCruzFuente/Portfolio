@@ -1,6 +1,6 @@
-import { AboutCardContent } from "../components/AboutCard/AboutCard";
+import { AboutCardAttributes } from "../components/AboutCard/AboutCard";
 
-export const cards: Array<AboutCardContent> = [
+export const cards: Array<AboutCardAttributes> = [
 	{
 		main: "+3",
 		middle: "años de",
