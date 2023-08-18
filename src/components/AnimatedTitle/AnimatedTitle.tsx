@@ -30,22 +30,22 @@ const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
 			threshold: 1,
 		};
 
-		const b = () => {
+		const setFinalStyles = () => {
 			itemsWithRef.forEach((item: textItem) => {
-				if (item.ref.current) {
-					item.ref.current.style.opacity = "1";
-					item.ref.current.style.transform = "translateY(0px)";
+				const currentItem = item?.ref?.current;
+
+				if (currentItem) {
+					currentItem.style.opacity = "1";
+					currentItem.style.transform = "translateY(0px)";
 				}
 			});
 		};
 
-		const a = (entries: Array<IntersectionObserverEntry>) => {
-			entries.forEach((entry) => {
-				entry.isIntersecting ? b() : undefined;
-			});
+		const observerCallback = (entries: Array<IntersectionObserverEntry>) => {
+			entries.forEach((entry) => entry.isIntersecting && setFinalStyles());
 		};
 
-		const observer = new IntersectionObserver(a, observerOptions);
+		const observer = new IntersectionObserver(observerCallback, observerOptions);
 
 		observer.observe(titleRef.current as HTMLHeadingElement);
 	}, []);
