@@ -1,14 +1,13 @@
 import { AnimatePresence, motion, Transition } from "framer-motion";
 import { useEffect, useState } from "react";
-import "./ScrollDown.scss";
+import styles from "./ScrollDown.module.scss";
 
 const ScrollDown = () => {
 	const [scrollState, setScrollState] = useState(false);
 
-	const needToBeVisible = () => !(window.scrollY >= 100);
-
 	const hideOnScroll = () => {
-		setScrollState(needToBeVisible());
+		const needToBeVisible = !(window.scrollY >= 100);
+		setScrollState(needToBeVisible);
 	};
 
 	useEffect(() => {
@@ -33,11 +32,12 @@ const ScrollDown = () => {
 					animate={{ y: 0, opacity: 1 }}
 					exit={{ y: "100%", opacity: 0 }}
 					transition={transitionConfig}
-					className="scroll"
+					className={styles["scroll"]}
 				>
 					<p>scroll</p>
-					<div className="line-container">
-						<span id="line"></span>
+
+					<div className={styles["line-container"]}>
+						<span className={styles["line"]}></span>
 					</div>
 				</motion.div>
 			)}
