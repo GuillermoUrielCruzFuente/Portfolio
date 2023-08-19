@@ -1,21 +1,10 @@
-//components
-import AboutCard, {
-	AboutCardContent,
-} from '../../components/AboutCard/AboutCard'
-import AnimatedTitle from '../../components/AnimatedTitle/AnimatedTitle'
-import IntersectionContainer from '../../components/IntersectionContainer/IntersectionContainer'
-import ScrollDown from '../../components/ScrollDown/ScrollDown'
-
-//images and styles imports
-import { cards } from '../../data/AboutCardsData'
-
-import {
-	techImages,
-	hobbiesImages,
-	ImageProps,
-} from '../../helpers/imports/AboutImports'
-
-import './About.scss'
+import { AboutCard, AboutCardAttributes } from "@components/AboutCard";
+import { AnimatedTitle } from "@components/AnimatedTitle";
+import { IntersectionContainer } from "@components/IntersectionContainer";
+import { ScrollDown } from "@components/ScrollDown";
+import { cards } from "@/data/AboutCardsData";
+import { techImages, hobbiesImages, ImageProps } from "@/helpers/imports/AboutImports";
+import "./About.scss";
 
 const About = () => {
 	return (
