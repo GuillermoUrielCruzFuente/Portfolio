@@ -20,6 +20,7 @@ import okAnimationData from "@lottie/ok.json";
 import messageAnimationData from "@lottie/message-success.json";
 import { FancyForm } from "@components/FancyForm";
 import { SubmitHandler } from "@/components/FancyForm/FancyForm";
+import { PageContainer } from "@components/PageContainer";
 
 const Contact = () => {
 	useEffect(() => {
@@ -72,7 +73,11 @@ const Contact = () => {
 	};
 
 	return (
-		<header id="contact">
+		<PageContainer
+			fillVerticalViewport
+			addNavbarMarginTop
+			id="contact"
+		>
 			<div className="split-container">
 				<div className="split">
 					<h1 className="page-main-title">Contáctame!</h1>
@@ -138,7 +143,7 @@ const Contact = () => {
 					</Veil>
 				)}
 			</AnimatePresence>
-		</header>
+		</PageContainer>
 	);
 };
 
