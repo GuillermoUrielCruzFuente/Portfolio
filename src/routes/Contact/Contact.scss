@@ -1,12 +1,10 @@
 #contact {
 	display: flex;
 	flex-flow: column;
-	width: 75%;
-	padding-bottom: 3rem;
 
 	.page-main-title {
 		color: #fff;
-		font-size: clamp(1rem, 4.5vw, 4.25rem);
+		font-size: clamp(1rem, 4.5vw, 4rem);
 		font-weight: 900;
 		margin-bottom: 1rem;
 		text-transform: uppercase;
@@ -33,215 +31,16 @@
 		line-height: 1;
 		margin-bottom: 1rem;
 	}
-}
 
-form#contact-form {
-	display: flex;
-	flex-flow: column;
-	width: 100%;
-
-	box-shadow: 3px 3px 32px rgba($color: #000000, $alpha: 0.75);
-	background-color: rgba($color: #16011b, $alpha: 0.6);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-
-	padding: 1.25rem;
-	border-radius: 0.75rem;
-
-	border: dashed #4f0f5e 2px;
-
-	.form-title {
-		color: #fff;
-		margin: 0 auto;
-		font-size: 1.5rem;
-		text-align: center;
-	}
-
-	.form-text {
-		margin: 0 auto;
-		text-align: left;
-		font-size: 0.85rem;
-		color: #f5c8ff;
-		//spacing between inputs
-		margin-top: 1rem;
-	}
-
-	.send {
-		margin-top: 1.5rem;
-		margin-left: auto;
-	}
-}
-
-.contact-form {
-	margin-top: 2rem;
-}
-
-.error-label {
-	width: -webkit-fit-content;
-	width: -moz-fit-content;
-	width: fit-content;
-	height: -webkit-fit-content;
-	height: -moz-fit-content;
-	height: fit-content;
-	transition: color 300ms;
-	font-size: 0.75rem;
-	margin-top: 0.25rem;
-	margin-left: auto;
-	text-align: right;
-}
-
-@keyframes shake {
-	$shake-step: 4px;
-
-	@for $step from 1 to 4 {
-		#{$step * 20%} {
-			@if ($step % 2 == 0) {
-				transform: translateX($shake-step);
-				color: #fb9999;
-			} @else {
-				transform: translateX(-$shake-step);
-				color: #fff;
-			}
-		}
-		100% {
-			transform: translateX(0px);
-			color: #fb9999;
-		}
-	}
-}
-
-.input-container {
-	position: relative;
-
-	//space necessary for the floating level
-	padding-top: 1.25rem;
-
-	//extra top spacing
-	margin-top: 1rem;
-
-	//total spacing between inputs 2.75rem
-
-	//second child counting the h1 tag
-	&:nth-child(2) {
-		//remove the margin to the first input, look better
-		margin-top: 0px;
-	}
-
-	//this value allow to put the icon inside the input
-	//without being in front of the text
-	$left-padding: 2.5rem;
-	$top-padding: 2rem;
-
-	label {
-		position: absolute;
-		display: block;
-		color: #f5c8ff;
-		font-weight: 400;
-
-		font-size: 1rem;
-		transform-origin: left;
-
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-		pointer-events: none;
-
-		$label-animation-duration: 400ms;
-		transition: top $label-animation-duration, left $label-animation-duration,
-			transform $label-animation-duration, opacity $label-animation-duration;
-		transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
-	}
-
-	.label-icon {
-		$icon-size: 22px;
-		width: $icon-size;
-		height: $icon-size;
-		display: inline-block;
-		position: absolute;
-		left: 0.75rem;
-		top: $top-padding;
-	}
-
-	.form-input {
-		background-color: #3e0b49;
-		padding: 0.75rem;
-		padding-left: calc($left-padding + 0.25rem);
-		font-size: 1rem;
-		color: #fff;
-		width: 100%;
-		box-shadow: 3px 3px 16px rgba($color: #000000, $alpha: 0.5);
-		outline: none;
-		border-radius: 0.5rem;
-		border: transparent dashed 2px;
-
-		transition: border 200ms;
-
-		&::-webkit-input-placeholder {
-			color: transparent;
-		}
-
-		&::-moz-placeholder {
-			color: transparent;
-		}
-
-		&:-ms-input-placeholder {
-			color: transparent;
-		}
-
-		&::-ms-input-placeholder {
-			color: transparent;
-		}
-
-		&::placeholder {
-			color: transparent;
-		}
-
-		&:is(:focus) {
-			border: #c550c5 dashed 2px;
-		}
-
-		/*
-			animation state handling
-		*/
-
-		// if (
-		//		the input is focused OR
-		//		the input is valid OR
-		//		the placeholder is not visible
-		//	) then ELEVATE THE LABEL
-		&:is(:focus, :valid, :not(:placeholder-shown)) + label {
-			top: -0.1rem;
-			left: 0rem;
-			transform: scale(0.75);
-			opacity: 1;
-		}
-
-		// if (
-		//		placeholder is visible AND
-		//		the input is not focused
-		//	) then KEEP THE LABEL IN THE BASE STATE
-		&:is(:placeholder-shown:not(:focus)) + label {
-			top: $top-padding;
-			left: calc($left-padding + 0.25rem);
-			transform: scale(1);
-			opacity: 0.5;
-		}
-	}
-
-	textarea {
-		resize: none;
-
-		//there is some extra padding-bottom in textareas
-		//this line fix that, info here -> https://stackoverflow.com/a/7144960/20044179
-		vertical-align: top;
+	.contact-form {
+		margin-bottom: 3rem;
 	}
 }
 
 .split-container {
 	display: flex;
 	flex-flow: row;
-	// margin-top: 2rem;
+	gap: 5rem;
 
 	.split {
 		flex-basis: 0;
@@ -249,124 +48,7 @@ form#contact-form {
 
 		&:first-child {
 			flex-grow: 0;
-			padding-right: 5rem;
 		}
-	}
-}
-
-.modal {
-	width: 100vw;
-	height: 100vh;
-
-	background-color: rgba($color: #000000, $alpha: 0.95);
-	position: fixed;
-
-	top: 0;
-	left: 0;
-	z-index: 1000;
-
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	justify-content: center;
-	color: #fff;
-
-	#message-success {
-		width: 400px;
-		height: 400px;
-	}
-}
-
-.waiting {
-	background-color: #510660;
-	border-radius: 1rem;
-	overflow: hidden;
-	display: flex;
-	flex-flow: row;
-	align-items: center;
-	justify-content: space-around;
-	padding: 2rem;
-	width: -webkit-fit-content;
-	width: -moz-fit-content;
-	width: fit-content;
-	box-shadow: 0px 0px 32px rgba($color: #551255, $alpha: 0.75);
-
-	h1 {
-		font-size: 1rem;
-		line-height: 1.2;
-		color: #f5c8ff;
-		width: -webkit-fit-content;
-		width: -moz-fit-content;
-		width: fit-content;
-	}
-}
-
-.success {
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	justify-content: center;
-
-	background-color: #4f0f5e;
-	padding: 1.5rem;
-	border-radius: 1rem;
-
-	max-width: min(80%, 350px);
-	max-height: 65vh;
-
-	$animation-size: 350px;
-
-	p {
-		font-size: 1.25rem;
-		color: #f5c8ff;
-		text-align: center;
-		font-weight: 400;
-		width: min($animation-size, 100%);
-	}
-
-	.animations-container {
-		width: 100%;
-		height: $animation-size;
-		margin-block: 2rem;
-		background-color: #2f0838;
-		box-sizing: content-box;
-		padding: 1.5rem;
-
-		position: relative;
-	}
-
-	@mixin absolute-center {
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-
-	#message-success {
-		width: min($animation-size, 100%);
-		height: min($animation-size, 100%);
-		position: absolute;
-		@include absolute-center;
-	}
-
-	#ok {
-		width: min($animation-size, 100%);
-		height: min($animation-size, 100%);
-
-		position: absolute;
-		@include absolute-center;
-	}
-
-	.modal-button {
-		background-color: #3e0b49;
-		outline: none;
-		border: none;
-		padding: 0.5rem 1.5rem;
-		color: #fff;
-		font-weight: 900;
-		border-radius: 0.5rem;
-		box-shadow: 3px 3px 8px #000;
-		margin-left: auto;
-		cursor: pointer;
 	}
 }
 
