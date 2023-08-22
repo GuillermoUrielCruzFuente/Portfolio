@@ -48,8 +48,8 @@ const Projects = () => {
 				<ScrollDown />
 			</PageContainer>
 
-			<PageContainer id="projects-main">
-				<section className="projects">
+			<section className="projects-container">
+				<PageContainer>
 					{projectsData.map((project: ProjectContent) => (
 						<div
 							key={project.url}
@@ -62,8 +62,8 @@ const Projects = () => {
 							</div>
 						</div>
 					))}
-				</section>
-			</PageContainer>
+				</PageContainer>
+			</section>
 		</>
 	);
 };
