@@ -65,13 +65,9 @@ $guillermo-red: #a03535;
 	}
 }
 
-main#projects-main {
+.projects-container {
 	background-color: #000;
-	padding-bottom: 6rem;
-
-	.projects {
-		width: 75%;
-	}
+	padding-block: 3rem;
 }
 
 .project-container {
