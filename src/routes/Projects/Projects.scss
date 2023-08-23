@@ -24,6 +24,13 @@ $guillermo-red: #a03535;
 	color: $guillermo-red;
 }
 
+#projects {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}
+
 .page-title {
 	font-size: clamp(1.5rem, 12.25vw, 7rem); //perfect size!!!
 	color: #fff;
