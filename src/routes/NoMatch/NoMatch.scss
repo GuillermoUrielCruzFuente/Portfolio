@@ -4,10 +4,28 @@
 	align-items: center;
 	justify-content: center;
 
+	// navbar visual compensation
+	// set in order to center vertically
+	padding-bottom: var(--navbar-height);
+
+	.monster-container {
+		// a vertical rectangle shape
+		// this way decrease the bottom space
+		aspect-ratio: 1.05;
+		width: min(100%, 400px);
+		overflow: hidden;
+		position: relative;
+
+		display: flex;
+		flex-flow: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
 	.error-text {
 		font-weight: 900;
 		font-size: 5rem;
-		font-size: clamp(1.5rem, 10vw, 7rem);
+		font-size: clamp(1.75rem, 10vw, 8rem);
 		color: #fff;
 		line-height: 1;
 		text-align: center;
@@ -22,15 +40,15 @@
 }
 
 .monster-animation {
-	width: min(100%, 400px);
+	width: 100%;
 	aspect-ratio: 1;
+	transform: scale(1.56);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
 	#no-match {
-		p {
-			max-width: 70%;
-			margin-inline: auto;
+		.error-text {
+			font-size: 3rem;
 		}
 	}
 }
