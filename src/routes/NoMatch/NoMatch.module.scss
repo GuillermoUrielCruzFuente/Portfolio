@@ -1,4 +1,4 @@
-#no-match {
+.no-match {
 	display: flex;
 	flex-flow: column;
 	align-items: center;
@@ -22,20 +22,23 @@
 		justify-content: flex-start;
 	}
 
-	.error-text {
+	.error-title {
 		font-weight: 900;
 		font-size: 5rem;
 		font-size: clamp(1.75rem, 10vw, 8rem);
 		color: #fff;
 		line-height: 1;
 		text-align: center;
+		margin-top: 1rem;
 	}
 
 	p {
 		font-size: 1rem;
-		font-size: clamp(0.85rem, 1vw, 1rem);
+		font-size: clamp(0.75rem, 2vw, 1rem);
 		color: #fff;
 		text-align: center;
+		margin-top: 0.5rem;
+		max-width: 80%;
 	}
 }
 
@@ -45,10 +48,4 @@
 	transform: scale(1.56);
 }
 
-@media screen and (max-width: 600px) {
-	#no-match {
-		.error-text {
-			font-size: 3rem;
-		}
-	}
-}
+@import "./mediaqueries";
