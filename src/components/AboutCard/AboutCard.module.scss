@@ -7,8 +7,9 @@
 	position: relative;
 	overflow: hidden;
 	border: dashed 2px #4f105f;
-	min-width: 180px;
-	margin-inline: 2rem;
+	// min-width: 180px;
+	width: 100%;
+	// aspect-ratio: 1.7;
 	padding: 1rem;
 
 	transition: background-color 200ms, border 200ms;
@@ -45,7 +46,6 @@
 	.bottom {
 		font-weight: 900;
 		font-size: 1rem;
-		// margin-bottom: 0.5rem;
 	}
 
 	.bottom-line {
@@ -76,10 +76,8 @@
 
 @media screen and (max-width: 900px) {
 	.about-card {
-		min-width: 150px;
-		margin-inline: 1.25rem;
+		// min-width: 150px;
 		border-radius: 0.75rem;
-		margin-bottom: 2rem;
 
 		.main {
 			font-size: 2.5rem;
@@ -104,10 +102,9 @@
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 530px) {
 	.about-card {
-		margin-inline: 0;
-		width: min(100%, 200px);
+		// width: min(100%, 200px);
 
 		p {
 			text-align: center;
