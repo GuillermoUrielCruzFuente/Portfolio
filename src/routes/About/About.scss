@@ -5,13 +5,7 @@
 	align-items: center;
 	position: relative;
 	text-align: center;
-
-	.upper-title {
-		font-size: 1.5rem;
-		color: #7e1e95;
-		font-weight: 900;
-		line-height: 1;
-	}
+	padding-bottom: 2rem;
 
 	.main-title {
 		font-size: clamp(1.25rem, 10vw, 7.5rem);
@@ -42,10 +36,14 @@
 	.cards-container {
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: space-between;
 		margin-top: 3rem;
+		gap: 1rem;
+		width: min(100%, 700px);
 	}
 }
+
+@import "./mediaqueries";
 
 @media screen and (max-width: 900px) {
 	#about {
@@ -80,15 +78,6 @@
 
 		.bottom-title {
 			font-size: 0.75rem;
-		}
-
-		.cards-container {
-			display: flex;
-			flex-flow: row wrap;
-			align-items: center;
-			justify-content: space-around;
-			margin: 0;
-			margin-top: 2rem;
 		}
 	}
 }
@@ -303,30 +292,4 @@ main#about-main {
 			}
 		}
 	}
-}
-
-.page-about-enter {
-	opacity: 0;
-	transform: translateY(-50px);
-}
-
-.page-about-enter-active {
-	opacity: 1;
-	transform: translateY(0px);
-
-	transition: opacity 300ms, transform 300ms;
-	transition-timing-function: ease;
-}
-
-.page-about-exit {
-	opacity: 1;
-	transform: translateY(0px);
-}
-
-.page-about-exit-active {
-	opacity: 0;
-	transform: translateY(50px);
-
-	transition: opacity 300ms, transform 300ms;
-	transition-timing-function: ease;
 }
