@@ -7,11 +7,8 @@
 	position: relative;
 	overflow: hidden;
 	border: dashed 2px #4f105f;
-	// min-width: 180px;
 	width: 100%;
-	// aspect-ratio: 1.7;
 	padding: 1rem;
-
 	transition: background-color 200ms, border 200ms;
 
 	p {
@@ -76,7 +73,6 @@
 
 @media screen and (max-width: 900px) {
 	.about-card {
-		// min-width: 150px;
 		border-radius: 0.75rem;
 
 		.main {
@@ -104,8 +100,6 @@
 
 @media screen and (max-width: 530px) {
 	.about-card {
-		// width: min(100%, 200px);
-
 		p {
 			text-align: center;
 		}
