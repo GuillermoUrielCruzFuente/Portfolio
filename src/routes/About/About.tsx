@@ -16,6 +16,7 @@ const About = () => {
 				fillVerticalViewport
 			>
 				<h1 className="main-title">Sobre mí</h1>
+
 				<p className="bottom-title">
 					Lo que he hecho, hago y seguiré haciendo (pero mejor)
 				</p>
