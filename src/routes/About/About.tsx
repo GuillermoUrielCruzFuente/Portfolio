@@ -6,22 +6,23 @@ import { cards } from "@/data/AboutCardsData";
 import { techImages, hobbiesImages, ImageProps } from "@/helpers/imports/AboutImports";
 import { PageContainer } from "@components/PageContainer";
 import "./About.scss";
+import styles from "./About.module.scss";
 
 const About = () => {
 	return (
 		<>
 			<PageContainer
-				id="about"
+				className={styles["hero-container"]}
 				addNavbarMarginTop
 				fillVerticalViewport
 			>
-				<h1 className="main-title">Sobre mí</h1>
+				<h1 className={styles["main-title"]}>Sobre mí</h1>
 
-				<p className="bottom-title">
+				<p className={styles["bottom-title"]}>
 					Lo que he hecho, hago y seguiré haciendo (pero mejor)
 				</p>
 
-				<p className="about-description">
+				<p className={styles["about-description"]}>
 					Mi nombre es <span className="accent">Guillermo Cruz</span>, desarrollador
 					FRONTEND desde hace más de 3 años, he desarrollado distintas habilidades que me
 					permiten construir sitios web atractivos, siempre con la ayuda de tecnologías
@@ -29,7 +30,7 @@ const About = () => {
 					los estándares que exige la industria.
 				</p>
 
-				<div className="cards-container">
+				<div className={styles["cards-container"]}>
 					{cards.map((cardContent: AboutCardAttributes) => (
 						<AboutCard
 							{...cardContent}
