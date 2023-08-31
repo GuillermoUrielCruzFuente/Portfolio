@@ -21,7 +21,7 @@
 		width: 90%;
 	}
 
-	.years {
+	.row-container {
 		.tech-images {
 			img {
 				width: 80px;
@@ -132,7 +132,7 @@
 }
 
 @media screen and (max-width: 400px) {
-	.years {
+	.row-container {
 		p {
 			font-size: 1.5rem;
 		}
@@ -148,7 +148,7 @@
 		}
 	}
 
-	.years {
+	.row-container {
 		.tech-images {
 			img {
 				width: 60px;

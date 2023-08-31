@@ -98,7 +98,7 @@ const About = () => {
 					</div>
 				</PageContainer>
 
-				<section className="years">
+				<section className="row-container">
 					<div className="tech-images">
 						{techImages.map((img) => (
 							<img
@@ -168,7 +168,7 @@ const About = () => {
 					</div>
 				</PageContainer>
 
-				<section className="years">
+				<section className="row-container">
 					<div>
 						<p>INGENIERÍA MECATRÓNICA AGRÍCOLA</p>
 					</div>
@@ -226,7 +226,7 @@ const About = () => {
 					</div>
 				</PageContainer>
 
-				<section className="years">
+				<section className="row-container">
 					<div className="hobbies">
 						{hobbiesImages.map((img: ImageProps) => (
 							<img
