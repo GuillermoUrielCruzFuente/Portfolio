@@ -5,7 +5,6 @@ import { ScrollDown } from "@components/ScrollDown";
 import { cards } from "@/data/AboutCardsData";
 import { techImages, hobbiesImages, ImageProps } from "@/helpers/imports/AboutImports";
 import { PageContainer } from "@components/PageContainer";
-import "./About.scss";
 import styles from "./About.module.scss";
 
 const About = () => {
