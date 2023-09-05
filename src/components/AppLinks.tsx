@@ -1,6 +1,6 @@
 import { routes } from "@routes/index";
 import { motion } from "framer-motion";
-import FancyLink from "./FancyLink";
+import { FancyLink } from "@components/FancyLink";
 
 type AppLinksProps = {
 	direction: "vertical" | "horizontal";
