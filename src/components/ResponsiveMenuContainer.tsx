@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import "@styles/components/ResponsiveMenuContainer.scss";
 import { routes } from "@routes/index";
-import FancyLink from "./FancyLink";
+import { FancyLink } from "@components/FancyLink";
 
 type ResponsiveMenuProps = {
 	isOpen: boolean;

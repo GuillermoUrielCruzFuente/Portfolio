@@ -1,6 +1,6 @@
 import { routes } from "@/routes";
 import "@styles/components/NavLinksDesktop.scss";
-import FancyLink from "@components/FancyLink";
+import { FancyLink } from "@components/FancyLink";
 import { motion, Variants } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useLogoAnimationState } from "@/context/LogoAnimationState/useLogoAnimationState";
