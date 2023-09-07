@@ -1,9 +1,9 @@
 import { routes } from "@/routes";
-import "@styles/components/NavLinksDesktop.scss";
 import { FancyLink } from "@components/FancyLink";
 import { motion, Variants } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useLogoAnimationState } from "@/context/LogoAnimationState/useLogoAnimationState";
+import styles from "./NavLinksDesktop.module.scss";
 
 const mountingVariants: Variants = {
 	unmount: {
@@ -23,7 +23,7 @@ const mountingVariants: Variants = {
 	},
 };
 
-const NavLinksDesktop = () => {
+export const NavLinksDesktop = () => {
 	const { pathname } = useLocation();
 	const isHome = pathname === "/";
 	const [logoAnimationState] = useLogoAnimationState();
@@ -39,7 +39,7 @@ const NavLinksDesktop = () => {
 
 	return (
 		<motion.ol
-			className="links-desk-container"
+			className={styles["links-desk-container"]}
 			initial="unmount"
 			animate="mount"
 			transition={{
@@ -47,16 +47,14 @@ const NavLinksDesktop = () => {
 				staggerChildren: 0.06,
 			}}
 		>
-			{routes.map((route) => (
+			{routes.map(({ path, text }) => (
 				<motion.li
-					key={route.path}
+					key={path}
 					variants={mountingVariants}
 				>
-					<FancyLink to={route.path}>{route.text}</FancyLink>
+					<FancyLink to={path}>{text}</FancyLink>
 				</motion.li>
 			))}
 		</motion.ol>
 	);
 };
-
-export default NavLinksDesktop;
