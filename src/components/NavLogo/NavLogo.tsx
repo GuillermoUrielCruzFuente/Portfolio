@@ -3,9 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useLogoAnimationState } from "@/context/LogoAnimationState";
 import useLottie from "@/hooks/useLottie";
 import logoAnimationData from "@lottie/logo.json";
-import "@styles/components/NavLogo.scss";
+import styles from "./NavLogo.module.scss";
 
-const NavLogo = () => {
+export const NavLogo = () => {
 	const [LogoAnimation, lottieLogoAnimation] = useLottie({
 		data: logoAnimationData,
 	});
@@ -71,13 +71,11 @@ const NavLogo = () => {
 
 	return (
 		<Link
-			className="nav-logo"
+			className={styles["nav-logo"]}
 			to="/"
 			ref={linkRef}
 		>
-			<LogoAnimation className="logo" />
+			<LogoAnimation className={styles["logo"]} />
 		</Link>
 	);
 };
-
-export default NavLogo;
