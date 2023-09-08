@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import NavLogo from "@components/NavLogo";
+import { NavLogo } from "@components/NavLogo";
 import { NavLinksDesktop } from "@components/NavLinksDesktop";
 import ResponsiveMenu from "../ResponsiveMenu";
 import "./Nav.scss";
