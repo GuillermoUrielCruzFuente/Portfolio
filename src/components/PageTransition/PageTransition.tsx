@@ -1,7 +1,7 @@
 import { motion, Variants } from "framer-motion";
 import { useEffect } from "react";
 
-const variants: Variants = {
+export const variants: Variants = {
 	initial: {
 		opacity: 0,
 	},
@@ -13,7 +13,7 @@ const variants: Variants = {
 	},
 };
 
-const PageTransition = ({ children }: { children: JSX.Element }) => {
+export const PageTransition = ({ children }: { children: JSX.Element }) => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
@@ -27,5 +27,3 @@ const PageTransition = ({ children }: { children: JSX.Element }) => {
 		</motion.div>
 	);
 };
-
-export default PageTransition;

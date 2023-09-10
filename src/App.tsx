@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import { AppRoutes } from "@/routes";
-import PageTransition from "@components/PageTransition";
+import { PageTransition } from "@components/PageTransition";
 
 import Nav from "@components/Nav/Nav";
 
