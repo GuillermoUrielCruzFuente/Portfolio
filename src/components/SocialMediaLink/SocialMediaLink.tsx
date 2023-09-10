@@ -1,8 +1,8 @@
 import type { SocialMediaSite } from "@/data/SocialMediaData";
 import { useRef } from "react";
-import "@styles/components/SocialMediaLink.scss";
+import styles from "./SocialMediaLink.module.scss";
 
-const SocialMediaLink = ({ name, url, iconSrc }: SocialMediaSite) => {
+export const SocialMediaLink = ({ name, url, iconSrc }: SocialMediaSite) => {
 	const linkRef = useRef<HTMLAnchorElement>(null);
 
 	const handleLoad = () => {
@@ -12,13 +12,13 @@ const SocialMediaLink = ({ name, url, iconSrc }: SocialMediaSite) => {
 	return (
 		<a
 			ref={linkRef}
-			className="social-media-link"
+			className={styles["social-media-link"]}
 			href={url}
 			target="_blank"
 			style={{ opacity: 0 }}
 		>
 			<img
-				className="social-media-icon"
+				className={styles["social-media-icon"]}
 				src={iconSrc}
 				alt={`logo de ${name}`}
 				title={name}
@@ -27,5 +27,3 @@ const SocialMediaLink = ({ name, url, iconSrc }: SocialMediaSite) => {
 		</a>
 	);
 };
-
-export default SocialMediaLink;
