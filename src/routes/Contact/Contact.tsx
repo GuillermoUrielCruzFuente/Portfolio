@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import "./Contact.scss";
 
 import sendEmail, { DevModeConfig } from "@/helpers/SendMail";
-import SocialMedia from "@components/SocialMedia/SocialMedia";
+import { SocialMedia } from "@components/SocialMedia";
 import DownloadPDF from "@components/DownloadPDF/DownloadPDF";
 
 import { ModalConfirmation } from "@components/ModalConfirmation";

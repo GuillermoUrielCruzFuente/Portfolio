@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import SocialMedia from "@components/SocialMedia/SocialMedia";
+import { SocialMedia } from "@components/SocialMedia";
 import Button from "@components/Button/Button";
 import useLottie from "@/hooks/useLottie";
 import { useLogoAnimationState } from "@/context/LogoAnimationState";
