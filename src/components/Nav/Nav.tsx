@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLogo } from "@components/NavLogo";
 import { NavLinksDesktop } from "@components/NavLinksDesktop";
-import ResponsiveMenu from "../ResponsiveMenu";
+import { ResponsiveMenu } from "@components/ResponsiveMenu";
 import "./Nav.scss";
 
 const Nav = () => {
