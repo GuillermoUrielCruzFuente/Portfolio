@@ -1,11 +1,11 @@
 import { useState } from "react";
 import useLottie from "@/hooks/useLottie";
 import hamMenu from "@lottie/hamburger-menu.json";
-import "@styles/components/ResponsiveMenu.scss";
+import styles from "./ResponsiveMenu.module.scss";
 import changeScrollbarState from "@/helpers/ChangeScrollbarState";
-import ResponsiveMenuContainer from "./ResponsiveMenuContainer";
+import ResponsiveMenuContainer from "../ResponsiveMenuContainer";
 
-const ResponsiveMenu = () => {
+export const ResponsiveMenu = () => {
 	const [HamMenu, HamMenuLottie] = useLottie({ data: hamMenu });
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -29,9 +29,9 @@ const ResponsiveMenu = () => {
 
 	return (
 		<>
-			<div className="hamburger-menu-container">
+			<div className={styles["hamburger-menu-container"]}>
 				<HamMenu
-					className="hamburger-animation"
+					className={styles["hamburger-animation"]}
 					onClick={toggle}
 				/>
 			</div>
@@ -43,5 +43,3 @@ const ResponsiveMenu = () => {
 		</>
 	);
 };
-
-export default ResponsiveMenu;
