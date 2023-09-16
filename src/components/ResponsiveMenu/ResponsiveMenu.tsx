@@ -3,7 +3,7 @@ import useLottie from "@/hooks/useLottie";
 import hamMenu from "@lottie/hamburger-menu.json";
 import styles from "./ResponsiveMenu.module.scss";
 import changeScrollbarState from "@/helpers/ChangeScrollbarState";
-import ResponsiveMenuContainer from "../ResponsiveMenuContainer";
+import { ResponsiveMenuContainer } from "@components/ResponsiveMenuContainer";
 
 export const ResponsiveMenu = () => {
 	const [HamMenu, HamMenuLottie] = useLottie({ data: hamMenu });
