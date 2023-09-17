@@ -31,7 +31,7 @@ const mountingVariants: Variants = {
 	},
 };
 
-const ResponsiveMenuContainer = ({ isOpen, itemCallback }: ResponsiveMenuProps) => {
+export const ResponsiveMenuContainer = ({ isOpen, itemCallback }: ResponsiveMenuProps) => {
 	return (
 		<AnimatePresence>
 			{isOpen && (
@@ -73,5 +73,3 @@ const ResponsiveMenuContainer = ({ isOpen, itemCallback }: ResponsiveMenuProps) 
 		</AnimatePresence>
 	);
 };
-
-export default ResponsiveMenuContainer;
