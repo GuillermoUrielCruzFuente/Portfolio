@@ -6,14 +6,12 @@ type AnimationSequenceProps = {
 	animationFiles: LottieData[];
 	containerClass?: string;
 	keepLastAnimationFrame?: true;
-	animationDelay?: number;
 };
 
-const LottieAnimationSequence = ({
+export const LottieAnimationSequence = ({
 	animationFiles,
 	containerClass,
 	keepLastAnimationFrame,
-	animationDelay = 0,
 }: AnimationSequenceProps) => {
 	const containerRef = useRef(null);
 
@@ -64,5 +62,3 @@ const LottieAnimationSequence = ({
 		></div>
 	);
 };
-
-export default LottieAnimationSequence;
