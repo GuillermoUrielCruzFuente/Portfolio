@@ -6,7 +6,7 @@ import successIcon from "@images/icons/ok.svg";
 import errorIcon from "@images/icons/error.svg";
 
 import { ANTICIPATE_TRANSITION } from "@/data/TransitionConfigurations";
-import LottieAnimationSequence from "@components/LottieSequence";
+import { LottieAnimationSequence } from "@components/LottieSequence";
 import type { LottieData } from "@typing/LottieTypes";
 
 export type ModalConfirmationProps = {
@@ -54,7 +54,6 @@ const ModalConfirmation = ({ messages, success, animationData }: ModalConfirmati
 						containerClass={styles["lottie-container"]}
 						animationFiles={animationData}
 						keepLastAnimationFrame
-						animationDelay={1000}
 					/>
 				)}
 			</div>
