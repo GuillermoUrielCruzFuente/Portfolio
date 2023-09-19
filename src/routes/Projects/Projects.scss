@@ -154,63 +154,6 @@ $guillermo-red: #a03535;
 			width: -moz-fit-content;
 			width: fit-content;
 			margin-top: 2rem;
-
-			.project-button:first-child {
-				margin-right: 1rem;
-				margin-left: 0;
-			}
-		}
-	}
-
-	.project-button {
-		display: flex;
-		flex-flow: row;
-		align-items: center;
-		justify-content: center;
-		font-weight: 900;
-		text-decoration: none;
-		line-height: 1;
-		height: -webkit-fit-content;
-		height: -moz-fit-content;
-		height: fit-content;
-		border-radius: 0.5rem;
-		font-size: 0.75rem;
-		padding: 0.65rem 1.3rem;
-		transition: background-color 300ms;
-		text-transform: uppercase;
-
-		img {
-			$button-icon-size: 14px;
-			width: $button-icon-size;
-			height: $button-icon-size;
-
-			margin-right: 0.5rem;
-
-			transition: transform 300ms;
-		}
-
-		&:hover > img {
-			transform: rotate(20deg) scale(1.075);
-		}
-
-		&.primary {
-			background-color: #4a045b;
-			border: none;
-			color: #fff;
-
-			&:hover {
-				background-color: #5e0874;
-			}
-		}
-
-		&.secondary {
-			background-color: transparent;
-			border: 1px solid #7e1e95;
-			color: #eeccf6;
-
-			&:hover {
-				background-color: #19021f;
-			}
 		}
 	}
 
@@ -322,11 +265,6 @@ $guillermo-red: #a03535;
 
 			.project-buttons-container {
 				flex-flow: row-reverse wrap;
-
-				.project-button:first-child {
-					margin-right: 0;
-					margin-left: 1rem;
-				}
 			}
 		}
 
