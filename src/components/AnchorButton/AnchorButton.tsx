@@ -1,22 +1,42 @@
-type AnchorButtonType = {
+import { AnchorHTMLAttributes } from "react";
+import styles from "./AnchorButton.module.scss";
+
+type AnchorButtonProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "target"> & {
 	children: string;
-	href: string;
 	icon: string;
 	primary?: true;
 };
 
-const AnchorButton = ({ children, href, icon, primary }: AnchorButtonType) => (
-	<a
-		className={`project-button ${primary ? "primary" : "secondary"}`}
-		href={href}
-		target="_blank"
-	>
-		<img
-			src={icon}
-			alt="project info icon"
-		/>
-		{children}
-	</a>
-);
+export const AnchorButton = (props: AnchorButtonProps) => {
+	const { children, href, icon, primary, className, ...otherProps } = props;
 
-export default AnchorButton;
+	const classParser = () => {
+		const {
+			"project-button": base,
+			"primary": primaryClass,
+			"secondary": secondaryClass,
+		} = styles;
+
+		const classes = [className, base];
+
+		classes.push(primary ? primaryClass : secondaryClass);
+
+		return classes.join(" ");
+	};
+
+	return (
+		<a
+			className={classParser()}
+			href={href}
+			target="_blank"
+			{...otherProps}
+		>
+			<img
+				src={icon}
+				alt="project info icon"
+			/>
+
+			{children}
+		</a>
+	);
+};
