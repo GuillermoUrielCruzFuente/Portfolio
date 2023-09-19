@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, Variants } from "framer-motion";
-import "@styles/components/ResponsiveMenuContainer.scss";
 import { routes } from "@routes/index";
 import { FancyLink } from "@components/FancyLink";
+import styles from "./ResponsiveMenuContainer.module.scss";
 
 type ResponsiveMenuProps = {
 	isOpen: boolean;
@@ -36,7 +36,7 @@ export const ResponsiveMenuContainer = ({ isOpen, itemCallback }: ResponsiveMenu
 		<AnimatePresence>
 			{isOpen && (
 				<motion.div
-					className="side-menu"
+					className={styles["side-menu"]}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
@@ -46,7 +46,7 @@ export const ResponsiveMenuContainer = ({ isOpen, itemCallback }: ResponsiveMenu
 					}}
 				>
 					<motion.ol
-						className="responsive-links"
+						className={styles["responsive-links"]}
 						initial="unmount"
 						animate="mount"
 						exit="unmount"
