@@ -1,4 +1,4 @@
-import AnchorButton from "@components/AnchorButton/AnchorButton";
+import { AnchorButton } from "@components/AnchorButton";
 import IntersectionContainer, {
 	IntersectionContainerAttributes,
 } from "@components/IntersectionContainer/IntersectionContainer";
