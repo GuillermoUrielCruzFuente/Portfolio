@@ -4,22 +4,22 @@ import styles from "./AnchorButton.module.scss";
 type AnchorButtonProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "target"> & {
 	children: string;
 	icon: string;
-	primary?: true;
+	secondary?: true;
 };
 
 export const AnchorButton = (props: AnchorButtonProps) => {
-	const { children, href, icon, primary, className, ...otherProps } = props;
+	const { children, href, icon, secondary, className, ...otherProps } = props;
 
 	const classParser = () => {
 		const {
-			"project-button": base,
-			"primary": primaryClass,
-			"secondary": secondaryClass,
+			"anchor-button": base,
+			"primary": primaryStyles,
+			"secondary": secondaryStyles,
 		} = styles;
 
-		const classes = [className, base];
-
-		classes.push(primary ? primaryClass : secondaryClass);
+		const classes = className ? [className, base] : [base];
+		const anchorButtonType = secondary ? secondaryStyles : primaryStyles;
+		classes.push(anchorButtonType);
 
 		return classes.join(" ");
 	};
