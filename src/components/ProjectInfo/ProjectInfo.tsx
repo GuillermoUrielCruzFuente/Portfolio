@@ -48,7 +48,6 @@ const ProjectInfo = ({ id, name, description, techStack, repository, url }: Proj
 				<AnchorButton
 					href={url}
 					icon={webIcon}
-					primary
 				>
 					visitar
 				</AnchorButton>
@@ -56,6 +55,7 @@ const ProjectInfo = ({ id, name, description, techStack, repository, url }: Proj
 				<AnchorButton
 					href={repository}
 					icon={githubIcon}
+					secondary
 				>
 					repositorio
 				</AnchorButton>
