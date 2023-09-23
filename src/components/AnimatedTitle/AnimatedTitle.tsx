@@ -1,5 +1,5 @@
 import { CSSProperties, MutableRefObject, useLayoutEffect, useRef } from "react";
-import "./AnimatedTitle.scss";
+import styles from "./AnimatedTitle.module.scss";
 
 type textArray = {
 	items: Array<string>;
@@ -12,7 +12,7 @@ type textItem = {
 	ref: MutableRefObject<HTMLSpanElement | null>;
 };
 
-const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
+export const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
 	const titleRef = useRef<HTMLHeadingElement>(null);
 
 	const itemsWithRef: Array<textItem> = items.map((item: string) => {
@@ -58,11 +58,11 @@ const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
 		<h1
 			ref={titleRef}
 			style={containerAlignment}
-			className="animated-title"
+			className={styles["animated-title"]}
 		>
 			{itemsWithRef.map((item, index) => (
 				<span
-					className={`animated-segment ${textClass}`}
+					className={`${styles["animated-segment"]} ${textClass}`}
 					ref={item.ref}
 					style={{ transitionDelay: `${index * 200}ms` }}
 					key={item.item}
@@ -73,5 +73,3 @@ const AnimatedTitle = ({ items, alignment, textClass }: textArray) => {
 		</h1>
 	);
 };
-
-export default AnimatedTitle;
