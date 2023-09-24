@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, MouseEventHandler } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Button.scss";
+import styles from "./Button.module.scss";
 
 interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
 	icon: string;
@@ -8,14 +8,17 @@ interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
 	navigateTo?: string;
 }
 
-const Button = (props: ButtonType) => {
+export const Button = (props: ButtonType) => {
 	const { icon, secondary, children, className, navigateTo, onClick, ...otherProps } = props;
 
 	const navigate = useNavigate();
 
-	const buttonClasses = `base-button ${
-		secondary ? "secondary-button" : "primary-button"
-	} ${className}`;
+	const classParser = () => {
+		const classes = className ? [className, styles["base-button"]] : [styles["base-button"]];
+		classes.push(styles[secondary ? "secondary-button" : "primary-button"]);
+
+		return classes.join(" ");
+	};
 
 	const clickHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
 		navigateTo && navigate(navigateTo);
@@ -25,18 +28,16 @@ const Button = (props: ButtonType) => {
 
 	return (
 		<button
-			className={buttonClasses}
+			className={classParser()}
 			onClick={clickHandler}
 			{...otherProps}
 		>
 			<img
 				src={icon}
 				alt=""
-				className="button-icon"
+				className={styles["button-icon"]}
 			/>
 			{children}
 		</button>
 	);
 };
-
-export default Button;
