@@ -5,7 +5,8 @@ import "./Contact.scss";
 
 import sendEmail, { DevModeConfig } from "@/helpers/SendMail";
 import { SocialMedia } from "@components/SocialMedia";
-import DownloadPDF from "@components/DownloadPDF/DownloadPDF";
+import { DownloadFile } from "@components/DownloadFile";
+import srcCV from "/GuillermoUrielCruzFuente-FrontendDeveloper-CV.pdf";
 
 import { ModalConfirmation } from "@components/ModalConfirmation";
 import changeScrollbarState from "@/helpers/ChangeScrollbarState";
@@ -107,7 +108,10 @@ const Contact = () => {
 						reciente, con toda mi información en él.
 					</p>
 
-					<DownloadPDF />
+					<DownloadFile
+						src={srcCV}
+						stringIcon="CV"
+					/>
 				</div>
 
 				<div className="split">
