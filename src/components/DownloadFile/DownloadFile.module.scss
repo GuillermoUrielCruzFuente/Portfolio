@@ -1,36 +1,4 @@
-// .download-pdf {
-// 	max-width: 150px;
-// 	border-radius: 0.5rem;
-// 	overflow: hidden;
-// 	box-shadow: 3px 3px 16px rgba($color: #000000, $alpha: 0.75);
-// 	margin-top: 2rem;
-
-// 	// background-color: crimson;
-
-// 	.thumb-container {
-// 		width: 100%;
-
-// 		img {
-// 			width: 100%;
-// 		}
-// 	}
-
-// 	.button-container {
-// 		a {
-// 			color: #f5c8ff;
-// 			font-size: 0.85rem;
-// 			text-decoration: none;
-// 			font-weight: 900;
-// 			text-align: center;
-// 			display: block;
-// 			width: 100%;
-// 			// background-color: chartreuse;
-// 			padding: 0.5rem 0 0.25rem 0;
-// 		}
-// 	}
-// }
-
-.download-cv {
+.download-file {
 	background-color: #65067a;
 	display: flex;
 	flex-flow: row;
@@ -41,24 +9,17 @@
 	overflow: hidden;
 	width: fit-content;
 	box-shadow: 3px 3px 16px rgba($color: #000000, $alpha: 0.65);
-
 	margin-top: 1rem;
 
 	&:hover > .icon-container .icon {
 		transform: scale(1.25);
 	}
 
-	// &:hover > .label-container .download-icon {
-	// 	transform: scale(1.25);
-	// }
-
 	.icon-container {
 		background-color: #470b55;
 		$icon-size: 3.5rem;
 		width: $icon-size;
 		height: $icon-size;
-		// border-radius: 0.25rem;
-
 		display: grid;
 		place-items: center center;
 		overflow: hidden;
@@ -82,9 +43,7 @@
 			$icon-size: 1.5rem;
 			width: $icon-size;
 			height: $icon-size;
-
 			margin-inline: 0.5rem;
-
 			margin-right: 0.5rem;
 			margin-left: 1rem;
 		}
