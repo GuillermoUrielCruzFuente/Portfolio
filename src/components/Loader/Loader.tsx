@@ -1,23 +1,37 @@
-import "./Loader.scss";
+import styles from "./Loader.module.scss";
 
 type LoaderProps = {
 	className?: string;
 };
 
-const Loader = ({ className }: LoaderProps) => {
+export const Loader = ({ className }: LoaderProps) => {
+	const tileClasses = (tileNumber: number): string => {
+		const classes = [styles["tile-base"], styles["tile-" + tileNumber]];
+		return classes.join(" ");
+	};
+
+	const squareTiles = () => {
+		const SQUARE_SIZE = 9;
+		const tiles = [...Array(SQUARE_SIZE).keys()];
+
+		return tiles.map((tileIndex) => {
+			const tileNumber = ++tileIndex;
+
+			return (
+				<div
+					className={tileClasses(tileNumber)}
+					key={"tile-" + tileNumber}
+				></div>
+			);
+		});
+	};
+
 	return (
-		<div className={`sk-cube-grid${className ? " " + className : ""}`}>
-			<div className="sk-cube sk-cube1"></div>
-			<div className="sk-cube sk-cube2"></div>
-			<div className="sk-cube sk-cube3"></div>
-			<div className="sk-cube sk-cube4"></div>
-			<div className="sk-cube sk-cube5"></div>
-			<div className="sk-cube sk-cube6"></div>
-			<div className="sk-cube sk-cube7"></div>
-			<div className="sk-cube sk-cube8"></div>
-			<div className="sk-cube sk-cube9"></div>
+		<div
+			className={styles["tile-grid"]}
+			title="loading..."
+		>
+			{squareTiles()}
 		</div>
 	);
 };
-
-export default Loader;
