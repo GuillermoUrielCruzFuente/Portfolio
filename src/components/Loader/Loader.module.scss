@@ -1,0 +1,109 @@
+$tile-grid-size: 100px;
+$tile-scale-duration: 1500ms;
+
+.tile-grid {
+	width: $tile-grid-size;
+	aspect-ratio: 1;
+}
+
+.tile-base {
+	width: 33.33%;
+	height: 33.33%;
+	float: left;
+	-webkit-animation: tileScale $tile-scale-duration infinite ease-in-out;
+	animation: tileScale $tile-scale-duration infinite ease-in-out;
+}
+
+.tile-1 {
+	color: antiquewhite;
+	background-color: antiquewhite;
+
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+}
+
+.tile-2 {
+	color: aqua;
+	background-color: aqua;
+
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
+}
+
+.tile-3 {
+	color: aquamarine;
+	background-color: aquamarine;
+
+	-webkit-animation-delay: 0.4s;
+	animation-delay: 0.4s;
+}
+
+.tile-4 {
+	color: azure;
+	background-color: azure;
+
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
+}
+
+.tile-5 {
+	color: beige;
+	background-color: beige;
+
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+}
+
+.tile-6 {
+	color: bisque;
+	background-color: bisque;
+
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
+}
+
+.tile-7 {
+	color: blanchedalmond;
+	background-color: blanchedalmond;
+
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+}
+
+.tile-8 {
+	color: burlywood;
+	background-color: burlywood;
+
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
+}
+
+.tile-9 {
+	color: chocolate;
+	background-color: chocolate;
+
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+}
+
+@-webkit-keyframes tileScale {
+	0%,
+	70%,
+	100% {
+		transform: scale3D(1, 1, 1);
+	}
+	35% {
+		transform: scale3D(0, 0, 1);
+	}
+}
+
+@keyframes tileScale {
+	0%,
+	70%,
+	100% {
+		transform: scale3D(1, 1, 1);
+	}
+	35% {
+		transform: scale3D(0, 0, 1);
+	}
+}
