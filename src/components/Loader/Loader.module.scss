@@ -1,9 +1,49 @@
-$tile-grid-size: 100px;
+@use "sass:math";
+@use "@styles/base/color";
+@use "@styles/utilities/mixins";
+
+$tile-grid-size: 30px;
 $tile-scale-duration: 1500ms;
 
+$small-size: 40px;
+$medium-size: 80px;
+$large-size: 120px;
+
+@mixin loader-shadow($size) {
+	box-shadow: 0px 0px $size math.div($size, 2) rgba($color: color.$purple-300, $alpha: 0.5);
+}
+
+.small {
+	width: $small-size;
+
+	.central-shadow {
+		@include loader-shadow($small-size);
+	}
+}
+
+.medium {
+	width: $medium-size;
+
+	.central-shadow {
+		@include loader-shadow($medium-size);
+	}
+}
+
+.large {
+	width: $large-size;
+
+	.central-shadow {
+		@include loader-shadow($large-size);
+	}
+}
+
 .tile-grid {
-	width: $tile-grid-size;
 	aspect-ratio: 1;
+	position: relative;
+}
+
+.central-shadow {
+	@include mixins.absolute-center;
 }
 
 .tile-base {
@@ -11,76 +51,67 @@ $tile-scale-duration: 1500ms;
 	height: 33.33%;
 	float: left;
 	-webkit-animation: tileScale $tile-scale-duration infinite ease-in-out;
-	animation: tileScale $tile-scale-duration infinite ease-in-out;
+	animation: tileScale $tile-scale-duration infinite ease;
 }
 
 .tile-1 {
-	color: antiquewhite;
-	background-color: antiquewhite;
+	background-color: color.$purple-300;
 
 	-webkit-animation-delay: 0.2s;
 	animation-delay: 0.2s;
 }
 
 .tile-2 {
-	color: aqua;
-	background-color: aqua;
+	background-color: color.$purple-200;
 
 	-webkit-animation-delay: 0.3s;
 	animation-delay: 0.3s;
 }
 
 .tile-3 {
-	color: aquamarine;
-	background-color: aquamarine;
+	background-color: color.$purple-300;
 
 	-webkit-animation-delay: 0.4s;
 	animation-delay: 0.4s;
 }
 
 .tile-4 {
-	color: azure;
-	background-color: azure;
+	background-color: color.$purple-200;
 
 	-webkit-animation-delay: 0.1s;
 	animation-delay: 0.1s;
 }
 
 .tile-5 {
-	color: beige;
-	background-color: beige;
+	background-color: color.$purple-100;
 
 	-webkit-animation-delay: 0.2s;
 	animation-delay: 0.2s;
 }
 
 .tile-6 {
-	color: bisque;
-	background-color: bisque;
+	background-color: color.$purple-200;
 
 	-webkit-animation-delay: 0.3s;
 	animation-delay: 0.3s;
 }
 
 .tile-7 {
-	color: blanchedalmond;
-	background-color: blanchedalmond;
+	background-color: color.$purple-300;
 
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s;
 }
 
 .tile-8 {
-	color: burlywood;
-	background-color: burlywood;
+	background-color: color.$purple-200;
 
 	-webkit-animation-delay: 0.1s;
 	animation-delay: 0.1s;
 }
 
 .tile-9 {
-	color: chocolate;
-	background-color: chocolate;
+	background-color: color.$purple-300;
 
 	-webkit-animation-delay: 0.2s;
 	animation-delay: 0.2s;
