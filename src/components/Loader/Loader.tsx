@@ -2,9 +2,11 @@ import styles from "./Loader.module.scss";
 
 type LoaderProps = {
 	className?: string;
+	shadow?: true;
+	size?: "small" | "medium" | "large";
 };
 
-export const Loader = ({ className }: LoaderProps) => {
+export const Loader = ({ shadow, size = "small", className }: LoaderProps) => {
 	const tileClasses = (tileNumber: number): string => {
 		const classes = [styles["tile-base"], styles["tile-" + tileNumber]];
 		return classes.join(" ");
@@ -26,11 +28,18 @@ export const Loader = ({ className }: LoaderProps) => {
 		});
 	};
 
+	const containerClasses = () => {
+		const classes = [styles[size], styles["tile-grid"]];
+		return classes.join(" ");
+	};
+
 	return (
 		<div
-			className={styles["tile-grid"]}
+			className={containerClasses()}
 			title="loading..."
 		>
+			{shadow ? <div className={styles["central-shadow"]}></div> : ""}
+
 			{squareTiles()}
 		</div>
 	);
