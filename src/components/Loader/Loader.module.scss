@@ -2,7 +2,7 @@
 @use "@styles/base/color";
 @use "@styles/utilities/mixins";
 
-$tile-grid-size: 30px;
+// the scale effect transition for every tile in the grid
 $tile-scale-duration: 1500ms;
 
 $small-size: 40px;
