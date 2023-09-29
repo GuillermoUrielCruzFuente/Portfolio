@@ -36,7 +36,11 @@ const LoadingNotification = ({ message, className }: NotificationProps) => {
 			variants={loadingNotificationVariants}
 			className={`${styles.container}${className ? " " + className : ""}`}
 		>
-			<Loader className={styles.loader} />
+			<Loader
+				className={styles.loader}
+				shadow
+				size="small"
+			/>
 
 			<p className={styles.message}>{message}</p>
 		</motion.div>
