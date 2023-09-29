@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Loader from "../Loader/Loader";
+import { Loader } from "@components/Loader";
 import { AnimatePresence, motion } from "framer-motion";
 
 export type LazyImgPath = {
@@ -127,7 +127,11 @@ const LazyImg = ({ imagePath }: LazyImgPath) => {
 							exit={{ opacity: 0 }}
 							transition={{ duration: 1 }}
 						>
-							<Loader />
+							<Loader
+								size={"medium"}
+								shadow
+							/>
+
 							<p className="loader-text">loading image...</p>
 						</motion.div>
 					)}
