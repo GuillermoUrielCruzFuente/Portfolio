@@ -7,7 +7,7 @@ type LoaderProps = {
 };
 
 export const Loader = ({ shadow, size = "small", className }: LoaderProps) => {
-	const tileClasses = (tileNumber: number): string => {
+	const tileClasses = (tileNumber: number) => {
 		const classes = [styles["tile-base"], styles["tile-" + tileNumber]];
 		return classes.join(" ");
 	};
@@ -29,7 +29,8 @@ export const Loader = ({ shadow, size = "small", className }: LoaderProps) => {
 	};
 
 	const containerClasses = () => {
-		const classes = [styles[size], styles["tile-grid"]];
+		const base = [styles[size], styles["tile-grid"]];
+		const classes = className ? [...base, className] : [...base];
 		return classes.join(" ");
 	};
 
