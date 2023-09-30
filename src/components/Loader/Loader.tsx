@@ -8,37 +8,16 @@ type LoaderProps = {
 };
 
 export const Loader = ({ shadow, size = "small", className }: LoaderProps) => {
+	const isNumberSize = typeof size === "number";
+
 	const tileClasses = (tileNumber: number) => {
 		const classes = [styles["tile-base"], styles["tile-" + tileNumber]];
 		return classes.join(" ");
 	};
 
-	const squareTiles = () => {
-		const SQUARE_SIZE = 9;
-		const tiles = [...Array(SQUARE_SIZE).keys()];
-
-		return tiles.map((tileIndex) => {
-			const tileNumber = ++tileIndex;
-
-			return (
-				<div
-					className={tileClasses(tileNumber)}
-					key={"tile-" + tileNumber}
-				></div>
-			);
-		});
-	};
-
-	const containerClasses = () => {
-		// todo: change css values based on user size definition
-		// css properties to change
-		// - tile-grid width
-		// - central-shadow width
-		if (typeof size === "number") {
-			console.log("specified with via prop: ", size);
-			const widthRule: CSSProperties = { width: size };
-
-			return;
+	const tileGridClasses = () => {
+		if (isNumberSize) {
+			return className ? [className, styles["tile-grid"]].join(" ") : styles["tile-grid"];
 		}
 
 		const base = [styles[size], styles["tile-grid"]];
@@ -46,14 +25,44 @@ export const Loader = ({ shadow, size = "small", className }: LoaderProps) => {
 		return classes.join(" ");
 	};
 
+	const shadowStyles = (): CSSProperties | undefined => {
+		if (isNumberSize) {
+			return { boxShadow: `0 0 ${size}px ${size / 2}px #6f118580` };
+		}
+	};
+
+	const shadowTemplate = () => {
+		if (shadow) {
+			return (
+				<div
+					className={styles["central-shadow"]}
+					style={shadowStyles()}
+				></div>
+			);
+		}
+	};
+
+	const squareTilesTemplate = () => {
+		const SQUARE_AREA = 9;
+		const tiles = [...Array(SQUARE_AREA + 1).keys()];
+		tiles.shift();
+
+		return tiles.map((tileNumber) => (
+			<div
+				className={tileClasses(tileNumber)}
+				key={"tile-" + tileNumber}
+			></div>
+		));
+	};
+
 	return (
 		<div
-			className={containerClasses()}
-			title="loading..."
+			className={tileGridClasses()}
+			style={isNumberSize ? { width: size } : undefined}
 		>
-			{shadow ? <div className={styles["central-shadow"]}></div> : ""}
+			{shadowTemplate()}
 
-			{squareTiles()}
+			{squareTilesTemplate()}
 		</div>
 	);
 };
