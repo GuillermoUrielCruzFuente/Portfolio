@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import { AppRoutes } from "@/routes";
 import { PageTransition } from "@components/PageTransition";
 
-import Nav from "@components/Nav/Nav";
+import { Nav } from "@components/Nav";
 
 import { Home } from "@routes/Home";
 import { About } from "@routes/About";
