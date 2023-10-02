@@ -1,0 +1,11 @@
+@use "sass:list";
+
+@function transition-properties($time: 500ms, $args...) {
+	$times: ();
+
+	@each $property in $args {
+		$times: list.append($times, $time);
+	}
+
+	@return list.zip($args, $times);
+}
