@@ -2,22 +2,28 @@ import { useEffect, useRef, useState } from "react";
 import { NavLogo } from "@components/NavLogo";
 import { NavLinksDesktop } from "@components/NavLinksDesktop";
 import { ResponsiveMenu } from "@components/ResponsiveMenu";
-import "./Nav.scss";
+import styles from "./Nav.module.scss";
 
-const Nav = () => {
+export const Nav = () => {
 	const navRef = useRef<HTMLElement>(null);
-	const [isLargeScreen, setIsLargeScreen] = useState(false);
+	const [hasEnoughSpace, setHasEnoughSpace] = useState(false);
 
 	const changeStyleOnScroll = () => {
-		if (window.scrollY >= 100) {
-			navRef.current?.classList.replace("no-blur-bg", "blur-bg");
-		} else {
-			navRef.current?.classList.replace("blur-bg", "no-blur-bg");
-		}
+		const userHasBeenScrolled = window.scrollY >= 100;
+
+		changeNavBlurVisibility({ show: userHasBeenScrolled });
+	};
+
+	const changeNavBlurVisibility = ({ show }: { show: boolean }) => {
+		const { "no-blur-bg": noBlur, "blur-bg": blur } = styles;
+
+		show
+			? navRef.current?.classList.replace(noBlur, blur)
+			: navRef.current?.classList.replace(blur, noBlur);
 	};
 
 	const screenResizeHandler = () => {
-		window.innerWidth > 860 ? setIsLargeScreen(true) : setIsLargeScreen(false);
+		setHasEnoughSpace(window.innerWidth > 860);
 	};
 
 	useEffect(() => {
@@ -36,15 +42,15 @@ const Nav = () => {
 	return (
 		<nav
 			ref={navRef}
-			className="no-blur-bg"
+			className={styles["no-blur-bg"]}
 		>
-			<div id="nav-container">
+			<div className={styles["nav-container"]}>
 				<NavLogo />
 
-				<div id="navigator">{isLargeScreen ? <NavLinksDesktop /> : <ResponsiveMenu />}</div>
+				<div className={styles["navigator"]}>
+					{hasEnoughSpace ? <NavLinksDesktop /> : <ResponsiveMenu />}
+				</div>
 			</div>
 		</nav>
 	);
 };
-
-export default Nav;
