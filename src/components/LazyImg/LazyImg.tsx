@@ -128,7 +128,7 @@ const LazyImg = ({ imagePath }: LazyImgPath) => {
 							transition={{ duration: 1 }}
 						>
 							<Loader
-								size={"medium"}
+								size={"small"}
 								shadow
 							/>
 
