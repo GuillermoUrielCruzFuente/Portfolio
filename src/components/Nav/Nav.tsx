@@ -45,9 +45,17 @@ export const Nav = () => {
 			className={styles["no-blur-bg"]}
 		>
 			<div className={styles["nav-container"]}>
-				<NavLogo />
+				<div
+					className={styles["nav-logo-container"]}
+					ref={navLogoContainerRef}
+				>
+					<NavLogo />
+				</div>
 
-				<div className={styles["navigator"]}>
+				<div
+					className={styles["navigator"]}
+					ref={linksContainerRef}
+				>
 					{hasEnoughSpace ? <NavLinksDesktop /> : <ResponsiveMenu />}
 				</div>
 			</div>
