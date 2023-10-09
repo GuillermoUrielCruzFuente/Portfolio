@@ -38,7 +38,6 @@ const LoadingNotification = ({ message, className }: NotificationProps) => {
 		>
 			<Loader
 				className={styles.loader}
-				shadow
 				size="small"
 			/>
 
