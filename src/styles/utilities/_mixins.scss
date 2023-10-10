@@ -14,3 +14,9 @@
 @mixin border($color: color.$purple-350) {
 	border: dashed $color 2px;
 }
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
