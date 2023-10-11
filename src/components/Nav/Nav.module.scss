@@ -1,6 +1,7 @@
 @use "/src/styles/layout/z-index.scss" as Z;
 @use "/src/styles/base/color";
 @use "@styles/utilities/functions";
+@use "@styles/utilities/mixins";
 
 $nav-props-transition: background-color, border-bottom, backdrop-filter, box-shadow;
 
