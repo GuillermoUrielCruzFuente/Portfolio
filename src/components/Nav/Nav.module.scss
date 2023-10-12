@@ -46,8 +46,14 @@ nav {
 
 .navigator {
 	height: 100%;
-	display: flex;
-	align-items: center;
+	@include mixins.flex-center;
+}
+
+.nav-logo-container {
+	height: 100%;
+	position: relative;
+
+	@include mixins.flex-center;
 }
 
 @media screen and (max-width: 700px) {
