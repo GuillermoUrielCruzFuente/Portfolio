@@ -7,7 +7,12 @@ import { computeHorizontalBoxesCollision } from "@/helpers/computeHorizontalBoxe
 
 export const Nav = () => {
 	const navRef = useRef<HTMLElement>(null);
-	const [hasEnoughSpace, setHasEnoughSpace] = useState(false);
+
+	const navLogoContainerRef = useRef<HTMLDivElement>(null);
+	const linksContainerRef = useRef<HTMLDivElement>(null);
+
+	const [hasEnoughSpace, setHasEnoughSpace] = useState(true);
+	const [desktopWidth, setDesktopWidth] = useState<number | null>(null);
 
 	const changeStyleOnScroll = () => {
 		const userHasBeenScrolled = window.scrollY >= 100;
