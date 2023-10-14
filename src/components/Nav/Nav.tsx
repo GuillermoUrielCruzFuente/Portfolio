@@ -3,6 +3,7 @@ import { NavLogo } from "@components/NavLogo";
 import { NavLinksDesktop } from "@components/NavLinksDesktop";
 import { ResponsiveMenu } from "@components/ResponsiveMenu";
 import styles from "./Nav.module.scss";
+import { computeHorizontalBoxesCollision } from "@/helpers/computeHorizontalBoxesCollision";
 
 export const Nav = () => {
 	const navRef = useRef<HTMLElement>(null);
