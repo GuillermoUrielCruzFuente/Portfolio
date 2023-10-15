@@ -3,7 +3,6 @@ import { NavLogo } from "@components/NavLogo";
 import { NavLinksDesktop } from "@components/NavLinksDesktop";
 import { ResponsiveMenu } from "@components/ResponsiveMenu";
 import styles from "./Nav.module.scss";
-import { computeHorizontalBoxesCollision } from "@/helpers/computeHorizontalBoxesCollision";
 
 export const Nav = () => {
 	const navRef = useRef<HTMLElement>(null);
@@ -12,15 +11,13 @@ export const Nav = () => {
 	const linksContainerRef = useRef<HTMLDivElement>(null);
 
 	const [hasEnoughSpace, setHasEnoughSpace] = useState(true);
-	const [desktopWidth, setDesktopWidth] = useState<number | null>(null);
 
 	const changeStyleOnScroll = () => {
-		const userHasBeenScrolled = window.scrollY >= 100;
-
-		changeNavBlurVisibility({ show: userHasBeenScrolled });
+		const userHasBeenScrolled = window.scrollY >= 50;
+		showNavBlur(userHasBeenScrolled);
 	};
 
-	const changeNavBlurVisibility = ({ show }: { show: boolean }) => {
+	const showNavBlur = (show: boolean) => {
 		const { "no-blur-bg": noBlur, "blur-bg": blur } = styles;
 
 		show
