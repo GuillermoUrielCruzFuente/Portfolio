@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { SocialMedia } from "@components/SocialMedia";
-import Button from "@components/Button/Button";
+import { Button } from "@components/Button";
 import useLottie from "@/hooks/useLottie";
 import { useLogoAnimationState } from "@/context/LogoAnimationState";
 import logoAnimationData from "@lottie/logo.json";
