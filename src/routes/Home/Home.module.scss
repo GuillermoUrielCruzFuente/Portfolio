@@ -1,0 +1,43 @@
+.logo-animation-container {
+	width: 100%;
+	transition: width 500ms;
+	transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
+}
+
+$logo-width: 100%;
+.lottie-animation {
+	width: $logo-width;
+	aspect-ratio: 4.85;
+	overflow: hidden;
+	margin-inline: auto;
+}
+
+.home-content {
+	display: flex;
+	flex-flow: column;
+}
+
+.description {
+	width: min(300px, 80%);
+	color: #f5c8ff;
+	font-size: 0.85rem;
+	font-weight: 400;
+	text-align: center;
+
+	margin-top: 1rem;
+
+	margin-inline: auto;
+}
+
+.big-text {
+	font-size: 1.5rem;
+	font-weight: 900;
+	color: #fff;
+	width: fit-content;
+	margin-inline: auto;
+}
+
+.accent {
+	font-weight: 900;
+	color: #fff;
+}
