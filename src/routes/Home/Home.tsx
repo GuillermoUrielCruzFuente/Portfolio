@@ -10,6 +10,8 @@ import collage from "@images/web-images/collage.png";
 import { PageContainer } from "@components/PageContainer";
 import "./Home.scss";
 import { motion, AnimatePresence } from "framer-motion";
+import styles from "./Home.module.scss";
+import logoImage from "@images/identity/logo-white.svg";
 
 const Home = () => {
 	const collageRef = useRef<HTMLImageElement>(null);
