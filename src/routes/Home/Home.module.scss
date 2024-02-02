@@ -1,43 +1,72 @@
-.logo-animation-container {
-	width: 100%;
-	transition: width 500ms;
-	transition-timing-function: cubic-bezier(0.73, -0.58, 0.26, 1.5);
+@use "@styles/base/color";
+
+.home-page-container {
+	padding-bottom: var(--navbar-height);
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
 }
 
-$logo-width: 100%;
+.logo-animation-container {
+	width: min(300px, 60%);
+}
+
 .lottie-animation {
-	width: $logo-width;
+	width: 100%;
 	aspect-ratio: 4.85;
 	overflow: hidden;
-	margin-inline: auto;
 }
 
 .home-content {
 	display: flex;
 	flex-flow: column;
+	gap: 1.75rem;
 }
 
 .description {
-	width: min(300px, 80%);
-	color: #f5c8ff;
+	width: min(450px, 80%);
+	color: color.$purple-100;
 	font-size: 0.85rem;
 	font-weight: 400;
 	text-align: center;
 
-	margin-top: 1rem;
-
 	margin-inline: auto;
 }
 
-.big-text {
-	font-size: 1.5rem;
+.greeting-text {
+	font-size: 1rem;
 	font-weight: 900;
 	color: #fff;
 	width: fit-content;
+	margin-inline: auto;
+	line-height: 1;
+}
+
+.logo-image {
+	width: min(500px, 100%);
 	margin-inline: auto;
 }
 
 .accent {
 	font-weight: 900;
 	color: #fff;
+}
+
+.buttons-container {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+	.buttons-container {
+		margin-top: 3rem;
+
+		button {
+			width: 100%;
+		}
+	}
 }
