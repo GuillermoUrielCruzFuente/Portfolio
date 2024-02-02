@@ -1,117 +1,81 @@
-import { useRef, useEffect, useState } from "react";
-import { SocialMedia } from "@components/SocialMedia";
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@components/Button";
-import useLottie from "@/hooks/useLottie";
+import { PageContainer } from "@components/PageContainer";
 import { useLogoAnimationState } from "@/context/LogoAnimationState";
+import useLottie from "@/hooks/useLottie";
+import styles from "./Home.module.scss";
 import logoAnimationData from "@lottie/logo.json";
 import projectsIcon from "@images/icons/home-buttons/portfolio.svg";
 import contactIcon from "@images/icons/home-buttons/plane.svg";
-import collage from "@images/web-images/collage.png";
-import { PageContainer } from "@components/PageContainer";
-import "./Home.scss";
-import { motion, AnimatePresence } from "framer-motion";
-import styles from "./Home.module.scss";
 import logoImage from "@images/identity/logo-white.svg";
 
 const Home = () => {
-	const collageRef = useRef<HTMLImageElement>(null);
-	const [_, setLogoAnimationState] = useLogoAnimationState();
+	const [logoAnimationState, setLogoAnimationState] = useLogoAnimationState();
 	const [LogoAnimationComponent, logoLottieRef, componentRef] = useLottie({
 		data: logoAnimationData,
 	});
 
 	useEffect(() => {
 		setTimeout(() => {
-			logoLottieRef.current.play();
-		}, 500);
+			logoLottieRef.current?.play();
+		}, 100);
 
-		logoLottieRef.current.addEventListener("complete", onLogoAnimationComplete);
+		logoLottieRef.current?.addEventListener("complete", () => {
+			setLogoAnimationState({ isComplete: true });
+		});
 	}, []);
 
-	const logoAnimationContainerRef = useRef<HTMLDivElement>(null);
-	const onLogoAnimationComplete = () => {
-		setLogoAnimationState({ isComplete: true });
-
-		setTimeout(() => {
-			setHomeState(true);
-		}, 500);
-	};
-
-	const showCollage = () => {
-		collageRef.current!.classList.replace("collage-init", "collage-final");
-	};
-
-	const [homeState, setHomeState] = useState(false);
-
-	return (
-		<PageContainer
-			addNavbarMarginTop
-			fillVerticalViewport
-			className="home-page-container"
-		>
-			<AnimatePresence mode="wait">
-				{!homeState ? (
-					<motion.div
-						ref={logoAnimationContainerRef}
-						className="logo-animation-container"
-						initial={{ opacity: 0 }}
-						animate={{
-							opacity: 1,
-							transition: {
-								duration: 1,
-								ease: "linear",
-							},
-						}}
-						exit={{ opacity: 0 }}
-						key="logo-container"
-					>
-						<LogoAnimationComponent className="lottie-animation" />
-					</motion.div>
-				) : (
-					<motion.p
-						key="home-content"
-						initial={{ opacity: 0 }}
-						animate={{
-							opacity: 1,
-							transition: {
-								duration: 0.4,
-							},
-						}}
-						exit={{ opacity: 0 }}
-						className="big-text"
-					>
-						Hola! 👋🏾
-					</motion.p>
-				)}
-			</AnimatePresence>
-
-			{/* <motion.div
-				layout
-				className="layout-composer"
+	const guillermoLogoTemplate = () => {
+		return (
+			<motion.div
+				className={styles["logo-animation-container"]}
+				initial={{ opacity: 0 }}
+				animate={{
+					opacity: 1,
+					transition: {
+						duration: 0.5,
+						ease: "linear",
+					},
+				}}
+				exit={{ opacity: 0 }}
+				key="logo-container"
 			>
-				{isAnimationComplete.isComplete && (
-					<motion.p
-						initial={{ opacity: 0, y: "20%" }}
-						animate={{
-							opacity: 1,
-							y: 0,
-							transition: {
-								duration: 0.4,
-							},
-						}}
-						className="big-text"
-					>
-						Hola! 👋🏾 soy
-					</motion.p>
-				)}
-			</motion.div> */}
-			{/* <p className="description">
-					<span className="accent">Desarrollador Frontend</span> de tiempo completo, con
-					más de 3 años de experiencia. Mexicano, con intervención en distintos proyectos
-					profesionales, una gran creatividad y atención a los detalles.
+				<LogoAnimationComponent className={styles["lottie-animation"]} />
+			</motion.div>
+		);
+	};
+
+	const homeContentTemplate = () => {
+		return (
+			<motion.div
+				key="home-content"
+				initial={{ opacity: 0 }}
+				animate={{
+					opacity: 1,
+					transition: { duration: 0.4 },
+				}}
+				exit={{ opacity: 0 }}
+				className={styles["home-content"]}
+			>
+				<div>
+					<p className={styles["greeting-text"]}>Hola! 👋🏾, soy</p>
+
+					<img
+						src={logoImage}
+						alt="logo"
+						className={styles["logo-image"]}
+					/>
+				</div>
+
+				<p className={styles["description"]}>
+					<span className={styles["accent"]}>Desarrollador Frontend</span> de tiempo
+					completo, con más de 3 años de experiencia. Mexicano, con intervención en
+					distintos proyectos profesionales, una gran creatividad y atención a los
+					detalles.
 				</p>
 
-				<div className="buttons-container">
+				<div className={styles["buttons-container"]}>
 					<Button
 						icon={contactIcon}
 						secondary
@@ -127,24 +91,19 @@ const Home = () => {
 						proyectos
 					</Button>
 				</div>
+			</motion.div>
+		);
+	};
 
-				<SocialMedia containerClass="social-media-container" />
-
-				<div className="available">
-					<span id="circle"></span>
-					<p className="able-to-work">Disponible</p>
-				</div>
-
-				<div className="collage-container">
-					<img
-						src={collage}
-						alt="Un collage con distintas capturas de mis proyectos destacados"
-						className="collage collage-init"
-						ref={collageRef}
-						onLoad={showCollage}
-					/>
-				</div>
-			</div> */}
+	return (
+		<PageContainer
+			addNavbarMarginTop
+			fillVerticalViewport
+			className={styles["home-page-container"]}
+		>
+			<AnimatePresence mode="wait">
+				{logoAnimationState.isComplete ? homeContentTemplate() : guillermoLogoTemplate()}
+			</AnimatePresence>
 		</PageContainer>
 	);
 };
