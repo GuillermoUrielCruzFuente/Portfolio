@@ -16,6 +16,7 @@ export type ProjectContent = {
 	description: string;
 	techStack: Array<Technology>;
 	repository: string;
+	isPrivate?: boolean;
 	url: string;
 	collageSrcPath: string;
 	logoSrcPath: string;
@@ -33,7 +34,8 @@ const projectsData: Array<ProjectContent> = [
 			"Empresa dedicada a la producción y comercialización de fertilizantes commodities y multiminerales. Una clásica landing page, con la información necesaria para clientes potenciales.",
 		techStack: ["html", "scss", "js", "vite"],
 		repository: "https://github.com/GuillermoCruzFuente/harBest",
-		url: "https://harbest.mx/",
+		isPrivate: true,
+		url: "https://harbest.onrender.com/",
 		logoSrcPath: harbestLogo,
 		collageSrcPath: harbestImg,
 	},
@@ -44,6 +46,7 @@ const projectsData: Array<ProjectContent> = [
 			"Agencia de marketing político enfocado en el tratamiento integral del proceso electoral. Realiza actividades que comprenden desde el análisis estadístico hasta el desarrollo de la marca personal de sus clientes. Una landing page enfocada en demostrar seriedad, minimalismo y creatividad.",
 		techStack: ["html", "scss", "ts", "vite"],
 		repository: "https://github.com/GuillermoCruzFuente/intelligentia",
+		isPrivate: true,
 		url: "https://intelligentia.onrender.com/",
 		logoSrcPath: intelligentiaLogo,
 		collageSrcPath: intelligentiaImg,
@@ -60,6 +63,7 @@ const projectsData: Array<ProjectContent> = [
 			"Empresa dedicada a la comercialización de agroinsumos y servicios de vanguardia. Realicé un rediseño de su presencia en la web, buscando expresar una identidad fresca y a la vez seria.",
 		techStack: ["html", "scss", "js", "vite"],
 		repository: "https://github.com/GuillermoCruzFuente/CampoFuerte",
+		isPrivate: true,
 		url: "https://campofuerte.onrender.com/",
 		logoSrcPath: campoFuerteLogo,
 		collageSrcPath: campoFuerteImg,

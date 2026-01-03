@@ -9,6 +9,8 @@ import { ProjectContent } from "@/data/ProjectsData";
 import webIcon from "@images/icons/social-media/web.svg";
 import githubIcon from "@images/icons/social-media/github.svg";
 
+import "@/components/ProjectInfo/ProjectInfo.scss";
+
 const intersectionConfig: IntersectionContainerAttributes = {
 	from: {
 		transform: "translateY(30px)",
@@ -21,7 +23,15 @@ const intersectionConfig: IntersectionContainerAttributes = {
 	transitionTime: 1000,
 };
 
-const ProjectInfo = ({ id, name, description, techStack, repository, url }: ProjectContent) => (
+const ProjectInfo = ({
+	id,
+	name,
+	description,
+	techStack,
+	repository,
+	url,
+	isPrivate,
+}: ProjectContent) => (
 	<article className="project-info">
 		<IntersectionContainer {...intersectionConfig}>
 			<p className="project-number">Proyecto #{id}</p>
@@ -52,13 +62,15 @@ const ProjectInfo = ({ id, name, description, techStack, repository, url }: Proj
 					visitar
 				</AnchorButton>
 
-				<AnchorButton
-					href={repository}
-					icon={githubIcon}
-					secondary
-				>
-					repositorio
-				</AnchorButton>
+				{!isPrivate ? (
+					<AnchorButton
+						href={repository}
+						icon={githubIcon}
+						secondary
+					>
+						repositorio
+					</AnchorButton>
+				) : null}
 			</div>
 		</IntersectionContainer>
 	</article>

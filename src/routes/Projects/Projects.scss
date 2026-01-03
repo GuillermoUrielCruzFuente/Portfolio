@@ -74,88 +74,22 @@ $guillermo-red: #a03535;
 
 .projects-container {
 	background-color: #000;
-	padding-block: 3rem;
+	padding-top: 20rem;
+	padding-bottom: 5rem;
+}
+
+.project-box {
+	margin-bottom: 10rem;
+
+	&:last-child {
+		margin-bottom: unset;
+	}
 }
 
 .project-container {
 	display: flex;
-	padding-top: 20vh;
-	flex-flow: row wrap;
-	text-align: left;
-
-	.project-info {
-		padding-block: 5rem;
-		display: flex;
-		width: -webkit-fit-content;
-		width: -moz-fit-content;
-		width: fit-content;
-		flex-flow: column;
-		justify-content: center;
-		flex-basis: 0;
-		align-items: flex-start;
-
-		.project-number {
-			font-size: 0.75rem;
-			color: #7e1e95;
-			font-weight: 900;
-		}
-
-		.project-name {
-			font-size: clamp(1.5rem, 12.25vw, 2.75rem);
-			color: #fff;
-			line-height: 1;
-			margin-bottom: 0.75rem;
-		}
-
-		.project-description {
-			font-size: 0.85rem;
-			// font-size: 1rem;
-			color: #f2dbff;
-			min-width: 400px;
-			line-height: 1.8;
-
-			// font-weight: 900;
-		}
-
-		.project-techs {
-			font-size: 0.75rem;
-			color: #7e1e95;
-			font-weight: 900;
-			margin-top: 1rem;
-		}
-
-		.project-tech-icon {
-			$tech-icon-size: 24px;
-			width: $tech-icon-size;
-			height: $tech-icon-size;
-			margin-inline: 0.5rem;
-
-			&:first-child {
-				margin-left: 0rem;
-			}
-		}
-
-		.project-tech-icons-container {
-			display: flex;
-			flex-flow: row wrap;
-			margin-top: 0.5rem;
-			width: -webkit-fit-content;
-			width: -moz-fit-content;
-			width: fit-content;
-
-			align-items: center;
-			justify-content: center;
-		}
-
-		.project-buttons-container {
-			display: flex;
-			flex-flow: row wrap;
-			width: -webkit-fit-content;
-			width: -moz-fit-content;
-			width: fit-content;
-			margin-top: 2rem;
-		}
-	}
+	flex-flow: row nowrap;
+	justify-content: space-between;
 
 	.project-collage-main {
 		position: relative;
@@ -165,6 +99,7 @@ $guillermo-red: #a03535;
 
 	.project-collage-img-container {
 		height: 100%;
+		max-width: 1100px;
 		position: relative;
 		display: flex;
 		flex-flow: column;
@@ -235,6 +170,14 @@ $guillermo-red: #a03535;
 	}
 }
 
+.project-info {
+	min-width: min(400px, 100%);
+}
+
+.project-container .project-collage-img-container {
+	margin-left: auto;
+}
+
 //this part must control the alternate behavior desired in the projects page
 .project-box {
 	&:nth-child(2n) > .project-container {
@@ -264,23 +207,15 @@ $guillermo-red: #a03535;
 			}
 
 			.project-buttons-container {
-				flex-flow: row-reverse wrap;
+				flex-flow: row-reverse nowrap;
 			}
 		}
 
 		.project-collage-img-container {
 			align-items: flex-start;
+			margin-left: unset;
 		}
 	}
-}
-
-.project-separator {
-	border: 0;
-	height: 2px;
-	background: #333;
-	background-image: linear-gradient(to right, #000, #540f64, #000);
-
-	margin-bottom: 5rem;
 }
 
 ////////////////////////

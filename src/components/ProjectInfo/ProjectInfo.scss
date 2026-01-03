@@ -1,23 +1,24 @@
 .project-info {
 	padding-block: 5rem;
 	width: fit-content;
-
 	display: flex;
-	flex-flow: column;
+	flex-flow: column nowrap;
 	justify-content: center;
-
-	// background-color: chartreuse;
+	flex-basis: 0;
+	align-items: flex-start;
 
 	.project-number {
 		font-size: 1rem;
 		color: #7e1e95;
 		font-weight: 900;
-		// text-transform: uppercase;
+		line-height: 1;
 	}
 
 	.project-name {
 		font-size: 3rem;
 		color: #fff;
+		line-height: 1;
+		margin-bottom: 1rem;
 	}
 
 	.project-description {
@@ -25,47 +26,36 @@
 		color: #f2dbff;
 		width: min(450px, 100%);
 		line-height: 1.6;
-
-		// background-color: chartreuse;
+		margin-bottom: 1rem;
 	}
 
 	.project-techs {
 		font-size: 1rem;
 		color: #7e1e95;
 		font-weight: 900;
-		// text-transform: uppercase;
-		margin-top: 3rem;
 	}
 
 	.project-tech-icon {
 		width: 40px;
 		height: 40px;
-		margin-inline: 1rem;
-
-		&:first-child {
-			margin-left: 0rem;
-		}
 	}
 
 	.project-tech-icons-container {
 		display: flex;
-		flex-flow: row wrap;
-		margin-top: 1rem;
-
-		// background-color: crimson;
-		width: fit-content;
+		flex-flow: row nowrap;
+		margin-top: 0.5rem;
+		gap: 1rem;
 	}
 
 	.project-buttons-container {
-		margin-top: 2rem;
+		margin-top: 1.5rem;
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row nowrap;
 		width: fit-content;
-
-		// background-color: blueviolet;
-
-		button:first-child {
-			margin-right: 1rem;
-		}
+		gap: 1rem;
 	}
+}
+
+.full-width {
+	width: 100%;
 }
