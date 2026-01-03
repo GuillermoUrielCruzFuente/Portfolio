@@ -7,12 +7,13 @@ import {
 	useRef,
 	HTMLAttributes,
 	RefObject,
+	JSX,
 } from "react";
 
 type useLottieReturns = [
 	lottieElement: (props: HTMLAttributes<HTMLDivElement>) => JSX.Element,
 	lottieInstanceRef: MutableRefObject<AnimationItem>,
-	lottieContainerRef: RefObject<HTMLDivElement>
+	lottieContainerRef: RefObject<HTMLDivElement | null>
 ];
 
 const useLottie = ({ data }: LottieData): useLottieReturns => {

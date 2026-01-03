@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 import { Technology } from "@/data/Technologies";
 
 import harbestLogo from "@images/icons/project-logos/harbest.svg";

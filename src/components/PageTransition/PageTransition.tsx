@@ -1,5 +1,5 @@
 import { motion, Variants } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, JSX } from "react";
 
 export const variants: Variants = {
 	initial: {
